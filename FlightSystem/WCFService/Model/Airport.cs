@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace WCFService.Model {
 
     [DataContract(IsReference = true)]
-    [KnownType(typeof(Route))]
+    [KnownType(typeof(List<Route>))]
     [KnownType(typeof(TimeZone))]
     public class Airport {
 

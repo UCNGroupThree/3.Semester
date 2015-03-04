@@ -10,7 +10,7 @@ namespace WCFService.Model {
     
     [DataContract(IsReference = true)]
     [KnownType(typeof(Airport))]
-    [KnownType(typeof(Flight))]
+    [KnownType(typeof(List<Flight>))]
     public class Route {
 
         [DataMember]
