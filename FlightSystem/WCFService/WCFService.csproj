@@ -54,6 +54,7 @@
     <Compile Include="Model\Airport.cs" />
     <Compile Include="Model\Postal.cs" />
     <Compile Include="Model\Route.cs" />
+    <Compile Include="Model\Ticket.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
