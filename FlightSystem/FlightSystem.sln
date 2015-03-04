@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightSystem", "FlightSystem\FlightSystem.csproj", "{724D5154-D168-484D-A38D-B17B55188421}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFService", "WCFService\WCFService.csproj", "{7CC4D182-87C8-42AF-873D-0B8ACCDACBBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{724D5154-D168-484D-A38D-B17B55188421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{724D5154-D168-484D-A38D-B17B55188421}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{724D5154-D168-484D-A38D-B17B55188421}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{724D5154-D168-484D-A38D-B17B55188421}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CC4D182-87C8-42AF-873D-0B8ACCDACBBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CC4D182-87C8-42AF-873D-0B8ACCDACBBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CC4D182-87C8-42AF-873D-0B8ACCDACBBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CC4D182-87C8-42AF-873D-0B8ACCDACBBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
