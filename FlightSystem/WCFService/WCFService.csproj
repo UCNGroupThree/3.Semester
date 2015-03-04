@@ -53,6 +53,8 @@
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WCF\Interface\IUserService.cs" />
+    <Compile Include="WCF\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
