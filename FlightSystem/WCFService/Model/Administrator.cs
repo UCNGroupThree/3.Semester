@@ -9,7 +9,7 @@ namespace WCFService.Model
     public class Administrator
     {
         [DataMember]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //Fortæller at ID skal være IDENTITY
         public int ID { get; set; }
 
         [DataMember]
@@ -19,7 +19,7 @@ namespace WCFService.Model
         public string Password { get; set; }
 
         [DataMember]
-        [Timestamp]
+        [Timestamp] // Timestamp for ændringer i objektet, til håndtering af concurrency i entityframework
         public byte[] Concurrency { get; set; }
     }
 }
