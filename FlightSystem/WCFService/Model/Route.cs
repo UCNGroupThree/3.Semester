@@ -1,35 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
 namespace WCFService.Model {
-
+    
     [DataContract(IsReference = true)]
-    [KnownType(typeof(User))]
-    [KnownType(typeof(List<SeatReservation>))]
-    [KnownType(typeof(DateTime))] //TODO behøver denne? samme på Airport med TimeZone
-    public class Ticket {
+    [KnownType(typeof(Airport))]
+    [KnownType(typeof(List<Flight>))]
+    public class Route {
 
         [DataMember]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [DataMember]
-        public DateTime OrderDate { get; set; }
+        public Airport LocationOne { get; set; }
 
         [DataMember]
-        public string OrderState { get; set; } //TODO string/int/enum?
+        public Airport LocationTwo { get; set; }
 
         [DataMember]
-        public User User { get; set; }
+        public List<Flight> Flights { get; set; }
 
         [DataMember]
-        public List<SeatReservation> SeatReservations { get; set; }
-
-        [DataMember]
+        [Timestamp]
         public byte[] Concurrency { get; set; }
+
     }
 }
