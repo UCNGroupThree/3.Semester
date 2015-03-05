@@ -51,6 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Administrator.cs" />
+    <Compile Include="Model\Plane.cs" />
+    <Compile Include="Model\Seat.cs" />
+    <Compile Include="Model\Ticket.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
