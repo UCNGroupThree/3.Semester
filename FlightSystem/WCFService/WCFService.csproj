@@ -51,11 +51,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Administrator.cs" />
+    <Compile Include="Model\Flight.cs" />
     <Compile Include="Model\Plane.cs" />
     <Compile Include="Model\Seat.cs" />
     <Compile Include="Model\Airport.cs" />
     <Compile Include="Model\Postal.cs" />
     <Compile Include="Model\Route.cs" />
+    <Compile Include="Model\SeatReservation.cs" />
+    <Compile Include="Model\SeatState.cs" />
     <Compile Include="Model\Ticket.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Program.cs" />
