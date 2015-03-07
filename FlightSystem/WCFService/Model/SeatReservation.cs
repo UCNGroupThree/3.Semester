@@ -31,28 +31,28 @@ namespace WCFService.Model
         }
 
         [DataMember]
-        public Flight MyProperty
+        public Flight Flight
         {
             get { return flight; }
             set { flight = value; }
         }
         
         [DataMember]
-        public Seat MyProperty
+        public Seat Seate
         {
             get { return seat; }
             set { seat = value; }
         }
         
         [DataMember]
-        public string MyProperty
+        public string Name
         {
             get { return name; }
             set { name = value; }
         }
 
         [DataMember]
-        public SeatState MyProperty
+        public SeatState State
         {
             get { return state; }
             set { state = value; }

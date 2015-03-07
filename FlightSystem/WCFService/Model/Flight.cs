@@ -31,14 +31,14 @@ namespace WCFService.Model
         }
 
         [DataMember]
-        public Plane MyProperty
+        public Plane Plane
         {
             get { return plane; }
             set { plane = value; }
         }
         
         [DataMember]
-        public decimal MyProperty
+        public decimal Price
         {
             get { return price; }
             set { price = value; }
@@ -46,14 +46,14 @@ namespace WCFService.Model
         }
         
         [DataMember]
-        public DateTime MyProperty
+        public DateTime ArivalTime
         {
             get { return arivalTime; }
             set { arivalTime = value; }
         }
         
         [DataMember]
-        public DateTime MyProperty
+        public DateTime DepartureTime
         {
             get { return departureTime; }
             set { departureTime = value; }
