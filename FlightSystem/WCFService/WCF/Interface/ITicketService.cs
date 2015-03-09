@@ -2,7 +2,7 @@
 
 namespace WCFService.WCF.Interface {
     [ServiceContract]
-    public interface ITicketService {
+    public interface ITicketService { //TODO Senere
          
     }
 }

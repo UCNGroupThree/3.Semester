@@ -3,7 +3,7 @@ using WCFService.Model;
 
 namespace WCFService.WCF.Interface {
     [ServiceContract]
-    public interface IAdministratorService {
+    public interface IAdministratorService { //TODO Nick - Login administration?
 
         [OperationContract]
         int AddAdministrator(Administrator administrator);

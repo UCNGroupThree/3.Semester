@@ -2,7 +2,7 @@
 
 namespace WCFService.WCF.Interface {
     [ServiceContract]
-    public interface IPlaneService {
+    public interface IPlaneService { //TODO Kim
          
     }
 }

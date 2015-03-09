@@ -3,7 +3,7 @@ using WCFService.Model;
 
 namespace WCFService.WCF.Interface {
     [ServiceContract]
-    public interface IFlightService {
+    public interface IFlightService { //TODO Jakob
 
         [OperationContract]
         int AddFlight(Flight flight);

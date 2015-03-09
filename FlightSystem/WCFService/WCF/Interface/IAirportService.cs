@@ -3,7 +3,7 @@ using WCFService.Model;
 
 namespace WCFService.WCF.Interface {
     [ServiceContract]
-    public interface IAirportService {
+    public interface IAirportService { //TODO Lasse
 
         [OperationContract]
         int AddAirport(Airport airport);

@@ -2,7 +2,7 @@
 
 namespace WCFService.WCF.Interface {
     [ServiceContract]
-    public interface ISeatReservationService {
+    public interface ISeatReservationService { //TODO Senere
          
     }
 }

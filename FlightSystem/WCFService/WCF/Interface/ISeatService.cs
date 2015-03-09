@@ -3,7 +3,7 @@ using WCFService.Model;
 
 namespace WCFService.WCF.Interface {
     [ServiceContract]
-    public interface ISeatService {
+    public interface ISeatService { //TODO Kim
 
         [OperationContract]
         int AddSeat(Seat seat);
