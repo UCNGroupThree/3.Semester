@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -8,6 +9,7 @@ namespace WCFService.Model
     [DataContract(IsReference = true)]
     public class Administrator
     {
+
         [DataMember]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //Fortæller at ID skal være IDENTITY
         public int ID { get; private set; }

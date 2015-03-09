@@ -12,7 +12,10 @@ using WCFService.WCF.Interface;
 
 namespace WCFService {
     class Program {
+
+        
         static void Main(string[] args) {
+
             var httpUrl = new Uri("http://localhost:9494/");
 
             //Create ServiceHost
