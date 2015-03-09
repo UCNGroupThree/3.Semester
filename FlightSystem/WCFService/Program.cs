@@ -62,7 +62,8 @@ namespace WCFService {
                 db.Entry(ad).State = EntityState.Modified;
                 db.SaveChanges();
 
-
+                // include, nok ikke nødvendig
+                db.Flights.Include(p => p.Plane).FirstOrDefault(flight => flight.ID == 1);
 
             }
         }
