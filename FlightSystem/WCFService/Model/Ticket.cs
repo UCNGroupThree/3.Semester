@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
 namespace WCFService.Model {
 
     [DataContract(IsReference = true)]
-    [KnownType(typeof(User))]
-    [KnownType(typeof(List<SeatReservation>))]
-    [KnownType(typeof(DateTime))] //TODO behøver denne? samme på Airport med TimeZone
+    [KnownType(typeof (User))]
+    [KnownType(typeof (List<SeatReservation>))]
     public class Ticket {
+
+        public Ticket() {
+            SeatReservations = new List<SeatReservation>();
+        }
 
         [DataMember]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -22,12 +26,10 @@ namespace WCFService.Model {
         public string OrderState { get; set; } //TODO string/int/enum?
 
         [DataMember]
-        public User User { get; set; }
-
-        [DataMember]
         public List<SeatReservation> SeatReservations { get; set; }
 
         [DataMember]
+        [Timestamp]
         public byte[] Concurrency { get; set; }
     }
 }

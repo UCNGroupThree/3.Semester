@@ -10,13 +10,13 @@ namespace WCFService.Model
     {
         [DataMember]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //Fortæller at ID skal være IDENTITY
-        public int ID { get; set; }
+        public int ID { get; private set; }
 
         [DataMember]
         public string Username { get; set; }
 
         [DataMember]
-        public string Password { get; set; }
+        public string PasswordHash { get; set; }
 
         [DataMember]
         [Timestamp] // Timestamp for ændringer i objektet, til håndtering af concurrency i entityframework

@@ -1,62 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
-namespace WCFService.Model
-{
+namespace WCFService.Model {
     [DataContract(IsReference = true)]
-    class SeatReservation
-    {
-        private SeatState state; 
-        private string name;
-        private Seat seat;
-        private Flight flight;
-
-        [DataMember]
-        public SeatReservation(SeatState state, string name, Seat seat, Flight flight)
-        {
-            this.state = state;
-            this.name = name;
-            this.seat = seat;
-            this.flight = flight;
-
+    //[KnownType(typeof (SeatState))]
+    [KnownType(typeof (Seat))]
+    [KnownType(typeof (Flight))]
+    public class SeatReservation {
+        public SeatReservation(string state, string name, Seat seat, Flight flight) {
+            this.State = state;
+            this.Name = name;
+            this.Seat = seat;
+            this.Flight = flight;
         }
 
-        public SeatReservation()
-        {
-            
+        public SeatReservation() {
         }
 
         [DataMember]
-        public Flight Flight
-        {
-            get { return flight; }
-            set { flight = value; }
-        }
-        
-        [DataMember]
-        public Seat Seate
-        {
-            get { return seat; }
-            set { seat = value; }
-        }
-        
-        [DataMember]
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
 
         [DataMember]
-        public SeatState State
-        {
-            get { return state; }
-            set { state = value; }
-        }
-        
+        public Flight Flight { get; set; }
+
+        [DataMember]
+        public Seat Seat { get; set; }
+
+        [DataMember]
+        public string Name { get; set; }
+
+        [DataMember]
+        public string State { get; set; }
     }
 }

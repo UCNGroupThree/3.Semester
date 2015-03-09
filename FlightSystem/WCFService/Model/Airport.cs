@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WCFService.Model {
 
     [DataContract(IsReference = true)]
-    [KnownType(typeof(List<Route>))]
-    [KnownType(typeof(TimeZone))]
+    [KnownType(typeof (List<Route>))]
+    [KnownType(typeof (TimeZone))]
     public class Airport {
+
+        public Airport() {
+            Routes = new List<Route>();
+        }
 
         [DataMember]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //Fortæller at ID skal være IDENTITY
@@ -40,14 +41,13 @@ namespace WCFService.Model {
         public decimal Altitude { get; set; }
 
         [DataMember]
-        public TimeZone TimeZone { get; set; }
+        public string TimeZone { get; set; }
 
         [DataMember]
         public List<Route> Routes { get; set; }
 
         [DataMember]
         [Timestamp]
-        public byte[] Concrrency { get; set; }
-        
+        public byte[] Concurrency { get; set; }
     }
 }

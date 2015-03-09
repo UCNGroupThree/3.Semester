@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Administrator.cs" />
+    <Compile Include="Model\FlightContext.cs" />
     <Compile Include="Model\Flight.cs" />
     <Compile Include="Model\Plane.cs" />
     <Compile Include="Model\Seat.cs" />

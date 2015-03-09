@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
-namespace WCFService.Model
-{
-    class Seat
-    {
+namespace WCFService.Model {
+    [DataContract(IsReference = true)]
+    public class Seat {
+        [DataMember]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        public int PosX { get; set; };
-        public int PosY { get; set; };
+
+        [DataMember]
+        public int PosX { get; set; }
+
+        [DataMember]
+        public int PosY { get; set; }
     }
 }

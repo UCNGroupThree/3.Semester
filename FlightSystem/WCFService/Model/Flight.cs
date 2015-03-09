@@ -1,63 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
-namespace WCFService.Model
-{
+namespace WCFService.Model {
     [DataContract(IsReference = true)]
-    class Flight
-    {
-
-        private DateTime departureTime;
-        private DateTime arivalTime;
-        private decimal price;
-        private Plane plane;
-
-        [DataMember]
-        public Flight(DateTime departureTime, DateTime arivalTime, decimal price, Plane plane)
-        {
-            this.departureTime = departureTime;
-            this.arivalTime = arivalTime;
-            this.price = price;
-            this.plane = plane;
+    [KnownType(typeof (Plane))]
+    public class Flight {
+        public Flight(DateTime departureTime, DateTime arrivalTime, decimal price, Plane plane) {
+            this.DepartureTime = departureTime;
+            this.ArrivalTime = arrivalTime;
+            this.Price = price;
+            this.Plane = plane;
         }
 
-        public Flight()
-        {
-
+        public Flight() {
         }
 
         [DataMember]
-        public Plane Plane
-        {
-            get { return plane; }
-            set { plane = value; }
-        }
-        
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
+
         [DataMember]
-        public decimal Price
-        {
-            get { return price; }
-            set { price = value; }
-          
-        }
-        
+        public Plane Plane { get; set; }
+
         [DataMember]
-        public DateTime ArivalTime
-        {
-            get { return arivalTime; }
-            set { arivalTime = value; }
-        }
-        
+        public decimal Price { get; set; }
+
         [DataMember]
-        public DateTime DepartureTime
-        {
-            get { return departureTime; }
-            set { departureTime = value; }
-        }
-        
+        public DateTime ArrivalTime { get; set; }
+
+        [DataMember]
+        public DateTime DepartureTime { get; set; }
     }
 }

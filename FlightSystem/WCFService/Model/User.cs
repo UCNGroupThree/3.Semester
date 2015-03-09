@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
 namespace WCFService.Model {
-
-    [KnownType(typeof(List<Ticket>))]
-    [KnownType(typeof(Postal))]
+    [KnownType(typeof (List<Ticket>))]
+    [KnownType(typeof (Postal))]
     [DataContract(IsReference = true)]
     public class User {
-
         public User() {
             Tickets = new List<Ticket>();
         }
 
         [DataMember]
-        public Guid ID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
 
         [DataMember]
         public string Name { get; set; }
@@ -29,16 +29,16 @@ namespace WCFService.Model {
         public string Email { get; set; }
 
         [DataMember]
-        public string Password { get; set; }
+        public string PasswordHash { get; set; }
 
         [DataMember]
+        [Timestamp]
         public byte[] Concurrency { get; set; }
 
         [DataMember]
         public Postal Postal { get; set; }
 
         [DataMember]
-        public ICollection<Ticket> Tickets { get; set; } 
-
+        public List<Ticket> Tickets { get; set; }
     }
 }

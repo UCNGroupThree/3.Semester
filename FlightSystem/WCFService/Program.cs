@@ -5,6 +5,7 @@ using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Text;
 using System.Threading.Tasks;
+using WCFService.Model;
 using WCFService.WCF;
 using WCFService.WCF.Interface;
 
