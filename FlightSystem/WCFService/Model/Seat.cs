@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace WCFService.Model {
     [DataContract(IsReference = true)]
-    public class Seat {
+    public class Seat {  //Todo Kim
         [DataMember]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }

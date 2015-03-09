@@ -64,6 +64,14 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WCF\Interface\IAdministratorService.cs" />
+    <Compile Include="WCF\Interface\IAirportService.cs" />
+    <Compile Include="WCF\Interface\IFlightService.cs" />
+    <Compile Include="WCF\Interface\IPlaneService.cs" />
+    <Compile Include="WCF\Interface\IRouteService.cs" />
+    <Compile Include="WCF\Interface\ISeatReservationService.cs" />
+    <Compile Include="WCF\Interface\ISeatService.cs" />
+    <Compile Include="WCF\Interface\ITicketService.cs" />
     <Compile Include="WCF\Interface\IUserService.cs" />
     <Compile Include="WCF\UserService.cs" />
   </ItemGroup>
