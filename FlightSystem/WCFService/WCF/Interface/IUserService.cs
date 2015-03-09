@@ -8,10 +8,16 @@ namespace WCFService.WCF.Interface {
     interface IUserService {
 
         [OperationContract]
-        int AddUser(Administrator usr);
+        int AddUser(User user);
 
         [OperationContract]
-        Administrator GetUser(string name);
+        void UpdateUser(User user);
+
+        [OperationContract]
+        void DeleteUser(User user);
+
+        [OperationContract]
+        User GetUser(int id);
     } 
 
 }
