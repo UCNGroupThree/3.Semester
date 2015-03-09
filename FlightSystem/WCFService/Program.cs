@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Description;
@@ -32,5 +33,36 @@ namespace WCFService {
 
             Console.ReadLine();
         }
+
+
+        protected virtual void Help() {
+
+            using (FlightContext context = new FlightContext()) {
+                // Hele Admin Listen
+                List<Administrator> admins = context.Administrators.ToList();
+
+                // Finde en admin ud fra ID
+                Administrator ad = context.Administrators.FirstOrDefault(adm => adm.ID == 1);
+
+
+                // Finde en liste af admins ud fra username
+                List<Administrator> admins2 = context.Administrators.Where(adm => adm.Username.Equals("Lasse")).ToList();
+
+                //Tilføje en Administrator
+                context.Administrators.Add(ad);
+                context.SaveChanges();
+
+
+                // Rette en administrator
+                ad.Username = "Lasse2";
+                context.Administrators.Attach(ad);
+                context.Entry(ad).State = EntityState.Modified;
+                context.SaveChanges();
+
+
+
+            }
+        }
+        
     }
 }
