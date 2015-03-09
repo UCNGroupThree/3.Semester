@@ -5,11 +5,19 @@ namespace WCFService.WCF
 {
     public class UserService : IUserService {
 
-        public int AddUser(Administrator usr) {
+        public int AddUser(User user) {
             throw new System.NotImplementedException();
         }
 
-        public Administrator GetUser(string name) {
+        public void UpdateUser(User user) {
+            throw new System.NotImplementedException();
+        }
+
+        public void DeleteUser(User user) {
+            throw new System.NotImplementedException();
+        }
+
+        public User GetUser(int id) {
             throw new System.NotImplementedException();
         }
     }
