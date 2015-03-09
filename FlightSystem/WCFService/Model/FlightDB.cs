@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace WCFService.Model {
-    public partial class FlightContext : DbContext {
+    public class FlightDB : DbContext {
 
-        public FlightContext() : base(@"Server=kraka.ucn.dk;Database=dmaa0214_3Sem_3;User Id=dmaa0214_3Sem_3;Password=IsAllowed;") {
+        public FlightDB() : base(@"Server=kraka.ucn.dk;Database=dmaa0214_3Sem_3;User Id=dmaa0214_3Sem_3;Password=IsAllowed;") {
             
         }
 

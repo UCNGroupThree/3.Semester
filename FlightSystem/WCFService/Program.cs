@@ -40,27 +40,27 @@ namespace WCFService {
 
         protected virtual void Help() {
 
-            using (FlightContext context = new FlightContext()) {
+            using (FlightDB db = new FlightDB()) {
                 // Hele Admin Listen
-                List<Administrator> admins = context.Administrators.ToList();
+                List<Administrator> admins = db.Administrators.ToList();
 
                 // Finde en admin ud fra ID
-                Administrator ad = context.Administrators.FirstOrDefault(adm => adm.ID == 1);
+                Administrator ad = db.Administrators.FirstOrDefault(adm => adm.ID == 1);
 
 
                 // Finde en liste af admins ud fra username
-                List<Administrator> admins2 = context.Administrators.Where(adm => adm.Username.Equals("Lasse")).ToList();
+                List<Administrator> admins2 = db.Administrators.Where(adm => adm.Username.Equals("Lasse")).ToList();
 
                 //Tilføje en Administrator
-                context.Administrators.Add(ad);
-                context.SaveChanges();
+                db.Administrators.Add(ad);
+                db.SaveChanges();
 
 
                 // Rette en administrator
                 ad.Username = "Lasse2";
-                context.Administrators.Attach(ad);
-                context.Entry(ad).State = EntityState.Modified;
-                context.SaveChanges();
+                db.Administrators.Attach(ad);
+                db.Entry(ad).State = EntityState.Modified;
+                db.SaveChanges();
 
 
 
