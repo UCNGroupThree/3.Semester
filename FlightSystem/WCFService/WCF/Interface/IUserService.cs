@@ -11,7 +11,7 @@ namespace WCFService.WCF.Interface {
         int AddUser(User user);
 
         [OperationContract]
-        void UpdateUser(User user);
+        User UpdateUser(User user);
 
         [OperationContract]
         void DeleteUser(User user);

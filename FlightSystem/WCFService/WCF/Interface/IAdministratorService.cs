@@ -9,7 +9,7 @@ namespace WCFService.WCF.Interface {
         int AddAdministrator(Administrator administrator);
 
         [OperationContract]
-        void UpdateAdministrator(Administrator administrator);
+        Administrator UpdateAdministrator(Administrator administrator);
 
         [OperationContract]
         void DeleteAdministrator(Administrator administrator);
