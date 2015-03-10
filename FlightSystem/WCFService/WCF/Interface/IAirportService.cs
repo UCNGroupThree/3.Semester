@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using System.Collections.Generic;
+using System.ServiceModel;
 using WCFService.Model;
 
 namespace WCFService.WCF.Interface {
@@ -9,7 +10,7 @@ namespace WCFService.WCF.Interface {
         int AddAirport(Airport airport);
 
         [OperationContract]
-        void UpdateAirport(Airport airport);
+        Airport UpdateAirport(Airport airport);
 
         [OperationContract]
         void DeleteAirport(Airport airport);
@@ -17,6 +18,14 @@ namespace WCFService.WCF.Interface {
         [OperationContract]
         Airport GetAirport(int id);
 
+        [OperationContract]
+        List<Airport> GetAirportsByCountry(string country);
+
+        [OperationContract]
+        List<Airport> GetAirportsByCity(string city);
+
+        [OperationContract]
+        List<Airport> GetAirportsByName(string name);
 
     }
 }
