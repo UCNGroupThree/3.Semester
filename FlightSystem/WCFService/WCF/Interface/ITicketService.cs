@@ -7,7 +7,7 @@ namespace WCFService.WCF.Interface {
     public interface ITicketService { //TODO Senere
 
         [OperationContract]
-        void AddTicket(Ticket ticket);
+        int AddTicket(Ticket ticket);
 
         [OperationContract]
         void UpdateTicket(Ticket ticket);
