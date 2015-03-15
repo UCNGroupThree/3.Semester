@@ -66,6 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WCF\AdministratorService.cs" />
     <Compile Include="WCF\AirportService.cs" />
+    <Compile Include="WCF\FligthService.cs" />
     <Compile Include="WCF\Interface\IAdministratorService.cs" />
     <Compile Include="WCF\Interface\IAirportService.cs" />
     <Compile Include="WCF\Interface\IFlightService.cs" />
