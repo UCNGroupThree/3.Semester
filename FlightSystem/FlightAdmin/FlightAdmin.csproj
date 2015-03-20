@@ -50,6 +50,48 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\AdministratorTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\AdministratorTab.Designer.cs">
+      <DependentUpon>AdministratorTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AirPortTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\AirPortTab.Designer.cs">
+      <DependentUpon>AirPortTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\CustomerTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\CustomerTab.Designer.cs">
+      <DependentUpon>CustomerTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FlightTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\FlightTab.Designer.cs">
+      <DependentUpon>FlightTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\PlaneTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\PlaneTab.Designer.cs">
+      <DependentUpon>PlaneTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ReservationTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\ReservationTab.Designer.cs">
+      <DependentUpon>ReservationTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\RouteTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\RouteTab.Designer.cs">
+      <DependentUpon>RouteTab.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -77,9 +119,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GUI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
