@@ -51,6 +51,7 @@
     <Compile Include="CustomTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Exceptions\ConnectionException.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +191,9 @@
     <None Include="Service References\FlightService\WCFService.Model.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\FlightService\WCFService.WCF.Faults.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\RouteService\FlightAdmin.RouteService.Route.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -267,6 +271,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

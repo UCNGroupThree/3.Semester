@@ -44,11 +44,11 @@ namespace WCFService.WCF
                 db.Entry(plane).State = EntityState.Modified;
                 db.SaveChanges();
             }
-            catch (OptimisticConcurrencyException exception)
+            catch (OptimisticConcurrencyException)
             {
                 throw new FaultException("Concurrency exception?!"); //TODO Concurrency Exception
             }
-            catch (UpdateException exception)
+            catch (UpdateException)
             {
                 throw new FaultException("The database was unable to update the record");
             }

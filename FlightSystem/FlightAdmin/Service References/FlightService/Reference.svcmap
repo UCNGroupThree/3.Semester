@@ -26,6 +26,7 @@
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="a178bd03-2a3e-451f-92c9-20554358fb0c" SourceId="1" SourceUrl="http://localhost:8733/FlightService/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="c18228f1-429f-4693-8a61-f295594e22fc" SourceId="1" SourceUrl="http://localhost:8733/FlightService/mex" />
     <MetadataFile FileName="WCFService.Model.xsd" MetadataType="Schema" ID="822068bf-03ba-42d3-8b19-6294159355b8" SourceId="1" SourceUrl="http://localhost:8733/FlightService/mex" />
+    <MetadataFile FileName="WCFService.WCF.Faults.xsd" MetadataType="Schema" ID="1f6d6c62-1fdf-4f6f-aaa9-9f5832979b72" SourceId="1" SourceUrl="http://localhost:8733/FlightService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

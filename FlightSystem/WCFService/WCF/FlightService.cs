@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Core;
 using System.Linq;
 using WCFService.WCF.Interface;
 using WCFService.Model;
 using System.ServiceModel;
+using WCFService.WCF.Faults;
 
 namespace WCFService.WCF {
     public class FlightService : IFlightService {
@@ -13,7 +15,7 @@ namespace WCFService.WCF {
         public int AddFlight(Flight flight)
         {
             if (flight == null) {
-                throw new FaultException("Nullpointer Exception"); //TODO vores egen Nullpointer Exception?
+                throw new FaultException<NullPointerFault>(new NullPointerFault());  //TODO vores egen Nullpointer Exception?
             }
             try {
                 db.Flights.Add(flight);
@@ -22,35 +24,37 @@ namespace WCFService.WCF {
             catch (Exception ex) {
 
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
-                throw new FaultException("The database was unable to insert the record");
+                throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault(){Message = ex.Message});
             }
             return flight.ID;
 
         }
 
-        public void UpdateFlight(Flight flight)
-        {
-            if (flight == null)
-            {
-                throw new FaultException("Nullpointer Exception"); //TODO vores egen Nullpointer Exception?
+        public Flight UpdateFlight(Flight flight) {
+            Flight retFlight = flight;
+
+            if (flight == null){
+                throw new FaultException<NullPointerFault>(new NullPointerFault()); //TODO vores egen Nullpointer Exception?
             }
+
             try {
                 db.Flights.Attach(flight);
                 db.Entry(flight).State = EntityState.Modified;
                 db.SaveChanges();
-
-            }
-            catch (Exception ex) {
-
+            } catch (OptimisticConcurrencyException e) {
+                throw new FaultException<OptimisticConcurrencyFault>(new OptimisticConcurrencyFault(){Message = e.Message});
+            }catch (Exception ex) {
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
-                throw new FaultException("The database was unable to update the record");
+                throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault(){Message = ex.Message});
             }
+
+            return retFlight;
         }
 
         public void DeleteFlight(Flight flight)
         {
             if (flight == null) {
-                throw new FaultException("Nullpointer Exception"); //TODO vores egen Nullpointer Exception?
+                throw new FaultException<NullPointerFault>(new NullPointerFault()); //TODO vores egen Nullpointer Exception?
             }
             try {
                 db.Flights.Remove(flight);
@@ -59,12 +63,18 @@ namespace WCFService.WCF {
             catch (Exception ex) {
 
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
-                throw new FaultException("The database was unable to update the record");
+                throw new FaultException<DatabaseDeleteFault>(new DatabaseDeleteFault(){Message = ex.Message});
             }
         }
 
         public Flight GetFlight(int id) {
-            return db.Flights.SingleOrDefault(x => x.ID == id);
+            Flight flight = db.Flights.SingleOrDefault(x => x.ID == id);
+
+            if (flight == null) {
+                throw new FaultException<NullPointerFault>(new NullPointerFault()); //TODO vores egen Nullpointer Exception?
+            }
+
+            return flight;
         }
     }
 }

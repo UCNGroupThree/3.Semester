@@ -24,13 +24,15 @@
   </xs:element>
   <xs:element name="UpdateFlightResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="UpdateFlightResult" nillable="true" type="q3:Flight" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteFlight">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="flight" nillable="true" type="q3:Flight" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="flight" nillable="true" type="q4:Flight" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -49,7 +51,7 @@
   <xs:element name="GetFlightResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetFlightResult" nillable="true" type="q4:Flight" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetFlightResult" nillable="true" type="q5:Flight" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

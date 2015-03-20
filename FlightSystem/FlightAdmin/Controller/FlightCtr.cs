@@ -1,10 +1,15 @@
 ﻿using System;
+using System.ServiceModel;
+using System.Windows.Forms;
+using FlightAdmin.Exceptions;
 using FlightAdmin.FlightService;
 
 namespace FlightAdmin.Controller {
     public class FlightCtr {
 
-        public Flight CreateFlight(DateTime arrival, DateTime departure, Plane plane, decimal price) {
+        #region Create
+
+        public Flight CreateFlight(DateTime arrival, DateTime departure, Plane plane, decimal price) { //TODO Better Exception
             Flight flight = null;
 
             if (FlightValidation(arrival, departure, plane, price)) {
@@ -14,33 +19,91 @@ namespace FlightAdmin.Controller {
                     using (var client = new FlightServiceClient()) {
                         flight.ID = client.AddFlight(flight);
                     }
-                } catch (Exception) {
-                    throw new Exception("WCF Service Exception"); //TODO Better Exception
+                } catch (FaultException<DatabaseInsertFault> dbException) {
+                    throw new Exception(dbException.Message);
+                } catch (Exception e) {
+                    throw new ConnectionException("WCF Service Exception", e);
                 }
 
             } else {
-                throw new Exception("FlightValidation Exception"); //TODO Better Exception
+                throw new Exception("FlightValidation Exception");
             }
 
             return flight;
         }
 
-        public Flight UpdateFlight(Flight flight, DateTime arrival, DateTime departure, Plane plane, decimal price) {
-           
+        #endregion
+
+        #region Read
+
+        public Flight GetFlight(int id) {
+            Flight flight = null;
+
             using (var client = new FlightServiceClient()) {
-            
+                try {
+                    flight = client.GetFlight(id);
+                } catch (FaultException<NullPointerFault> nullException) {
+                    throw new Exception(nullException.Message);
+                } catch (Exception e) {
+                    Console.WriteLine(e.Message);
+                    throw new ConnectionException("WCF Service Exception", e);
+                }
             }
 
             return flight;
-
         }
 
+        #endregion
 
+        #region Update
+
+        public Flight UpdateFlight(Flight flight, DateTime arrival, DateTime departure, Plane plane, decimal price) { //TODO Better Exception
+            Flight retFlight = null;
+
+            using (var client = new FlightServiceClient()) {
+                try {
+                    retFlight = client.UpdateFlight(flight);
+                } catch (FaultException<OptimisticConcurrencyFault> concurrencyException) {
+                    throw new Exception(concurrencyException.Message);
+                } catch (FaultException<DatabaseUpdateFault> updateException) {
+                    throw new Exception(updateException.Message);
+                } catch (Exception e) {
+                    throw new ConnectionException("WCF Service Exception", e);
+                }
+            }
+
+            return retFlight;
+        }
+
+        #endregion
+
+        #region Delete
+
+        public void DeleteFlight(Flight flight) {
+            using (var client = new FlightServiceClient()) {
+                try {
+                    client.DeleteFlight(flight);
+                } catch (FaultException<NullPointerFault> nullException) {
+                    throw new Exception(nullException.Message);
+                } catch (FaultException<DatabaseDeleteFault> dbException) {
+                    throw new Exception(dbException.Message);
+                } catch (Exception e) {
+                    throw new ConnectionException("WCF Service Exception", e);
+                }
+            }
+        }
+
+        #endregion   
+
+        #region Misc
 
         private bool FlightValidation(DateTime arrival, DateTime departure, Plane plane, decimal price) {
-            bool ret = (plane != null);
+            var ret = (plane != null);
 
             return ret;
         }
+
+        #endregion
+    
     }
 }

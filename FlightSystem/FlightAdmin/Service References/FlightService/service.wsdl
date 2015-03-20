@@ -3,6 +3,7 @@
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/WCFService.Model" />
     </xsd:schema>
@@ -13,11 +14,26 @@
   <wsdl:message name="IFlightService_AddFlight_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddFlightResponse" />
   </wsdl:message>
+  <wsdl:message name="IFlightService_AddFlight_DatabaseInsertFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q1:DatabaseInsertFault" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_AddFlight_NullPointerFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q2:NullPointerFault" />
+  </wsdl:message>
   <wsdl:message name="IFlightService_UpdateFlight_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateFlight" />
   </wsdl:message>
   <wsdl:message name="IFlightService_UpdateFlight_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateFlightResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_UpdateFlight_OptimisticConcurrencyFaultFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q3:OptimisticConcurrencyFault" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_UpdateFlight_DatabaseUpdateFaultFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q4:DatabaseUpdateFault" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_UpdateFlight_NullPointerFaultFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q5:NullPointerFault" />
   </wsdl:message>
   <wsdl:message name="IFlightService_DeleteFlight_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteFlight" />
@@ -25,28 +41,45 @@
   <wsdl:message name="IFlightService_DeleteFlight_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteFlightResponse" />
   </wsdl:message>
+  <wsdl:message name="IFlightService_DeleteFlight_DatabaseDeleteFaultFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q6:DatabaseDeleteFault" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_DeleteFlight_NullPointerFaultFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q7:NullPointerFault" />
+  </wsdl:message>
   <wsdl:message name="IFlightService_GetFlight_InputMessage">
     <wsdl:part name="parameters" element="tns:GetFlight" />
   </wsdl:message>
   <wsdl:message name="IFlightService_GetFlight_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetFlightResponse" />
   </wsdl:message>
+  <wsdl:message name="IFlightService_GetFlight_NullPointerFaultFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q8:NullPointerFault" />
+  </wsdl:message>
   <wsdl:portType name="IFlightService">
     <wsdl:operation name="AddFlight">
       <wsdl:input wsaw:Action="http://tempuri.org/IFlightService/AddFlight" message="tns:IFlightService_AddFlight_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFlightService/AddFlightResponse" message="tns:IFlightService_AddFlight_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFlightService/AddFlightDatabaseInsertFaultFault" name="DatabaseInsertFaultFault" message="tns:IFlightService_AddFlight_DatabaseInsertFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFlightService/AddFlightNullPointerFaultFault" name="NullPointerFaultFault" message="tns:IFlightService_AddFlight_NullPointerFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateFlight">
       <wsdl:input wsaw:Action="http://tempuri.org/IFlightService/UpdateFlight" message="tns:IFlightService_UpdateFlight_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFlightService/UpdateFlightResponse" message="tns:IFlightService_UpdateFlight_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFlightService/UpdateFlightOptimisticConcurrencyFaultFault" name="OptimisticConcurrencyFaultFault" message="tns:IFlightService_UpdateFlight_OptimisticConcurrencyFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFlightService/UpdateFlightDatabaseUpdateFaultFault" name="DatabaseUpdateFaultFault" message="tns:IFlightService_UpdateFlight_DatabaseUpdateFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFlightService/UpdateFlightNullPointerFaultFault" name="NullPointerFaultFault" message="tns:IFlightService_UpdateFlight_NullPointerFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="DeleteFlight">
       <wsdl:input wsaw:Action="http://tempuri.org/IFlightService/DeleteFlight" message="tns:IFlightService_DeleteFlight_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFlightService/DeleteFlightResponse" message="tns:IFlightService_DeleteFlight_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFlightService/DeleteFlightDatabaseDeleteFaultFault" name="DatabaseDeleteFaultFault" message="tns:IFlightService_DeleteFlight_DatabaseDeleteFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFlightService/DeleteFlightNullPointerFaultFault" name="NullPointerFaultFault" message="tns:IFlightService_DeleteFlight_NullPointerFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetFlight">
       <wsdl:input wsaw:Action="http://tempuri.org/IFlightService/GetFlight" message="tns:IFlightService_GetFlight_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFlightService/GetFlightResponse" message="tns:IFlightService_GetFlight_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFlightService/GetFlightNullPointerFaultFault" name="NullPointerFaultFault" message="tns:IFlightService_GetFlight_NullPointerFaultFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IFlightService" type="tns:IFlightService">
@@ -59,6 +92,12 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="DatabaseInsertFaultFault">
+        <soap:fault use="literal" name="DatabaseInsertFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NullPointerFaultFault">
+        <soap:fault use="literal" name="NullPointerFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="UpdateFlight">
       <soap:operation soapAction="http://tempuri.org/IFlightService/UpdateFlight" style="document" />
@@ -68,6 +107,15 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="OptimisticConcurrencyFaultFault">
+        <soap:fault use="literal" name="OptimisticConcurrencyFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseUpdateFaultFault">
+        <soap:fault use="literal" name="DatabaseUpdateFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NullPointerFaultFault">
+        <soap:fault use="literal" name="NullPointerFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="DeleteFlight">
       <soap:operation soapAction="http://tempuri.org/IFlightService/DeleteFlight" style="document" />
@@ -77,6 +125,12 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="DatabaseDeleteFaultFault">
+        <soap:fault use="literal" name="DatabaseDeleteFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NullPointerFaultFault">
+        <soap:fault use="literal" name="NullPointerFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="GetFlight">
       <soap:operation soapAction="http://tempuri.org/IFlightService/GetFlight" style="document" />
@@ -86,6 +140,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="NullPointerFaultFault">
+        <soap:fault use="literal" name="NullPointerFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="FlightService">
