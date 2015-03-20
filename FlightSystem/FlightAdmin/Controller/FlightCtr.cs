@@ -14,7 +14,7 @@ namespace FlightAdmin.Controller {
                     using (var client = new FlightServiceClient()) {
                         flight.ID = client.AddFlight(flight);
                     }
-                } catch (Exception e) {
+                } catch (Exception) {
                     throw new Exception("WCF Service Exception"); //TODO Better Exception
                 }
 

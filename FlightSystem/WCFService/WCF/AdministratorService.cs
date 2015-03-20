@@ -7,21 +7,21 @@ using WCFService.Model;
 using WCFService.WCF.Interface;
 
 namespace WCFService.WCF {
-    public class AdministratorService : IAdministratorService{
+    public class AdministratorService : IAdministratorService {
 
-        readonly FlightDB _db = new FlightDB();
+        private readonly FlightDB db = new FlightDB();
 
         public int AddAdministrator(Administrator administrator) {
-            _db.Administrators.Add(administrator);
-            _db.SaveChanges();
+            db.Administrators.Add(administrator);
+            db.SaveChanges();
 
             return administrator.ID;
         }
 
         public Administrator UpdateAdministrator(Administrator administrator) {
             try {
-                _db.Entry(administrator).State = EntityState.Modified;
-                _db.SaveChanges();
+                db.Entry(administrator).State = EntityState.Modified;
+                db.SaveChanges();
             } catch (OptimisticConcurrencyException exception) {
                 throw new FaultException("Concurrency exception?!"); //TODO Concurrency Exception
             } catch (UpdateException exception) {
@@ -32,12 +32,12 @@ namespace WCFService.WCF {
         }
 
         public void DeleteAdministrator(Administrator administrator) {
-            _db.Administrators.Remove(administrator);
-            _db.SaveChanges();
+            db.Administrators.Remove(administrator);
+            db.SaveChanges();
         }
 
         public Administrator GetAdministrator(int id) {
-            return _db.Administrators.FirstOrDefault(admin => admin.ID == id);
+            return db.Administrators.FirstOrDefault(admin => admin.ID == id);
         }
     }
 }

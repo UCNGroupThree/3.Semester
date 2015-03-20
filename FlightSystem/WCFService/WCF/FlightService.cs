@@ -6,7 +6,8 @@ using WCFService.Model;
 using System.ServiceModel;
 
 namespace WCFService.WCF {
-    public class FligthService : IFlightService {
+    public class FlightService : IFlightService {
+
         private readonly FlightDB db = new FlightDB();
 
         public int AddFlight(Flight flight)

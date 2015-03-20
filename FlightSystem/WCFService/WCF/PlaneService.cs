@@ -9,9 +9,9 @@ using WCFService.WCF.Interface;
 
 namespace WCFService.WCF
 {
-    class PlaneService : IPlaneService {
+    public class PlaneService : IPlaneService {
 
-        private readonly FlightDB db = new FlightDB(); 
+        private readonly FlightDB db = new FlightDB();
 
         public int AddPlane(Plane plane){   
 

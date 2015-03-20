@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="412aeb4b-bd40-4f49-996e-53dccc26116c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e1080dd0-9b01-43c0-abd5-fdc3172472e6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:8733/AirportService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="7fe3a3cb-badd-4fdd-b625-1a79bbc2bbef" SourceId="1" SourceUrl="http://localhost:8733/AirportService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="e38b3db5-531f-4c7d-bac0-675d992e3474" SourceId="1" SourceUrl="http://localhost:8733/AirportService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="641efd88-cac4-4a45-bdb7-bbc54d0ba9db" SourceId="1" SourceUrl="http://localhost:8733/AirportService/mex" />
-    <MetadataFile FileName="WCFService.Model.xsd" MetadataType="Schema" ID="5500cde2-57ac-4e48-b05f-0d6464cead62" SourceId="1" SourceUrl="http://localhost:8733/AirportService/mex" />
-    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="7a1ce2d3-c14b-42a6-a916-65a60305847a" SourceId="1" SourceUrl="http://localhost:8733/AirportService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="11e8e154-3694-4ad9-870f-43b6440b48db" SourceId="1" SourceUrl="http://localhost:8733/AirportService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="2e14c10c-fc5d-430c-ac2a-f1f5fa484d9c" SourceId="1" SourceUrl="http://localhost:8733/AirportService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="abb76b11-8e07-4b7d-b661-09499b30d26c" SourceId="1" SourceUrl="http://localhost:8733/AirportService/mex" />
+    <MetadataFile FileName="WCFService.Model.xsd" MetadataType="Schema" ID="f3fe9037-df62-4050-9c06-b5cc2ff60af1" SourceId="1" SourceUrl="http://localhost:8733/AirportService/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="ec190723-f11d-4a01-8d77-5799d4f276f2" SourceId="1" SourceUrl="http://localhost:8733/AirportService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -8,6 +8,7 @@ using WCFService.WCF.Interface;
 
 namespace WCFService.WCF {
     public class AirportService : IAirportService {
+
         private readonly FlightDB db = new FlightDB();
 
         public int AddAirport(Airport airport) {

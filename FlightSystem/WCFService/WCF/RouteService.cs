@@ -1,7 +1,10 @@
-﻿using WCFService.WCF.Interface;
+﻿using WCFService.Model;
+using WCFService.WCF.Interface;
 
 namespace WCFService.WCF {
     public class RouteService : IRouteService {
+
+        private readonly FlightDB db = new FlightDB();
 
         public int AddRoute(Model.Route route) {
             throw new System.NotImplementedException();

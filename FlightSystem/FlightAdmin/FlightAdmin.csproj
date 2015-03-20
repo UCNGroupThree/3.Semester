@@ -106,17 +106,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\AirportService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\FlightService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\RouteService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -161,6 +161,22 @@
     <None Include="Service References\AdministratorService\WCFService.Model.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\AirportService\FlightAdmin.AirportService.Airport.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AirportService\service.wsdl" />
+    <None Include="Service References\AirportService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AirportService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AirportService\System.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AirportService\WCFService.Model.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\FlightService\FlightAdmin.FlightService.Flight.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -190,22 +206,6 @@
     <None Include="Service References\RouteService\WCFService.Model.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\FlightAdmin.ServiceReference1.Airport.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceReference1\service.wsdl" />
-    <None Include="Service References\ServiceReference1\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference1\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference1\System.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference1\WCFService.Model.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -215,9 +215,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AdministratorService\" />
+    <WCFMetadataStorage Include="Service References\AirportService\" />
     <WCFMetadataStorage Include="Service References\FlightService\" />
     <WCFMetadataStorage Include="Service References\RouteService\" />
-    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\AdministratorService\configuration91.svcinfo" />
@@ -227,6 +227,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\AdministratorService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AirportService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AirportService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AirportService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -251,18 +263,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\RouteService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceReference1\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
