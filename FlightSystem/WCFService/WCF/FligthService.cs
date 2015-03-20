@@ -23,7 +23,8 @@ namespace WCFService.WCF {
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
                 throw new FaultException("The database was unable to insert the record");
             }
-           
+            return flight.ID;
+
         }
 
         public void UpdateFlight(Flight flight)
