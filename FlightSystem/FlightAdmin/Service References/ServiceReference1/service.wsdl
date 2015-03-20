@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AirportService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/WCFService.Model" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAirportService_AddAirport_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAirport" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_AddAirport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAirportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_UpdateAirport_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAirport" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_UpdateAirport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAirportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_DeleteAirport_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAirport" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_DeleteAirport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAirportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_GetAirport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirport" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_GetAirport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_GetAirportsByCountry_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirportsByCountry" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_GetAirportsByCountry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirportsByCountryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_GetAirportsByCity_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirportsByCity" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_GetAirportsByCity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirportsByCityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_GetAirportsByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirportsByName" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_GetAirportsByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirportsByNameResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAirportService">
+    <wsdl:operation name="AddAirport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAirportService/AddAirport" message="tns:IAirportService_AddAirport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAirportService/AddAirportResponse" message="tns:IAirportService_AddAirport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAirport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAirportService/UpdateAirport" message="tns:IAirportService_UpdateAirport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAirportService/UpdateAirportResponse" message="tns:IAirportService_UpdateAirport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAirport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAirportService/DeleteAirport" message="tns:IAirportService_DeleteAirport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAirportService/DeleteAirportResponse" message="tns:IAirportService_DeleteAirport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAirport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAirportService/GetAirport" message="tns:IAirportService_GetAirport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAirportService/GetAirportResponse" message="tns:IAirportService_GetAirport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAirportsByCountry">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAirportService/GetAirportsByCountry" message="tns:IAirportService_GetAirportsByCountry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAirportService/GetAirportsByCountryResponse" message="tns:IAirportService_GetAirportsByCountry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAirportsByCity">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAirportService/GetAirportsByCity" message="tns:IAirportService_GetAirportsByCity_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAirportService/GetAirportsByCityResponse" message="tns:IAirportService_GetAirportsByCity_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAirportsByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAirportService/GetAirportsByName" message="tns:IAirportService_GetAirportsByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAirportService/GetAirportsByNameResponse" message="tns:IAirportService_GetAirportsByName_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAirportService" type="tns:IAirportService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddAirport">
+      <soap:operation soapAction="http://tempuri.org/IAirportService/AddAirport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAirport">
+      <soap:operation soapAction="http://tempuri.org/IAirportService/UpdateAirport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAirport">
+      <soap:operation soapAction="http://tempuri.org/IAirportService/DeleteAirport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAirport">
+      <soap:operation soapAction="http://tempuri.org/IAirportService/GetAirport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAirportsByCountry">
+      <soap:operation soapAction="http://tempuri.org/IAirportService/GetAirportsByCountry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAirportsByCity">
+      <soap:operation soapAction="http://tempuri.org/IAirportService/GetAirportsByCity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAirportsByName">
+      <soap:operation soapAction="http://tempuri.org/IAirportService/GetAirportsByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AirportService">
+    <wsdl:port name="BasicHttpBinding_IAirportService" binding="tns:BasicHttpBinding_IAirportService">
+      <soap:address location="http://localhost:8733/AirportService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

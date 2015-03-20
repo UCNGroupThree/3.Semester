@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/WCFService.Model" />
+  <xs:element name="AddAirport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="airport" nillable="true" type="q1:Airport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddAirportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddAirportResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAirport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="airport" nillable="true" type="q2:Airport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAirportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="UpdateAirportResult" nillable="true" type="q3:Airport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAirport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="airport" nillable="true" type="q4:Airport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAirportResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAirport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAirportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAirportResult" nillable="true" type="q5:Airport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAirportsByCountry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="country" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAirportsByCountryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAirportsByCountryResult" nillable="true" type="q6:ArrayOfAirport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAirportsByCity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="city" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAirportsByCityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAirportsByCityResult" nillable="true" type="q7:ArrayOfAirport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAirportsByName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAirportsByNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAirportsByNameResult" nillable="true" type="q8:ArrayOfAirport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
