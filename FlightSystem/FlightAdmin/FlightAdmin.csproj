@@ -210,6 +210,9 @@
     <None Include="Service References\RouteService\WCFService.Model.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\RouteService\WCFService.WCF.Faults.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

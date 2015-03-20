@@ -138,7 +138,7 @@ namespace FlightAdmin.FlightService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightAdmin.FlightService.Seat[] SeatsField;
+        private System.Collections.Generic.List<FlightAdmin.FlightService.Seat> SeatsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -177,7 +177,7 @@ namespace FlightAdmin.FlightService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightAdmin.FlightService.Seat[] Seats {
+        public System.Collections.Generic.List<FlightAdmin.FlightService.Seat> Seats {
             get {
                 return this.SeatsField;
             }

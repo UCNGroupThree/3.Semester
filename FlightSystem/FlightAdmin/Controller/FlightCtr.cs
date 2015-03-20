@@ -24,7 +24,6 @@ namespace FlightAdmin.Controller {
                 } catch (Exception e) {
                     throw new ConnectionException("WCF Service Exception", e);
                 }
-
             } else {
                 throw new Exception("FlightValidation Exception");
             }
@@ -60,16 +59,25 @@ namespace FlightAdmin.Controller {
         public Flight UpdateFlight(Flight flight, DateTime arrival, DateTime departure, Plane plane, decimal price) { //TODO Better Exception
             Flight retFlight = null;
 
-            using (var client = new FlightServiceClient()) {
-                try {
-                    retFlight = client.UpdateFlight(flight);
-                } catch (FaultException<OptimisticConcurrencyFault> concurrencyException) {
-                    throw new Exception(concurrencyException.Message);
-                } catch (FaultException<DatabaseUpdateFault> updateException) {
-                    throw new Exception(updateException.Message);
-                } catch (Exception e) {
-                    throw new ConnectionException("WCF Service Exception", e);
+            if (FlightValidation(arrival, departure, plane, price)) {
+                using (var client = new FlightServiceClient()) {
+                    try {
+                        flight.ArrivalTime = arrival;
+                        flight.DepartureTime = departure;
+                        flight.Plane = plane;
+                        flight.Price = price;
+
+                        retFlight = client.UpdateFlight(flight);
+                    } catch (FaultException<OptimisticConcurrencyFault> concurrencyException) {
+                        throw new Exception(concurrencyException.Message);
+                    } catch (FaultException<DatabaseUpdateFault> updateException) {
+                        throw new Exception(updateException.Message);
+                    } catch (Exception e) {
+                        throw new ConnectionException("WCF Service Exception", e);
+                    }
                 }
+            } else {
+                throw new Exception("FlightValidation Exception");
             }
 
             return retFlight;

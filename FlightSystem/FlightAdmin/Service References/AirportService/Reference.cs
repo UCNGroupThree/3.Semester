@@ -47,7 +47,7 @@ namespace FlightAdmin.AirportService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightAdmin.AirportService.Route[] RoutesField;
+        private System.Collections.Generic.List<FlightAdmin.AirportService.Route> RoutesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ShortNameField;
@@ -170,7 +170,7 @@ namespace FlightAdmin.AirportService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightAdmin.AirportService.Route[] Routes {
+        public System.Collections.Generic.List<FlightAdmin.AirportService.Route> Routes {
             get {
                 return this.RoutesField;
             }
@@ -231,7 +231,7 @@ namespace FlightAdmin.AirportService {
         private byte[] ConcurrencyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightAdmin.AirportService.Flight[] FlightsField;
+        private System.Collections.Generic.List<FlightAdmin.AirportService.Flight> FlightsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private FlightAdmin.AirportService.Airport FromField;
@@ -266,7 +266,7 @@ namespace FlightAdmin.AirportService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightAdmin.AirportService.Flight[] Flights {
+        public System.Collections.Generic.List<FlightAdmin.AirportService.Flight> Flights {
             get {
                 return this.FlightsField;
             }
@@ -452,7 +452,7 @@ namespace FlightAdmin.AirportService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightAdmin.AirportService.Seat[] SeatsField;
+        private System.Collections.Generic.List<FlightAdmin.AirportService.Seat> SeatsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -491,7 +491,7 @@ namespace FlightAdmin.AirportService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightAdmin.AirportService.Seat[] Seats {
+        public System.Collections.Generic.List<FlightAdmin.AirportService.Seat> Seats {
             get {
                 return this.SeatsField;
             }
@@ -619,22 +619,22 @@ namespace FlightAdmin.AirportService {
         System.Threading.Tasks.Task<FlightAdmin.AirportService.Airport> GetAirportAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByCountry", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByCountryResponse")]
-        FlightAdmin.AirportService.Airport[] GetAirportsByCountry(string country);
+        System.Collections.Generic.List<FlightAdmin.AirportService.Airport> GetAirportsByCountry(string country);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByCountry", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByCountryResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.AirportService.Airport[]> GetAirportsByCountryAsync(string country);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightAdmin.AirportService.Airport>> GetAirportsByCountryAsync(string country);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByCity", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByCityResponse")]
-        FlightAdmin.AirportService.Airport[] GetAirportsByCity(string city);
+        System.Collections.Generic.List<FlightAdmin.AirportService.Airport> GetAirportsByCity(string city);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByCity", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByCityResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.AirportService.Airport[]> GetAirportsByCityAsync(string city);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightAdmin.AirportService.Airport>> GetAirportsByCityAsync(string city);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByName", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByNameResponse")]
-        FlightAdmin.AirportService.Airport[] GetAirportsByName(string name);
+        System.Collections.Generic.List<FlightAdmin.AirportService.Airport> GetAirportsByName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByName", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByNameResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.AirportService.Airport[]> GetAirportsByNameAsync(string name);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightAdmin.AirportService.Airport>> GetAirportsByNameAsync(string name);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -696,27 +696,27 @@ namespace FlightAdmin.AirportService {
             return base.Channel.GetAirportAsync(id);
         }
         
-        public FlightAdmin.AirportService.Airport[] GetAirportsByCountry(string country) {
+        public System.Collections.Generic.List<FlightAdmin.AirportService.Airport> GetAirportsByCountry(string country) {
             return base.Channel.GetAirportsByCountry(country);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.AirportService.Airport[]> GetAirportsByCountryAsync(string country) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightAdmin.AirportService.Airport>> GetAirportsByCountryAsync(string country) {
             return base.Channel.GetAirportsByCountryAsync(country);
         }
         
-        public FlightAdmin.AirportService.Airport[] GetAirportsByCity(string city) {
+        public System.Collections.Generic.List<FlightAdmin.AirportService.Airport> GetAirportsByCity(string city) {
             return base.Channel.GetAirportsByCity(city);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.AirportService.Airport[]> GetAirportsByCityAsync(string city) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightAdmin.AirportService.Airport>> GetAirportsByCityAsync(string city) {
             return base.Channel.GetAirportsByCityAsync(city);
         }
         
-        public FlightAdmin.AirportService.Airport[] GetAirportsByName(string name) {
+        public System.Collections.Generic.List<FlightAdmin.AirportService.Airport> GetAirportsByName(string name) {
             return base.Channel.GetAirportsByName(name);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.AirportService.Airport[]> GetAirportsByNameAsync(string name) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightAdmin.AirportService.Airport>> GetAirportsByNameAsync(string name) {
             return base.Channel.GetAirportsByNameAsync(name);
         }
     }

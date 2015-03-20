@@ -9,7 +9,9 @@
     <GenerateInternalTypes>false</GenerateInternalTypes>
     <GenerateMessageContracts>false</GenerateMessageContracts>
     <NamespaceMappings />
-    <CollectionMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
@@ -27,6 +29,7 @@
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="1a0ab7ec-b2b5-4d03-9f16-0676724fc3e5" SourceId="1" SourceUrl="http://localhost:8733/RouteService/mex" />
     <MetadataFile FileName="WCFService.Model.xsd" MetadataType="Schema" ID="5cf3660b-fc56-4c70-bbe7-5d20ba46b8be" SourceId="1" SourceUrl="http://localhost:8733/RouteService/mex" />
     <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="b547cbce-f364-42b1-9649-6111bb772406" SourceId="1" SourceUrl="http://localhost:8733/RouteService/mex" />
+    <MetadataFile FileName="WCFService.WCF.Faults.xsd" MetadataType="Schema" ID="ef008bb0-c538-49c2-b230-80363423db94" SourceId="1" SourceUrl="http://localhost:8733/RouteService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
