@@ -31,9 +31,9 @@ namespace WCFService.WCF
             return plane.ID;
         }
 
-        public void UpdatePlane(Plane plane)
+        public Plane UpdatePlane(Plane plane)
         {
-            if (plane != null) {
+            if (plane == null) {
                 throw new FaultException("Nullpointer Exception"); //TODO vores egen Nullpointer Exception?
             }
 
@@ -42,7 +42,7 @@ namespace WCFService.WCF
 
             try {
                 db.Planes.Attach(plane);
-                db.Entry(plane).State == EntityState.Modified;
+                db.Entry(plane).State = EntityState.Modified;
                 db.SaveChanges();
             }
             catch (OptimisticConcurrencyException exception)
@@ -67,13 +67,13 @@ namespace WCFService.WCF
          // get methods
         public Plane GetPlane(int id)
         {
-            db.Planes.SingleOrDefault(plane => plane.ID => id);
+            return db.Planes.SingleOrDefault(plane => plane.ID == id);
         }
 
         // find planes with a seat number equal to input parameter
         public List<Plane> GetPlanesWithEqualSeatNumber(int seats) {
 
-            return db.Planes.Where(plane => plane.Seats.count == seats).ToList();
+            return db.Planes.Where(plane => plane.Seats.Count == seats).ToList();
         }
 
         // find planes with a seat number with less or equal to input parameter

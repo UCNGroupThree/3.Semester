@@ -10,7 +10,7 @@ namespace WCFService.WCF.Interface {
         int AddPlane(Plane plane);
 
         [OperationContract]
-        void UpdatePlane(Plane plane);
+        Plane UpdatePlane(Plane plane);
 
         [OperationContract]
         void DeletePlane(Plane plane);
