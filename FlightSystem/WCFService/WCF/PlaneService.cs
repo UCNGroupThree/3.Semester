@@ -22,11 +22,10 @@ namespace WCFService.WCF
             try {
                 db.Planes.Add(plane);
                 db.SaveChanges();
-            } 
-            /* catch (Exception ex) {
+            } catch (Exception ex) {
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
                 throw new FaultException("The database was unable to insert the record");
-            }*/
+            }
 
             return plane.ID;
         }
