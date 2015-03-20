@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FligthService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/WCFService.Model" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IFlightService_AddFlight_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddFlight" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_AddFlight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddFlightResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_UpdateFlight_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFlight" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_UpdateFlight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFlightResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_DeleteFlight_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFlight" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_DeleteFlight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFlightResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_GetFlight_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlight" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_GetFlight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlightResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IFlightService">
+    <wsdl:operation name="AddFlight">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFlightService/AddFlight" message="tns:IFlightService_AddFlight_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFlightService/AddFlightResponse" message="tns:IFlightService_AddFlight_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFlight">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFlightService/UpdateFlight" message="tns:IFlightService_UpdateFlight_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFlightService/UpdateFlightResponse" message="tns:IFlightService_UpdateFlight_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFlight">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFlightService/DeleteFlight" message="tns:IFlightService_DeleteFlight_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFlightService/DeleteFlightResponse" message="tns:IFlightService_DeleteFlight_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFlight">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFlightService/GetFlight" message="tns:IFlightService_GetFlight_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFlightService/GetFlightResponse" message="tns:IFlightService_GetFlight_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IFlightService" type="tns:IFlightService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddFlight">
+      <soap:operation soapAction="http://tempuri.org/IFlightService/AddFlight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFlight">
+      <soap:operation soapAction="http://tempuri.org/IFlightService/UpdateFlight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFlight">
+      <soap:operation soapAction="http://tempuri.org/IFlightService/DeleteFlight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlight">
+      <soap:operation soapAction="http://tempuri.org/IFlightService/GetFlight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FligthService">
+    <wsdl:port name="BasicHttpBinding_IFlightService" binding="tns:BasicHttpBinding_IFlightService">
+      <soap:address location="http://localhost:8733/FlightService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

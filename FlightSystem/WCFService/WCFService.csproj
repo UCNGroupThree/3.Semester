@@ -90,6 +90,7 @@
     <Compile Include="WCF\Interface\ISeatService.cs" />
     <Compile Include="WCF\Interface\ITicketService.cs" />
     <Compile Include="WCF\Interface\IUserService.cs" />
+    <Compile Include="WCF\RouteService.cs" />
     <Compile Include="WCF\UserService.cs" />
     <Compile Include="WCF\PlaneService.cs" />
   </ItemGroup>

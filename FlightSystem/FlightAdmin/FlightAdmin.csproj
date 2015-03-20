@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\FlightCtr.cs" />
+    <Compile Include="Controller\RouteCtr.cs" />
     <Compile Include="CustomTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -104,6 +106,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\FlightService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RouteService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -144,6 +156,35 @@
     <None Include="Service References\AdministratorService\WCFService.Model.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\FlightService\FlightAdmin.FlightService.Flight.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FlightService\service.wsdl" />
+    <None Include="Service References\FlightService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FlightService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FlightService\WCFService.Model.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RouteService\FlightAdmin.RouteService.Route.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RouteService\service.wsdl" />
+    <None Include="Service References\RouteService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RouteService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RouteService\System.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RouteService\WCFService.Model.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -153,6 +194,8 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AdministratorService\" />
+    <WCFMetadataStorage Include="Service References\FlightService\" />
+    <WCFMetadataStorage Include="Service References\RouteService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\AdministratorService\configuration91.svcinfo" />
@@ -167,7 +210,28 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controller\" />
+    <None Include="Service References\FlightService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FlightService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FlightService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RouteService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RouteService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RouteService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

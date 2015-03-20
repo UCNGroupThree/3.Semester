@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="83760375-c45a-41f2-ac66-b73846f75056" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/RouteService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="335ba4bb-7051-4c38-b7d4-0f001656ca59" SourceId="1" SourceUrl="http://localhost:8733/RouteService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="be03ed9a-8fd6-4d03-92b8-4070821ae5e8" SourceId="1" SourceUrl="http://localhost:8733/RouteService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="c4f284d9-729a-478e-bf53-a1e8e7b88864" SourceId="1" SourceUrl="http://localhost:8733/RouteService/mex" />
+    <MetadataFile FileName="WCFService.Model.xsd" MetadataType="Schema" ID="0026916c-1aa4-4756-83ec-e16e0a156ba3" SourceId="1" SourceUrl="http://localhost:8733/RouteService/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="e49cef05-b33a-47e6-a50b-ac855dcdb71b" SourceId="1" SourceUrl="http://localhost:8733/RouteService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
