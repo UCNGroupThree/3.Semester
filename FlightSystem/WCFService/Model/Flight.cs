@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace WCFService.Model {
     [DataContract(IsReference = true)]
-    [KnownType(typeof (Plane))]
+    [KnownType(typeof (Plane))] //TODO Nick D Pedersen
     public class Flight {
         public Flight(DateTime departureTime, DateTime arrivalTime, decimal price, Plane plane) {
             this.DepartureTime = departureTime;

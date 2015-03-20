@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace FlightAdmin.GUI {
     public partial class FlightTab : UserControl {
-        public FlightTab() {
+        public FlightTab() { //Todo Nick D PEdersen
             InitializeComponent();
         }
     }
