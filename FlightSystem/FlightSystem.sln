@@ -3,9 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFService", "WCFService\WCFService.csproj", "{7CC4D182-87C8-42AF-873D-0B8ACCDACBBA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightAdmin", "FlightAdmin\FlightAdmin.csproj", "{70F35D2E-0CED-49BB-96EB-198960FCE8C8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{32E1689C-C8F3-4161-94ED-8492F485395E} = {32E1689C-C8F3-4161-94ED-8492F485395E}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFService", "WCFService\WCFService.csproj", "{32E1689C-C8F3-4161-94ED-8492F485395E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +16,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7CC4D182-87C8-42AF-873D-0B8ACCDACBBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7CC4D182-87C8-42AF-873D-0B8ACCDACBBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7CC4D182-87C8-42AF-873D-0B8ACCDACBBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7CC4D182-87C8-42AF-873D-0B8ACCDACBBA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{70F35D2E-0CED-49BB-96EB-198960FCE8C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{70F35D2E-0CED-49BB-96EB-198960FCE8C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70F35D2E-0CED-49BB-96EB-198960FCE8C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70F35D2E-0CED-49BB-96EB-198960FCE8C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32E1689C-C8F3-4161-94ED-8492F485395E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32E1689C-C8F3-4161-94ED-8492F485395E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32E1689C-C8F3-4161-94ED-8492F485395E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32E1689C-C8F3-4161-94ED-8492F485395E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

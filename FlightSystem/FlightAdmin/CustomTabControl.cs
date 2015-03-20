@@ -98,10 +98,11 @@ namespace FlightAdmin
             base.OnMouseMove(e);
             this.UpdateHotTrack();
         }
-
+        /*
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
+            /*
             switch (this.Alignment)
             {
                 case TabAlignment.Bottom:
@@ -109,10 +110,12 @@ namespace FlightAdmin
                 case TabAlignment.Right:
                 case TabAlignment.Top:
                 default:
-                    throw new NotImplementedException();
+                    Console.WriteLine("HEj");
+                    //throw new NotImplementedException();
             }
+             
         }
-
+    */
         protected override void OnPaintBackground(PaintEventArgs pevent)
         {
             base.OnPaintBackground(pevent);
