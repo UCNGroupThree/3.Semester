@@ -55,7 +55,7 @@ namespace WCFService.WCF {
                 db.Flights.Remove(flight);
                 db.SaveChanges();
             }
-            catch (Exception) {
+            catch (Exception ex) {
 
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
                 throw new FaultException("The database was unable to update the record");
