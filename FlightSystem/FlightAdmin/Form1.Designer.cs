@@ -130,7 +130,6 @@ namespace FlightAdmin {
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(841, 443);
             this.tabControl1.TabIndex = 2;
-            
             // 
             // tabPlane
             // 
@@ -250,9 +249,8 @@ namespace FlightAdmin {
             // tabAdministrator
             // 
             this.tabAdministrator.Controls.Add(this.administratorTab1);
-            this.tabAdministrator.Location = new System.Drawing.Point(0, 0);
+            this.tabAdministrator.Location = new System.Drawing.Point(4, 22);
             this.tabAdministrator.Name = "tabAdministrator";
-            this.tabAdministrator.Padding = new System.Windows.Forms.Padding(0);
             this.tabAdministrator.Size = new System.Drawing.Size(833, 417);
             this.tabAdministrator.TabIndex = 6;
             this.tabAdministrator.Text = "Administrator";
@@ -262,10 +260,10 @@ namespace FlightAdmin {
             // 
             this.administratorTab1.BackColor = System.Drawing.SystemColors.Control;
             this.administratorTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.administratorTab1.Location = new System.Drawing.Point(3, 3);
+            this.administratorTab1.Location = new System.Drawing.Point(0, 0);
             this.administratorTab1.Margin = new System.Windows.Forms.Padding(0);
             this.administratorTab1.Name = "administratorTab1";
-            this.administratorTab1.Size = new System.Drawing.Size(827, 411);
+            this.administratorTab1.Size = new System.Drawing.Size(833, 417);
             this.administratorTab1.TabIndex = 0;
             // 
             // statusStrip1
@@ -293,6 +291,7 @@ namespace FlightAdmin {
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip2);
+            this.MinimumSize = new System.Drawing.Size(850, 500);
             this.Name = "MainUI";
             this.Text = "Flight Administration";
             this.menuStrip2.ResumeLayout(false);
