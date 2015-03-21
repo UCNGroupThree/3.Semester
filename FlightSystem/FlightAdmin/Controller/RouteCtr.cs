@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.ServiceModel;
 using FlightAdmin.Exceptions;
-using FlightAdmin.RouteService;
-using Flight = FlightAdmin.RouteService.Flight;
+using FlightAdmin.MainService;
+using Flight = FlightAdmin.MainService.Flight;
 
 namespace FlightAdmin.Controller {
     public class RouteCtr {

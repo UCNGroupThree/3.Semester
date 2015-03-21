@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FlightAdmin.MainServiceReference {
+namespace FlightAdmin.MainService {
     using System.Runtime.Serialization;
     using System;
     
@@ -140,7 +140,7 @@ namespace FlightAdmin.MainServiceReference {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightAdmin.MainServiceReference.Route[] RoutesField;
+        private System.Collections.Generic.List<FlightAdmin.MainService.Route> RoutesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ShortNameField;
@@ -263,7 +263,7 @@ namespace FlightAdmin.MainServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightAdmin.MainServiceReference.Route[] Routes {
+        public System.Collections.Generic.List<FlightAdmin.MainService.Route> Routes {
             get {
                 return this.RoutesField;
             }
@@ -324,16 +324,16 @@ namespace FlightAdmin.MainServiceReference {
         private byte[] ConcurrencyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightAdmin.MainServiceReference.Flight[] FlightsField;
+        private System.Collections.Generic.List<FlightAdmin.MainService.Flight> FlightsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightAdmin.MainServiceReference.Airport FromField;
+        private FlightAdmin.MainService.Airport FromField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightAdmin.MainServiceReference.Airport ToField;
+        private FlightAdmin.MainService.Airport ToField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -359,7 +359,7 @@ namespace FlightAdmin.MainServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightAdmin.MainServiceReference.Flight[] Flights {
+        public System.Collections.Generic.List<FlightAdmin.MainService.Flight> Flights {
             get {
                 return this.FlightsField;
             }
@@ -372,7 +372,7 @@ namespace FlightAdmin.MainServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightAdmin.MainServiceReference.Airport From {
+        public FlightAdmin.MainService.Airport From {
             get {
                 return this.FromField;
             }
@@ -398,7 +398,7 @@ namespace FlightAdmin.MainServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightAdmin.MainServiceReference.Airport To {
+        public FlightAdmin.MainService.Airport To {
             get {
                 return this.ToField;
             }
@@ -439,7 +439,7 @@ namespace FlightAdmin.MainServiceReference {
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightAdmin.MainServiceReference.Plane PlaneField;
+        private FlightAdmin.MainService.Plane PlaneField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private decimal PriceField;
@@ -494,7 +494,7 @@ namespace FlightAdmin.MainServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightAdmin.MainServiceReference.Plane Plane {
+        public FlightAdmin.MainService.Plane Plane {
             get {
                 return this.PlaneField;
             }
@@ -545,7 +545,7 @@ namespace FlightAdmin.MainServiceReference {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightAdmin.MainServiceReference.Seat[] SeatsField;
+        private System.Collections.Generic.List<FlightAdmin.MainService.Seat> SeatsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -584,7 +584,7 @@ namespace FlightAdmin.MainServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightAdmin.MainServiceReference.Seat[] Seats {
+        public System.Collections.Generic.List<FlightAdmin.MainService.Seat> Seats {
             get {
                 return this.SeatsField;
             }
@@ -1099,10 +1099,10 @@ namespace FlightAdmin.MainServiceReference {
         private string PhoneNumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightAdmin.MainServiceReference.Postal PostalField;
+        private FlightAdmin.MainService.Postal PostalField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightAdmin.MainServiceReference.Ticket[] TicketsField;
+        private System.Collections.Generic.List<FlightAdmin.MainService.Ticket> TicketsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1206,7 +1206,7 @@ namespace FlightAdmin.MainServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightAdmin.MainServiceReference.Postal Postal {
+        public FlightAdmin.MainService.Postal Postal {
             get {
                 return this.PostalField;
             }
@@ -1219,7 +1219,7 @@ namespace FlightAdmin.MainServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightAdmin.MainServiceReference.Ticket[] Tickets {
+        public System.Collections.Generic.List<FlightAdmin.MainService.Ticket> Tickets {
             get {
                 return this.TicketsField;
             }
@@ -1340,7 +1340,7 @@ namespace FlightAdmin.MainServiceReference {
         private string OrderStateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightAdmin.MainServiceReference.SeatReservation[] SeatReservationsField;
+        private System.Collections.Generic.List<FlightAdmin.MainService.SeatReservation> SeatReservationsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1405,7 +1405,7 @@ namespace FlightAdmin.MainServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightAdmin.MainServiceReference.SeatReservation[] SeatReservations {
+        public System.Collections.Generic.List<FlightAdmin.MainService.SeatReservation> SeatReservations {
             get {
                 return this.SeatReservationsField;
             }
@@ -1437,7 +1437,7 @@ namespace FlightAdmin.MainServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightAdmin.MainServiceReference.Flight FlightField;
+        private FlightAdmin.MainService.Flight FlightField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
@@ -1446,7 +1446,7 @@ namespace FlightAdmin.MainServiceReference {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightAdmin.MainServiceReference.Seat SeatField;
+        private FlightAdmin.MainService.Seat SeatField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string StateField;
@@ -1462,7 +1462,7 @@ namespace FlightAdmin.MainServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightAdmin.MainServiceReference.Flight Flight {
+        public FlightAdmin.MainService.Flight Flight {
             get {
                 return this.FlightField;
             }
@@ -1501,7 +1501,7 @@ namespace FlightAdmin.MainServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightAdmin.MainServiceReference.Seat Seat {
+        public FlightAdmin.MainService.Seat Seat {
             get {
                 return this.SeatField;
             }
@@ -1537,41 +1537,41 @@ namespace FlightAdmin.MainServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainServiceReference.IAdministratorService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IAdministratorService")]
     public interface IAdministratorService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/AddAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/AddAdministratorResponse")]
-        int AddAdministrator(FlightAdmin.MainServiceReference.Administrator administrator);
+        int AddAdministrator(FlightAdmin.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/AddAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/AddAdministratorResponse")]
-        System.Threading.Tasks.Task<int> AddAdministratorAsync(FlightAdmin.MainServiceReference.Administrator administrator);
+        System.Threading.Tasks.Task<int> AddAdministratorAsync(FlightAdmin.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/UpdateAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/UpdateAdministratorResponse")]
-        FlightAdmin.MainServiceReference.Administrator UpdateAdministrator(FlightAdmin.MainServiceReference.Administrator administrator);
+        FlightAdmin.MainService.Administrator UpdateAdministrator(FlightAdmin.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/UpdateAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/UpdateAdministratorResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Administrator> UpdateAdministratorAsync(FlightAdmin.MainServiceReference.Administrator administrator);
+        System.Threading.Tasks.Task<FlightAdmin.MainService.Administrator> UpdateAdministratorAsync(FlightAdmin.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/DeleteAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/DeleteAdministratorResponse")]
-        void DeleteAdministrator(FlightAdmin.MainServiceReference.Administrator administrator);
+        void DeleteAdministrator(FlightAdmin.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/DeleteAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/DeleteAdministratorResponse")]
-        System.Threading.Tasks.Task DeleteAdministratorAsync(FlightAdmin.MainServiceReference.Administrator administrator);
+        System.Threading.Tasks.Task DeleteAdministratorAsync(FlightAdmin.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/GetAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/GetAdministratorResponse")]
-        FlightAdmin.MainServiceReference.Administrator GetAdministrator(int id);
+        FlightAdmin.MainService.Administrator GetAdministrator(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/GetAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/GetAdministratorResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Administrator> GetAdministratorAsync(int id);
+        System.Threading.Tasks.Task<FlightAdmin.MainService.Administrator> GetAdministratorAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IAdministratorServiceChannel : FlightAdmin.MainServiceReference.IAdministratorService, System.ServiceModel.IClientChannel {
+    public interface IAdministratorServiceChannel : FlightAdmin.MainService.IAdministratorService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class AdministratorServiceClient : System.ServiceModel.ClientBase<FlightAdmin.MainServiceReference.IAdministratorService>, FlightAdmin.MainServiceReference.IAdministratorService {
+    public partial class AdministratorServiceClient : System.ServiceModel.ClientBase<FlightAdmin.MainService.IAdministratorService>, FlightAdmin.MainService.IAdministratorService {
         
         public AdministratorServiceClient() {
         }
@@ -1592,93 +1592,93 @@ namespace FlightAdmin.MainServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public int AddAdministrator(FlightAdmin.MainServiceReference.Administrator administrator) {
+        public int AddAdministrator(FlightAdmin.MainService.Administrator administrator) {
             return base.Channel.AddAdministrator(administrator);
         }
         
-        public System.Threading.Tasks.Task<int> AddAdministratorAsync(FlightAdmin.MainServiceReference.Administrator administrator) {
+        public System.Threading.Tasks.Task<int> AddAdministratorAsync(FlightAdmin.MainService.Administrator administrator) {
             return base.Channel.AddAdministratorAsync(administrator);
         }
         
-        public FlightAdmin.MainServiceReference.Administrator UpdateAdministrator(FlightAdmin.MainServiceReference.Administrator administrator) {
+        public FlightAdmin.MainService.Administrator UpdateAdministrator(FlightAdmin.MainService.Administrator administrator) {
             return base.Channel.UpdateAdministrator(administrator);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Administrator> UpdateAdministratorAsync(FlightAdmin.MainServiceReference.Administrator administrator) {
+        public System.Threading.Tasks.Task<FlightAdmin.MainService.Administrator> UpdateAdministratorAsync(FlightAdmin.MainService.Administrator administrator) {
             return base.Channel.UpdateAdministratorAsync(administrator);
         }
         
-        public void DeleteAdministrator(FlightAdmin.MainServiceReference.Administrator administrator) {
+        public void DeleteAdministrator(FlightAdmin.MainService.Administrator administrator) {
             base.Channel.DeleteAdministrator(administrator);
         }
         
-        public System.Threading.Tasks.Task DeleteAdministratorAsync(FlightAdmin.MainServiceReference.Administrator administrator) {
+        public System.Threading.Tasks.Task DeleteAdministratorAsync(FlightAdmin.MainService.Administrator administrator) {
             return base.Channel.DeleteAdministratorAsync(administrator);
         }
         
-        public FlightAdmin.MainServiceReference.Administrator GetAdministrator(int id) {
+        public FlightAdmin.MainService.Administrator GetAdministrator(int id) {
             return base.Channel.GetAdministrator(id);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Administrator> GetAdministratorAsync(int id) {
+        public System.Threading.Tasks.Task<FlightAdmin.MainService.Administrator> GetAdministratorAsync(int id) {
             return base.Channel.GetAdministratorAsync(id);
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainServiceReference.IAirportService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IAirportService")]
     public interface IAirportService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/AddAirport", ReplyAction="http://tempuri.org/IAirportService/AddAirportResponse")]
-        int AddAirport(FlightAdmin.MainServiceReference.Airport airport);
+        int AddAirport(FlightAdmin.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/AddAirport", ReplyAction="http://tempuri.org/IAirportService/AddAirportResponse")]
-        System.Threading.Tasks.Task<int> AddAirportAsync(FlightAdmin.MainServiceReference.Airport airport);
+        System.Threading.Tasks.Task<int> AddAirportAsync(FlightAdmin.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/UpdateAirport", ReplyAction="http://tempuri.org/IAirportService/UpdateAirportResponse")]
-        FlightAdmin.MainServiceReference.Airport UpdateAirport(FlightAdmin.MainServiceReference.Airport airport);
+        FlightAdmin.MainService.Airport UpdateAirport(FlightAdmin.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/UpdateAirport", ReplyAction="http://tempuri.org/IAirportService/UpdateAirportResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Airport> UpdateAirportAsync(FlightAdmin.MainServiceReference.Airport airport);
+        System.Threading.Tasks.Task<FlightAdmin.MainService.Airport> UpdateAirportAsync(FlightAdmin.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/DeleteAirport", ReplyAction="http://tempuri.org/IAirportService/DeleteAirportResponse")]
-        void DeleteAirport(FlightAdmin.MainServiceReference.Airport airport);
+        void DeleteAirport(FlightAdmin.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/DeleteAirport", ReplyAction="http://tempuri.org/IAirportService/DeleteAirportResponse")]
-        System.Threading.Tasks.Task DeleteAirportAsync(FlightAdmin.MainServiceReference.Airport airport);
+        System.Threading.Tasks.Task DeleteAirportAsync(FlightAdmin.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirport", ReplyAction="http://tempuri.org/IAirportService/GetAirportResponse")]
-        FlightAdmin.MainServiceReference.Airport GetAirport(int id);
+        FlightAdmin.MainService.Airport GetAirport(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirport", ReplyAction="http://tempuri.org/IAirportService/GetAirportResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Airport> GetAirportAsync(int id);
+        System.Threading.Tasks.Task<FlightAdmin.MainService.Airport> GetAirportAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByCountry", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByCountryResponse")]
-        FlightAdmin.MainServiceReference.Airport[] GetAirportsByCountry(string country);
+        System.Collections.Generic.List<FlightAdmin.MainService.Airport> GetAirportsByCountry(string country);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByCountry", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByCountryResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Airport[]> GetAirportsByCountryAsync(string country);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightAdmin.MainService.Airport>> GetAirportsByCountryAsync(string country);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByCity", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByCityResponse")]
-        FlightAdmin.MainServiceReference.Airport[] GetAirportsByCity(string city);
+        System.Collections.Generic.List<FlightAdmin.MainService.Airport> GetAirportsByCity(string city);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByCity", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByCityResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Airport[]> GetAirportsByCityAsync(string city);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightAdmin.MainService.Airport>> GetAirportsByCityAsync(string city);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByName", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByNameResponse")]
-        FlightAdmin.MainServiceReference.Airport[] GetAirportsByName(string name);
+        System.Collections.Generic.List<FlightAdmin.MainService.Airport> GetAirportsByName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByName", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByNameResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Airport[]> GetAirportsByNameAsync(string name);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightAdmin.MainService.Airport>> GetAirportsByNameAsync(string name);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IAirportServiceChannel : FlightAdmin.MainServiceReference.IAirportService, System.ServiceModel.IClientChannel {
+    public interface IAirportServiceChannel : FlightAdmin.MainService.IAirportService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class AirportServiceClient : System.ServiceModel.ClientBase<FlightAdmin.MainServiceReference.IAirportService>, FlightAdmin.MainServiceReference.IAirportService {
+    public partial class AirportServiceClient : System.ServiceModel.ClientBase<FlightAdmin.MainService.IAirportService>, FlightAdmin.MainService.IAirportService {
         
         public AirportServiceClient() {
         }
@@ -1699,107 +1699,107 @@ namespace FlightAdmin.MainServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public int AddAirport(FlightAdmin.MainServiceReference.Airport airport) {
+        public int AddAirport(FlightAdmin.MainService.Airport airport) {
             return base.Channel.AddAirport(airport);
         }
         
-        public System.Threading.Tasks.Task<int> AddAirportAsync(FlightAdmin.MainServiceReference.Airport airport) {
+        public System.Threading.Tasks.Task<int> AddAirportAsync(FlightAdmin.MainService.Airport airport) {
             return base.Channel.AddAirportAsync(airport);
         }
         
-        public FlightAdmin.MainServiceReference.Airport UpdateAirport(FlightAdmin.MainServiceReference.Airport airport) {
+        public FlightAdmin.MainService.Airport UpdateAirport(FlightAdmin.MainService.Airport airport) {
             return base.Channel.UpdateAirport(airport);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Airport> UpdateAirportAsync(FlightAdmin.MainServiceReference.Airport airport) {
+        public System.Threading.Tasks.Task<FlightAdmin.MainService.Airport> UpdateAirportAsync(FlightAdmin.MainService.Airport airport) {
             return base.Channel.UpdateAirportAsync(airport);
         }
         
-        public void DeleteAirport(FlightAdmin.MainServiceReference.Airport airport) {
+        public void DeleteAirport(FlightAdmin.MainService.Airport airport) {
             base.Channel.DeleteAirport(airport);
         }
         
-        public System.Threading.Tasks.Task DeleteAirportAsync(FlightAdmin.MainServiceReference.Airport airport) {
+        public System.Threading.Tasks.Task DeleteAirportAsync(FlightAdmin.MainService.Airport airport) {
             return base.Channel.DeleteAirportAsync(airport);
         }
         
-        public FlightAdmin.MainServiceReference.Airport GetAirport(int id) {
+        public FlightAdmin.MainService.Airport GetAirport(int id) {
             return base.Channel.GetAirport(id);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Airport> GetAirportAsync(int id) {
+        public System.Threading.Tasks.Task<FlightAdmin.MainService.Airport> GetAirportAsync(int id) {
             return base.Channel.GetAirportAsync(id);
         }
         
-        public FlightAdmin.MainServiceReference.Airport[] GetAirportsByCountry(string country) {
+        public System.Collections.Generic.List<FlightAdmin.MainService.Airport> GetAirportsByCountry(string country) {
             return base.Channel.GetAirportsByCountry(country);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Airport[]> GetAirportsByCountryAsync(string country) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightAdmin.MainService.Airport>> GetAirportsByCountryAsync(string country) {
             return base.Channel.GetAirportsByCountryAsync(country);
         }
         
-        public FlightAdmin.MainServiceReference.Airport[] GetAirportsByCity(string city) {
+        public System.Collections.Generic.List<FlightAdmin.MainService.Airport> GetAirportsByCity(string city) {
             return base.Channel.GetAirportsByCity(city);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Airport[]> GetAirportsByCityAsync(string city) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightAdmin.MainService.Airport>> GetAirportsByCityAsync(string city) {
             return base.Channel.GetAirportsByCityAsync(city);
         }
         
-        public FlightAdmin.MainServiceReference.Airport[] GetAirportsByName(string name) {
+        public System.Collections.Generic.List<FlightAdmin.MainService.Airport> GetAirportsByName(string name) {
             return base.Channel.GetAirportsByName(name);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Airport[]> GetAirportsByNameAsync(string name) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightAdmin.MainService.Airport>> GetAirportsByNameAsync(string name) {
             return base.Channel.GetAirportsByNameAsync(name);
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainServiceReference.IFlightService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IFlightService")]
     public interface IFlightService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/AddFlight", ReplyAction="http://tempuri.org/IFlightService/AddFlightResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainServiceReference.NullPointerFault), Action="http://tempuri.org/IFlightService/AddFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainServiceReference.DatabaseInsertFault), Action="http://tempuri.org/IFlightService/AddFlightDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        int AddFlight(FlightAdmin.MainServiceReference.Flight flight);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/AddFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.DatabaseInsertFault), Action="http://tempuri.org/IFlightService/AddFlightDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        int AddFlight(FlightAdmin.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/AddFlight", ReplyAction="http://tempuri.org/IFlightService/AddFlightResponse")]
-        System.Threading.Tasks.Task<int> AddFlightAsync(FlightAdmin.MainServiceReference.Flight flight);
+        System.Threading.Tasks.Task<int> AddFlightAsync(FlightAdmin.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/UpdateFlight", ReplyAction="http://tempuri.org/IFlightService/UpdateFlightResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainServiceReference.DatabaseUpdateFault), Action="http://tempuri.org/IFlightService/UpdateFlightDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainServiceReference.OptimisticConcurrencyFault), Action="http://tempuri.org/IFlightService/UpdateFlightOptimisticConcurrencyFaultFault", Name="OptimisticConcurrencyFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainServiceReference.NullPointerFault), Action="http://tempuri.org/IFlightService/UpdateFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        FlightAdmin.MainServiceReference.Flight UpdateFlight(FlightAdmin.MainServiceReference.Flight flight);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IFlightService/UpdateFlightDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.OptimisticConcurrencyFault), Action="http://tempuri.org/IFlightService/UpdateFlightOptimisticConcurrencyFaultFault", Name="OptimisticConcurrencyFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/UpdateFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        FlightAdmin.MainService.Flight UpdateFlight(FlightAdmin.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/UpdateFlight", ReplyAction="http://tempuri.org/IFlightService/UpdateFlightResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Flight> UpdateFlightAsync(FlightAdmin.MainServiceReference.Flight flight);
+        System.Threading.Tasks.Task<FlightAdmin.MainService.Flight> UpdateFlightAsync(FlightAdmin.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/DeleteFlight", ReplyAction="http://tempuri.org/IFlightService/DeleteFlightResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainServiceReference.DatabaseDeleteFault), Action="http://tempuri.org/IFlightService/DeleteFlightDatabaseDeleteFaultFault", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainServiceReference.NullPointerFault), Action="http://tempuri.org/IFlightService/DeleteFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        void DeleteFlight(FlightAdmin.MainServiceReference.Flight flight);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IFlightService/DeleteFlightDatabaseDeleteFaultFault", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/DeleteFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        void DeleteFlight(FlightAdmin.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/DeleteFlight", ReplyAction="http://tempuri.org/IFlightService/DeleteFlightResponse")]
-        System.Threading.Tasks.Task DeleteFlightAsync(FlightAdmin.MainServiceReference.Flight flight);
+        System.Threading.Tasks.Task DeleteFlightAsync(FlightAdmin.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/GetFlight", ReplyAction="http://tempuri.org/IFlightService/GetFlightResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainServiceReference.NullPointerFault), Action="http://tempuri.org/IFlightService/GetFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        FlightAdmin.MainServiceReference.Flight GetFlight(int id);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/GetFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        FlightAdmin.MainService.Flight GetFlight(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/GetFlight", ReplyAction="http://tempuri.org/IFlightService/GetFlightResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Flight> GetFlightAsync(int id);
+        System.Threading.Tasks.Task<FlightAdmin.MainService.Flight> GetFlightAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IFlightServiceChannel : FlightAdmin.MainServiceReference.IFlightService, System.ServiceModel.IClientChannel {
+    public interface IFlightServiceChannel : FlightAdmin.MainService.IFlightService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class FlightServiceClient : System.ServiceModel.ClientBase<FlightAdmin.MainServiceReference.IFlightService>, FlightAdmin.MainServiceReference.IFlightService {
+    public partial class FlightServiceClient : System.ServiceModel.ClientBase<FlightAdmin.MainService.IFlightService>, FlightAdmin.MainService.IFlightService {
         
         public FlightServiceClient() {
         }
@@ -1820,75 +1820,75 @@ namespace FlightAdmin.MainServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public int AddFlight(FlightAdmin.MainServiceReference.Flight flight) {
+        public int AddFlight(FlightAdmin.MainService.Flight flight) {
             return base.Channel.AddFlight(flight);
         }
         
-        public System.Threading.Tasks.Task<int> AddFlightAsync(FlightAdmin.MainServiceReference.Flight flight) {
+        public System.Threading.Tasks.Task<int> AddFlightAsync(FlightAdmin.MainService.Flight flight) {
             return base.Channel.AddFlightAsync(flight);
         }
         
-        public FlightAdmin.MainServiceReference.Flight UpdateFlight(FlightAdmin.MainServiceReference.Flight flight) {
+        public FlightAdmin.MainService.Flight UpdateFlight(FlightAdmin.MainService.Flight flight) {
             return base.Channel.UpdateFlight(flight);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Flight> UpdateFlightAsync(FlightAdmin.MainServiceReference.Flight flight) {
+        public System.Threading.Tasks.Task<FlightAdmin.MainService.Flight> UpdateFlightAsync(FlightAdmin.MainService.Flight flight) {
             return base.Channel.UpdateFlightAsync(flight);
         }
         
-        public void DeleteFlight(FlightAdmin.MainServiceReference.Flight flight) {
+        public void DeleteFlight(FlightAdmin.MainService.Flight flight) {
             base.Channel.DeleteFlight(flight);
         }
         
-        public System.Threading.Tasks.Task DeleteFlightAsync(FlightAdmin.MainServiceReference.Flight flight) {
+        public System.Threading.Tasks.Task DeleteFlightAsync(FlightAdmin.MainService.Flight flight) {
             return base.Channel.DeleteFlightAsync(flight);
         }
         
-        public FlightAdmin.MainServiceReference.Flight GetFlight(int id) {
+        public FlightAdmin.MainService.Flight GetFlight(int id) {
             return base.Channel.GetFlight(id);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Flight> GetFlightAsync(int id) {
+        public System.Threading.Tasks.Task<FlightAdmin.MainService.Flight> GetFlightAsync(int id) {
             return base.Channel.GetFlightAsync(id);
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainServiceReference.IPlaneService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IPlaneService")]
     public interface IPlaneService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/AddPlane", ReplyAction="http://tempuri.org/IPlaneService/AddPlaneResponse")]
-        int AddPlane(FlightAdmin.MainServiceReference.Plane plane);
+        int AddPlane(FlightAdmin.MainService.Plane plane);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/AddPlane", ReplyAction="http://tempuri.org/IPlaneService/AddPlaneResponse")]
-        System.Threading.Tasks.Task<int> AddPlaneAsync(FlightAdmin.MainServiceReference.Plane plane);
+        System.Threading.Tasks.Task<int> AddPlaneAsync(FlightAdmin.MainService.Plane plane);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/UpdatePlane", ReplyAction="http://tempuri.org/IPlaneService/UpdatePlaneResponse")]
-        FlightAdmin.MainServiceReference.Plane UpdatePlane(FlightAdmin.MainServiceReference.Plane plane);
+        FlightAdmin.MainService.Plane UpdatePlane(FlightAdmin.MainService.Plane plane);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/UpdatePlane", ReplyAction="http://tempuri.org/IPlaneService/UpdatePlaneResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Plane> UpdatePlaneAsync(FlightAdmin.MainServiceReference.Plane plane);
+        System.Threading.Tasks.Task<FlightAdmin.MainService.Plane> UpdatePlaneAsync(FlightAdmin.MainService.Plane plane);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/DeletePlane", ReplyAction="http://tempuri.org/IPlaneService/DeletePlaneResponse")]
-        void DeletePlane(FlightAdmin.MainServiceReference.Plane plane);
+        void DeletePlane(FlightAdmin.MainService.Plane plane);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/DeletePlane", ReplyAction="http://tempuri.org/IPlaneService/DeletePlaneResponse")]
-        System.Threading.Tasks.Task DeletePlaneAsync(FlightAdmin.MainServiceReference.Plane plane);
+        System.Threading.Tasks.Task DeletePlaneAsync(FlightAdmin.MainService.Plane plane);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlane", ReplyAction="http://tempuri.org/IPlaneService/GetPlaneResponse")]
-        FlightAdmin.MainServiceReference.Plane GetPlane(int id);
+        FlightAdmin.MainService.Plane GetPlane(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlane", ReplyAction="http://tempuri.org/IPlaneService/GetPlaneResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Plane> GetPlaneAsync(int id);
+        System.Threading.Tasks.Task<FlightAdmin.MainService.Plane> GetPlaneAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IPlaneServiceChannel : FlightAdmin.MainServiceReference.IPlaneService, System.ServiceModel.IClientChannel {
+    public interface IPlaneServiceChannel : FlightAdmin.MainService.IPlaneService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class PlaneServiceClient : System.ServiceModel.ClientBase<FlightAdmin.MainServiceReference.IPlaneService>, FlightAdmin.MainServiceReference.IPlaneService {
+    public partial class PlaneServiceClient : System.ServiceModel.ClientBase<FlightAdmin.MainService.IPlaneService>, FlightAdmin.MainService.IPlaneService {
         
         public PlaneServiceClient() {
         }
@@ -1909,83 +1909,83 @@ namespace FlightAdmin.MainServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public int AddPlane(FlightAdmin.MainServiceReference.Plane plane) {
+        public int AddPlane(FlightAdmin.MainService.Plane plane) {
             return base.Channel.AddPlane(plane);
         }
         
-        public System.Threading.Tasks.Task<int> AddPlaneAsync(FlightAdmin.MainServiceReference.Plane plane) {
+        public System.Threading.Tasks.Task<int> AddPlaneAsync(FlightAdmin.MainService.Plane plane) {
             return base.Channel.AddPlaneAsync(plane);
         }
         
-        public FlightAdmin.MainServiceReference.Plane UpdatePlane(FlightAdmin.MainServiceReference.Plane plane) {
+        public FlightAdmin.MainService.Plane UpdatePlane(FlightAdmin.MainService.Plane plane) {
             return base.Channel.UpdatePlane(plane);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Plane> UpdatePlaneAsync(FlightAdmin.MainServiceReference.Plane plane) {
+        public System.Threading.Tasks.Task<FlightAdmin.MainService.Plane> UpdatePlaneAsync(FlightAdmin.MainService.Plane plane) {
             return base.Channel.UpdatePlaneAsync(plane);
         }
         
-        public void DeletePlane(FlightAdmin.MainServiceReference.Plane plane) {
+        public void DeletePlane(FlightAdmin.MainService.Plane plane) {
             base.Channel.DeletePlane(plane);
         }
         
-        public System.Threading.Tasks.Task DeletePlaneAsync(FlightAdmin.MainServiceReference.Plane plane) {
+        public System.Threading.Tasks.Task DeletePlaneAsync(FlightAdmin.MainService.Plane plane) {
             return base.Channel.DeletePlaneAsync(plane);
         }
         
-        public FlightAdmin.MainServiceReference.Plane GetPlane(int id) {
+        public FlightAdmin.MainService.Plane GetPlane(int id) {
             return base.Channel.GetPlane(id);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Plane> GetPlaneAsync(int id) {
+        public System.Threading.Tasks.Task<FlightAdmin.MainService.Plane> GetPlaneAsync(int id) {
             return base.Channel.GetPlaneAsync(id);
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainServiceReference.IRouteService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IRouteService")]
     public interface IRouteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/AddRoute", ReplyAction="http://tempuri.org/IRouteService/AddRouteResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainServiceReference.NullPointerFault), Action="http://tempuri.org/IRouteService/AddRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainServiceReference.DatabaseInsertFault), Action="http://tempuri.org/IRouteService/AddRouteDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        FlightAdmin.MainServiceReference.Route AddRoute(FlightAdmin.MainServiceReference.Route route);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/AddRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.DatabaseInsertFault), Action="http://tempuri.org/IRouteService/AddRouteDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        FlightAdmin.MainService.Route AddRoute(FlightAdmin.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/AddRoute", ReplyAction="http://tempuri.org/IRouteService/AddRouteResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Route> AddRouteAsync(FlightAdmin.MainServiceReference.Route route);
+        System.Threading.Tasks.Task<FlightAdmin.MainService.Route> AddRouteAsync(FlightAdmin.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/UpdateRoute", ReplyAction="http://tempuri.org/IRouteService/UpdateRouteResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainServiceReference.NullPointerFault), Action="http://tempuri.org/IRouteService/UpdateRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainServiceReference.DatabaseUpdateFault), Action="http://tempuri.org/IRouteService/UpdateRouteDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainServiceReference.OptimisticConcurrencyFault), Action="http://tempuri.org/IRouteService/UpdateRouteOptimisticConcurrencyFaultFault", Name="OptimisticConcurrencyFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        FlightAdmin.MainServiceReference.Route UpdateRoute(FlightAdmin.MainServiceReference.Route route);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/UpdateRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IRouteService/UpdateRouteDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.OptimisticConcurrencyFault), Action="http://tempuri.org/IRouteService/UpdateRouteOptimisticConcurrencyFaultFault", Name="OptimisticConcurrencyFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        FlightAdmin.MainService.Route UpdateRoute(FlightAdmin.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/UpdateRoute", ReplyAction="http://tempuri.org/IRouteService/UpdateRouteResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Route> UpdateRouteAsync(FlightAdmin.MainServiceReference.Route route);
+        System.Threading.Tasks.Task<FlightAdmin.MainService.Route> UpdateRouteAsync(FlightAdmin.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/DeleteRoute", ReplyAction="http://tempuri.org/IRouteService/DeleteRouteResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainServiceReference.NullPointerFault), Action="http://tempuri.org/IRouteService/DeleteRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainServiceReference.DatabaseDeleteFault), Action="http://tempuri.org/IRouteService/DeleteRouteDatabaseDeleteFaultFault", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        void DeleteRoute(FlightAdmin.MainServiceReference.Route route);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/DeleteRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IRouteService/DeleteRouteDatabaseDeleteFaultFault", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        void DeleteRoute(FlightAdmin.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/DeleteRoute", ReplyAction="http://tempuri.org/IRouteService/DeleteRouteResponse")]
-        System.Threading.Tasks.Task DeleteRouteAsync(FlightAdmin.MainServiceReference.Route route);
+        System.Threading.Tasks.Task DeleteRouteAsync(FlightAdmin.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/GetRoute", ReplyAction="http://tempuri.org/IRouteService/GetRouteResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainServiceReference.NullPointerFault), Action="http://tempuri.org/IRouteService/GetRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        FlightAdmin.MainServiceReference.Route GetRoute(int id);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/GetRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        FlightAdmin.MainService.Route GetRoute(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/GetRoute", ReplyAction="http://tempuri.org/IRouteService/GetRouteResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Route> GetRouteAsync(int id);
+        System.Threading.Tasks.Task<FlightAdmin.MainService.Route> GetRouteAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IRouteServiceChannel : FlightAdmin.MainServiceReference.IRouteService, System.ServiceModel.IClientChannel {
+    public interface IRouteServiceChannel : FlightAdmin.MainService.IRouteService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class RouteServiceClient : System.ServiceModel.ClientBase<FlightAdmin.MainServiceReference.IRouteService>, FlightAdmin.MainServiceReference.IRouteService {
+    public partial class RouteServiceClient : System.ServiceModel.ClientBase<FlightAdmin.MainService.IRouteService>, FlightAdmin.MainService.IRouteService {
         
         public RouteServiceClient() {
         }
@@ -2006,75 +2006,75 @@ namespace FlightAdmin.MainServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public FlightAdmin.MainServiceReference.Route AddRoute(FlightAdmin.MainServiceReference.Route route) {
+        public FlightAdmin.MainService.Route AddRoute(FlightAdmin.MainService.Route route) {
             return base.Channel.AddRoute(route);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Route> AddRouteAsync(FlightAdmin.MainServiceReference.Route route) {
+        public System.Threading.Tasks.Task<FlightAdmin.MainService.Route> AddRouteAsync(FlightAdmin.MainService.Route route) {
             return base.Channel.AddRouteAsync(route);
         }
         
-        public FlightAdmin.MainServiceReference.Route UpdateRoute(FlightAdmin.MainServiceReference.Route route) {
+        public FlightAdmin.MainService.Route UpdateRoute(FlightAdmin.MainService.Route route) {
             return base.Channel.UpdateRoute(route);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Route> UpdateRouteAsync(FlightAdmin.MainServiceReference.Route route) {
+        public System.Threading.Tasks.Task<FlightAdmin.MainService.Route> UpdateRouteAsync(FlightAdmin.MainService.Route route) {
             return base.Channel.UpdateRouteAsync(route);
         }
         
-        public void DeleteRoute(FlightAdmin.MainServiceReference.Route route) {
+        public void DeleteRoute(FlightAdmin.MainService.Route route) {
             base.Channel.DeleteRoute(route);
         }
         
-        public System.Threading.Tasks.Task DeleteRouteAsync(FlightAdmin.MainServiceReference.Route route) {
+        public System.Threading.Tasks.Task DeleteRouteAsync(FlightAdmin.MainService.Route route) {
             return base.Channel.DeleteRouteAsync(route);
         }
         
-        public FlightAdmin.MainServiceReference.Route GetRoute(int id) {
+        public FlightAdmin.MainService.Route GetRoute(int id) {
             return base.Channel.GetRoute(id);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.Route> GetRouteAsync(int id) {
+        public System.Threading.Tasks.Task<FlightAdmin.MainService.Route> GetRouteAsync(int id) {
             return base.Channel.GetRouteAsync(id);
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainServiceReference.IUserService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IUserService")]
     public interface IUserService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddUser", ReplyAction="http://tempuri.org/IUserService/AddUserResponse")]
-        int AddUser(FlightAdmin.MainServiceReference.User user);
+        int AddUser(FlightAdmin.MainService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddUser", ReplyAction="http://tempuri.org/IUserService/AddUserResponse")]
-        System.Threading.Tasks.Task<int> AddUserAsync(FlightAdmin.MainServiceReference.User user);
+        System.Threading.Tasks.Task<int> AddUserAsync(FlightAdmin.MainService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
-        FlightAdmin.MainServiceReference.User UpdateUser(FlightAdmin.MainServiceReference.User user);
+        FlightAdmin.MainService.User UpdateUser(FlightAdmin.MainService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.User> UpdateUserAsync(FlightAdmin.MainServiceReference.User user);
+        System.Threading.Tasks.Task<FlightAdmin.MainService.User> UpdateUserAsync(FlightAdmin.MainService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
-        void DeleteUser(FlightAdmin.MainServiceReference.User user);
+        void DeleteUser(FlightAdmin.MainService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
-        System.Threading.Tasks.Task DeleteUserAsync(FlightAdmin.MainServiceReference.User user);
+        System.Threading.Tasks.Task DeleteUserAsync(FlightAdmin.MainService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUser", ReplyAction="http://tempuri.org/IUserService/GetUserResponse")]
-        FlightAdmin.MainServiceReference.User GetUser(int id);
+        FlightAdmin.MainService.User GetUser(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUser", ReplyAction="http://tempuri.org/IUserService/GetUserResponse")]
-        System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.User> GetUserAsync(int id);
+        System.Threading.Tasks.Task<FlightAdmin.MainService.User> GetUserAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IUserServiceChannel : FlightAdmin.MainServiceReference.IUserService, System.ServiceModel.IClientChannel {
+    public interface IUserServiceChannel : FlightAdmin.MainService.IUserService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class UserServiceClient : System.ServiceModel.ClientBase<FlightAdmin.MainServiceReference.IUserService>, FlightAdmin.MainServiceReference.IUserService {
+    public partial class UserServiceClient : System.ServiceModel.ClientBase<FlightAdmin.MainService.IUserService>, FlightAdmin.MainService.IUserService {
         
         public UserServiceClient() {
         }
@@ -2095,35 +2095,35 @@ namespace FlightAdmin.MainServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public int AddUser(FlightAdmin.MainServiceReference.User user) {
+        public int AddUser(FlightAdmin.MainService.User user) {
             return base.Channel.AddUser(user);
         }
         
-        public System.Threading.Tasks.Task<int> AddUserAsync(FlightAdmin.MainServiceReference.User user) {
+        public System.Threading.Tasks.Task<int> AddUserAsync(FlightAdmin.MainService.User user) {
             return base.Channel.AddUserAsync(user);
         }
         
-        public FlightAdmin.MainServiceReference.User UpdateUser(FlightAdmin.MainServiceReference.User user) {
+        public FlightAdmin.MainService.User UpdateUser(FlightAdmin.MainService.User user) {
             return base.Channel.UpdateUser(user);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.User> UpdateUserAsync(FlightAdmin.MainServiceReference.User user) {
+        public System.Threading.Tasks.Task<FlightAdmin.MainService.User> UpdateUserAsync(FlightAdmin.MainService.User user) {
             return base.Channel.UpdateUserAsync(user);
         }
         
-        public void DeleteUser(FlightAdmin.MainServiceReference.User user) {
+        public void DeleteUser(FlightAdmin.MainService.User user) {
             base.Channel.DeleteUser(user);
         }
         
-        public System.Threading.Tasks.Task DeleteUserAsync(FlightAdmin.MainServiceReference.User user) {
+        public System.Threading.Tasks.Task DeleteUserAsync(FlightAdmin.MainService.User user) {
             return base.Channel.DeleteUserAsync(user);
         }
         
-        public FlightAdmin.MainServiceReference.User GetUser(int id) {
+        public FlightAdmin.MainService.User GetUser(int id) {
             return base.Channel.GetUser(id);
         }
         
-        public System.Threading.Tasks.Task<FlightAdmin.MainServiceReference.User> GetUserAsync(int id) {
+        public System.Threading.Tasks.Task<FlightAdmin.MainService.User> GetUserAsync(int id) {
             return base.Channel.GetUserAsync(id);
         }
     }

@@ -2,7 +2,7 @@
 using System.ServiceModel;
 using System.Windows.Forms;
 using FlightAdmin.Exceptions;
-using FlightAdmin.FlightService;
+using FlightAdmin.MainService;
 
 namespace FlightAdmin.Controller {
     public class FlightCtr {

@@ -102,22 +102,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\AdministratorService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\FlightService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\MainServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\RouteService\Reference.cs">
+    <Compile Include="Service References\MainService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -149,86 +134,38 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\AdministratorService\FlightAdmin.AdministratorService.Administrator.datasource">
+    <None Include="Service References\MainService\FlightAdmin.MainService.Administrator.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\AdministratorService\service.wsdl" />
-    <None Include="Service References\AdministratorService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AdministratorService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AdministratorService\WCFService.Model.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\FlightService\FlightAdmin.FlightService.Flight.datasource">
+    <None Include="Service References\MainService\FlightAdmin.MainService.Airport.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\FlightService\service.wsdl" />
-    <None Include="Service References\FlightService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\FlightService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\FlightService\WCFService.Model.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\FlightService\WCFService.WCF.Faults.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MainServiceReference\FlightAdmin.MainServiceReference.Administrator.datasource">
+    <None Include="Service References\MainService\FlightAdmin.MainService.Flight.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\MainServiceReference\FlightAdmin.MainServiceReference.Airport.datasource">
+    <None Include="Service References\MainService\FlightAdmin.MainService.Plane.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\MainServiceReference\FlightAdmin.MainServiceReference.Flight.datasource">
+    <None Include="Service References\MainService\FlightAdmin.MainService.Route.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\MainServiceReference\FlightAdmin.MainServiceReference.Plane.datasource">
+    <None Include="Service References\MainService\FlightAdmin.MainService.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\MainServiceReference\FlightAdmin.MainServiceReference.Route.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\MainServiceReference\FlightAdmin.MainServiceReference.User.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\MainServiceReference\service.wsdl" />
-    <None Include="Service References\MainServiceReference\service.xsd">
+    <None Include="Service References\MainService\service.wsdl" />
+    <None Include="Service References\MainService\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MainServiceReference\service1.xsd">
+    <None Include="Service References\MainService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MainServiceReference\System.xsd">
+    <None Include="Service References\MainService\System.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MainServiceReference\WCFService.Model.xsd">
+    <None Include="Service References\MainService\WCFService.Model.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MainServiceReference\WCFService.WCF.Faults.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RouteService\FlightAdmin.RouteService.Route.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\RouteService\service.wsdl" />
-    <None Include="Service References\RouteService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RouteService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RouteService\System.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RouteService\WCFService.Model.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RouteService\WCFService.WCF.Faults.xsd">
+    <None Include="Service References\MainService\WCFService.WCF.Faults.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -239,55 +176,16 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\AdministratorService\" />
-    <WCFMetadataStorage Include="Service References\FlightService\" />
-    <WCFMetadataStorage Include="Service References\MainServiceReference\" />
-    <WCFMetadataStorage Include="Service References\RouteService\" />
+    <WCFMetadataStorage Include="Service References\MainService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\AdministratorService\configuration91.svcinfo" />
+    <None Include="Service References\MainService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\AdministratorService\configuration.svcinfo" />
+    <None Include="Service References\MainService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\AdministratorService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\FlightService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\FlightService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\FlightService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RouteService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RouteService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RouteService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MainServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MainServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MainServiceReference\Reference.svcmap">
+    <None Include="Service References\MainService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

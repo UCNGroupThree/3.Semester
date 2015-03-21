@@ -243,7 +243,7 @@
             // 
             // administratorBindingSource
             // 
-            this.administratorBindingSource.DataSource = typeof(FlightAdmin.AdministratorService.Administrator);
+            this.administratorBindingSource.DataSource = typeof(FlightAdmin.MainService.Administrator);
             // 
             // iDDataGridViewTextBoxColumn
             // 
