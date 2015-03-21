@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using System.ServiceModel;
 using FlightAdmin.Exceptions;
 using FlightAdmin.MainService;
@@ -12,7 +11,7 @@ namespace FlightAdmin.Controller {
         #region Create
 
         public Route CreateRoute(Airport from, Airport to, List<Flight> flights) { //TODO Better Exception
-            Route route = null;
+            Route route;
 
             if (RouteValidation(from, to, flights)) {
                 route = new Route {From = from, To = to, Flights = flights};
@@ -39,7 +38,7 @@ namespace FlightAdmin.Controller {
         #region Update
 
         public Route UpdateRoute(Route route, Airport from, Airport to, List<Flight> flights) { //TODO Better Exception
-            Route retRoute = null;
+            Route retRoute;
             if (RouteValidation(from, to, flights)) {
                 using (var client = new RouteServiceClient()) {
                     try {
@@ -86,7 +85,7 @@ namespace FlightAdmin.Controller {
         #region Read
 
         public Route GetRoute(int id) { //TODO Better Exception
-            Route route = null;
+            Route route;
 
             using (var client = new RouteServiceClient()) {
                 try {

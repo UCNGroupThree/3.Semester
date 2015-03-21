@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Linq;
@@ -71,6 +72,26 @@ namespace WCFService.WCF {
             }
 
             return route;
+        }
+
+        public Route GetRoute(Airport from, Airport to) {
+            Route route = db.Routes.SingleOrDefault(r => r.From.ID == from.ID && r.To.ID == to.ID);
+
+            if (route == null) {
+                throw new FaultException<NullPointerFault>(new NullPointerFault());
+            }
+
+            return route;
+        }
+
+        public List<Route> GetRoutes(Airport from) {
+            List<Route> routes = db.Routes.Where(r => r.From.ID == from.ID).ToList();
+
+            if (!(routes.Count > 0)) {
+                throw new FaultException<NullPointerFault>(new NullPointerFault());
+            }
+
+            return routes;
         }
     }
 }

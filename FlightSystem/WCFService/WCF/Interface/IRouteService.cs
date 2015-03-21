@@ -1,10 +1,11 @@
-﻿using System.ServiceModel;
+﻿using System.Collections.Generic;
+using System.ServiceModel;
 using WCFService.Model;
 using WCFService.WCF.Faults;
 
 namespace WCFService.WCF.Interface {
     [ServiceContract]
-    public interface IRouteService { //TODO Jakob
+    public interface IRouteService {
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]
         [FaultContract(typeof(DatabaseInsertFault))]
@@ -24,5 +25,13 @@ namespace WCFService.WCF.Interface {
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]
         Route GetRoute(int id);
+
+        [OperationContract]
+        [FaultContract(typeof(NullPointerFault))]
+        Route GetRoute(Airport from, Airport to);
+
+        [OperationContract]
+        [FaultContract(typeof(NullPointerFault))]
+        List<Route> GetRoutes(Airport from);
     }
 }
