@@ -74,7 +74,7 @@ namespace WCFService.WCF {
             return route;
         }
 
-        public Route GetRoute(Airport from, Airport to) {
+        public Route GetRouteByAirports(Airport from, Airport to) {
             Route route = db.Routes.SingleOrDefault(r => r.From.ID == from.ID && r.To.ID == to.ID);
 
             if (route == null) {
@@ -84,7 +84,7 @@ namespace WCFService.WCF {
             return route;
         }
 
-        public List<Route> GetRoutes(Airport from) {
+        public List<Route> GetRoutesByAirport(Airport from) {
             List<Route> routes = db.Routes.Where(r => r.From.ID == from.ID).ToList();
 
             if (!(routes.Count > 0)) {

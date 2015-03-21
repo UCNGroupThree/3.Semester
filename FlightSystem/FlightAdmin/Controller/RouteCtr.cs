@@ -91,7 +91,7 @@ namespace FlightAdmin.Controller {
                 try {
                     route = client.GetRoute(id);
                 } catch (FaultException<NullPointerFault> nullException) {
-                    throw new Exception(nullException.Message);
+                    throw new NullException("The requested Airport does not exist");
                 } catch (Exception e) {
                     Console.WriteLine(e.Message);
                     throw new ConnectionException("WCF Service Exception", e);
@@ -99,6 +99,42 @@ namespace FlightAdmin.Controller {
             }
 
             return route;
+        }
+
+        public Route GetRouteByAirports(Airport from, Airport to) {
+            Route route;
+
+            using (var client = new RouteServiceClient()) {
+                try {
+                    route = client.GetRouteByAirports(from, to);
+                } catch (FaultException<NullPointerFault> nullException) {
+                    throw new NullException("There are no routes between thoes Airports");
+                } catch (Exception e) {
+                    Console.WriteLine(e.Message);
+                    throw new ConnectionException("WCF Service Exception", e);
+                }
+            }
+
+
+            return route;
+        }
+
+        public List<Route> GetRoutesByAirport(Airport from) {
+            List<Route> routes;
+
+            using (var client = new RouteServiceClient()) {
+                try {
+                    routes = client.GetRoutesByAirport(from);
+                } catch (FaultException<NullPointerFault> nullException) {
+                    throw new NullException("No routes exists from that Airport");
+                } catch (Exception e) {
+                    Console.WriteLine(e.Message);
+                    throw new ConnectionException("WCF Service Exception", e);
+                }
+            }
+
+
+            return routes;
         }
 
         #endregion

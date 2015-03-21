@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlightAdmin.Controller;
+using FlightAdmin.Exceptions;
 using FlightAdmin.MainService;
 
 namespace FlightAdmin.GUI {
@@ -25,7 +26,9 @@ namespace FlightAdmin.GUI {
                 MessageBox.Show("You must type in the 'From' Airport.");
             } else {
                 if (string.IsNullOrEmpty(txtTo.Text) || string.IsNullOrWhiteSpace(txtTo.Text)) {
-                    
+                    SearchRoutes(txtFrom.Text);
+                } else {
+                    SearchRoute(txtFrom.Text, txtTo.Text);
                 }
             }
         }
@@ -36,21 +39,34 @@ namespace FlightAdmin.GUI {
         #region Search
 
         private void SearchRoute(string from, string to) {
-
+            Route route;
 
             try {
                 Airport fromAirport = new Airport(); //TODO Get airport by name?
                 Airport toAirport = new Airport();
 
-                rCtr.GetRoutes(fromAirport, toAirport);
-            } catch (Exception e) {
-                MessageBox.Show("The Airport does not exist, please try again"); //TODO Better error handeling?
+               route = rCtr.GetRouteByAirports(fromAirport, toAirport);
+            } catch (NullException e) {
+                MessageBox.Show(e.Message); //TODO Better error handeling?
+                return;
             }
 
+            //TODO Show result in datagrid
         }
 
-        private void SearchRoute(string from) {
-            
+        private void SearchRoutes(string from) {
+            List<Route> routes;
+
+            try {
+                Airport fromAirport = new Airport(); //TODO Get airport by name?
+
+                routes = rCtr.GetRoutesByAirport(fromAirport);
+            } catch (NullException e) {
+                MessageBox.Show(e.Message); //TODO Better error handeling?
+                return;
+            } 
+
+            //TODO Show result in datagrid
         }
 
         #endregion

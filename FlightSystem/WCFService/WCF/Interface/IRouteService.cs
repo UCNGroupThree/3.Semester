@@ -28,10 +28,10 @@ namespace WCFService.WCF.Interface {
 
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]
-        Route GetRoute(Airport from, Airport to);
+        Route GetRouteByAirports(Airport from, Airport to);
 
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]
-        List<Route> GetRoutes(Airport from);
+        List<Route> GetRoutesByAirport(Airport from);
     }
 }

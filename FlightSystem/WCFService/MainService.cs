@@ -120,12 +120,12 @@ namespace WCFService {
             return new RouteService().GetRoute(id);
         }
 
-        public Route GetRoute(Airport from, Airport to) {
-            return new RouteService().GetRoute(from, to);
+        public Route GetRouteByAirports(Airport from, Airport to) {
+            return new RouteService().GetRouteByAirports(from, to);
         }
 
-        public List<Route> GetRoutes(Airport from) {
-            return new RouteService().GetRoutes(from);
+        public List<Route> GetRoutesByAirport(Airport from) {
+            return new RouteService().GetRoutesByAirport(from);
         }
 
         #endregion
