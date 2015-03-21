@@ -1,0 +1,687 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MainService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/WCFService.Model" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAdministratorService_AddAdministrator_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAdministrator" />
+  </wsdl:message>
+  <wsdl:message name="IAdministratorService_AddAdministrator_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAdministratorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministratorService_UpdateAdministrator_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAdministrator" />
+  </wsdl:message>
+  <wsdl:message name="IAdministratorService_UpdateAdministrator_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAdministratorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministratorService_DeleteAdministrator_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAdministrator" />
+  </wsdl:message>
+  <wsdl:message name="IAdministratorService_DeleteAdministrator_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAdministratorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministratorService_GetAdministrator_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdministrator" />
+  </wsdl:message>
+  <wsdl:message name="IAdministratorService_GetAdministrator_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdministratorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_AddAirport_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAirport" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_AddAirport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAirportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_UpdateAirport_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAirport" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_UpdateAirport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAirportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_DeleteAirport_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAirport" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_DeleteAirport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAirportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_GetAirport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirport" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_GetAirport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_GetAirportsByCountry_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirportsByCountry" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_GetAirportsByCountry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirportsByCountryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_GetAirportsByCity_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirportsByCity" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_GetAirportsByCity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirportsByCityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_GetAirportsByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirportsByName" />
+  </wsdl:message>
+  <wsdl:message name="IAirportService_GetAirportsByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAirportsByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_AddFlight_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddFlight" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_AddFlight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddFlightResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_AddFlight_NullPointerFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q1:NullPointerFault" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_AddFlight_DatabaseInsertFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q2:DatabaseInsertFault" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_UpdateFlight_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFlight" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_UpdateFlight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFlightResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_UpdateFlight_DatabaseUpdateFaultFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q3:DatabaseUpdateFault" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_UpdateFlight_OptimisticConcurrencyFaultFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q4:OptimisticConcurrencyFault" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_UpdateFlight_NullPointerFaultFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q5:NullPointerFault" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_DeleteFlight_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFlight" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_DeleteFlight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFlightResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_DeleteFlight_DatabaseDeleteFaultFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q6:DatabaseDeleteFault" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_DeleteFlight_NullPointerFaultFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q7:NullPointerFault" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_GetFlight_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlight" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_GetFlight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFlightResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFlightService_GetFlight_NullPointerFaultFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q8:NullPointerFault" />
+  </wsdl:message>
+  <wsdl:message name="IPlaneService_AddPlane_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPlane" />
+  </wsdl:message>
+  <wsdl:message name="IPlaneService_AddPlane_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPlaneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlaneService_UpdatePlane_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePlane" />
+  </wsdl:message>
+  <wsdl:message name="IPlaneService_UpdatePlane_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePlaneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlaneService_DeletePlane_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePlane" />
+  </wsdl:message>
+  <wsdl:message name="IPlaneService_DeletePlane_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePlaneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlaneService_GetPlane_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlane" />
+  </wsdl:message>
+  <wsdl:message name="IPlaneService_GetPlane_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlaneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRouteService_AddRoute_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRoute" />
+  </wsdl:message>
+  <wsdl:message name="IRouteService_AddRoute_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRouteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRouteService_AddRoute_NullPointerFaultFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q9:NullPointerFault" />
+  </wsdl:message>
+  <wsdl:message name="IRouteService_AddRoute_DatabaseInsertFaultFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q10:DatabaseInsertFault" />
+  </wsdl:message>
+  <wsdl:message name="IRouteService_UpdateRoute_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRoute" />
+  </wsdl:message>
+  <wsdl:message name="IRouteService_UpdateRoute_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRouteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRouteService_UpdateRoute_NullPointerFaultFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q11:NullPointerFault" />
+  </wsdl:message>
+  <wsdl:message name="IRouteService_UpdateRoute_DatabaseUpdateFaultFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q12:DatabaseUpdateFault" />
+  </wsdl:message>
+  <wsdl:message name="IRouteService_UpdateRoute_OptimisticConcurrencyFaultFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q13:OptimisticConcurrencyFault" />
+  </wsdl:message>
+  <wsdl:message name="IRouteService_DeleteRoute_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRoute" />
+  </wsdl:message>
+  <wsdl:message name="IRouteService_DeleteRoute_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRouteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRouteService_DeleteRoute_NullPointerFaultFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q14:NullPointerFault" />
+  </wsdl:message>
+  <wsdl:message name="IRouteService_DeleteRoute_DatabaseDeleteFaultFault_FaultMessage">
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q15:DatabaseDeleteFault" />
+  </wsdl:message>
+  <wsdl:message name="IRouteService_GetRoute_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoute" />
+  </wsdl:message>
+  <wsdl:message name="IRouteService_GetRoute_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRouteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRouteService_GetRoute_NullPointerFaultFault_FaultMessage">
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults" name="detail" element="q16:NullPointerFault" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_AddUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_AddUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAdministratorService">
+    <wsdl:operation name="AddAdministrator">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministratorService/AddAdministrator" message="tns:IAdministratorService_AddAdministrator_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministratorService/AddAdministratorResponse" message="tns:IAdministratorService_AddAdministrator_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAdministrator">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministratorService/UpdateAdministrator" message="tns:IAdministratorService_UpdateAdministrator_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministratorService/UpdateAdministratorResponse" message="tns:IAdministratorService_UpdateAdministrator_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAdministrator">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministratorService/DeleteAdministrator" message="tns:IAdministratorService_DeleteAdministrator_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministratorService/DeleteAdministratorResponse" message="tns:IAdministratorService_DeleteAdministrator_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdministrator">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministratorService/GetAdministrator" message="tns:IAdministratorService_GetAdministrator_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministratorService/GetAdministratorResponse" message="tns:IAdministratorService_GetAdministrator_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IAirportService">
+    <wsdl:operation name="AddAirport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAirportService/AddAirport" message="tns:IAirportService_AddAirport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAirportService/AddAirportResponse" message="tns:IAirportService_AddAirport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAirport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAirportService/UpdateAirport" message="tns:IAirportService_UpdateAirport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAirportService/UpdateAirportResponse" message="tns:IAirportService_UpdateAirport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAirport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAirportService/DeleteAirport" message="tns:IAirportService_DeleteAirport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAirportService/DeleteAirportResponse" message="tns:IAirportService_DeleteAirport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAirport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAirportService/GetAirport" message="tns:IAirportService_GetAirport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAirportService/GetAirportResponse" message="tns:IAirportService_GetAirport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAirportsByCountry">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAirportService/GetAirportsByCountry" message="tns:IAirportService_GetAirportsByCountry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAirportService/GetAirportsByCountryResponse" message="tns:IAirportService_GetAirportsByCountry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAirportsByCity">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAirportService/GetAirportsByCity" message="tns:IAirportService_GetAirportsByCity_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAirportService/GetAirportsByCityResponse" message="tns:IAirportService_GetAirportsByCity_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAirportsByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAirportService/GetAirportsByName" message="tns:IAirportService_GetAirportsByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAirportService/GetAirportsByNameResponse" message="tns:IAirportService_GetAirportsByName_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IFlightService">
+    <wsdl:operation name="AddFlight">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFlightService/AddFlight" message="tns:IFlightService_AddFlight_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFlightService/AddFlightResponse" message="tns:IFlightService_AddFlight_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFlightService/AddFlightNullPointerFaultFault" name="NullPointerFaultFault" message="tns:IFlightService_AddFlight_NullPointerFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFlightService/AddFlightDatabaseInsertFaultFault" name="DatabaseInsertFaultFault" message="tns:IFlightService_AddFlight_DatabaseInsertFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFlight">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFlightService/UpdateFlight" message="tns:IFlightService_UpdateFlight_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFlightService/UpdateFlightResponse" message="tns:IFlightService_UpdateFlight_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFlightService/UpdateFlightDatabaseUpdateFaultFault" name="DatabaseUpdateFaultFault" message="tns:IFlightService_UpdateFlight_DatabaseUpdateFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFlightService/UpdateFlightOptimisticConcurrencyFaultFault" name="OptimisticConcurrencyFaultFault" message="tns:IFlightService_UpdateFlight_OptimisticConcurrencyFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFlightService/UpdateFlightNullPointerFaultFault" name="NullPointerFaultFault" message="tns:IFlightService_UpdateFlight_NullPointerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFlight">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFlightService/DeleteFlight" message="tns:IFlightService_DeleteFlight_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFlightService/DeleteFlightResponse" message="tns:IFlightService_DeleteFlight_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFlightService/DeleteFlightDatabaseDeleteFaultFault" name="DatabaseDeleteFaultFault" message="tns:IFlightService_DeleteFlight_DatabaseDeleteFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFlightService/DeleteFlightNullPointerFaultFault" name="NullPointerFaultFault" message="tns:IFlightService_DeleteFlight_NullPointerFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFlight">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFlightService/GetFlight" message="tns:IFlightService_GetFlight_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFlightService/GetFlightResponse" message="tns:IFlightService_GetFlight_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFlightService/GetFlightNullPointerFaultFault" name="NullPointerFaultFault" message="tns:IFlightService_GetFlight_NullPointerFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IPlaneService">
+    <wsdl:operation name="AddPlane">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlaneService/AddPlane" message="tns:IPlaneService_AddPlane_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlaneService/AddPlaneResponse" message="tns:IPlaneService_AddPlane_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePlane">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlaneService/UpdatePlane" message="tns:IPlaneService_UpdatePlane_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlaneService/UpdatePlaneResponse" message="tns:IPlaneService_UpdatePlane_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePlane">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlaneService/DeletePlane" message="tns:IPlaneService_DeletePlane_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlaneService/DeletePlaneResponse" message="tns:IPlaneService_DeletePlane_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlane">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlaneService/GetPlane" message="tns:IPlaneService_GetPlane_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlaneService/GetPlaneResponse" message="tns:IPlaneService_GetPlane_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IRouteService">
+    <wsdl:operation name="AddRoute">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRouteService/AddRoute" message="tns:IRouteService_AddRoute_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRouteService/AddRouteResponse" message="tns:IRouteService_AddRoute_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IRouteService/AddRouteNullPointerFaultFault" name="NullPointerFaultFault" message="tns:IRouteService_AddRoute_NullPointerFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IRouteService/AddRouteDatabaseInsertFaultFault" name="DatabaseInsertFaultFault" message="tns:IRouteService_AddRoute_DatabaseInsertFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRoute">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRouteService/UpdateRoute" message="tns:IRouteService_UpdateRoute_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRouteService/UpdateRouteResponse" message="tns:IRouteService_UpdateRoute_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IRouteService/UpdateRouteNullPointerFaultFault" name="NullPointerFaultFault" message="tns:IRouteService_UpdateRoute_NullPointerFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IRouteService/UpdateRouteDatabaseUpdateFaultFault" name="DatabaseUpdateFaultFault" message="tns:IRouteService_UpdateRoute_DatabaseUpdateFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IRouteService/UpdateRouteOptimisticConcurrencyFaultFault" name="OptimisticConcurrencyFaultFault" message="tns:IRouteService_UpdateRoute_OptimisticConcurrencyFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRoute">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRouteService/DeleteRoute" message="tns:IRouteService_DeleteRoute_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRouteService/DeleteRouteResponse" message="tns:IRouteService_DeleteRoute_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IRouteService/DeleteRouteNullPointerFaultFault" name="NullPointerFaultFault" message="tns:IRouteService_DeleteRoute_NullPointerFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IRouteService/DeleteRouteDatabaseDeleteFaultFault" name="DatabaseDeleteFaultFault" message="tns:IRouteService_DeleteRoute_DatabaseDeleteFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoute">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRouteService/GetRoute" message="tns:IRouteService_GetRoute_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRouteService/GetRouteResponse" message="tns:IRouteService_GetRoute_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IRouteService/GetRouteNullPointerFaultFault" name="NullPointerFaultFault" message="tns:IRouteService_GetRoute_NullPointerFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IUserService">
+    <wsdl:operation name="AddUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddUser" message="tns:IUserService_AddUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddUserResponse" message="tns:IUserService_AddUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/UpdateUser" message="tns:IUserService_UpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/UpdateUserResponse" message="tns:IUserService_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/DeleteUser" message="tns:IUserService_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/DeleteUserResponse" message="tns:IUserService_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetUser" message="tns:IUserService_GetUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetUserResponse" message="tns:IUserService_GetUser_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAdministratorService" type="tns:IAdministratorService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddAdministrator">
+      <soap:operation soapAction="http://tempuri.org/IAdministratorService/AddAdministrator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAdministrator">
+      <soap:operation soapAction="http://tempuri.org/IAdministratorService/UpdateAdministrator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAdministrator">
+      <soap:operation soapAction="http://tempuri.org/IAdministratorService/DeleteAdministrator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdministrator">
+      <soap:operation soapAction="http://tempuri.org/IAdministratorService/GetAdministrator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IAirportService" type="tns:IAirportService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddAirport">
+      <soap:operation soapAction="http://tempuri.org/IAirportService/AddAirport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAirport">
+      <soap:operation soapAction="http://tempuri.org/IAirportService/UpdateAirport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAirport">
+      <soap:operation soapAction="http://tempuri.org/IAirportService/DeleteAirport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAirport">
+      <soap:operation soapAction="http://tempuri.org/IAirportService/GetAirport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAirportsByCountry">
+      <soap:operation soapAction="http://tempuri.org/IAirportService/GetAirportsByCountry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAirportsByCity">
+      <soap:operation soapAction="http://tempuri.org/IAirportService/GetAirportsByCity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAirportsByName">
+      <soap:operation soapAction="http://tempuri.org/IAirportService/GetAirportsByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IFlightService" type="tns:IFlightService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddFlight">
+      <soap:operation soapAction="http://tempuri.org/IFlightService/AddFlight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NullPointerFaultFault">
+        <soap:fault use="literal" name="NullPointerFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseInsertFaultFault">
+        <soap:fault use="literal" name="DatabaseInsertFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFlight">
+      <soap:operation soapAction="http://tempuri.org/IFlightService/UpdateFlight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DatabaseUpdateFaultFault">
+        <soap:fault use="literal" name="DatabaseUpdateFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="OptimisticConcurrencyFaultFault">
+        <soap:fault use="literal" name="OptimisticConcurrencyFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NullPointerFaultFault">
+        <soap:fault use="literal" name="NullPointerFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFlight">
+      <soap:operation soapAction="http://tempuri.org/IFlightService/DeleteFlight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DatabaseDeleteFaultFault">
+        <soap:fault use="literal" name="DatabaseDeleteFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NullPointerFaultFault">
+        <soap:fault use="literal" name="NullPointerFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlight">
+      <soap:operation soapAction="http://tempuri.org/IFlightService/GetFlight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NullPointerFaultFault">
+        <soap:fault use="literal" name="NullPointerFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IPlaneService" type="tns:IPlaneService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddPlane">
+      <soap:operation soapAction="http://tempuri.org/IPlaneService/AddPlane" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePlane">
+      <soap:operation soapAction="http://tempuri.org/IPlaneService/UpdatePlane" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePlane">
+      <soap:operation soapAction="http://tempuri.org/IPlaneService/DeletePlane" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlane">
+      <soap:operation soapAction="http://tempuri.org/IPlaneService/GetPlane" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IRouteService" type="tns:IRouteService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddRoute">
+      <soap:operation soapAction="http://tempuri.org/IRouteService/AddRoute" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NullPointerFaultFault">
+        <soap:fault use="literal" name="NullPointerFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseInsertFaultFault">
+        <soap:fault use="literal" name="DatabaseInsertFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRoute">
+      <soap:operation soapAction="http://tempuri.org/IRouteService/UpdateRoute" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NullPointerFaultFault">
+        <soap:fault use="literal" name="NullPointerFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseUpdateFaultFault">
+        <soap:fault use="literal" name="DatabaseUpdateFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="OptimisticConcurrencyFaultFault">
+        <soap:fault use="literal" name="OptimisticConcurrencyFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRoute">
+      <soap:operation soapAction="http://tempuri.org/IRouteService/DeleteRoute" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NullPointerFaultFault">
+        <soap:fault use="literal" name="NullPointerFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="DatabaseDeleteFaultFault">
+        <soap:fault use="literal" name="DatabaseDeleteFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoute">
+      <soap:operation soapAction="http://tempuri.org/IRouteService/GetRoute" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NullPointerFaultFault">
+        <soap:fault use="literal" name="NullPointerFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IUserService" type="tns:IUserService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/AddUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MainService">
+    <wsdl:port name="BasicHttpBinding_IAdministratorService" binding="tns:BasicHttpBinding_IAdministratorService">
+      <soap:address location="http://localhost:8733/MainService/Administrator" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IAirportService" binding="tns:BasicHttpBinding_IAirportService">
+      <soap:address location="http://localhost:8733/MainService/Airport" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IFlightService" binding="tns:BasicHttpBinding_IFlightService">
+      <soap:address location="http://localhost:8733/MainService/Flight" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IPlaneService" binding="tns:BasicHttpBinding_IPlaneService">
+      <soap:address location="http://localhost:8733/MainService/Plane" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IRouteService" binding="tns:BasicHttpBinding_IRouteService">
+      <soap:address location="http://localhost:8733/MainService/Route" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IUserService" binding="tns:BasicHttpBinding_IUserService">
+      <soap:address location="http://localhost:8733/MainService/User" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

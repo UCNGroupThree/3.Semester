@@ -107,12 +107,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\AirportService\Reference.cs">
+    <Compile Include="Service References\FlightService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\FlightService\Reference.cs">
+    <Compile Include="Service References\MainServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -162,22 +162,6 @@
     <None Include="Service References\AdministratorService\WCFService.Model.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AirportService\FlightAdmin.AirportService.Airport.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AirportService\service.wsdl" />
-    <None Include="Service References\AirportService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AirportService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AirportService\System.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AirportService\WCFService.Model.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\FlightService\FlightAdmin.FlightService.Flight.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -192,6 +176,40 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\FlightService\WCFService.WCF.Faults.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainServiceReference\FlightAdmin.MainServiceReference.Administrator.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainServiceReference\FlightAdmin.MainServiceReference.Airport.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainServiceReference\FlightAdmin.MainServiceReference.Flight.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainServiceReference\FlightAdmin.MainServiceReference.Plane.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainServiceReference\FlightAdmin.MainServiceReference.Route.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainServiceReference\FlightAdmin.MainServiceReference.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainServiceReference\service.wsdl" />
+    <None Include="Service References\MainServiceReference\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainServiceReference\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainServiceReference\System.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainServiceReference\WCFService.Model.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainServiceReference\WCFService.WCF.Faults.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RouteService\FlightAdmin.RouteService.Route.datasource">
@@ -222,8 +240,8 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\AdministratorService\" />
-    <WCFMetadataStorage Include="Service References\AirportService\" />
     <WCFMetadataStorage Include="Service References\FlightService\" />
+    <WCFMetadataStorage Include="Service References\MainServiceReference\" />
     <WCFMetadataStorage Include="Service References\RouteService\" />
   </ItemGroup>
   <ItemGroup>
@@ -234,18 +252,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\AdministratorService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\AirportService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\AirportService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\AirportService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -274,7 +280,18 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Service References\MainServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MainServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MainServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

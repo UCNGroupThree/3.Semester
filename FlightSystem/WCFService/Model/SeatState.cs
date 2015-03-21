@@ -2,7 +2,7 @@
 
 namespace WCFService.Model {
 
-    [DataContract(IsReference = true)]
+    [DataContract(IsReference = false)]
     public enum SeatState {
         Free,
         Taken,
