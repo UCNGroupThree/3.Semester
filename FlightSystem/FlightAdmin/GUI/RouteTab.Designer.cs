@@ -27,6 +27,8 @@
             this.lblFrom = new System.Windows.Forms.Label();
             this.txtFrom = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblTo = new System.Windows.Forms.Label();
+            this.txtTo = new System.Windows.Forms.TextBox();
             this.btnClear = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -37,8 +39,6 @@
             this.grpCreate = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblTo = new System.Windows.Forms.Label();
-            this.txtTo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -102,6 +102,25 @@
             this.tableLayoutPanel6.Size = new System.Drawing.Size(213, 46);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
+            // lblTo
+            // 
+            this.lblTo.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblTo.AutoSize = true;
+            this.lblTo.Location = new System.Drawing.Point(3, 26);
+            this.lblTo.Name = "lblTo";
+            this.lblTo.Size = new System.Drawing.Size(23, 13);
+            this.lblTo.TabIndex = 2;
+            this.lblTo.Text = "To:";
+            // 
+            // txtTo
+            // 
+            this.txtTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTo.Location = new System.Drawing.Point(39, 23);
+            this.txtTo.Margin = new System.Windows.Forms.Padding(0);
+            this.txtTo.Name = "txtTo";
+            this.txtTo.Size = new System.Drawing.Size(174, 20);
+            this.txtTo.TabIndex = 3;
+            // 
             // btnClear
             // 
             this.btnClear.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -142,7 +161,7 @@
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(213, 25);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
@@ -239,25 +258,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(966, 620);
             this.tableLayoutPanel1.TabIndex = 1;
-            // 
-            // lblTo
-            // 
-            this.lblTo.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(3, 26);
-            this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(23, 13);
-            this.lblTo.TabIndex = 2;
-            this.lblTo.Text = "To:";
-            // 
-            // txtTo
-            // 
-            this.txtTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTo.Location = new System.Drawing.Point(39, 23);
-            this.txtTo.Margin = new System.Windows.Forms.Padding(0);
-            this.txtTo.Name = "txtTo";
-            this.txtTo.Size = new System.Drawing.Size(174, 20);
-            this.txtTo.TabIndex = 3;
             // 
             // RouteTab
             // 
