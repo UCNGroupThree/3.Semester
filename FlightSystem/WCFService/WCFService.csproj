@@ -65,6 +65,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dijkstra\Calculator.cs" />
+    <Compile Include="Dijkstra\Matrix.cs" />
+    <Compile Include="Dijkstra\Program.cs" />
+    <Compile Include="Dijkstra\Vertex.cs" />
     <Compile Include="MainService.cs" />
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\FlightDB.cs" />
