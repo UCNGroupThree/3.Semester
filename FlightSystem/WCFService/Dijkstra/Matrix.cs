@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.ServiceModel;
 using WCFService.Model;
@@ -15,32 +16,44 @@ namespace WCFService.Dijkstra {
         private List<Edge<Airport>> edges = new List<Edge<Airport>>();
 
         public Matrix() {
-            List<Airport> nodes = _db.Airports.OrderBy(n => n.ID).ToList();
+            List<Airport> nodes = _db.Airports.OrderBy(n => n.ID).Include(n => n.Routes).ToList();
 
             foreach (var airport in nodes) {
                 var edge = new Edge<Airport>(airport);
-                var routes = rs.GetRoutesByAirport(airport);
-                var neighbors = new List<Vertex<Airport>>();
 
-                foreach (var route in routes) {
-                    neighbors.Add(new Vertex<Airport>(route.To, 100)); //TODO price? how >.<
+                List<Route> routes = new List<Route>();
+
+                try {
+                    routes = rs.GetRoutesByAirport(airport);
+                } catch(Exception){}
+
+                if(routes.Count > 0){
+                    var neighbors = new List<Vertex<Airport>>();
+
+                    foreach (var route in routes) {
+                        neighbors.Add(new Vertex<Airport>(route.To, 100)); //TODO price? how >.<
+                    }
+
+                    edge.Neighbors = neighbors;
+
+
+                    edges.Add(edge);
                 }
-
-                edge.Neighbors = neighbors;
-
-                edges.Add(edge);
             }
+
         }
 
-        public List<Airport> GetShortestPath(Airport from, Airport to) {
-            var path = new List<Airport>();
+        public List<Route> GetShortestPath(Airport from, Airport to) {
+            int id = from.ID;
+            from = _db.Airports.Where(a => a.ID == id).Include(a => a.Routes).SingleOrDefault();
+            var path = new List<Route>();
             var distance = new Dictionary<Airport, double>();
             var previous = new Dictionary<Airport, Airport>();
             var nodes = new List<Airport>();
 
             foreach (var edge in edges) {
-                if (edge.Data == from) {
-                    distance[edge.Data] = 0;
+                if (edge.Data.ID == from.ID) {
+                    distance[edge.Data] = 1;
                 } else {
                     distance[edge.Data] = double.MaxValue;
                 }
@@ -54,10 +67,16 @@ namespace WCFService.Dijkstra {
                 var smallest = nodes[0];
                 nodes.Remove(smallest);
 
-                if (smallest == to) {
-                    while (previous.ContainsKey(smallest)) {
-                        path.Add(smallest);
-                        smallest = previous[smallest];
+                if (smallest.ID == to.ID) {
+                    if (previous.Count > 0) {
+                        while (previous.ContainsKey(smallest)) {
+                            Route route = previous[smallest].GetRouteTo(smallest); // rs.GetRouteByAirports(smallest, previous[smallest])
+                            path.Add(route);
+                            smallest = previous[smallest];
+                        }
+                    } else {
+                        Route route = from.GetRouteTo(smallest);
+                        path.Add(route);
                     }
 
                     break;
@@ -67,15 +86,18 @@ namespace WCFService.Dijkstra {
                     break;
                 }
 
-                foreach (var neighbor in edges.Single(e => e.Data == smallest).Neighbors) {
+                foreach (var neighbor in edges.Single(e => e.Data.ID == smallest.ID).Neighbors) {
                     var alt = distance[smallest] + neighbor.Price;
-                    if (alt < distance[neighbor.Data]) {
-                        distance[neighbor.Data] = alt;
-                        previous[neighbor.Data] = smallest;
-                    }
+                    try {
+                        if (alt < distance[neighbor.Data]) {
+                            distance[neighbor.Data] = alt;
+                            previous[neighbor.Data] = smallest;
+                        }
+                    } catch (KeyNotFoundException) { }
                 }
             }
 
+            path.Reverse();
 
             return path;
         } 

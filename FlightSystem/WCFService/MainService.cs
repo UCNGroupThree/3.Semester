@@ -8,7 +8,7 @@ using WCFService.WCF;
 using WCFService.WCF.Interface;
 
 namespace WCFService {
-    public class MainService : IAdministratorService, IAirportService, IFlightService, IPlaneService, IRouteService, IUserService {
+    public class MainService : IAdministratorService, IAirportService, IFlightService, IPlaneService, IRouteService, IUserService, IDijkstra {
 
         #region Administrator Service 
 
@@ -146,6 +146,14 @@ namespace WCFService {
 
         public User GetUser(int id) {
             return new UserService().GetUser(id);
+        }
+
+        #endregion
+
+        #region Dijktra
+
+        public List<Route> DijkstraStuff(Airport from, Airport to) {
+            return new WCF.Dijkstra().DijkstraStuff(from, to);
         }
 
         #endregion

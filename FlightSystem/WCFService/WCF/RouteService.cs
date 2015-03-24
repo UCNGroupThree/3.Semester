@@ -85,7 +85,7 @@ namespace WCFService.WCF {
         }
 
         public List<Route> GetRoutesByAirport(Airport from) {
-            List<Route> routes = db.Routes.Where(r => r.From.ID == from.ID).ToList();
+            List<Route> routes = db.Routes.Where(r => r.From.ID == from.ID).Include(r => r.To).Include(r => r.From).ToList();
 
             if (!(routes.Count > 0)) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());

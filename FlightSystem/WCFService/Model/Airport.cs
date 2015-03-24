@@ -49,5 +49,31 @@ namespace WCFService.Model {
         [DataMember]
         [Timestamp]
         public byte[] Concurrency { get; set; }
+
+        public override int GetHashCode() {
+            return ID;
+        }
+        public override bool Equals(object obj) {
+            return Equals(obj as Airport);
+        }
+        public bool Equals(Airport obj) {
+            return obj != null && obj.ID == this.ID;
+        }
+
+        public Route GetRouteTo(Airport to) {
+            Route ret = null;
+            if (Routes != null && Routes.Count > 0) {
+                foreach (var route in Routes) {
+                    if (route.To.Equals(to)) {
+                        ret = route;
+                        break;
+                    }
+                }
+            } else {
+                ret = null;
+            }
+
+            return ret;
+        }
     }
 }

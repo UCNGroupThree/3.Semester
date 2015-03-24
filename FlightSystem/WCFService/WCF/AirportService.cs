@@ -61,7 +61,7 @@ namespace WCFService.WCF {
         }
 
         public Airport GetAirport(int id) {
-            return db.Airports.SingleOrDefault(a => a.ID == id);
+            return db.Airports.Where(a => a.ID == id).Include(a => a.Routes).SingleOrDefault();
         }
 
         public List<Airport> GetAirportsByCountry(string country) {

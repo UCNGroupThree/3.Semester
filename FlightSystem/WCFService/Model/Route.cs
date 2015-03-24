@@ -4,9 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
 namespace WCFService.Model {
+
     [DataContract(IsReference = true)]
-    [KnownType(typeof (Airport))]
-    [KnownType(typeof (List<Flight>))]
     public class Route {
         public Route() {
             Flights = new List<Flight>();
