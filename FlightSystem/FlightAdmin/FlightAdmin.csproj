@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\CustomerCtr.cs" />
     <Compile Include="Controller\FlightCtr.cs" />
     <Compile Include="Controller\RouteCtr.cs" />
     <Compile Include="CustomTabControl.cs">
