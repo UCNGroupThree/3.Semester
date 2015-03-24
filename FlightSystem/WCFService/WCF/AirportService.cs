@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.ServiceModel;
 using WCFService.Model;
+using WCFService.WCF.Faults;
 using WCFService.WCF.Interface;
 
 namespace WCFService.WCF {
@@ -13,17 +14,17 @@ namespace WCFService.WCF {
 
         public int AddAirport(Airport airport) {
             if (airport == null) {
-                throw new FaultException("Nullpointer Exception"); //TODO vores egen Nullpointer Exception?
+                throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
             if (db.Airports.Any(r => r.ShortName.Equals(airport.ShortName))) {
-                throw new FaultException("ShortName allready used in database"); //TODO Insert Exception?
+                throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault { Description = "The new shortName allready used in database" });
             }
             try {
                 db.Airports.Add(airport);
                 db.SaveChanges();
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
-                throw new FaultException("The database was unable to insert the record");
+                throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault("airport"));
             }
 
             return airport.ID;
@@ -31,10 +32,10 @@ namespace WCFService.WCF {
 
         public Airport UpdateAirport(Airport airport) {
             if (airport == null) {
-                throw new FaultException("Nullpointer Exception"); //TODO vores egen Nullpointer Exception?
+                throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
             if (db.Airports.Any(r => !r.Equals(airport) && r.ShortName.Equals(airport.ShortName))) {
-                throw new FaultException("The new shortName allready used in database"); //TODO Insert/Update Exception?
+                throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault { Description = "The new shortName allready used in database" });
             }
             try {
                 db.Airports.Attach(airport);
@@ -42,38 +43,77 @@ namespace WCFService.WCF {
                 db.SaveChanges();
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
-                throw new FaultException("The database was unable to update the record");
+                throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault("airport"));
             }
             return airport;
         }
 
         public void DeleteAirport(Airport airport) {
             if (airport == null) {
-                throw new FaultException("Nullpointer Exception"); //TODO vores egen Nullpointer Exception?
+                throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
             try {
                 db.Airports.Remove(airport);
                 db.SaveChanges();
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
-                throw new FaultException("The database was unable to update the record");
+                throw new FaultException<DatabaseDeleteFault>(new DatabaseDeleteFault("airport"));
             }
         }
 
         public Airport GetAirport(int id) {
-            return db.Airports.Where(a => a.ID == id).Include(a => a.Routes).SingleOrDefault();
+            Airport ret;
+            try {
+                ret = db.Airports.Where(a => a.ID == id).Include(a => a.Routes).SingleOrDefault();
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                ret = null;
+            }
+            return ret;
         }
 
         public List<Airport> GetAirportsByCountry(string country) {
-            return db.Airports.Where(a => a.Country.Equals(country, StringComparison.OrdinalIgnoreCase)).ToList();
+            List<Airport> ret;
+            try {
+                ret = db.Airports.Where(a => a.Country.Contains(country)).ToList();
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                ret = new List<Airport>();
+            }
+            return ret;
         }
 
         public List<Airport> GetAirportsByCity(string city) {
-            return db.Airports.Where(a => a.City.Equals(city, StringComparison.OrdinalIgnoreCase)).ToList();
+            List<Airport> ret;
+            try {
+                ret = db.Airports.Where(a => a.City.Contains(city)).ToList();
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                ret = new List<Airport>();
+            }
+            return ret;
         }
 
         public List<Airport> GetAirportsByName(string name) {
-            return db.Airports.Where(a => a.City.Contains(name)).ToList();
+            List<Airport> ret;
+            try {
+                ret = db.Airports.Where(a => a.Name.Contains(name)).ToList();
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                ret = new List<Airport>();
+            }
+            return ret;
+        }
+
+        public List<Airport> GetAirportsByShortName(string shortName) {
+            List<Airport> ret;
+            try {
+                ret = db.Airports.Where(a => a.ShortName.Equals(shortName, StringComparison.OrdinalIgnoreCase)).ToList();
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                ret = new List<Airport>();
+            }
+            return ret;
         }
     }
 }

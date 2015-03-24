@@ -60,6 +60,10 @@ namespace WCFService {
             return new AirportService().GetAirportsByName(name);
         }
 
+        public List<Airport> GetAirportsByShortName(string shortName) {
+            return new AirportService().GetAirportsByName(shortName);
+        }
+
         #endregion
 
         #region Flight Service
