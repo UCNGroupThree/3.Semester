@@ -21,7 +21,7 @@ namespace WCFService.WCF.Interface
         int DeletePostal(Postal postal);
 
         [OperationContract]
-        Postal GetPostal(Postal postal);
+        Postal GetPostal(int postNumber);
 
 
     }
