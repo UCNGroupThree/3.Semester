@@ -101,11 +101,13 @@
     <Compile Include="WCF\Interface\IDijkstra.cs" />
     <Compile Include="WCF\Interface\IFlightService.cs" />
     <Compile Include="WCF\Interface\IPlaneService.cs" />
+    <Compile Include="WCF\Interface\IPostalService.cs" />
     <Compile Include="WCF\Interface\IRouteService.cs" />
     <Compile Include="WCF\Interface\ISeatReservationService.cs" />
     <Compile Include="WCF\Interface\ISeatService.cs" />
     <Compile Include="WCF\Interface\ITicketService.cs" />
     <Compile Include="WCF\Interface\IUserService.cs" />
+    <Compile Include="WCF\PostalService.cs" />
     <Compile Include="WCF\RouteService.cs" />
     <Compile Include="WCF\UserService.cs" />
     <Compile Include="WCF\PlaneService.cs" />
