@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\AirportCtr.cs" />
     <Compile Include="Controller\CustomerCtr.cs" />
     <Compile Include="Controller\FlightCtr.cs" />
     <Compile Include="Controller\RouteCtr.cs" />
@@ -114,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AdministratorTab.resx">
       <DependentUpon>AdministratorTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AirPortTab.resx">
+      <DependentUpon>AirPortTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ReservationTab.resx">
       <DependentUpon>ReservationTab.cs</DependentUpon>

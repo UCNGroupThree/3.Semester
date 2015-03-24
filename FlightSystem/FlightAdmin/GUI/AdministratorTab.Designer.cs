@@ -38,9 +38,9 @@
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.administratorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.administratorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.grpCreate.SuspendLayout();
@@ -241,10 +241,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(530, 504);
             this.dataGridView1.TabIndex = 1;
             // 
-            // administratorBindingSource
-            // 
-            this.administratorBindingSource.DataSource = typeof(FlightAdmin.MainService.Administrator);
-            // 
             // iDDataGridViewTextBoxColumn
             // 
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
@@ -258,6 +254,10 @@
             this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
             this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
             this.usernameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // administratorBindingSource
+            // 
+            this.administratorBindingSource.DataSource = typeof(FlightAdmin.MainService.Administrator);
             // 
             // AdministratorTab
             // 
