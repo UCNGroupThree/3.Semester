@@ -24,14 +24,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DatabaseUpdateFault" nillable="true" type="tns:DatabaseUpdateFault" />
-  <xs:complexType name="OptimisticConcurrencyFault">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="OptimisticConcurrencyFault" nillable="true" type="tns:OptimisticConcurrencyFault" />
   <xs:complexType name="DatabaseDeleteFault">
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
@@ -40,4 +32,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DatabaseDeleteFault" nillable="true" type="tns:DatabaseDeleteFault" />
+  <xs:complexType name="OptimisticConcurrencyFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OptimisticConcurrencyFault" nillable="true" type="tns:OptimisticConcurrencyFault" />
 </xs:schema>
