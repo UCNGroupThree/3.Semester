@@ -90,7 +90,7 @@ namespace FlightAdmin.Controller {
             using (var client = new RouteServiceClient()) {
                 try {
                     route = client.GetRoute(id);
-                } catch (FaultException<NullPointerFault> nullException) {
+                } catch (FaultException<NullPointerFault>) {
                     throw new NullException("The requested Airport does not exist");
                 } catch (Exception e) {
                     Console.WriteLine(e.Message);
@@ -107,7 +107,7 @@ namespace FlightAdmin.Controller {
             using (var client = new RouteServiceClient()) {
                 try {
                     route = client.GetRouteByAirports(from, to);
-                } catch (FaultException<NullPointerFault> nullException) {
+                } catch (FaultException<NullPointerFault>) {
                     throw new NullException("There are no routes between thoes Airports");
                 } catch (Exception e) {
                     Console.WriteLine(e.Message);
@@ -125,7 +125,7 @@ namespace FlightAdmin.Controller {
             using (var client = new RouteServiceClient()) {
                 try {
                     routes = client.GetRoutesByAirport(from);
-                } catch (FaultException<NullPointerFault> nullException) {
+                } catch (FaultException<NullPointerFault>) {
                     throw new NullException("No routes exists from that Airport");
                 } catch (Exception e) {
                     Console.WriteLine(e.Message);

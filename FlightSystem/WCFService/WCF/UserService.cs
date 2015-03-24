@@ -13,6 +13,13 @@ namespace WCFService.WCF
 
         public int AddUser(User user) {
             _db.Users.Add(user);
+
+            if (!_db.Postals.Any(p => p.PostCode == user.Postal.PostCode)) {
+                _db.Postals.Add(user.Postal);
+            } else {
+                _db.Postals.Attach(user.Postal);
+            }
+
             _db.SaveChanges();
 
             return user.ID;
@@ -21,6 +28,7 @@ namespace WCFService.WCF
         public User UpdateUser(User user) {
             try {
                 _db.Entry(user).State = EntityState.Modified;
+                _db.Entry(user.Postal).State = EntityState.Modified;
                 _db.SaveChanges();
             } catch (OptimisticConcurrencyException) {
                 throw new FaultException("Concurrency exception?!"); //TODO Concurrency Exception
@@ -37,7 +45,7 @@ namespace WCFService.WCF
         }
 
         public User GetUser(int id) {
-            return _db.Users.FirstOrDefault(usr => usr.ID == id);
+            return _db.Users.Where(usr => usr.ID == id).Include(usr => usr.Postal).SingleOrDefault();
         }
     }
 }

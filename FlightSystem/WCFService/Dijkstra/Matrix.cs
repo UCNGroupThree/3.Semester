@@ -70,7 +70,7 @@ namespace WCFService.Dijkstra {
                 if (smallest.ID == to.ID) {
                     if (previous.Count > 0) {
                         while (previous.ContainsKey(smallest)) {
-                            Route route = previous[smallest].GetRouteTo(smallest); // rs.GetRouteByAirports(smallest, previous[smallest])
+                            Route route = previous[smallest].GetRouteTo(smallest);
                             path.Add(route);
                             smallest = previous[smallest];
                         }
