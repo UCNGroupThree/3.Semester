@@ -7,11 +7,13 @@ namespace WCFService.WCF.Faults {
         public DatabaseInsertFault() {
             Result = false;
             Description = "The database was unable to insert the record";
+            Message = Description;
         }
 
         public DatabaseInsertFault(string objName) {
             Result = false;
             Description = "The database was unable to insert the " + objName;
+            Message = Description;
         }
 
         [DataMember]

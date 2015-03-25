@@ -7,11 +7,13 @@ namespace WCFService.WCF.Faults {
         public DatabaseDeleteFault() {
             Result = false;
             Description = "The database was unable to delete the record";
+            Message = Description;
         }
 
         public DatabaseDeleteFault(string objName) {
             Result = false;
             Description = "The database was unable to delete the " + objName;
+            Message = Description;
         }
 
         [DataMember]

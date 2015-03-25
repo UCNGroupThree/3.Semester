@@ -8,11 +8,13 @@ namespace WCFService.WCF.Faults {
         public DatabaseUpdateFault() {
             Result = false;
             Description = "The database was unable to update the record";
+            Message = Description;
         }
 
         public DatabaseUpdateFault(string objName) {
             Result = false;
             Description = "The database was unable to update the " + objName;
+            Message = Description;
         }
 
         [DataMember]
