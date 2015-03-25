@@ -37,6 +37,9 @@ namespace WCFService.WCF.Interface {
         [OperationContract]
         List<Airport> GetAirportsByShortName(string shortName);
 
+        [OperationContract]
+        List<string> GetCountries();
+
 
     }
 }

@@ -64,6 +64,10 @@ namespace WCFService {
             return new AirportService().GetAirportsByName(shortName);
         }
 
+        public List<string> GetCountries() {
+            return new AirportService().GetCountries();
+        }
+
         #endregion
 
         #region Flight Service
@@ -161,5 +165,6 @@ namespace WCFService {
         }
 
         #endregion
+        
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlightAdmin.Controller;
 using FlightAdmin.Exceptions;
+using FlightAdmin.GUI.RouteTabExtensions;
 using FlightAdmin.MainService;
 
 namespace FlightAdmin.GUI {
@@ -70,6 +71,11 @@ namespace FlightAdmin.GUI {
         }
 
         #endregion
+
+        private void btnCreate_Click(object sender, EventArgs e) {
+            Test t = new Test();
+            t.Show();
+        }
 
 
     }

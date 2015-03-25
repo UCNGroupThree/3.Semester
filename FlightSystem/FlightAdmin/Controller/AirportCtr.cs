@@ -49,6 +49,21 @@ namespace FlightAdmin.Controller {
             return list;
         }
 
+        public List<string> GetCountries() {
+            List<string> con;
+
+            try {
+                using (AirportServiceClient client = new AirportServiceClient()) {
+                    con = client.GetCountries();
+                }
+            } catch (Exception e) {
+                con = null;
+                Console.WriteLine(@"GetContries Exception: " + e); //TODO Connection error?
+            }
+
+            return con;
+        } 
+
         
 
     }

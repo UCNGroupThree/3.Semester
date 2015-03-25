@@ -115,5 +115,19 @@ namespace WCFService.WCF {
             }
             return ret;
         }
+
+
+        public List<string> GetCountries() {
+            List<string> con;
+
+            try {
+                con = db.Airports.Select(c => c.Country).Distinct().ToList();
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                con = new List<string>();
+            }
+
+            return con;
+        }
     }
 }
