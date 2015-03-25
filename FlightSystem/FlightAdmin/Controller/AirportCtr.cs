@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ServiceModel;
+using FlightAdmin.Exceptions;
 using FlightAdmin.GUI;
 using FlightAdmin.MainService;
 
@@ -23,6 +25,33 @@ namespace FlightAdmin.Controller {
                 using (AirportServiceClient client = new AirportServiceClient()) {
                     airport.ID = client.AddAirport(airport);
                 }
+            } catch (FaultException<DatabaseInsertFault> dbException) {
+                throw new DatabaseException(dbException.Message);
+            } catch (Exception ex) {
+                airport = null;
+                Console.WriteLine(@"CreateAirport Exception: " + ex);
+                //TODO Exception Handler
+                throw;
+            }
+
+            return airport;
+        }
+
+        public Airport UpdateAirport(Airport airport, string name, string shortName, string city, string country, decimal latitude, decimal longtitude, decimal altitude, string timeZone) {
+            try {
+                airport.Name = name;
+                airport.ShortName = shortName;
+                airport.City = city;
+                airport.Country = country;
+                airport.Latitude = latitude;
+                airport.Longtitude = longtitude;
+                airport.Altitude = altitude;
+                airport.TimeZone = timeZone;
+                using (AirportServiceClient client = new AirportServiceClient()) {
+                    airport = client.UpdateAirport(airport);
+                }
+            } catch (FaultException<DatabaseUpdateFault> dbException) {
+                throw new DatabaseException(dbException.Message);
             } catch (Exception ex) {
                 airport = null;
                 Console.WriteLine(@"CreateAirport Exception: " + ex);
