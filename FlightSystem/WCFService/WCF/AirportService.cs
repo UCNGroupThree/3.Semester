@@ -108,7 +108,8 @@ namespace WCFService.WCF {
         public List<Airport> GetAirportsByShortName(string shortName) {
             List<Airport> ret;
             try {
-                ret = db.Airports.Where(a => a.ShortName.Equals(shortName, StringComparison.OrdinalIgnoreCase)).ToList();
+                ret = db.Airports.Where(a => a.ShortName.Contains(shortName)).ToList();
+                    //db.Airports.Where(a => a.ShortName.Equals(shortName, StringComparison.OrdinalIgnoreCase)).ToList();
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
                 ret = new List<Airport>();

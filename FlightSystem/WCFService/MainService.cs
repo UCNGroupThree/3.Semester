@@ -61,7 +61,7 @@ namespace WCFService {
         }
 
         public List<Airport> GetAirportsByShortName(string shortName) {
-            return new AirportService().GetAirportsByName(shortName);
+            return new AirportService().GetAirportsByShortName(shortName);
         }
 
         public List<string> GetCountries() {
