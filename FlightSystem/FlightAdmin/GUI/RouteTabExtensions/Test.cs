@@ -12,6 +12,11 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
     public partial class Test : Form {
         public Test() {
             InitializeComponent();
+            createRoute1.CloseReady += Close;
+        }
+
+        private void Close() {
+            this.Dispose();
         }
     }
 }

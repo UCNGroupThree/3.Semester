@@ -46,11 +46,12 @@
             this.dataGrid = new System.Windows.Forms.DataGridView();
             this.airportBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.shortNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.countryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.routesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.timeZoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.countryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.shortNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.grpCreate.SuspendLayout();
@@ -59,6 +60,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.airportBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.routesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -317,26 +319,17 @@
             this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
             this.iDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // shortNameDataGridViewTextBoxColumn
+            // routesBindingSource
             // 
-            this.shortNameDataGridViewTextBoxColumn.DataPropertyName = "ShortName";
-            this.shortNameDataGridViewTextBoxColumn.HeaderText = "ShortName";
-            this.shortNameDataGridViewTextBoxColumn.Name = "shortNameDataGridViewTextBoxColumn";
-            this.shortNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.routesBindingSource.DataMember = "Routes";
+            this.routesBindingSource.DataSource = this.airportBindingSource;
             // 
-            // nameDataGridViewTextBoxColumn
+            // timeZoneDataGridViewTextBoxColumn
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // cityDataGridViewTextBoxColumn
-            // 
-            this.cityDataGridViewTextBoxColumn.DataPropertyName = "City";
-            this.cityDataGridViewTextBoxColumn.HeaderText = "City";
-            this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
-            this.cityDataGridViewTextBoxColumn.ReadOnly = true;
+            this.timeZoneDataGridViewTextBoxColumn.DataPropertyName = "TimeZone";
+            this.timeZoneDataGridViewTextBoxColumn.HeaderText = "TimeZone";
+            this.timeZoneDataGridViewTextBoxColumn.Name = "timeZoneDataGridViewTextBoxColumn";
+            this.timeZoneDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // countryDataGridViewTextBoxColumn
             // 
@@ -345,12 +338,26 @@
             this.countryDataGridViewTextBoxColumn.Name = "countryDataGridViewTextBoxColumn";
             this.countryDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // timeZoneDataGridViewTextBoxColumn
+            // cityDataGridViewTextBoxColumn
             // 
-            this.timeZoneDataGridViewTextBoxColumn.DataPropertyName = "TimeZone";
-            this.timeZoneDataGridViewTextBoxColumn.HeaderText = "TimeZone";
-            this.timeZoneDataGridViewTextBoxColumn.Name = "timeZoneDataGridViewTextBoxColumn";
-            this.timeZoneDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cityDataGridViewTextBoxColumn.DataPropertyName = "City";
+            this.cityDataGridViewTextBoxColumn.HeaderText = "City";
+            this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
+            this.cityDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // shortNameDataGridViewTextBoxColumn
+            // 
+            this.shortNameDataGridViewTextBoxColumn.DataPropertyName = "ShortName";
+            this.shortNameDataGridViewTextBoxColumn.HeaderText = "ShortName";
+            this.shortNameDataGridViewTextBoxColumn.Name = "shortNameDataGridViewTextBoxColumn";
+            this.shortNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // AirPortTab
             // 
@@ -369,6 +376,7 @@
             this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.airportBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.routesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -402,5 +410,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn countryDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn timeZoneDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource routesBindingSource;
     }
 }

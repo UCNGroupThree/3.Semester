@@ -18,12 +18,20 @@ namespace WCFService.WCF {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
 
-            try {
-                db.Routes.Add(route);
-                db.SaveChanges();
-            } catch (Exception e) {
-                Console.WriteLine(e.Message); //TODO DEBUG MODE?
-                throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault() { Message = e.Message });
+            if (db.Routes.Count(f => f.From.ID == route.From.ID && f.To.ID == route.To.ID) == 0) {
+
+                try {
+                    db.Routes.Add(route);
+                    db.Airports.Attach(route.From);
+                    db.Airports.Attach(route.To);
+                    db.SaveChanges();
+                } catch (Exception e) {
+                    Console.WriteLine(e.Message); //TODO DEBUG MODE?
+                    throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault() {Message = e.Message});
+                }
+
+            } else {
+                throw new FaultException<AlreadyExistFault>(new AlreadyExistFault(){Message = "Entity already exists in database"});
             }
 
             return route;

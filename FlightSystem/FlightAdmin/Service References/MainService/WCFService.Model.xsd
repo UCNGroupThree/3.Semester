@@ -42,6 +42,7 @@
       <xs:element minOccurs="0" name="Flights" nillable="true" type="tns:ArrayOfFlight" />
       <xs:element minOccurs="0" name="From" nillable="true" type="tns:Airport" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
       <xs:element minOccurs="0" name="To" nillable="true" type="tns:Airport" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />

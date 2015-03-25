@@ -31,17 +31,18 @@
             this.createRoute1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.createRoute1.Location = new System.Drawing.Point(0, 0);
             this.createRoute1.Name = "createRoute1";
-            this.createRoute1.Size = new System.Drawing.Size(632, 397);
+            this.createRoute1.Size = new System.Drawing.Size(505, 131);
             this.createRoute1.TabIndex = 0;
             // 
             // Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 397);
+            this.ClientSize = new System.Drawing.Size(505, 131);
+            this.ControlBox = false;
             this.Controls.Add(this.createRoute1);
             this.Name = "Test";
-            this.Text = "Test";
+            this.Text = "Create Route";
             this.ResumeLayout(false);
 
         }
@@ -49,5 +50,6 @@
         #endregion
 
         private CreateRoute createRoute1;
+
     }
 }

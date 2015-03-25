@@ -10,17 +10,19 @@ namespace FlightAdmin.Controller {
 
         #region Create
 
-        public Route CreateRoute(Airport from, Airport to, List<Flight> flights) { //TODO Better Exception
+        public Route CreateRoute(Airport from, Airport to, List<Flight> flights, decimal price) { //TODO Better Exception
             Route route;
 
             if (RouteValidation(from, to, flights)) {
-                route = new Route {From = from, To = to, Flights = flights};
+                route = new Route {From = from, To = to, Flights = flights, Price = price};
 
                 using (var client = new RouteServiceClient()) {
                     try {
                         route = client.AddRoute(route);
                     } catch (FaultException<DatabaseInsertFault> dbException) {
-                        throw new Exception(dbException.Message);
+                        throw new DatabaseException(dbException.Message);
+                    } catch (FaultException<AlreadyExistFault> existException) {
+                        throw new AlreadyExistException("The Route with that 'To' and 'From' Airport already exists");
                     } catch (Exception e) {
                         Console.WriteLine(e);
                         throw new ConnectionException("WCF Service Exception", e);
@@ -142,13 +144,11 @@ namespace FlightAdmin.Controller {
         #region Misc
 
         private bool RouteValidation(Airport from, Airport to, List<Flight> flights) {
-            var ret = true;
-
-            if (from == null || to == null || flights == null) {
-                ret = false;
+            if (from == null || to == null) {
+                return false;
             }
 
-            return ret;
+            return true;
         }
 
         #endregion

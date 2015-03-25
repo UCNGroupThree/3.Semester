@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201503240728569_init.Designer.cs">
       <DependentUpon>201503240728569_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503251848162_RoutePrice.cs" />
+    <Compile Include="Migrations\201503251848162_RoutePrice.Designer.cs">
+      <DependentUpon>201503251848162_RoutePrice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\FlightDB.cs" />
@@ -90,6 +94,7 @@
     <Compile Include="WCF\AdministratorService.cs" />
     <Compile Include="WCF\AirportService.cs" />
     <Compile Include="WCF\Dijkstra.cs" />
+    <Compile Include="WCF\Faults\AlreadyExistFault.cs" />
     <Compile Include="WCF\Faults\DatabaseDeleteFault.cs" />
     <Compile Include="WCF\Faults\DatabaseInsertFault.cs" />
     <Compile Include="WCF\Faults\DatabaseUpdateFault.cs" />
@@ -121,6 +126,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201503240728569_init.resx">
       <DependentUpon>201503240728569_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503251848162_RoutePrice.resx">
+      <DependentUpon>201503251848162_RoutePrice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

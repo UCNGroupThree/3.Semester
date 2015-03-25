@@ -6,9 +6,11 @@ using WCFService.WCF.Faults;
 namespace WCFService.WCF.Interface {
     [ServiceContract]
     public interface IRouteService {
+
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]
         [FaultContract(typeof(DatabaseInsertFault))]
+        [FaultContract(typeof(AlreadyExistFault))]
         Route AddRoute(Route route);
 
         [OperationContract]

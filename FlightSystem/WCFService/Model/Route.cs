@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 namespace WCFService.Model {
 
     [DataContract(IsReference = true)]
-    public class Route {
+    public partial class Route {
         public Route() {
             Flights = new List<Flight>();
         }
@@ -23,6 +23,9 @@ namespace WCFService.Model {
 
         [DataMember]
         public List<Flight> Flights { get; set; }
+
+        [DataMember]
+        public decimal Price { get; set; }
 
         [DataMember]
         [Timestamp]

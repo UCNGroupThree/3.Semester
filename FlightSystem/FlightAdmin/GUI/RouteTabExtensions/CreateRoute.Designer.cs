@@ -1,4 +1,6 @@
-﻿namespace FlightAdmin.GUI.RouteTabExtensions {
+﻿using FlightAdmin.GUI.Helper;
+
+namespace FlightAdmin.GUI.RouteTabExtensions {
     partial class CreateRoute {
         /// <summary> 
         /// Required designer variable.
@@ -34,22 +36,33 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.loadToAirport = new System.Windows.Forms.PictureBox();
+            this.loadToCountry = new System.Windows.Forms.PictureBox();
+            this.loadFromAirport = new System.Windows.Forms.PictureBox();
+            this.loadFromCountry = new System.Windows.Forms.PictureBox();
+            this.btnCreate = new System.Windows.Forms.Button();
+            this.txtPrice = new FlightAdmin.GUI.Helper.NumericTextBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.loadToAirport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadToCountry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadFromAirport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadFromCountry)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbFromCountry
             // 
             this.cmbFromCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFromCountry.FormattingEnabled = true;
-            this.cmbFromCountry.Location = new System.Drawing.Point(90, 61);
+            this.cmbFromCountry.Location = new System.Drawing.Point(53, 21);
             this.cmbFromCountry.Name = "cmbFromCountry";
             this.cmbFromCountry.Size = new System.Drawing.Size(170, 21);
             this.cmbFromCountry.TabIndex = 0;
+            this.cmbFromCountry.SelectedIndexChanged += new System.EventHandler(this.cmbFromCountry_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 64);
+            this.label1.Location = new System.Drawing.Point(4, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 1;
@@ -58,7 +71,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(47, 91);
+            this.label2.Location = new System.Drawing.Point(10, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 3;
@@ -69,7 +82,7 @@
             this.cmbFromAirport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFromAirport.Enabled = false;
             this.cmbFromAirport.FormattingEnabled = true;
-            this.cmbFromAirport.Location = new System.Drawing.Point(90, 88);
+            this.cmbFromAirport.Location = new System.Drawing.Point(53, 48);
             this.cmbFromAirport.Name = "cmbFromAirport";
             this.cmbFromAirport.Size = new System.Drawing.Size(170, 21);
             this.cmbFromAirport.TabIndex = 2;
@@ -77,7 +90,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(292, 64);
+            this.label3.Location = new System.Drawing.Point(255, 24);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 5;
@@ -87,15 +100,16 @@
             // 
             this.cmbToCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbToCountry.FormattingEnabled = true;
-            this.cmbToCountry.Location = new System.Drawing.Point(341, 61);
+            this.cmbToCountry.Location = new System.Drawing.Point(304, 21);
             this.cmbToCountry.Name = "cmbToCountry";
             this.cmbToCountry.Size = new System.Drawing.Size(170, 21);
             this.cmbToCountry.TabIndex = 4;
+            this.cmbToCountry.SelectedIndexChanged += new System.EventHandler(this.cmbToCountry_SelectedIndexChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(298, 91);
+            this.label4.Location = new System.Drawing.Point(261, 51);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 7;
@@ -106,7 +120,7 @@
             this.cmbToAirport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbToAirport.Enabled = false;
             this.cmbToAirport.FormattingEnabled = true;
-            this.cmbToAirport.Location = new System.Drawing.Point(341, 88);
+            this.cmbToAirport.Location = new System.Drawing.Point(304, 48);
             this.cmbToAirport.Name = "cmbToAirport";
             this.cmbToAirport.Size = new System.Drawing.Size(170, 21);
             this.cmbToAirport.TabIndex = 6;
@@ -114,7 +128,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(154, 45);
+            this.label5.Location = new System.Drawing.Point(117, 5);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(33, 13);
             this.label5.TabIndex = 8;
@@ -123,7 +137,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(405, 45);
+            this.label6.Location = new System.Drawing.Point(368, 5);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(23, 13);
             this.label6.TabIndex = 9;
@@ -132,25 +146,91 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(49, 153);
+            this.label7.Location = new System.Drawing.Point(16, 78);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(31, 13);
             this.label7.TabIndex = 10;
             this.label7.Text = "Price";
             // 
-            // textBox1
+            // loadToAirport
             // 
-            this.textBox1.Location = new System.Drawing.Point(90, 150);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(170, 20);
-            this.textBox1.TabIndex = 11;
-            this.textBox1.Validating += new System.ComponentModel.CancelEventHandler(this.textBox1_Validating);
+            this.loadToAirport.Image = global::FlightAdmin.Properties.Resources.loading1;
+            this.loadToAirport.Location = new System.Drawing.Point(477, 48);
+            this.loadToAirport.Name = "loadToAirport";
+            this.loadToAirport.Size = new System.Drawing.Size(20, 20);
+            this.loadToAirport.TabIndex = 15;
+            this.loadToAirport.TabStop = false;
+            this.loadToAirport.Visible = false;
+            // 
+            // loadToCountry
+            // 
+            this.loadToCountry.Image = global::FlightAdmin.Properties.Resources.loading1;
+            this.loadToCountry.Location = new System.Drawing.Point(477, 21);
+            this.loadToCountry.Name = "loadToCountry";
+            this.loadToCountry.Size = new System.Drawing.Size(20, 20);
+            this.loadToCountry.TabIndex = 14;
+            this.loadToCountry.TabStop = false;
+            this.loadToCountry.Visible = false;
+            // 
+            // loadFromAirport
+            // 
+            this.loadFromAirport.Image = global::FlightAdmin.Properties.Resources.loading1;
+            this.loadFromAirport.Location = new System.Drawing.Point(226, 48);
+            this.loadFromAirport.Name = "loadFromAirport";
+            this.loadFromAirport.Size = new System.Drawing.Size(20, 20);
+            this.loadFromAirport.TabIndex = 13;
+            this.loadFromAirport.TabStop = false;
+            this.loadFromAirport.Visible = false;
+            // 
+            // loadFromCountry
+            // 
+            this.loadFromCountry.Image = global::FlightAdmin.Properties.Resources.loading1;
+            this.loadFromCountry.Location = new System.Drawing.Point(226, 21);
+            this.loadFromCountry.Name = "loadFromCountry";
+            this.loadFromCountry.Size = new System.Drawing.Size(20, 20);
+            this.loadFromCountry.TabIndex = 12;
+            this.loadFromCountry.TabStop = false;
+            this.loadFromCountry.Visible = false;
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.Location = new System.Drawing.Point(171, 105);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(75, 23);
+            this.btnCreate.TabIndex = 16;
+            this.btnCreate.Text = "Create";
+            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.AllowSpace = false;
+            this.txtPrice.Location = new System.Drawing.Point(53, 75);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(170, 20);
+            this.txtPrice.TabIndex = 11;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(269, 105);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 17;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // CreateRoute
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnCreate);
+            this.Controls.Add(this.loadToAirport);
+            this.Controls.Add(this.loadToCountry);
+            this.Controls.Add(this.loadFromAirport);
+            this.Controls.Add(this.loadFromCountry);
+            this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -163,7 +243,12 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbFromCountry);
             this.Name = "CreateRoute";
-            this.Size = new System.Drawing.Size(626, 364);
+            this.Size = new System.Drawing.Size(505, 135);
+            this.Load += new System.EventHandler(this.CreateRoute_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.loadToAirport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadToCountry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadFromAirport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadFromCountry)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,5 +268,12 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.PictureBox loadFromCountry;
+        private System.Windows.Forms.PictureBox loadFromAirport;
+        private System.Windows.Forms.PictureBox loadToCountry;
+        private System.Windows.Forms.PictureBox loadToAirport;
+        private NumericTextBox txtPrice;
+        private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.Button btnClose;
     }
 }

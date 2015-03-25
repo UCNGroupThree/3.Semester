@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlightAdmin.Controller;
@@ -16,26 +17,11 @@ using FlightAdmin.MainService;
 namespace FlightAdmin.GUI {
     public partial class RouteTab : UserControl {
 
-        private RouteCtr rCtr = new RouteCtr();
+        private readonly RouteCtr _rCtr = new RouteCtr();
 
-        public RouteTab() { //TODO Nick D PEdersen
+        public RouteTab() {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e) {
-            if (string.IsNullOrEmpty(txtFrom.Text) || string.IsNullOrWhiteSpace(txtFrom.Text)) {
-                MessageBox.Show("You must type in the 'From' Airport.");
-            } else {
-                if (string.IsNullOrEmpty(txtTo.Text) || string.IsNullOrWhiteSpace(txtTo.Text)) {
-                    SearchRoutes(txtFrom.Text);
-                } else {
-                    SearchRoute(txtFrom.Text, txtTo.Text);
-                }
-            }
-        }
-
-
-
 
         #region Search
 
@@ -43,40 +29,86 @@ namespace FlightAdmin.GUI {
             Route route;
 
             try {
-                Airport fromAirport = new Airport(); //TODO Get airport by name?
-                Airport toAirport = new Airport();
+                AirportCtr aCtr = new AirportCtr();
+                Airport fromAirport = aCtr.GetAirportsByName(from)[0]; //TODO Change to a "select" list?
+                Airport toAirport = aCtr.GetAirportsByName(to)[0];
 
-               route = rCtr.GetRouteByAirports(fromAirport, toAirport);
+               route = _rCtr.GetRouteByAirports(fromAirport, toAirport);
             } catch (NullException e) {
                 MessageBox.Show(e.Message); //TODO Better error handeling?
                 return;
             }
 
-            //TODO Show result in datagrid
+            UpdateDataGrid(new List<Route>(){route});
         }
 
         private void SearchRoutes(string from) {
             List<Route> routes;
 
             try {
-                Airport fromAirport = new Airport(); //TODO Get airport by name?
+                AirportCtr aCtr = new AirportCtr();
+                Airport fromAirport = aCtr.GetAirportsByName(from)[0]; //TODO Change to a "select" list?
 
-                routes = rCtr.GetRoutesByAirport(fromAirport);
+                routes = _rCtr.GetRoutesByAirport(fromAirport);
             } catch (NullException e) {
                 MessageBox.Show(e.Message); //TODO Better error handeling?
                 return;
-            } 
+            }
 
-            //TODO Show result in datagrid
+            UpdateDataGrid(routes);
         }
 
         #endregion
 
-        private void btnCreate_Click(object sender, EventArgs e) {
-            Test t = new Test();
-            t.Show();
+
+        #region DataGrid
+
+        private void UpdateDataGrid(List<Route> routes) {
+            BeginInvoke((MethodInvoker) delegate {
+                if (routes != null) {
+                    routeBindingSource.Clear();
+                    foreach (var r in routes) {
+                        routeBindingSource.Add(r);
+                    }
+                    loadingPanel.Visible = false;
+                }
+            });
         }
 
+        #endregion
+
+
+        #region Buttons
+
+        private void button1_Click(object sender, EventArgs e) {
+            if (string.IsNullOrEmpty(txtFrom.Text) || string.IsNullOrWhiteSpace(txtFrom.Text)) {
+                MessageBox.Show("You must type in the 'From' Airport.");
+            } else {
+                
+                if (string.IsNullOrEmpty(txtTo.Text) || string.IsNullOrWhiteSpace(txtTo.Text)) {
+                    loadingPanel.Visible = true;
+                    Thread worker = new Thread(new ThreadStart(() => SearchRoutes(txtFrom.Text))); 
+                    worker.Start();
+                } else {
+                    loadingPanel.Visible = true;
+                    Thread worker = new Thread(new ThreadStart(() => SearchRoute(txtFrom.Text, txtTo.Text)));
+                    worker.Start();
+                }
+            }
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e) {
+            Test t = new Test();
+            t.ShowDialog();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e) {
+            txtFrom.Text = "";
+            txtTo.Text = "";
+            routeBindingSource.Clear();
+        }
+
+        #endregion
 
     }
 }
