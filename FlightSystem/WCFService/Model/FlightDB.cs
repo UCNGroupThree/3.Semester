@@ -12,6 +12,13 @@ namespace WCFService.Model {
             
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder) {
+            base.OnModelCreating(modelBuilder);
+            //Fix ForeignKey Between Route And Airport;
+            modelBuilder.Entity<Route>().HasRequired(p => p.From)
+                .WithMany(b => b.Routes);
+        }
+
         public virtual DbSet<SeatReservation> SeatReservations { get; set; }
 
         public virtual DbSet<Seat> Seats { get; set; }
