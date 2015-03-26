@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -32,6 +33,12 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.txtTest = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.loadingPanel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.epDate = new System.Windows.Forms.ErrorProvider(this.components);
+            this.loadingPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epDate)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -61,6 +68,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 2;
+            this.dateTimePicker1.Enter += new System.EventHandler(this.dateTimePicker_Enter);
             // 
             // dateTimePicker2
             // 
@@ -70,6 +78,7 @@
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker2.TabIndex = 4;
+            this.dateTimePicker2.Enter += new System.EventHandler(this.dateTimePicker_Enter);
             // 
             // label2
             // 
@@ -117,10 +126,35 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // loadingPanel
+            // 
+            this.loadingPanel.Controls.Add(this.pictureBox1);
+            this.loadingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.loadingPanel.Location = new System.Drawing.Point(0, 0);
+            this.loadingPanel.Name = "loadingPanel";
+            this.loadingPanel.Size = new System.Drawing.Size(882, 398);
+            this.loadingPanel.TabIndex = 9;
+            this.loadingPanel.Visible = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::FlightAdmin.Properties.Resources.image_836585;
+            this.pictureBox1.Location = new System.Drawing.Point(373, 113);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(133, 132);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
+            // 
+            // epDate
+            // 
+            this.epDate.ContainerControl = this;
+            // 
             // CreateFlight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.loadingPanel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.txtTest);
             this.Controls.Add(this.comboBox1);
@@ -132,6 +166,10 @@
             this.Controls.Add(this.button1);
             this.Name = "CreateFlight";
             this.Size = new System.Drawing.Size(882, 398);
+            this.Load += new System.EventHandler(this.CreateFlight_Load);
+            this.loadingPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epDate)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,5 +186,8 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox txtTest;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel loadingPanel;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.ErrorProvider epDate;
     }
 }

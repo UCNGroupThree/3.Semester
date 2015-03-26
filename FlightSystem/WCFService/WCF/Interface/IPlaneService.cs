@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using System.Collections.Generic;
+using System.ServiceModel;
 using WCFService.Model;
 
 namespace WCFService.WCF.Interface {
@@ -17,5 +18,17 @@ namespace WCFService.WCF.Interface {
 
         [OperationContract]
         Plane GetPlane(int id);
+
+        [OperationContract]
+        List<Plane> GetAllPlanes();
+
+        [OperationContract]
+        List<Plane> GetPlanesWithEqualSeatNumber(int seats);
+
+        [OperationContract]
+        List<Plane> GetPlaneswithLessThanOrEqualSeatNumber(int seats);
+
+        [OperationContract]
+        List<Plane> GetPlaneswithMoreOrEqualSeatNumber(int seats);
     }
 }

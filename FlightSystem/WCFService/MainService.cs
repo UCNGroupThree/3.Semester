@@ -108,6 +108,22 @@ namespace WCFService {
             return new PlaneService().GetPlane(id);
         }
 
+        public List<Plane> GetAllPlanes() {
+            return new PlaneService().GetAllPlanes();
+        }
+
+        public List<Plane> GetPlanesWithEqualSeatNumber(int seats) {
+            return new PlaneService().GetPlanesWithEqualSeatNumber(seats);
+        }
+
+        public List<Plane> GetPlaneswithLessThanOrEqualSeatNumber(int seats) {
+            return new PlaneService().GetPlaneswithLessThanOrEqualSeatNumber(seats);
+        }
+
+        public List<Plane> GetPlaneswithMoreOrEqualSeatNumber(int seats) {
+            return new PlaneService().GetPlaneswithMoreOrEqualSeatNumber(seats);
+        }
+
         #endregion
 
         #region Route Service
@@ -165,6 +181,6 @@ namespace WCFService {
         }
 
         #endregion
-        
+
     }
 }

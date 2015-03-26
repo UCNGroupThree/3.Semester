@@ -87,6 +87,9 @@ namespace WCFService.WCF
 
             return db.Planes.Where(plane => plane.Seats.Count >= seats).ToList();
         }
-       
+
+        public List<Plane> GetAllPlanes() {
+            return db.Planes.ToList();
+        }
     }
 }

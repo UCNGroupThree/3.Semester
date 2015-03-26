@@ -23,10 +23,29 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            components = new System.ComponentModel.Container();
+            this.createFlight1 = new FlightAdmin.GUI.FlightTabExtensions.CreateFlight();
+            this.SuspendLayout();
+            // 
+            // createFlight1
+            // 
+            this.createFlight1.Location = new System.Drawing.Point(0, 0);
+            this.createFlight1.Name = "createFlight1";
+            this.createFlight1.Size = new System.Drawing.Size(870, 398);
+            this.createFlight1.TabIndex = 0;
+            // 
+            // FlightTab
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.createFlight1);
+            this.Name = "FlightTab";
+            this.Size = new System.Drawing.Size(771, 354);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private FlightTabExtensions.CreateFlight createFlight1;
     }
 }
