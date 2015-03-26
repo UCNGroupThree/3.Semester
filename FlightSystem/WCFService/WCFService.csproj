@@ -82,6 +82,10 @@
     <Compile Include="Migrations\201503261529357_AirportRouteFix.Designer.cs">
       <DependentUpon>201503261529357_AirportRouteFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503261903078_AirportInit.cs" />
+    <Compile Include="Migrations\201503261903078_AirportInit.Designer.cs">
+      <DependentUpon>201503261903078_AirportInit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\FlightDB.cs" />
@@ -137,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503261529357_AirportRouteFix.resx">
       <DependentUpon>201503261529357_AirportRouteFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503261903078_AirportInit.resx">
+      <DependentUpon>201503261903078_AirportInit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

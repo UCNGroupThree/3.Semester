@@ -16,19 +16,26 @@ namespace WCFService.Model {
         }
 
         [DataMember]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //Fortæller at ID skal være IDENTITY
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [DataMember]
+        [Required]
+        [MaxLength(200), MinLength(2)]
         public string Name { get; set; }
 
         [DataMember]
+        [MaxLength(3)]
         public string ShortName { get; set; }
 
         [DataMember]
+        [Required]
+        [MaxLength(200), MinLength(2)]
         public string City { get; set; }
 
         [DataMember]
+        [Required]
+        [MaxLength(200), MinLength(2)]
         public string Country { get; set; }
 
         [DataMember]
@@ -38,7 +45,7 @@ namespace WCFService.Model {
         public decimal Longtitude { get; set; }
 
         [DataMember]
-        public decimal Altitude { get; set; }
+        public int Altitude { get; set; }
 
         [DataMember]
         public string TimeZone { get; set; }
