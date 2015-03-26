@@ -43,9 +43,9 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCreatePlane = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.planeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.planeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.grpPlaneSearch.SuspendLayout();
@@ -298,10 +298,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(608, 347);
             this.dataGridView1.TabIndex = 1;
             // 
-            // planeBindingSource
-            // 
-            this.planeBindingSource.DataSource = typeof(FlightAdmin.MainService.Plane);
-            // 
             // iDDataGridViewTextBoxColumn
             // 
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
@@ -313,6 +309,10 @@
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // planeBindingSource
+            // 
+            this.planeBindingSource.DataSource = typeof(FlightAdmin.MainService.Plane);
             // 
             // PlaneTab
             // 

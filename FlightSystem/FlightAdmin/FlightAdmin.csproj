@@ -49,8 +49,8 @@
     <Compile Include="Controller\AirportCtr.cs" />
     <Compile Include="Controller\CustomerCtr.cs" />
     <Compile Include="Controller\FlightCtr.cs" />
-    <Compile Include="Controller\PlaneCtr.cs" />
     <Compile Include="Controller\RouteCtr.cs" />
+    <Compile Include="Controller\PlaneCtr.cs" />
     <Compile Include="CustomTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -147,13 +147,14 @@
     <EmbeddedResource Include="GUI\AirPortTab.resx">
       <DependentUpon>AirPortTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\PlaneTab.resx">
-      <DependentUpon>PlaneTab.cs</DependentUpon>
     <EmbeddedResource Include="GUI\FlightTab.resx">
       <DependentUpon>FlightTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FlightTabExtensions\CreateFlight.resx">
       <DependentUpon>CreateFlight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PlaneTab.resx">
+      <DependentUpon>PlaneTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ReservationTab.resx">
       <DependentUpon>ReservationTab.cs</DependentUpon>
