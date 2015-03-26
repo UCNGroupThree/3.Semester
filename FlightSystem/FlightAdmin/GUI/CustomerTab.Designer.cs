@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
@@ -48,6 +49,15 @@
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.grpCreate = new System.Windows.Forms.GroupBox();
             this.dataGrid = new System.Windows.Forms.DataGridView();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.concurrencyDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordHashDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -55,6 +65,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.grpCreate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel4
@@ -225,6 +236,7 @@
             this.btnClear.TabIndex = 4;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -337,13 +349,84 @@
             // 
             this.dataGrid.AllowUserToAddRows = false;
             this.dataGrid.AllowUserToDeleteRows = false;
+            this.dataGrid.AutoGenerateColumns = false;
             this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.addressDataGridViewTextBoxColumn,
+            this.concurrencyDataGridViewImageColumn,
+            this.emailDataGridViewTextBoxColumn,
+            this.iDDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.passwordHashDataGridViewTextBoxColumn,
+            this.phoneNumberDataGridViewTextBoxColumn,
+            this.postalDataGridViewTextBoxColumn});
+            this.dataGrid.DataSource = this.userBindingSource;
             this.dataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGrid.Location = new System.Drawing.Point(228, 3);
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.ReadOnly = true;
             this.dataGrid.Size = new System.Drawing.Size(905, 403);
             this.dataGrid.TabIndex = 0;
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(FlightAdmin.MainService.User);
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // concurrencyDataGridViewImageColumn
+            // 
+            this.concurrencyDataGridViewImageColumn.DataPropertyName = "Concurrency";
+            this.concurrencyDataGridViewImageColumn.HeaderText = "Concurrency";
+            this.concurrencyDataGridViewImageColumn.Name = "concurrencyDataGridViewImageColumn";
+            this.concurrencyDataGridViewImageColumn.ReadOnly = true;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // passwordHashDataGridViewTextBoxColumn
+            // 
+            this.passwordHashDataGridViewTextBoxColumn.DataPropertyName = "PasswordHash";
+            this.passwordHashDataGridViewTextBoxColumn.HeaderText = "PasswordHash";
+            this.passwordHashDataGridViewTextBoxColumn.Name = "passwordHashDataGridViewTextBoxColumn";
+            this.passwordHashDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // phoneNumberDataGridViewTextBoxColumn
+            // 
+            this.phoneNumberDataGridViewTextBoxColumn.DataPropertyName = "PhoneNumber";
+            this.phoneNumberDataGridViewTextBoxColumn.HeaderText = "PhoneNumber";
+            this.phoneNumberDataGridViewTextBoxColumn.Name = "phoneNumberDataGridViewTextBoxColumn";
+            this.phoneNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // postalDataGridViewTextBoxColumn
+            // 
+            this.postalDataGridViewTextBoxColumn.DataPropertyName = "Postal";
+            this.postalDataGridViewTextBoxColumn.HeaderText = "Postal";
+            this.postalDataGridViewTextBoxColumn.Name = "postalDataGridViewTextBoxColumn";
+            this.postalDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // CustomerTab
             // 
@@ -361,6 +444,7 @@
             this.tableLayoutPanel3.PerformLayout();
             this.grpCreate.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -392,5 +476,14 @@
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.GroupBox grpCreate;
         private System.Windows.Forms.DataGridView dataGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewImageColumn concurrencyDataGridViewImageColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn passwordHashDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phoneNumberDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn postalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource userBindingSource;
     }
 }
