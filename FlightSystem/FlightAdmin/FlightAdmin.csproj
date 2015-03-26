@@ -49,6 +49,7 @@
     <Compile Include="Controller\AirportCtr.cs" />
     <Compile Include="Controller\CustomerCtr.cs" />
     <Compile Include="Controller\FlightCtr.cs" />
+    <Compile Include="Controller\PlaneCtr.cs" />
     <Compile Include="Controller\RouteCtr.cs" />
     <Compile Include="CustomTabControl.cs">
       <SubType>Component</SubType>
@@ -87,6 +88,13 @@
     <Compile Include="GUI\FlightTab.Designer.cs">
       <DependentUpon>FlightTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\FlightTabExtensions\CreateFlight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\FlightTabExtensions\CreateFlight.Designer.cs">
+      <DependentUpon>CreateFlight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FlightTabExtensions\FlightHelper.cs" />
     <Compile Include="GUI\Helper\BGHelper.cs" />
     <Compile Include="GUI\Helper\NumericTextBox.cs">
       <SubType>Component</SubType>
@@ -138,6 +146,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AirPortTab.resx">
       <DependentUpon>AirPortTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FlightTab.resx">
+      <DependentUpon>FlightTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FlightTabExtensions\CreateFlight.resx">
+      <DependentUpon>CreateFlight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ReservationTab.resx">
       <DependentUpon>ReservationTab.cs</DependentUpon>
