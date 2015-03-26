@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FlightAdmin.GUI.PlaneTabExtensions;
 
 namespace FlightAdmin.GUI {
     public partial class PlaneTab : UserControl {
@@ -26,6 +27,13 @@ namespace FlightAdmin.GUI {
             comboPassengerCountChoice.Text = "";
             spinnerPassengerCount.Text = "0";
 
+        }
+
+        private void btnCreatePlane_Click(object sender, EventArgs e)
+        {
+            // open dialog for create new plane'
+            CreatePlane createPlaneWindow = new CreatePlane();
+            createPlaneWindow.ShowDialog()
         }
     }
 }

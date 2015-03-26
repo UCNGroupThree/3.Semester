@@ -83,9 +83,9 @@
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 74.54546F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.45455F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 71F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.77419F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.22581F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 17F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(219, 347);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
@@ -95,7 +95,7 @@
             this.grpPlaneSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpPlaneSearch.Location = new System.Drawing.Point(3, 3);
             this.grpPlaneSearch.Name = "grpPlaneSearch";
-            this.grpPlaneSearch.Size = new System.Drawing.Size(213, 199);
+            this.grpPlaneSearch.Size = new System.Drawing.Size(213, 214);
             this.grpPlaneSearch.TabIndex = 0;
             this.grpPlaneSearch.TabStop = false;
             this.grpPlaneSearch.Text = "Search Plane";
@@ -127,7 +127,8 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(207, 180);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(207, 195);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // lblIDSearch
@@ -206,6 +207,11 @@
             this.spinnerPassengerCount.AutoSize = true;
             this.spinnerPassengerCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spinnerPassengerCount.Location = new System.Drawing.Point(84, 95);
+            this.spinnerPassengerCount.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.spinnerPassengerCount.Name = "spinnerPassengerCount";
             this.spinnerPassengerCount.Size = new System.Drawing.Size(120, 20);
             this.spinnerPassengerCount.TabIndex = 7;
@@ -249,9 +255,9 @@
             // 
             this.grpCreatePlane.Controls.Add(this.tableLayoutPanel4);
             this.grpCreatePlane.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpCreatePlane.Location = new System.Drawing.Point(3, 208);
+            this.grpCreatePlane.Location = new System.Drawing.Point(3, 223);
             this.grpCreatePlane.Name = "grpCreatePlane";
-            this.grpCreatePlane.Size = new System.Drawing.Size(213, 64);
+            this.grpCreatePlane.Size = new System.Drawing.Size(213, 103);
             this.grpCreatePlane.TabIndex = 1;
             this.grpCreatePlane.TabStop = false;
             this.grpCreatePlane.Text = "Create Plane";
@@ -262,25 +268,25 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Controls.Add(this.btnCreatePlane, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnCreatePlane, 1, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(207, 45);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(207, 84);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // btnCreatePlane
             // 
-            this.btnCreatePlane.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCreatePlane.Location = new System.Drawing.Point(23, 3);
             this.btnCreatePlane.Name = "btnCreatePlane";
-            this.btnCreatePlane.Size = new System.Drawing.Size(161, 39);
+            this.btnCreatePlane.Size = new System.Drawing.Size(75, 23);
             this.btnCreatePlane.TabIndex = 0;
             this.btnCreatePlane.Text = "Create";
             this.btnCreatePlane.UseVisualStyleBackColor = true;
+            this.btnCreatePlane.Click += new System.EventHandler(this.btnCreatePlane_Click);
             // 
             // dataGridView1
             // 
@@ -343,7 +349,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox grpCreatePlane;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Button btnCreatePlane;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label lblIDSearch;
         private System.Windows.Forms.Label lblNameSearch;
@@ -359,5 +364,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource planeBindingSource;
+        private System.Windows.Forms.Button btnCreatePlane;
     }
 }

@@ -105,6 +105,12 @@
     <Compile Include="GUI\PlaneTab.Designer.cs">
       <DependentUpon>PlaneTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\PlaneTabExtensions\CreatePlane.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\PlaneTabExtensions\CreatePlane.Designer.cs">
+      <DependentUpon>CreatePlane.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\ReservationTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PlaneTab.resx">
       <DependentUpon>PlaneTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PlaneTabExtensions\CreatePlane.resx">
+      <DependentUpon>CreatePlane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ReservationTab.resx">
       <DependentUpon>ReservationTab.cs</DependentUpon>
