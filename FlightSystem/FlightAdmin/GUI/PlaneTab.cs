@@ -13,5 +13,19 @@ namespace FlightAdmin.GUI {
         public PlaneTab() {
             InitializeComponent();
         }
+
+        private void grpPlaneSearch_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClearPlaneSearch_Click(object sender, EventArgs e) {
+
+            txtID.Text = "";
+            txtNameSearch.Text = "";
+            comboPassengerCountChoice.Text = "";
+            spinnerPassengerCount.Text = "0";
+
+        }
     }
 }

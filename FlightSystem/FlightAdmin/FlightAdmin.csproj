@@ -139,6 +139,9 @@
     <EmbeddedResource Include="GUI\AirPortTab.resx">
       <DependentUpon>AirPortTab.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PlaneTab.resx">
+      <DependentUpon>PlaneTab.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\ReservationTab.resx">
       <DependentUpon>ReservationTab.cs</DependentUpon>
     </EmbeddedResource>

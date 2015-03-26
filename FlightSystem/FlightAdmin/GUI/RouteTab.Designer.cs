@@ -44,8 +44,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.GridPanel = new System.Windows.Forms.Panel();
             this.loadingPanel = new System.Windows.Forms.Panel();
-            this.dataRoute = new System.Windows.Forms.DataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.dataRoute = new System.Windows.Forms.DataGridView();
             this.fromDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,8 +60,8 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.GridPanel.SuspendLayout();
             this.loadingPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataRoute)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataRoute)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.routeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -308,6 +308,15 @@
             this.loadingPanel.TabIndex = 0;
             this.loadingPanel.Visible = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::FlightAdmin.Properties.Resources.image_836585;
+            this.pictureBox1.Location = new System.Drawing.Point(223, 189);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(117, 121);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // dataRoute
             // 
             this.dataRoute.AllowUserToAddRows = false;
@@ -326,15 +335,6 @@
             this.dataRoute.ReadOnly = true;
             this.dataRoute.Size = new System.Drawing.Size(735, 614);
             this.dataRoute.TabIndex = 1;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::FlightAdmin.Properties.Resources.image_836585;
-            this.pictureBox1.Location = new System.Drawing.Point(223, 189);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(117, 121);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // fromDataGridViewTextBoxColumn1
             // 
@@ -379,8 +379,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.GridPanel.ResumeLayout(false);
             this.loadingPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataRoute)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataRoute)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.routeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
