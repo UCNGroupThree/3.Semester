@@ -6,9 +6,9 @@ namespace WCFService.Dijkstra {
 
         public T Data { get; set; }
 
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
-        public Vertex(T data, double price) {
+        public Vertex(T data, decimal price) {
             Data = data;
             Price = price;
         } 

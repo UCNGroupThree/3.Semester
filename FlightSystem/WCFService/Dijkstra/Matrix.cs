@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Resources;
 using System.ServiceModel;
 using WCFService.Model;
 using WCFService.WCF;
@@ -31,7 +32,7 @@ namespace WCFService.Dijkstra {
                     var neighbors = new List<Vertex<Airport>>();
 
                     foreach (var route in routes) {
-                        neighbors.Add(new Vertex<Airport>(route.To, 100)); //TODO price? how >.<
+                        neighbors.Add(new Vertex<Airport>(route.To, route.Price));
                     }
 
                     edge.Neighbors = neighbors;
@@ -44,10 +45,14 @@ namespace WCFService.Dijkstra {
         }
 
         public List<Route> GetShortestPath(Airport from, Airport to) {
+            if (from == null || to == null) {
+                throw new FaultException<NullPointerFault>(new NullPointerFault(){Message = "Airports cant be null"});
+            }
+
             int id = from.ID;
             from = _db.Airports.Where(a => a.ID == id).Include(a => a.Routes).SingleOrDefault();
             var path = new List<Route>();
-            var distance = new Dictionary<Airport, double>();
+            var distance = new Dictionary<Airport, decimal>();
             var previous = new Dictionary<Airport, Airport>();
             var nodes = new List<Airport>();
 
@@ -55,7 +60,7 @@ namespace WCFService.Dijkstra {
                 if (edge.Data.ID == from.ID) {
                     distance[edge.Data] = 1;
                 } else {
-                    distance[edge.Data] = double.MaxValue;
+                    distance[edge.Data] = decimal.MaxValue;
                 }
 
                 nodes.Add(edge.Data);
@@ -82,7 +87,7 @@ namespace WCFService.Dijkstra {
                     break;
                 }
 
-                if (distance[smallest] == double.MaxValue) {
+                if (distance[smallest] == decimal.MaxValue) {
                     break;
                 }
 

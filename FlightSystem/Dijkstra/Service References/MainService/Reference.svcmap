@@ -30,6 +30,7 @@
     <MetadataFile FileName="WCFService.Model.xsd" MetadataType="Schema" ID="f056880d-ccca-42da-a6a3-6e7a8b6fb6dd" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
     <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="ae75fb54-7927-44f9-b8b4-5a601f9d24a4" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
     <MetadataFile FileName="WCFService.WCF.Faults.xsd" MetadataType="Schema" ID="3b1a02d9-67f2-455c-b6c5-d76c01f70a7e" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="ff0ccee8-140b-4a5a-bf18-48b62006872a" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
