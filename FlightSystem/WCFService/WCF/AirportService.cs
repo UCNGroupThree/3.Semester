@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
+using System.Text;
 using WCFService.Model;
 using WCFService.WCF.Faults;
 using WCFService.WCF.Interface;
@@ -108,8 +110,17 @@ namespace WCFService.WCF {
         public List<Airport> GetAirportsByShortName(string shortName) {
             List<Airport> ret;
             try {
+                ;
+                //db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+                System.Diagnostics.Debug.WriteLine("HAHA");
+                var air = db.Airports.SingleOrDefault(a => a.ID == 19);
+                Debug.WriteLine("#####");
+                Debug.WriteLine(Encoding.ASCII.GetBytes(air.ShortName.ToCharArray())[2]);
+                Debug.WriteLine("#####");
+                Debug.WriteLine(Encoding.ASCII.GetBytes("A".ToCharArray())[0]);
+                Debug.WriteLine("#####");
                 ret = db.Airports.Where(a => a.ShortName.Contains(shortName)).ToList();
-                    //db.Airports.Where(a => a.ShortName.Equals(shortName, StringComparison.OrdinalIgnoreCase)).ToList();
+                //db.Airports.Where(a => a.ShortName.Equals(shortName, StringComparison.OrdinalIgnoreCase)).ToList();
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
                 ret = new List<Airport>();
