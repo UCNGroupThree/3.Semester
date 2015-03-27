@@ -80,7 +80,7 @@ namespace FlightAdmin.GUI {
 
         #region Buttons
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void btnSearch_Click(object sender, EventArgs e) {
             if (string.IsNullOrEmpty(txtFrom.Text) || string.IsNullOrWhiteSpace(txtFrom.Text)) {
                 MessageBox.Show("You must type in the 'From' Airport.");
             } else {

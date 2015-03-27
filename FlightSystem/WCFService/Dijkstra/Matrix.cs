@@ -60,7 +60,7 @@ namespace WCFService.Dijkstra {
                 if (edge.Data.ID == from.ID) {
                     distance[edge.Data] = 1;
                 } else {
-                    distance[edge.Data] = decimal.MaxValue;
+                    distance[edge.Data] = int.MaxValue;
                 }
 
                 nodes.Add(edge.Data);

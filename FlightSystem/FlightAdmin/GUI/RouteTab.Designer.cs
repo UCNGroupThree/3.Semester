@@ -1,4 +1,6 @@
-﻿namespace FlightAdmin.GUI {
+﻿using System.Security.AccessControl;
+
+namespace FlightAdmin.GUI {
     partial class RouteTab {
         /// <summary> 
         /// Required designer variable.
@@ -200,7 +202,7 @@
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.button1_Click);
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // grpSearch
             // 
@@ -287,8 +289,8 @@
             // 
             // GridPanel
             // 
-            this.GridPanel.Controls.Add(this.loadingPanel);
             this.GridPanel.Controls.Add(this.dataRoute);
+            this.GridPanel.Controls.Add(this.loadingPanel);
             this.GridPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridPanel.Location = new System.Drawing.Point(228, 3);
             this.GridPanel.Name = "GridPanel";

@@ -29,6 +29,7 @@ namespace Dijkstra {
 
 
         static void PrintStuff(int id1, int id2) {
+            decimal dm = 0;
             var watch = Stopwatch.StartNew();
             Airport a1;
             Airport a2;
@@ -45,8 +46,11 @@ namespace Dijkstra {
 
             if (aps != null && aps.Count > 0) {
                 foreach (var route in aps) {
-                    Console.WriteLine(route.From.ID + ":" + route.From.Name + " -> " + route.To.Name + ":" + route.To.ID);
+                    Console.WriteLine(route.From.ID + ":" + route.From.Name + " -> " + route.To.Name + ":" + route.To.ID + " - Price: " + route.Price);
+                    dm += route.Price;
                 }
+
+                Console.WriteLine("Total Price: " + dm);
             } else {
                 Console.WriteLine("Empty Result");
             }
@@ -56,6 +60,7 @@ namespace Dijkstra {
         }
 
         static void PrintStuff2(int id1, int id2) {
+            decimal dm = 0;
             Airport a1;
             Airport a2;
             using (AirportServiceClient client = new AirportServiceClient()) {
@@ -71,8 +76,11 @@ namespace Dijkstra {
 
             if (aps != null && aps.Count > 0) {
                 foreach (var route in aps) {
-                    Console.WriteLine(route.From.ID + ":" + route.From.Name + " -> " + route.To.Name + ":" + route.To.ID);
+                    Console.WriteLine(route.From.ID + ":" + route.From.Name + " -> " + route.To.Name + ":" + route.To.ID + " - Price: " + route.Price);
+                    dm += route.Price;
                 }
+
+                Console.WriteLine("Total Price: " + dm);
             } else {
                 Console.WriteLine("Empty Result");
             }
