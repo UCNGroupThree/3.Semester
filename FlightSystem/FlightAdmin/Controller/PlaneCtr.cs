@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ServiceModel;
+using FlightAdmin.Exceptions;
 //using System.Runtime.InteropServices;
 using FlightAdmin.MainService;
 
@@ -14,7 +16,7 @@ namespace FlightAdmin.Controller {
             
             // generate plane seats
             List<Seat> PlaneSeats = GeneratePlaneSeats(SeatCount);
-            plane = new Plane(Name = PlaneName, Seats = PlaneSeats);
+            plane = new Plane() { Name = PlaneName, Seats = PlaneSeats };
 
             try {
                 using (var client = new PlaneServiceClient()) {
@@ -29,6 +31,8 @@ namespace FlightAdmin.Controller {
              catch (Exception e) {
                     throw new ConnectionException("WCF Service Exception", e);
              }
+
+            return plane;
         }
 
 
@@ -90,7 +94,7 @@ namespace FlightAdmin.Controller {
         //TODO: other get methods for plane
     
         public Plane GetPlaneByID(int id) {
-            Plane foundPlane;
+            Plane foundPlane = null;
 
             try {
                 using (PlaneServiceClient client = new PlaneServiceClient()) {

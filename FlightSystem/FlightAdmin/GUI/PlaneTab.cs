@@ -33,7 +33,7 @@ namespace FlightAdmin.GUI {
         {
             // open dialog for create new plane'
             CreatePlane createPlaneWindow = new CreatePlane();
-            createPlaneWindow.ShowDialog()
+            createPlaneWindow.ShowDialog();
         }
     }
 }

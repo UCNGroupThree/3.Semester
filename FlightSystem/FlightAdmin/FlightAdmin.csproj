@@ -58,6 +58,7 @@
     <Compile Include="Exceptions\ConnectionException.cs" />
     <Compile Include="Exceptions\DatabaseException.cs" />
     <Compile Include="Exceptions\NullException.cs" />
+    <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -29,7 +29,7 @@ namespace FlightAdmin.Controller {
                     }
                 }
             } else {
-                throw new Exception("RouteValidation Exception");
+                throw new ValidationException("RouteValidation Exception");
             }
 
             return route;

@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlightAdmin.Controller;
+using FlightAdmin.Exceptions;
 using FlightAdmin.GUI.Helper;
 using FlightAdmin.MainService;
 
@@ -133,9 +134,12 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             if (ValidateRoute()) {
                 try {
                     RouteCtr rCtr = new RouteCtr();
-                    rCtr.CreateRoute((Airport) cmbFromAirport.SelectedItem, (Airport) cmbToAirport.SelectedItem, null, decimal.Parse(txtPrice.Text));
-                    if(CloseReady != null)
+                    rCtr.CreateRoute((Airport) cmbFromAirport.SelectedItem, (Airport) cmbToAirport.SelectedItem, null,
+                        decimal.Parse(txtPrice.Text));
+                    if (CloseReady != null)
                         CloseReady();
+                } catch (ValidationException exception) {
+                    //TODO Something here
                 } catch (Exception ex) {
                     MessageBox.Show(ex.Message);
                 }
@@ -148,15 +152,17 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
                 var from = (Airport)cmbFromAirport.SelectedItem;
                 var to = (Airport)cmbToAirport.SelectedItem;
 
-                if (from == to) {
-                    MessageBox.Show("The 'From' and 'To' Airports can't be the same");
+                if (from.ID == to.ID) {
+                    epRoute.SetError(cmbFromAirport, "The 'From' and 'To' Airports can't be the same");
+                    epRoute.SetError(cmbToAirport, "The 'From' and 'To' Airports can't be the same");
                     return false;
                 }
             } catch (NullReferenceException) {
-                MessageBox.Show("Airports must be selected");
+                epRoute.SetError(cmbFromAirport, "Airports must be selected");
+                epRoute.SetError(cmbToAirport, "Airports must be selected");
                 return false;
             } catch (Exception) {
-                MessageBox.Show("Invalid Price");
+                epRoute.SetError(txtPrice, "Invalid Price");
                 return false;
             }
 
@@ -174,5 +180,11 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
 
         #endregion
 
+        private void On_Enter(object sender, EventArgs e) {
+            var control = sender as Control;
+            if (control != null) {
+                epRoute.SetError(control, "");
+            }
+        }
     }
 }

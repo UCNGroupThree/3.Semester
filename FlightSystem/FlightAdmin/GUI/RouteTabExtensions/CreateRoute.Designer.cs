@@ -25,6 +25,7 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.cmbFromCountry = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,12 +42,14 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             this.loadFromAirport = new System.Windows.Forms.PictureBox();
             this.loadFromCountry = new System.Windows.Forms.PictureBox();
             this.btnCreate = new System.Windows.Forms.Button();
-            this.txtPrice = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.btnClose = new System.Windows.Forms.Button();
+            this.epRoute = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtPrice = new FlightAdmin.GUI.Helper.NumericTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.loadToAirport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadToCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadFromAirport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadFromCountry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epRoute)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbFromCountry
@@ -58,6 +61,7 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             this.cmbFromCountry.Size = new System.Drawing.Size(170, 21);
             this.cmbFromCountry.TabIndex = 0;
             this.cmbFromCountry.SelectedIndexChanged += new System.EventHandler(this.cmbFromCountry_SelectedIndexChanged);
+            this.cmbFromCountry.Enter += new System.EventHandler(this.On_Enter);
             // 
             // label1
             // 
@@ -86,6 +90,7 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             this.cmbFromAirport.Name = "cmbFromAirport";
             this.cmbFromAirport.Size = new System.Drawing.Size(170, 21);
             this.cmbFromAirport.TabIndex = 2;
+            this.cmbFromAirport.Enter += new System.EventHandler(this.On_Enter);
             // 
             // label3
             // 
@@ -105,6 +110,7 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             this.cmbToCountry.Size = new System.Drawing.Size(170, 21);
             this.cmbToCountry.TabIndex = 4;
             this.cmbToCountry.SelectedIndexChanged += new System.EventHandler(this.cmbToCountry_SelectedIndexChanged);
+            this.cmbToCountry.Enter += new System.EventHandler(this.On_Enter);
             // 
             // label4
             // 
@@ -124,6 +130,7 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             this.cmbToAirport.Name = "cmbToAirport";
             this.cmbToAirport.Size = new System.Drawing.Size(170, 21);
             this.cmbToAirport.TabIndex = 6;
+            this.cmbToAirport.Enter += new System.EventHandler(this.On_Enter);
             // 
             // label5
             // 
@@ -202,14 +209,6 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
-            // txtPrice
-            // 
-            this.txtPrice.AllowSpace = false;
-            this.txtPrice.Location = new System.Drawing.Point(53, 75);
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(170, 20);
-            this.txtPrice.TabIndex = 11;
-            // 
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(269, 105);
@@ -219,6 +218,19 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // epRoute
+            // 
+            this.epRoute.ContainerControl = this;
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.AllowSpace = false;
+            this.txtPrice.Location = new System.Drawing.Point(53, 75);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(170, 20);
+            this.txtPrice.TabIndex = 11;
+            this.txtPrice.Enter += new System.EventHandler(this.On_Enter);
             // 
             // CreateRoute
             // 
@@ -249,6 +261,7 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             ((System.ComponentModel.ISupportInitialize)(this.loadToCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadFromAirport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadFromCountry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epRoute)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,5 +288,6 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
         private NumericTextBox txtPrice;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ErrorProvider epRoute;
     }
 }
