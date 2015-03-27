@@ -35,7 +35,7 @@ namespace FlightAdmin.GUI {
             this.tableLayoutCreate = new System.Windows.Forms.TableLayoutPanel();
             this.lblShortName = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
-            this.txtID = new NumericTextBox(true);
+            this.txtID = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.txtShortName = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
@@ -195,12 +195,12 @@ namespace FlightAdmin.GUI {
             // 
             // txtID
             // 
+            this.txtID.AllowSpace = false;
             this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtID.Location = new System.Drawing.Point(84, 3);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(120, 20);
             this.txtID.TabIndex = 1;
-            this.txtID.TextChanged += new System.EventHandler(FancyFeatures.TextChangedDisableParentsTextboxs);
             // 
             // txtShortName
             // 
@@ -209,7 +209,6 @@ namespace FlightAdmin.GUI {
             this.txtShortName.Name = "txtShortName";
             this.txtShortName.Size = new System.Drawing.Size(120, 20);
             this.txtShortName.TabIndex = 2;
-            this.txtShortName.TextChanged += new System.EventHandler(FancyFeatures.TextChangedDisableParentsTextboxs);
             // 
             // txtName
             // 
@@ -218,7 +217,6 @@ namespace FlightAdmin.GUI {
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(120, 20);
             this.txtName.TabIndex = 2;
-            this.txtName.TextChanged += new System.EventHandler(FancyFeatures.TextChangedDisableParentsTextboxs);
             // 
             // lblName
             // 
@@ -249,7 +247,6 @@ namespace FlightAdmin.GUI {
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(120, 20);
             this.txtCity.TabIndex = 2;
-            this.txtCity.TextChanged += new System.EventHandler(FancyFeatures.TextChangedDisableParentsTextboxs);
             // 
             // lblCountry
             // 
@@ -268,21 +265,23 @@ namespace FlightAdmin.GUI {
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(120, 20);
             this.txtCountry.TabIndex = 2;
-            this.txtCountry.TextChanged += new System.EventHandler(FancyFeatures.TextChangedDisableParentsTextboxs);
             // 
             // btnClear
             // 
             this.btnClear.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnClear.Enabled = false;
             this.btnClear.Location = new System.Drawing.Point(3, 139);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 4;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnSearch
             // 
             this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSearch.Enabled = false;
             this.btnSearch.Location = new System.Drawing.Point(129, 139);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
@@ -390,7 +389,7 @@ namespace FlightAdmin.GUI {
         private System.Windows.Forms.GroupBox grpCreate;
         private System.Windows.Forms.TableLayoutPanel tableLayoutCreate;
         private System.Windows.Forms.Label lblID;
-        private NumericTextBox txtID;
+        private FlightAdmin.GUI.Helper.NumericTextBox txtID;
         private System.Windows.Forms.Label lblShortName;
         private System.Windows.Forms.TextBox txtShortName;
         private System.Windows.Forms.TextBox txtName;
