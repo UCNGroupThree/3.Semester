@@ -116,7 +116,7 @@ namespace FlightAdmin.MainService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal AltitudeField;
+        private int AltitudeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CityField;
@@ -159,7 +159,7 @@ namespace FlightAdmin.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal Altitude {
+        public int Altitude {
             get {
                 return this.AltitudeField;
             }

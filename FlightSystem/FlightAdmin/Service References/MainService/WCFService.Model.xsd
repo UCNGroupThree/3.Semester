@@ -14,7 +14,7 @@
   <xs:element name="Administrator" nillable="true" type="tns:Administrator" />
   <xs:complexType name="Airport">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Altitude" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Altitude" type="xs:int" />
       <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Concurrency" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
