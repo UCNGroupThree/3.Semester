@@ -304,19 +304,11 @@
             // 
             // planeTable
             // 
-<<<<<<< HEAD
             this.planeTable.AllowUserToAddRows = false;
             this.planeTable.AutoGenerateColumns = false;
             this.planeTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.planeTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.planeTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-=======
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
->>>>>>> origin/master
             this.iDDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn});
             this.planeTable.DataSource = this.planeBindingSource;
