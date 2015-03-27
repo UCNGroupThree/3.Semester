@@ -5,24 +5,17 @@ using System.Windows.Forms;
 namespace FlightAdmin.GUI.Helper {
     public class NumericTextBox : TextBox {
         bool allowSpace = false;
-        private bool _onlyInt = false;
 
-        public NumericTextBox() {
-            
-        }
-
-        public NumericTextBox(bool onlyInt) {
-            _onlyInt = onlyInt;
-        }
+        public bool OnlyInt { get; set; }
 
         // Restricts the entry of characters to digits (including hex), the negative sign, 
         // the decimal point, and editing keystrokes (backspace). 
         protected override void OnKeyPress(KeyPressEventArgs e) {
             base.OnKeyPress(e);
-            if (_onlyInt && e.KeyChar == '\b') {
+            if (OnlyInt && e.KeyChar == '\b') {
                 return;
             }
-            if (_onlyInt && !Char.IsDigit(e.KeyChar)) {
+            if (OnlyInt && !Char.IsDigit(e.KeyChar)) {
                 e.Handled = true;
                 return;
             } 

@@ -32,7 +32,7 @@ namespace FlightAdmin.GUI {
 
         private void btnClearPlaneSearch_Click(object sender, EventArgs e, object clearPlaneSearch) {
 
-            clearPlaneSearch();
+            //clearPlaneSearch();
         }
 
 
@@ -42,7 +42,7 @@ namespace FlightAdmin.GUI {
             string searchPlaneName = txtNameSearch.Text;
             if (searchPlaneName == null) throw new ArgumentNullException("searchPlaneName");
 
-            planeSearch(searchPlaneID, searchPlaneName);
+            //planeSearch(searchPlaneID, searchPlaneName);
         }
 
 
@@ -76,7 +76,7 @@ namespace FlightAdmin.GUI {
 
             foundPlanes = ctr.GetAllPlanes();
 
-            if (foundPlanes != null) UpdateDataGrid(foundPlanes);
+            //if (foundPlanes != null) UpdateDataGrid(foundPlanes);
         }
 
        

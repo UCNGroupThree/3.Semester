@@ -199,6 +199,7 @@ namespace FlightAdmin.GUI {
             this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtID.Location = new System.Drawing.Point(84, 3);
             this.txtID.Name = "txtID";
+            this.txtID.OnlyInt = true;
             this.txtID.Size = new System.Drawing.Size(120, 20);
             this.txtID.TabIndex = 1;
             // 
