@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
+using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
 using WCFService.Model;
@@ -64,10 +65,12 @@ namespace WCFService.WCF {
             }
 
             try {
-                db.Routes.Remove(route);
+                db.Routes.Attach(route);
+                db.Entry(route).State = EntityState.Deleted;
                 db.SaveChanges();
             } catch (Exception ex) {
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Debug.WriteLine(ex.Message); //TODO DEBUG MODE?
+                
                 throw new FaultException<DatabaseDeleteFault>(new DatabaseDeleteFault() { Message = ex.Message });
             }
         }

@@ -74,9 +74,9 @@ namespace FlightAdmin.Controller {
                 try {
                     client.DeleteRoute(route);
                 } catch (FaultException<NullPointerFault> nullException) {
-                    throw new Exception(nullException.Message);
+                    throw new NullException(nullException.Message);
                 } catch (FaultException<DatabaseDeleteFault> dbException) {
-                    throw new Exception(dbException.Message);
+                    throw new DatabaseException(dbException.Message);
                 } catch (Exception e) {
                     throw new ConnectionException("WCF Service Exception", e);
                 }

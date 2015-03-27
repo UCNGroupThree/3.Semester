@@ -18,6 +18,7 @@ namespace FlightAdmin.GUI {
     public partial class RouteTab : UserControl {
 
         private readonly RouteCtr _rCtr = new RouteCtr();
+        private DataGridViewCellEventArgs mouseLocation;
 
         public RouteTab() {
             InitializeComponent();
@@ -106,6 +107,49 @@ namespace FlightAdmin.GUI {
             txtFrom.Text = "";
             txtTo.Text = "";
             routeBindingSource.Clear();
+        }
+
+        #endregion
+
+        #region DataGrid
+
+        private void dataRoute_CellMouseEnter(object sender, DataGridViewCellEventArgs location) {
+            mouseLocation = location;
+        }
+
+        #endregion
+
+        #region Delete / Edit
+
+        private void DeleteRoute(Route route) {
+            DialogResult res =
+                    MessageBox.Show("Are you sure you wish to delete this route: \n" + route.From + " -> " + route.To,
+                        "Remove", MessageBoxButtons.YesNo);
+            if (res == DialogResult.Yes) {
+                try {
+                    _rCtr.DeleteRoute(route);
+                    routeBindingSource.Remove(route);
+                } catch (NullException) {
+                    MessageBox.Show("The Route has already been deleted");
+                } catch (Exception exception) {
+                    MessageBox.Show(exception.Message);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Delete / Edit Event - DataGrid Menu
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e) {
+            var som = (Route)dataRoute.Rows[mouseLocation.RowIndex].DataBoundItem;
+            if (som != null) {
+                DeleteRoute(som);
+            }
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e) {
+
         }
 
         #endregion
