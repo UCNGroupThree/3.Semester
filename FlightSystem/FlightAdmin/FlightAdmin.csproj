@@ -59,11 +59,11 @@
     <Compile Include="Exceptions\DatabaseException.cs" />
     <Compile Include="Exceptions\NullException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="MainUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainUI.Designer.cs">
+      <DependentUpon>MainUI.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\AdministratorTab.cs">
       <SubType>UserControl</SubType>
@@ -146,8 +146,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="MainUI.resx">
+      <DependentUpon>MainUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AdministratorTab.resx">
       <DependentUpon>AdministratorTab.cs</DependentUpon>
