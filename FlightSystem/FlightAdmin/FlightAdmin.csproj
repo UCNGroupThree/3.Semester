@@ -59,6 +59,12 @@
     <Compile Include="Exceptions\DatabaseException.cs" />
     <Compile Include="Exceptions\NullException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
+    <Compile Include="GUI\Extensions\DataGridLoader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Extensions\DataGridLoader.Designer.cs">
+      <DependentUpon>DataGridLoader.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +152,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\Extensions\DataGridLoader.resx">
+      <DependentUpon>DataGridLoader.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainUI.resx">
       <DependentUpon>MainUI.cs</DependentUpon>
     </EmbeddedResource>

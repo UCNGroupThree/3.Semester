@@ -45,16 +45,16 @@ namespace FlightAdmin.GUI {
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.GridPanel = new System.Windows.Forms.Panel();
-            this.dataRoute = new System.Windows.Forms.DataGridView();
-            this.fromDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.routeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.loadingPanel = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.contextDataGridMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.routeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.loadingPanel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fromDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataRoute = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -64,11 +64,11 @@ namespace FlightAdmin.GUI {
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.GridPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataRoute)).BeginInit();
+            this.contextDataGridMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.routeBindingSource)).BeginInit();
             this.loadingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.contextDataGridMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataRoute)).BeginInit();
             this.SuspendLayout();
             // 
             // fromDataGridViewTextBoxColumn
@@ -293,55 +293,35 @@ namespace FlightAdmin.GUI {
             // 
             // GridPanel
             // 
-            this.GridPanel.Controls.Add(this.dataRoute);
             this.GridPanel.Controls.Add(this.loadingPanel);
+            this.GridPanel.Controls.Add(this.dataRoute);
             this.GridPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridPanel.Location = new System.Drawing.Point(228, 3);
             this.GridPanel.Name = "GridPanel";
             this.GridPanel.Size = new System.Drawing.Size(735, 614);
             this.GridPanel.TabIndex = 1;
             // 
-            // dataRoute
+            // contextDataGridMenu
             // 
-            this.dataRoute.AllowUserToAddRows = false;
-            this.dataRoute.AllowUserToDeleteRows = false;
-            this.dataRoute.AutoGenerateColumns = false;
-            this.dataRoute.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataRoute.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataRoute.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.fromDataGridViewTextBoxColumn1,
-            this.toDataGridViewTextBoxColumn1,
-            this.priceDataGridViewTextBoxColumn1});
-            this.dataRoute.ContextMenuStrip = this.contextDataGridMenu;
-            this.dataRoute.DataSource = this.routeBindingSource;
-            this.dataRoute.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataRoute.Location = new System.Drawing.Point(0, 0);
-            this.dataRoute.Name = "dataRoute";
-            this.dataRoute.ReadOnly = true;
-            this.dataRoute.Size = new System.Drawing.Size(735, 614);
-            this.dataRoute.TabIndex = 1;
-            this.dataRoute.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataRoute_CellMouseEnter);
+            this.contextDataGridMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeToolStripMenuItem,
+            this.editToolStripMenuItem});
+            this.contextDataGridMenu.Name = "contextDataGridMenu";
+            this.contextDataGridMenu.Size = new System.Drawing.Size(118, 48);
             // 
-            // fromDataGridViewTextBoxColumn1
+            // removeToolStripMenuItem
             // 
-            this.fromDataGridViewTextBoxColumn1.DataPropertyName = "From";
-            this.fromDataGridViewTextBoxColumn1.HeaderText = "From";
-            this.fromDataGridViewTextBoxColumn1.Name = "fromDataGridViewTextBoxColumn1";
-            this.fromDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
-            // toDataGridViewTextBoxColumn1
+            // editToolStripMenuItem
             // 
-            this.toDataGridViewTextBoxColumn1.DataPropertyName = "To";
-            this.toDataGridViewTextBoxColumn1.HeaderText = "To";
-            this.toDataGridViewTextBoxColumn1.Name = "toDataGridViewTextBoxColumn1";
-            this.toDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // priceDataGridViewTextBoxColumn1
-            // 
-            this.priceDataGridViewTextBoxColumn1.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn1.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
-            this.priceDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // routeBindingSource
             // 
@@ -369,27 +349,47 @@ namespace FlightAdmin.GUI {
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // contextDataGridMenu
+            // priceDataGridViewTextBoxColumn1
             // 
-            this.contextDataGridMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.removeToolStripMenuItem,
-            this.editToolStripMenuItem});
-            this.contextDataGridMenu.Name = "contextDataGridMenu";
-            this.contextDataGridMenu.Size = new System.Drawing.Size(118, 48);
+            this.priceDataGridViewTextBoxColumn1.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn1.HeaderText = "Price";
+            this.priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
+            this.priceDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // removeToolStripMenuItem
+            // toDataGridViewTextBoxColumn1
             // 
-            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.removeToolStripMenuItem.Text = "Remove";
-            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
+            this.toDataGridViewTextBoxColumn1.DataPropertyName = "To";
+            this.toDataGridViewTextBoxColumn1.HeaderText = "To";
+            this.toDataGridViewTextBoxColumn1.Name = "toDataGridViewTextBoxColumn1";
+            this.toDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // editToolStripMenuItem
+            // fromDataGridViewTextBoxColumn1
             // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            this.fromDataGridViewTextBoxColumn1.DataPropertyName = "From";
+            this.fromDataGridViewTextBoxColumn1.HeaderText = "From";
+            this.fromDataGridViewTextBoxColumn1.Name = "fromDataGridViewTextBoxColumn1";
+            this.fromDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataRoute
+            // 
+            this.dataRoute.AllowUserToAddRows = false;
+            this.dataRoute.AllowUserToDeleteRows = false;
+            this.dataRoute.AutoGenerateColumns = false;
+            this.dataRoute.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataRoute.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataRoute.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.fromDataGridViewTextBoxColumn1,
+            this.toDataGridViewTextBoxColumn1,
+            this.priceDataGridViewTextBoxColumn1});
+            this.dataRoute.ContextMenuStrip = this.contextDataGridMenu;
+            this.dataRoute.DataSource = this.routeBindingSource;
+            this.dataRoute.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataRoute.Location = new System.Drawing.Point(0, 0);
+            this.dataRoute.Name = "dataRoute";
+            this.dataRoute.ReadOnly = true;
+            this.dataRoute.Size = new System.Drawing.Size(735, 614);
+            this.dataRoute.TabIndex = 1;
+            this.dataRoute.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataRoute_CellMouseEnter);
             // 
             // RouteTab
             // 
@@ -408,11 +408,11 @@ namespace FlightAdmin.GUI {
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.GridPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataRoute)).EndInit();
+            this.contextDataGridMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.routeBindingSource)).EndInit();
             this.loadingPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.contextDataGridMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataRoute)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -440,13 +440,13 @@ namespace FlightAdmin.GUI {
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private System.Windows.Forms.Panel GridPanel;
         private System.Windows.Forms.Panel loadingPanel;
-        private System.Windows.Forms.DataGridView dataRoute;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fromDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn toDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn1;
         private System.Windows.Forms.ContextMenuStrip contextDataGridMenu;
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.DataGridView dataRoute;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fromDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn toDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn1;
     }
 }

@@ -10,13 +10,28 @@ using System.Windows.Forms;
 
 namespace FlightAdmin.GUI.RouteTabExtensions {
     public partial class Test : Form {
+
+        #region Event Forwarder
+
+        public event CreateRoute.AddRoute AddRouteEvent {
+            add { createRoute1.AddRouteEvent += value; }
+            remove { createRoute1.AddRouteEvent -= value; }
+        }
+
+        #endregion
+
         public Test() {
             InitializeComponent();
-            createRoute1.CloseReady += Close;
+            createRoute1.CloseEvent += Close;
         }
+
+        #region Closer
 
         private void Close() {
             this.Dispose();
         }
+
+        #endregion
+    
     }
 }

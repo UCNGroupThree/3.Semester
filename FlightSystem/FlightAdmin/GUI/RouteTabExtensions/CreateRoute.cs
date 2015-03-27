@@ -16,9 +16,21 @@ using FlightAdmin.MainService;
 namespace FlightAdmin.GUI.RouteTabExtensions {
     public partial class CreateRoute : UserControl {
 
+        #region Events
+
         public delegate void Close();
-        public event Close CloseReady;
+        public event Close CloseEvent;
+
+        public delegate void AddRoute(Route route);
+        public event AddRoute AddRouteEvent;
+
+        #endregion
+
+        #region Properties
+
         public bool Working { get; private set; }
+
+        #endregion
 
         public CreateRoute() {
             InitializeComponent();
@@ -86,8 +98,8 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
                 bgWorker.DoWork += new DoWorkEventHandler(LoadCountries);
                 bgWorker.RunWorkerAsync();
             } catch (Exception) {
-                if (CloseReady != null) {
-                    CloseReady();
+                if (CloseEvent != null) {
+                    CloseEvent();
                 }
 
                 this.Dispose();
@@ -134,10 +146,17 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             if (ValidateRoute()) {
                 try {
                     RouteCtr rCtr = new RouteCtr();
-                    rCtr.CreateRoute((Airport) cmbFromAirport.SelectedItem, (Airport) cmbToAirport.SelectedItem, null,
+                    Route route = rCtr.CreateRoute((Airport) cmbFromAirport.SelectedItem, (Airport) cmbToAirport.SelectedItem, null,
                         decimal.Parse(txtPrice.Text));
-                    if (CloseReady != null)
-                        CloseReady();
+
+                    MessageBox.Show(String.Format("The Route:\n {0} -> {1} \n has been created!", route.From.Name, route
+                        .To.Name), "Route Created", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+                    if (AddRouteEvent != null)
+                        AddRouteEvent(route);
+                    if (CloseEvent != null)
+                        CloseEvent();
+
                 } catch (ValidationException exception) {
                     //TODO Something here
                 } catch (Exception ex) {
@@ -174,11 +193,13 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
         #region Close
 
         private void btnClose_Click(object sender, EventArgs e) {
-            if (CloseReady != null)
-                CloseReady();
+            if (CloseEvent != null)
+                CloseEvent();
         }
 
         #endregion
+
+        #region Error Provider Clear
 
         private void On_Enter(object sender, EventArgs e) {
             var control = sender as Control;
@@ -186,5 +207,8 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
                 epRoute.SetError(control, "");
             }
         }
+
+        #endregion
+
     }
 }

@@ -18,7 +18,7 @@ namespace FlightAdmin.GUI {
     public partial class RouteTab : UserControl {
 
         private readonly RouteCtr _rCtr = new RouteCtr();
-        private DataGridViewCellEventArgs mouseLocation;
+        private DataGridViewCellEventArgs _mouseLocation;
 
         public RouteTab() {
             InitializeComponent();
@@ -61,7 +61,6 @@ namespace FlightAdmin.GUI {
 
         #endregion
 
-
         #region DataGrid
 
         private void UpdateDataGrid(List<Route> routes) {
@@ -77,7 +76,6 @@ namespace FlightAdmin.GUI {
         }
 
         #endregion
-
 
         #region Buttons
 
@@ -100,6 +98,7 @@ namespace FlightAdmin.GUI {
 
         private void btnCreate_Click(object sender, EventArgs e) {
             Test t = new Test();
+            t.AddRouteEvent += AddRoute;
             t.ShowDialog();
         }
 
@@ -111,10 +110,21 @@ namespace FlightAdmin.GUI {
 
         #endregion
 
+        #region Add Route Event
+
+        private void AddRoute(Route route) {
+            if (route != null) {
+                routeBindingSource.Clear();
+                routeBindingSource.Add(route);
+            }
+        }
+
+        #endregion
+
         #region DataGrid
 
         private void dataRoute_CellMouseEnter(object sender, DataGridViewCellEventArgs location) {
-            mouseLocation = location;
+            _mouseLocation = location;
         }
 
         #endregion
@@ -142,7 +152,7 @@ namespace FlightAdmin.GUI {
         #region Delete / Edit Event - DataGrid Menu
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e) {
-            var som = (Route)dataRoute.Rows[mouseLocation.RowIndex].DataBoundItem;
+            var som = (Route)dataRoute.Rows[_mouseLocation.RowIndex].DataBoundItem;
             if (som != null) {
                 DeleteRoute(som);
             }

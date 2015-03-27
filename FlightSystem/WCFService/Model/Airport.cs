@@ -45,7 +45,7 @@ namespace WCFService.Model {
         public decimal Longtitude { get; set; }
 
         [DataMember]
-        public int Altitude { get; set; }
+        public decimal Altitude { get; set; }
 
         [DataMember]
         public string TimeZone { get; set; }

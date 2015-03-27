@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 namespace WCFService.Model {
 
     [DataContract(IsReference = true)]
-    public partial class Route {
+    public class Route {
         public Route() {
             Flights = new List<Flight>();
         }
