@@ -23,21 +23,22 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.createFlight1 = new FlightAdmin.GUI.FlightTabExtensions.CreateFlight();
+            this.createFlights1 = new FlightAdmin.GUI.FlightTabExtensions.CreateFlights();
             this.SuspendLayout();
             // 
-            // createFlight1
+            // createFlights1
             // 
-            this.createFlight1.Location = new System.Drawing.Point(0, 0);
-            this.createFlight1.Name = "createFlight1";
-            this.createFlight1.Size = new System.Drawing.Size(870, 398);
-            this.createFlight1.TabIndex = 0;
+            this.createFlights1.Location = new System.Drawing.Point(0, 0);
+            this.createFlights1.Name = "createFlights1";
+            this.createFlights1.Route = null;
+            this.createFlights1.Size = new System.Drawing.Size(517, 204);
+            this.createFlights1.TabIndex = 0;
             // 
             // FlightTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.createFlight1);
+            this.Controls.Add(this.createFlights1);
             this.Name = "FlightTab";
             this.Size = new System.Drawing.Size(771, 354);
             this.ResumeLayout(false);
@@ -46,6 +47,7 @@
 
         #endregion
 
-        private FlightTabExtensions.CreateFlight createFlight1;
+        private FlightTabExtensions.CreateFlights createFlights1;
+
     }
 }

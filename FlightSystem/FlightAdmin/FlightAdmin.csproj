@@ -65,6 +65,12 @@
     <Compile Include="GUI\Extensions\DataGridLoader.Designer.cs">
       <DependentUpon>DataGridLoader.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\FlightTabExtensions\CreateFlights.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\FlightTabExtensions\CreateFlights.Designer.cs">
+      <DependentUpon>CreateFlights.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     </Compile>
     <EmbeddedResource Include="GUI\Extensions\DataGridLoader.resx">
       <DependentUpon>DataGridLoader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FlightTabExtensions\CreateFlights.resx">
+      <DependentUpon>CreateFlights.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainUI.resx">
       <DependentUpon>MainUI.cs</DependentUpon>

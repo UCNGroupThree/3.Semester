@@ -67,23 +67,10 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
             More();
         }
 
-        private void button2_Click(object sender, EventArgs e) {
-            foreach (var flightHelper in flights) {
-                var str = String.Format(flightHelper.ArrivalTime.Text + " - " + flightHelper.DepartureTime.Text + " - " + flightHelper.Plane.SelectedValue + "\n");
-                txtTest.AppendText(str);
-                if (!flightHelper.Validate(this)) {
-                    txtTest.AppendText("Failed");
-                } else {
-                    txtTest.AppendText("Success");
-                }
-                dateTimePicker1.ForeColor = Color.DarkRed;
-            }
-        }
 
         private void LoadPlanes() {
             BeginInvoke((MethodInvoker) delegate {
                 loadingPanel.Visible = true;
-                pictureBox1.Visible = true;
             });
                 
                 PlaneCtr pCtr = new PlaneCtr();
@@ -92,7 +79,6 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
             BeginInvoke((MethodInvoker) delegate {
                 planes = pl;
                 loadingPanel.Visible = false;
-                pictureBox1.Visible = false;
             });
 
             PopulateCmb();
@@ -114,10 +100,6 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
             BackgroundWorker bgWorker = new BackgroundWorker();
             bgWorker.DoWork += new DoWorkEventHandler((obj, ex) => LoadPlanes());
             bgWorker.RunWorkerAsync();
-
-
-            //Thread t = new Thread(new ThreadStart(LoadPlanes));
-            //t.Start();
         }
 
         private void dateTimePicker_Enter(object sender, EventArgs e) {
