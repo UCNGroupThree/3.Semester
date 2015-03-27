@@ -1,4 +1,6 @@
-﻿namespace FlightAdmin.GUI {
+﻿using FlightAdmin.GUI.Helper;
+
+namespace FlightAdmin.GUI {
     partial class AirPortTab {
         /// <summary> 
         /// Required designer variable.
@@ -30,10 +32,10 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCreate = new System.Windows.Forms.Button();
             this.grpSearch = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutCreate = new System.Windows.Forms.TableLayoutPanel();
             this.lblShortName = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
-            this.txtID = new System.Windows.Forms.TextBox();
+            this.txtID = new NumericTextBox(true);
             this.txtShortName = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
@@ -56,7 +58,7 @@
             this.grpCreate.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.grpSearch.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutCreate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.airportBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -130,7 +132,7 @@
             // 
             // grpSearch
             // 
-            this.grpSearch.Controls.Add(this.tableLayoutPanel3);
+            this.grpSearch.Controls.Add(this.tableLayoutCreate);
             this.grpSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpSearch.Location = new System.Drawing.Point(3, 3);
             this.grpSearch.Name = "grpSearch";
@@ -139,35 +141,35 @@
             this.grpSearch.TabStop = false;
             this.grpSearch.Text = "Search";
             // 
-            // tableLayoutPanel3
+            // tableLayoutCreate
             // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.Controls.Add(this.lblShortName, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.lblID, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.txtID, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.txtShortName, 1, 1);
-            this.tableLayoutPanel3.Controls.Add(this.txtName, 1, 2);
-            this.tableLayoutPanel3.Controls.Add(this.lblName, 0, 2);
-            this.tableLayoutPanel3.Controls.Add(this.lblCity, 0, 3);
-            this.tableLayoutPanel3.Controls.Add(this.txtCity, 1, 3);
-            this.tableLayoutPanel3.Controls.Add(this.lblCountry, 0, 4);
-            this.tableLayoutPanel3.Controls.Add(this.txtCountry, 1, 4);
-            this.tableLayoutPanel3.Controls.Add(this.btnClear, 0, 5);
-            this.tableLayoutPanel3.Controls.Add(this.btnSearch, 1, 5);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 6;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(207, 171);
-            this.tableLayoutPanel3.TabIndex = 0;
+            this.tableLayoutCreate.ColumnCount = 2;
+            this.tableLayoutCreate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutCreate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutCreate.Controls.Add(this.lblShortName, 0, 1);
+            this.tableLayoutCreate.Controls.Add(this.lblID, 0, 0);
+            this.tableLayoutCreate.Controls.Add(this.txtID, 1, 0);
+            this.tableLayoutCreate.Controls.Add(this.txtShortName, 1, 1);
+            this.tableLayoutCreate.Controls.Add(this.txtName, 1, 2);
+            this.tableLayoutCreate.Controls.Add(this.lblName, 0, 2);
+            this.tableLayoutCreate.Controls.Add(this.lblCity, 0, 3);
+            this.tableLayoutCreate.Controls.Add(this.txtCity, 1, 3);
+            this.tableLayoutCreate.Controls.Add(this.lblCountry, 0, 4);
+            this.tableLayoutCreate.Controls.Add(this.txtCountry, 1, 4);
+            this.tableLayoutCreate.Controls.Add(this.btnClear, 0, 5);
+            this.tableLayoutCreate.Controls.Add(this.btnSearch, 1, 5);
+            this.tableLayoutCreate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutCreate.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutCreate.Name = "tableLayoutCreate";
+            this.tableLayoutCreate.RowCount = 6;
+            this.tableLayoutCreate.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutCreate.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutCreate.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutCreate.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutCreate.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutCreate.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutCreate.Size = new System.Drawing.Size(207, 171);
+            this.tableLayoutCreate.TabIndex = 0;
             // 
             // lblShortName
             // 
@@ -198,6 +200,7 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(120, 20);
             this.txtID.TabIndex = 1;
+            this.txtID.TextChanged += new System.EventHandler(FancyFeatures.TextChangedDisableParentsTextboxs);
             // 
             // txtShortName
             // 
@@ -206,6 +209,7 @@
             this.txtShortName.Name = "txtShortName";
             this.txtShortName.Size = new System.Drawing.Size(120, 20);
             this.txtShortName.TabIndex = 2;
+            this.txtShortName.TextChanged += new System.EventHandler(FancyFeatures.TextChangedDisableParentsTextboxs);
             // 
             // txtName
             // 
@@ -214,6 +218,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(120, 20);
             this.txtName.TabIndex = 2;
+            this.txtName.TextChanged += new System.EventHandler(FancyFeatures.TextChangedDisableParentsTextboxs);
             // 
             // lblName
             // 
@@ -244,6 +249,7 @@
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(120, 20);
             this.txtCity.TabIndex = 2;
+            this.txtCity.TextChanged += new System.EventHandler(FancyFeatures.TextChangedDisableParentsTextboxs);
             // 
             // lblCountry
             // 
@@ -262,6 +268,7 @@
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(120, 20);
             this.txtCountry.TabIndex = 2;
+            this.txtCountry.TextChanged += new System.EventHandler(FancyFeatures.TextChangedDisableParentsTextboxs);
             // 
             // btnClear
             // 
@@ -366,8 +373,8 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.grpSearch.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
+            this.tableLayoutCreate.ResumeLayout(false);
+            this.tableLayoutCreate.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.airportBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -381,9 +388,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.GroupBox grpSearch;
         private System.Windows.Forms.GroupBox grpCreate;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutCreate;
         private System.Windows.Forms.Label lblID;
-        private System.Windows.Forms.TextBox txtID;
+        private NumericTextBox txtID;
         private System.Windows.Forms.Label lblShortName;
         private System.Windows.Forms.TextBox txtShortName;
         private System.Windows.Forms.TextBox txtName;
