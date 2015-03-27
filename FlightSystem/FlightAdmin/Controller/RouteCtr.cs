@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.ServiceModel;
 using FlightAdmin.Exceptions;
+using FlightAdmin.GUI;
 using FlightAdmin.MainService;
-using Flight = FlightAdmin.MainService.Flight;
 
 namespace FlightAdmin.Controller {
     public class RouteCtr {

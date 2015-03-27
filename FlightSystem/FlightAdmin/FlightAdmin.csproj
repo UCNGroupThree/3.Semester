@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="GUI\FlightTabExtensions\FlightHelper.cs" />
     <Compile Include="GUI\Helper\BGHelper.cs" />
+    <Compile Include="GUI\Helper\FancyFeatures.cs" />
     <Compile Include="GUI\Helper\NumericTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
