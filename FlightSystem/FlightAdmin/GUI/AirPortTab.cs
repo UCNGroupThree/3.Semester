@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlightAdmin.Controller;
@@ -14,11 +16,12 @@ using FlightAdmin.GUI.Helper;
 
 namespace FlightAdmin.GUI {
     public partial class AirPortTab : UserControl {
-        private AirportCtr ctr = new AirportCtr();
+        private readonly AirportCtr ctr = new AirportCtr();
 
         public AirPortTab() {
             InitializeComponent();
             SetEvents();
+
         }
 
         private void SetEvents() {
@@ -28,67 +31,11 @@ namespace FlightAdmin.GUI {
             }
         }
 
-        private void ChangeButtons(object sender, EventArgs e) {
-            TextBox txt = sender as TextBox;
-            bool empty = txt != null && txt.TextLength != 0;
-            btnClear.Enabled = empty;
-            btnSearch.Enabled = empty;
-            //TODO Default button
-        }
-
-        private void btnCreate_Click(object sender, EventArgs e) {
-            Airport airport = new Airport {
-                Name = "Test",
-                ShortName = "test",
-                City = "Test",
-                Country = "Test",
-                Latitude = 32432,
-                Longtitude = 324324,
-                Altitude = 432423,
-                TimeZone = "1",
-            };
-            Console.WriteLine("ROUTES");
-            Console.WriteLine(airport.Routes);
-            Console.WriteLine("ROUTES");
-            Console.ReadLine();
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e) {
-            try {
-                List<Airport> list = null;
-                if (!String.IsNullOrWhiteSpace(txtID.Text)) {
-                    int id = -1;
-                    try {
-                        id = txtID.IntValue;
-                    } catch (Exception) { 
-                        //Empty 
-                    }
-                    if (id != -1) {
-                        Airport airport = ctr.GetAirport(id);
-                        if (airport != null) {
-                            list = new List<Airport> { airport };
-                        }
-                    }
-                } 
-                else if (!String.IsNullOrWhiteSpace(txtShortName.Text)) {
-                    list = ctr.GetAirportsByShortName(txtShortName.Text.Trim());
-                }
-                else if (!String.IsNullOrWhiteSpace(txtName.Text)) {
-                    list = ctr.GetAirportsByName(txtName.Text.Trim());
-                }
-                else if (!String.IsNullOrWhiteSpace(txtCity.Text)) {
-                    list = ctr.GetAirportsByCity(txtCity.Text.Trim());
-                }
-                else if (!String.IsNullOrWhiteSpace(txtCountry.Text)) {
-                    list = ctr.GetAirportsByCountry(txtCountry.Text.Trim());
-                }
-                if (list != null && list.Count > 0) {
-                    UpdateDataGrid(list);
-                } else {
-                    MessageBox.Show(this, @"No airports found", @"Sorry");
-                }
-            } catch (ConnectionException ex) {
-                MessageBox.Show(this, ex.Message, @"ERROR");
+        private void SetDefaultButton(IButtonControl btnAccept, IButtonControl btnCancel) {
+            var f = FindForm();
+            if (f != null) {
+                f.AcceptButton = btnAccept;
+                f.CancelButton = btnCancel;
             }
         }
 
@@ -101,11 +48,106 @@ namespace FlightAdmin.GUI {
             }
         }
 
+        private void btnCreate_Click(object sender, EventArgs e) {
+            Airport airport = new Airport {
+                Name = "Test",
+                ShortName = "test",
+                City = "Test",
+                Country = "Test",
+                Latitude = 32432,
+                Longtitude = 324324,
+                Altitude = 43,
+                TimeZone = "1",
+            };
+            Console.WriteLine("ROUTES");
+            Console.WriteLine(airport.Routes);
+            Console.WriteLine("ROUTES");
+            Console.ReadLine();
+            txtID.Focus();
+        }
+
+        #region Search
+
+        private void DisableSearch(bool enable) {
+            foreach (var txt in tableLayoutCreate.Controls.OfType<TextBox>()) {
+                txt.Enabled = enable;
+                if (enable && txt.TextLength > 0) {
+                    txt.Focus();
+                }
+            }
+            btnClear.Enabled = enable;
+            btnSearch.Enabled = enable;
+        }
+        
+        private void ChangeButtons(object sender, EventArgs e) {
+            TextBox txt = sender as TextBox;
+            bool empty = txt != null && txt.TextLength == 0;
+            btnClear.Enabled = !empty;
+            btnSearch.Enabled = !empty;
+            if (!empty) {
+                SetDefaultButton(btnSearch, btnClear);
+            } else {
+                SetDefaultButton(btnCreate, null);
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e) {
+            //backgroundWorker1.DoWork += Search();
+            //Thread t = new Thread(new ThreadStart(Search));
+            //t.Start();
+            loadingImg.Visible = true;
+            DisableSearch(false);
+            backgroundWorker1.RunWorkerAsync();
+
+        }
+
         private void btnClear_Click(object sender, EventArgs e) {
             foreach (TextBox t in tableLayoutCreate.Controls.OfType<TextBox>()) {
                 t.Text = "";
             }
         }
 
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e) {
+            if (!String.IsNullOrWhiteSpace(txtID.Text)) {
+                int id = -1;
+                try {
+                    id = txtID.IntValue;
+                } catch (Exception) {
+                    //Empty 
+                }
+                if (id != -1) {
+                    Airport airport = ctr.GetAirport(id);
+                    if (airport != null) {
+                        e.Result = new List<Airport> { airport };
+                    }
+                }
+            } else if (!String.IsNullOrWhiteSpace(txtShortName.Text)) {
+                e.Result = ctr.GetAirportsByShortName(txtShortName.Text.Trim());
+            } else if (!String.IsNullOrWhiteSpace(txtName.Text)) {
+                e.Result = ctr.GetAirportsByName(txtName.Text.Trim());
+            } else if (!String.IsNullOrWhiteSpace(txtCity.Text)) {
+                e.Result = ctr.GetAirportsByCity(txtCity.Text.Trim());
+            } else if (!String.IsNullOrWhiteSpace(txtCountry.Text)) {
+                e.Result = ctr.GetAirportsByCountry(txtCountry.Text.Trim());
+            }
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+            loadingImg.Visible = false;
+            DisableSearch(true);
+            if (e.Error != null) {
+                MessageBox.Show(this, e.Error.Message, @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } else {
+                List<Airport> list = e.Result as List<Airport>;
+                if (list != null && list.Count > 0) {
+                    UpdateDataGrid(list);
+                } else {
+                    MessageBox.Show(this, @"No airports found", @"Sorry", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        #endregion
+        
     }
 }
