@@ -25,7 +25,6 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.loadingPanel = new System.Windows.Forms.Panel();
-            this.loadingPicture = new System.Windows.Forms.PictureBox();
             this.flightPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.selectionPanel = new System.Windows.Forms.Panel();
@@ -35,22 +34,23 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAddFlight = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblInterval = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.epFlights = new System.Windows.Forms.ErrorProvider(this.components);
+            this.loadingPicture = new System.Windows.Forms.PictureBox();
             this.txtInterval = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.loadingPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.loadingPicture)).BeginInit();
             this.flightPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.selectionPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epFlights)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadingPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // loadingPanel
@@ -61,15 +61,6 @@
             this.loadingPanel.Name = "loadingPanel";
             this.loadingPanel.Size = new System.Drawing.Size(537, 204);
             this.loadingPanel.TabIndex = 0;
-            // 
-            // loadingPicture
-            // 
-            this.loadingPicture.Image = global::FlightAdmin.Properties.Resources.image_836585;
-            this.loadingPicture.Location = new System.Drawing.Point(247, 63);
-            this.loadingPicture.Name = "loadingPicture";
-            this.loadingPicture.Size = new System.Drawing.Size(131, 126);
-            this.loadingPicture.TabIndex = 0;
-            this.loadingPicture.TabStop = false;
             // 
             // flightPanel
             // 
@@ -107,7 +98,7 @@
             this.selectionPanel.Controls.Add(this.label2);
             this.selectionPanel.Controls.Add(this.dateTimePicker1);
             this.selectionPanel.Controls.Add(this.label1);
-            this.selectionPanel.Controls.Add(this.button1);
+            this.selectionPanel.Controls.Add(this.btnAddFlight);
             this.selectionPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.selectionPanel.Location = new System.Drawing.Point(0, 0);
             this.selectionPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -169,15 +160,15 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "DepartureTime";
             // 
-            // button1
+            // btnAddFlight
             // 
-            this.button1.Location = new System.Drawing.Point(421, 14);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(21, 21);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "+";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnAddFlight.Location = new System.Drawing.Point(421, 14);
+            this.btnAddFlight.Name = "btnAddFlight";
+            this.btnAddFlight.Size = new System.Drawing.Size(21, 21);
+            this.btnAddFlight.TabIndex = 7;
+            this.btnAddFlight.Text = "+";
+            this.btnAddFlight.UseVisualStyleBackColor = true;
+            this.btnAddFlight.Click += new System.EventHandler(this.btnAddFlight_Click);
             // 
             // panel2
             // 
@@ -218,8 +209,9 @@
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(75, 23);
             this.btnCreate.TabIndex = 1;
-            this.btnCreate.Text = "Create";
+            this.btnCreate.Text = "Finish";
             this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // btnCancel
             // 
@@ -228,12 +220,22 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = "Back";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // epFlights
             // 
             this.epFlights.ContainerControl = this;
+            // 
+            // loadingPicture
+            // 
+            this.loadingPicture.Image = global::FlightAdmin.Properties.Resources.image_836585;
+            this.loadingPicture.Location = new System.Drawing.Point(247, 63);
+            this.loadingPicture.Name = "loadingPicture";
+            this.loadingPicture.Size = new System.Drawing.Size(131, 126);
+            this.loadingPicture.TabIndex = 0;
+            this.loadingPicture.TabStop = false;
             // 
             // txtInterval
             // 
@@ -257,7 +259,6 @@
             this.Size = new System.Drawing.Size(537, 204);
             this.Load += new System.EventHandler(this.CreateFlights_Load);
             this.loadingPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.loadingPicture)).EndInit();
             this.flightPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.selectionPanel.ResumeLayout(false);
@@ -266,6 +267,7 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.epFlights)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadingPicture)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -273,7 +275,6 @@
         #endregion
 
         private System.Windows.Forms.Panel loadingPanel;
-        private System.Windows.Forms.PictureBox loadingPicture;
         private System.Windows.Forms.Panel flightPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel selectionPanel;
@@ -283,7 +284,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAddFlight;
         private System.Windows.Forms.Panel panel2;
         private Helper.NumericTextBox txtInterval;
         private System.Windows.Forms.Label lblInterval;
@@ -291,5 +292,6 @@
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ErrorProvider epFlights;
+        private System.Windows.Forms.PictureBox loadingPicture;
     }
 }

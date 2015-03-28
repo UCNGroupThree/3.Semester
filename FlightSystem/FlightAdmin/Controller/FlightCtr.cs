@@ -9,11 +9,11 @@ namespace FlightAdmin.Controller {
 
         #region Create
 
-        public Flight CreateFlight(DateTime arrival, DateTime departure, Plane plane, decimal price) { //TODO Better Exception
+        public Flight CreateFlight(DateTime arrival, DateTime departure, Plane plane) { //TODO Better Exception
             Flight flight = null;
 
-            if (FlightValidation(arrival, departure, plane, price)) {
-                flight = new Flight {ArrivalTime = arrival, DepartureTime = departure, Plane = plane, Price = price};
+            if (FlightValidation(arrival, departure, plane)) {
+                flight = new Flight {ArrivalTime = arrival, DepartureTime = departure, Plane = plane};
 
                 try {
                     using (var client = new FlightServiceClient()) {
@@ -56,16 +56,15 @@ namespace FlightAdmin.Controller {
 
         #region Update
 
-        public Flight UpdateFlight(Flight flight, DateTime arrival, DateTime departure, Plane plane, decimal price) { //TODO Better Exception
+        public Flight UpdateFlight(Flight flight, DateTime arrival, DateTime departure, Plane plane) { //TODO Better Exception
             Flight retFlight = null;
 
-            if (FlightValidation(arrival, departure, plane, price)) {
+            if (FlightValidation(arrival, departure, plane)) {
                 using (var client = new FlightServiceClient()) {
                     try {
                         flight.ArrivalTime = arrival;
                         flight.DepartureTime = departure;
                         flight.Plane = plane;
-                        flight.Price = price;
 
                         retFlight = client.UpdateFlight(flight);
                     } catch (FaultException<OptimisticConcurrencyFault> concurrencyException) {
@@ -105,7 +104,7 @@ namespace FlightAdmin.Controller {
 
         #region Misc
 
-        private bool FlightValidation(DateTime arrival, DateTime departure, Plane plane, decimal price) {
+        private bool FlightValidation(DateTime arrival, DateTime departure, Plane plane) {
             var ret = (plane != null);
 
             return ret;

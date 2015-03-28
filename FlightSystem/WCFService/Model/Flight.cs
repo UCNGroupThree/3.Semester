@@ -4,12 +4,11 @@ using System.Runtime.Serialization;
 
 namespace WCFService.Model {
     [DataContract(IsReference = true)]
-    [KnownType(typeof (Plane))] //TODO Nick D Pedersen
+    [KnownType(typeof (Plane))] 
     public class Flight {
-        public Flight(DateTime departureTime, DateTime arrivalTime, decimal price, Plane plane) {
+        public Flight(DateTime departureTime, DateTime arrivalTime,Plane plane) {
             this.DepartureTime = departureTime;
             this.ArrivalTime = arrivalTime;
-            this.Price = price;
             this.Plane = plane;
         }
 
@@ -22,9 +21,6 @@ namespace WCFService.Model {
 
         [DataMember]
         public Plane Plane { get; set; }
-
-        [DataMember]
-        public decimal Price { get; set; }
 
         [DataMember]
         public DateTime ArrivalTime { get; set; }

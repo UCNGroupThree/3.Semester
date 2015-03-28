@@ -28,7 +28,7 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
         }
 
 
-        private void More() {
+        private void AddFlight() {
 
 
             try {
@@ -107,6 +107,8 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
             PopulateCmb();
         }
 
+        #region Load event
+
         private void PopulateCmb() {
             BeginInvoke((MethodInvoker)delegate {
                 foreach (var flightHelper in _flights) {
@@ -119,15 +121,31 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
             });
         }
 
+        
+
         private void CreateFlights_Load(object sender, EventArgs e) {
             BackgroundWorker bgWorker = new BackgroundWorker();
             bgWorker.DoWork += new DoWorkEventHandler((obj, ex) => LoadPlanes());
             bgWorker.RunWorkerAsync();
         }
 
-        private void button1_Click(object sender, EventArgs e) {
-            More();
+        #endregion
+
+        #region Button Events
+
+        private void btnAddFlight_Click(object sender, EventArgs e) {
+            AddFlight();
         }
+
+        private void btnCreate_Click(object sender, EventArgs e) {
+
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e) {
+
+        }
+
+        #endregion
 
 
     }

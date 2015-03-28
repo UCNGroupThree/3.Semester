@@ -86,6 +86,10 @@
     <Compile Include="Migrations\201503261903078_AirportInit.Designer.cs">
       <DependentUpon>201503261903078_AirportInit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503280640336_FlightRemovePrice.cs" />
+    <Compile Include="Migrations\201503280640336_FlightRemovePrice.Designer.cs">
+      <DependentUpon>201503280640336_FlightRemovePrice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\FlightDB.cs" />
@@ -144,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503261903078_AirportInit.resx">
       <DependentUpon>201503261903078_AirportInit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503280640336_FlightRemovePrice.resx">
+      <DependentUpon>201503280640336_FlightRemovePrice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
