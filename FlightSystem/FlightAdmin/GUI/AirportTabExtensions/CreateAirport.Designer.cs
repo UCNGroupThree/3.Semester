@@ -39,12 +39,12 @@
             this.btnCreate = new System.Windows.Forms.Button();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.txtCountry = new System.Windows.Forms.TextBox();
-            this.txtTimeZone = new System.Windows.Forms.TextBox();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnClose = new System.Windows.Forms.Button();
             this.txtLatitude = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.txtLongtitude = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.txtAltitude = new FlightAdmin.GUI.Helper.NumericTextBox();
+            this.txtTimeZone = new System.Windows.Forms.TextBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -162,6 +162,8 @@
             this.txtShortName.Name = "txtShortName";
             this.txtShortName.Size = new System.Drawing.Size(146, 20);
             this.txtShortName.TabIndex = 2;
+            this.txtShortName.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
+            this.txtShortName.Validating += new System.ComponentModel.CancelEventHandler(this.txtShortName_Validating);
             // 
             // lblLongtitude
             // 
@@ -201,6 +203,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(146, 20);
             this.txtName.TabIndex = 2;
+            this.txtName.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
             // 
             // btnCreate
             // 
@@ -222,6 +225,7 @@
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(146, 20);
             this.txtCity.TabIndex = 2;
+            this.txtCity.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
             // 
             // txtCountry
             // 
@@ -231,6 +235,43 @@
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(146, 20);
             this.txtCountry.TabIndex = 2;
+            this.txtCountry.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
+            // 
+            // txtLatitude
+            // 
+            this.txtLatitude.AllowSpace = false;
+            this.txtLatitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLatitude.Location = new System.Drawing.Point(108, 133);
+            this.txtLatitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtLatitude.Name = "txtLatitude";
+            this.txtLatitude.OnlyInt = false;
+            this.txtLatitude.Size = new System.Drawing.Size(146, 20);
+            this.txtLatitude.TabIndex = 4;
+            this.txtLatitude.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
+            // 
+            // txtLongtitude
+            // 
+            this.txtLongtitude.AllowSpace = false;
+            this.txtLongtitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLongtitude.Location = new System.Drawing.Point(108, 159);
+            this.txtLongtitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtLongtitude.Name = "txtLongtitude";
+            this.txtLongtitude.OnlyInt = false;
+            this.txtLongtitude.Size = new System.Drawing.Size(146, 20);
+            this.txtLongtitude.TabIndex = 4;
+            this.txtLongtitude.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
+            // 
+            // txtAltitude
+            // 
+            this.txtAltitude.AllowSpace = false;
+            this.txtAltitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAltitude.Location = new System.Drawing.Point(108, 185);
+            this.txtAltitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtAltitude.Name = "txtAltitude";
+            this.txtAltitude.OnlyInt = true;
+            this.txtAltitude.Size = new System.Drawing.Size(146, 20);
+            this.txtAltitude.TabIndex = 4;
+            this.txtAltitude.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
             // 
             // txtTimeZone
             // 
@@ -240,10 +281,7 @@
             this.txtTimeZone.Name = "txtTimeZone";
             this.txtTimeZone.Size = new System.Drawing.Size(146, 20);
             this.txtTimeZone.TabIndex = 2;
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
+            this.txtTimeZone.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
             // 
             // btnClose
             // 
@@ -256,38 +294,9 @@
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             // 
-            // txtLatitude
+            // errorProvider1
             // 
-            this.txtLatitude.AllowSpace = false;
-            this.txtLatitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLatitude.Location = new System.Drawing.Point(108, 133);
-            this.txtLatitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtLatitude.Name = "txtLatitude";
-            this.txtLatitude.OnlyInt = false;
-            this.txtLatitude.Size = new System.Drawing.Size(146, 20);
-            this.txtLatitude.TabIndex = 4;
-            // 
-            // txtLongtitude
-            // 
-            this.txtLongtitude.AllowSpace = false;
-            this.txtLongtitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLongtitude.Location = new System.Drawing.Point(108, 159);
-            this.txtLongtitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtLongtitude.Name = "txtLongtitude";
-            this.txtLongtitude.OnlyInt = false;
-            this.txtLongtitude.Size = new System.Drawing.Size(146, 20);
-            this.txtLongtitude.TabIndex = 4;
-            // 
-            // txtAltitude
-            // 
-            this.txtAltitude.AllowSpace = false;
-            this.txtAltitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAltitude.Location = new System.Drawing.Point(108, 185);
-            this.txtAltitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtAltitude.Name = "txtAltitude";
-            this.txtAltitude.OnlyInt = true;
-            this.txtAltitude.Size = new System.Drawing.Size(146, 20);
-            this.txtAltitude.TabIndex = 4;
+            this.errorProvider1.ContainerControl = this;
             // 
             // CreateAirport
             // 
