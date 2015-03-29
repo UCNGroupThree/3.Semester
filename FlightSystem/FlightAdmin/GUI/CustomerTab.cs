@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlightAdmin.Controller;
 using FlightAdmin.Exceptions;
+using FlightAdmin.GUI.Helper;
 using FlightAdmin.MainService;
 
 
@@ -21,8 +22,28 @@ namespace FlightAdmin.GUI {
             InitializeComponent();
         }
 
+
+        private void SetEvents()
+        {
+            foreach (TextBox t in tableLayoutPanel3.Controls.OfType<TextBox>())
+            {
+                t.TextChanged += FancyFeatures.TextChangedDisableParentsTextboxs;
+                
+            }
+        }
+
         private void btnClear_Click(object sender, EventArgs e) {
             ClearFields();
+        }
+
+        public void CreateCustomer() {
+
+           Postal postal = new Postal {
+               PostCode = Int32.Parse(txtZip.Text),
+               City = txtCity.Text
+               
+           };      
+            customerCtr.CreateUser(txtName.Text, txtAddress.Text, postal, txtPhone.Text, txtEmail.Text);        
         }
 
         public void ClearFields()
@@ -52,12 +73,16 @@ namespace FlightAdmin.GUI {
 
             txtName.Text = user.Name;
             txtAddress.Text = user.Address;
-            txtCity.Text = "";
-            txtZip.Text = "";
+            txtCity.Text = user.Postal.City;
+            txtZip.Text = Convert.ToString(user.Postal.PostCode);
             txtPhone.Text = user.PhoneNumber;
             txtEmail.Text = user.Email;
             txtID.Text = Convert.ToString(user.ID);
 
+        }
+
+        private void SearchUserByName() {
+            
         }
 
 
@@ -75,6 +100,26 @@ namespace FlightAdmin.GUI {
 
                 }
             });
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            CreateCustomer();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            SearchUser();
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
         }
     }
 }

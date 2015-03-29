@@ -167,6 +167,9 @@
     <EmbeddedResource Include="GUI\AirportTabExtensions\CreateAirport.resx">
       <DependentUpon>CreateAirport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\CustomerTab.resx">
+      <DependentUpon>CustomerTab.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Extensions\DataGridLoader.resx">
       <DependentUpon>DataGridLoader.cs</DependentUpon>
     </EmbeddedResource>
@@ -264,7 +267,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -299,7 +304,9 @@
   <ItemGroup>
     <None Include="Resources\image_836585.gif" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="GUI\CustomerTabExtension\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

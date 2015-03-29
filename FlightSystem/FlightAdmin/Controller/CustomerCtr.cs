@@ -17,6 +17,7 @@ namespace FlightAdmin.Controller
 
         public User CreateUser(string name, string address,Postal postal, string phoneNumber, string email) {
             
+
             User user = new User {
                 Name = name,
                 Address = address,
@@ -67,6 +68,7 @@ namespace FlightAdmin.Controller
             try {
                 using (UserServiceClient client = new UserServiceClient()) {
                     userList = client.GetUserByName(name);
+                 
                 }
             } catch (Exception ex) {
 

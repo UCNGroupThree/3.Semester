@@ -17,5 +17,10 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
         private void button1_Click(object sender, EventArgs e) {
             errorProvider1.SetError(txtShortName, "Test");
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

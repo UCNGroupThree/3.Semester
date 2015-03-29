@@ -6,7 +6,7 @@ using WCFService.Model;
 namespace WCFService.WCF.Interface {
 
     [ServiceContract]
-    interface IUserService { //TODO Nick - Lasse
+    interface IUserService { 
 
         [OperationContract]
         int AddUser(User user);
