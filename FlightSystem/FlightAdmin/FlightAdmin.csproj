@@ -59,6 +59,12 @@
     <Compile Include="Exceptions\DatabaseException.cs" />
     <Compile Include="Exceptions\NullException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
+    <Compile Include="GUI\AirportTabExtensions\CreateAirport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AirportTabExtensions\CreateAirport.Designer.cs">
+      <DependentUpon>CreateAirport.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Extensions\DataGridLoader.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -158,6 +164,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\AirportTabExtensions\CreateAirport.resx">
+      <DependentUpon>CreateAirport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Extensions\DataGridLoader.resx">
       <DependentUpon>DataGridLoader.cs</DependentUpon>
     </EmbeddedResource>
@@ -290,6 +299,7 @@
   <ItemGroup>
     <None Include="Resources\image_836585.gif" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
