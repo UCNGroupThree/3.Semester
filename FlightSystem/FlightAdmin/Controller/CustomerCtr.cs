@@ -61,6 +61,20 @@ namespace FlightAdmin.Controller
             return user;
         }
 
+        public List<User> GetUserByName(string name) {
+
+            List<User> userList;
+            try {
+                using (UserServiceClient client = new UserServiceClient()) {
+                    userList = client.GetUserByName(name);
+                }
+            } catch (Exception ex) {
+
+                throw new ConnectionException("WCF Service Exception", ex);
+            }
+            return userList;
+        } 
+
         #endregion
 
         #region Update

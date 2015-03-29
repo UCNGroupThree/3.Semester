@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 using WCFService.Model;
 
@@ -18,6 +19,9 @@ namespace WCFService.WCF.Interface {
 
         [OperationContract]
         User GetUser(int id);
+
+        [OperationContract]
+        List<User> GetUserByName(string name);
     } 
 
 }

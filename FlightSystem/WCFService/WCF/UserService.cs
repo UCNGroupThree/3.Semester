@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Linq;
 using System.ServiceModel;
@@ -46,6 +48,19 @@ namespace WCFService.WCF
 
         public User GetUser(int id) {
             return _db.Users.Where(usr => usr.ID == id).Include(usr => usr.Postal).SingleOrDefault();
+        }
+
+
+        public List<User> GetUserByName(string name) {
+            List<User> list = new List<User>();
+            try {
+                list = _db.Users.Where(x => x.Name.Contains(name)).ToList();
+            } catch (Exception ex) {
+
+                Console.WriteLine(ex.Message);
+
+            }
+            return list;
         }
     }
 }
