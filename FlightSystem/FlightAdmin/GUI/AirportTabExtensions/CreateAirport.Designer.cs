@@ -204,6 +204,7 @@
             this.txtName.Size = new System.Drawing.Size(146, 20);
             this.txtName.TabIndex = 2;
             this.txtName.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
+            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
             // 
             // btnCreate
             // 
@@ -226,6 +227,7 @@
             this.txtCity.Size = new System.Drawing.Size(146, 20);
             this.txtCity.TabIndex = 2;
             this.txtCity.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
+            this.txtCity.Validating += new System.ComponentModel.CancelEventHandler(this.txtCity_Validating);
             // 
             // txtCountry
             // 
@@ -236,6 +238,7 @@
             this.txtCountry.Size = new System.Drawing.Size(146, 20);
             this.txtCountry.TabIndex = 2;
             this.txtCountry.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
+            this.txtCountry.Validating += new System.ComponentModel.CancelEventHandler(this.txtCountry_Validating);
             // 
             // txtLatitude
             // 
@@ -248,6 +251,7 @@
             this.txtLatitude.Size = new System.Drawing.Size(146, 20);
             this.txtLatitude.TabIndex = 4;
             this.txtLatitude.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
+            this.txtLatitude.Validating += new System.ComponentModel.CancelEventHandler(this.txtLatitude_Validating);
             // 
             // txtLongtitude
             // 
@@ -260,6 +264,7 @@
             this.txtLongtitude.Size = new System.Drawing.Size(146, 20);
             this.txtLongtitude.TabIndex = 4;
             this.txtLongtitude.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
+            this.txtLongtitude.Validating += new System.ComponentModel.CancelEventHandler(this.txtLongtitude_Validating);
             // 
             // txtAltitude
             // 
@@ -272,6 +277,7 @@
             this.txtAltitude.Size = new System.Drawing.Size(146, 20);
             this.txtAltitude.TabIndex = 4;
             this.txtAltitude.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
+            this.txtAltitude.Validating += new System.ComponentModel.CancelEventHandler(this.txtAltitude_Validating);
             // 
             // txtTimeZone
             // 
@@ -282,6 +288,7 @@
             this.txtTimeZone.Size = new System.Drawing.Size(146, 20);
             this.txtTimeZone.TabIndex = 2;
             this.txtTimeZone.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
+            this.txtTimeZone.Validating += new System.ComponentModel.CancelEventHandler(this.txtTimeZone_Validating);
             // 
             // btnClose
             // 
