@@ -20,6 +20,7 @@ namespace FlightAdmin.GUI {
 
         public CustomerTab() {
             InitializeComponent();
+            SetEvents();
         }
 
 
@@ -27,9 +28,10 @@ namespace FlightAdmin.GUI {
         {
             foreach (TextBox t in tableLayoutPanel3.Controls.OfType<TextBox>())
             {
-                t.TextChanged += FancyFeatures.TextChangedDisableParentsTextboxs;
-                
-            }
+                if (t == txtID) {
+                    t.TextChanged += FancyFeatures.TextChangedDisableParentsTextboxs;
+                }
+            }           
         }
 
         private void btnClear_Click(object sender, EventArgs e) {
@@ -59,30 +61,12 @@ namespace FlightAdmin.GUI {
 
         }
 
-        private void SearchUser() {
-
-            User user;
-
-            try {
-                user = customerCtr.GetUser(Int32.Parse(txtID.Text));
-            } catch (NullException e) {
-
-                MessageBox.Show(e.Message);
-                return;
-            }
-
-            txtName.Text = user.Name;
-            txtAddress.Text = user.Address;
-            txtCity.Text = user.Postal.City;
-            txtZip.Text = Convert.ToString(user.Postal.PostCode);
-            txtPhone.Text = user.PhoneNumber;
-            txtEmail.Text = user.Email;
-            txtID.Text = Convert.ToString(user.ID);
-
-        }
 
         private void SearchUserByName() {
-            
+
+            List<User> userList = customerCtr.GetUserByName(txtName.Text);
+            UpdateDataGrid(userList);
+           
         }
 
 
@@ -105,21 +89,61 @@ namespace FlightAdmin.GUI {
         private void btnCreate_Click(object sender, EventArgs e)
         {
             CreateCustomer();
+            ClearFields();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            SearchUser();
+            //SearchUser();
+            backgroundWorker1.RunWorkerAsync();
+          //  SearchUserByName();
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
+            User user;
 
+            try
+            {
+                user = customerCtr.GetUser(Int32.Parse(txtID.Text));
+            }
+            catch (NullException ex)
+            {
+
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            if (user != null) {
+                txtName.Text = user.Name;
+                txtAddress.Text = user.Address;
+                txtCity.Text = user.Postal.City;
+                txtZip.Text = Convert.ToString(user.Postal.PostCode);
+                txtPhone.Text = user.PhoneNumber;
+                txtEmail.Text = user.Email;
+                txtID.Text = Convert.ToString(user.ID);
+                e.Result = new List<User> { user };
+
+            }
+           
+            //UpdateDataGrid(userList);
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
 
+            if (e.Error != null) {
+                MessageBox.Show(this, e.Error.Message, @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } else {
+                List<User> userList = e.Result as List<User>;
+                if (userList != null  && userList.Count > 0) {
+                    UpdateDataGrid(userList);
+                } else {
+                    MessageBox.Show(this, @"No Users found", @"Sorry", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+
         }
+
+     
     }
 }
