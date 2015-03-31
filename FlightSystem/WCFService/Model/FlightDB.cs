@@ -16,9 +16,6 @@ namespace WCFService.Model {
             base.OnModelCreating(modelBuilder);
             //Fix ForeignKey Between Route And Airport;
             modelBuilder.Entity<Route>().HasRequired(r => r.From).WithMany(a => a.Routes);
-            //Make Decimals right for coordinates
-            modelBuilder.Entity<Airport>().Property(a => a.Longtitude).HasPrecision(10, 6);
-            modelBuilder.Entity<Airport>().Property(a => a.Latitude).HasPrecision(10, 6);
         }
 
         public virtual DbSet<SeatReservation> SeatReservations { get; set; }

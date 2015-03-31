@@ -39,13 +39,13 @@ namespace WCFService.Model {
         public string Country { get; set; }
 
         [DataMember]
-        public decimal Latitude { get; set; }
+        public double Latitude { get; set; }
 
         [DataMember]
-        public decimal Longtitude { get; set; }
+        public double Longitude { get; set; }
 
         [DataMember]
-        public int Altitude { get; set; }
+        public double Altitude { get; set; }
 
         [DataMember]
         public string TimeZone { get; set; }

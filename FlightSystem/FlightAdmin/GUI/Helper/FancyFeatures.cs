@@ -33,14 +33,38 @@ namespace FlightAdmin.GUI.Helper {
             int length = txt.Text.Trim().Length;
             string errText = "";
             if (length == 0 && minLength > 0) {
-                errText = String.Format("{0} is requested!", objText);
+                errText = string.Format("{0} is requested!", objText);
             } else if (length < minLength && minLength > 0) {
-                errText = String.Format("The length of the {0} is to short, minimum is {1} chars!", objText, minLength);
+                errText = string.Format("The length of the {0} is to short, minimum is {1} chars!", objText, minLength);
             } else if (length > maxLength && maxLength > 0) {
-                errText = String.Format("The length of the {0} is to long, maximum is {1} chars!", objText, maxLength);
+                errText = string.Format("The length of the {0} is to long, maximum is {1} chars!", objText, maxLength);
             }
             errProvider.SetError(txt, errText);
 
+            return String.IsNullOrEmpty(errText);
+        }
+
+        public static bool IsTextBoxDoubleValid(TextBox txt, ErrorProvider errProvider, string objText, int minValue, int maxValue, bool emptyAllowed) {
+            string errText = "";
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            if (!emptyAllowed || (emptyAllowed && txt.TextLength > 0)) {
+                try {
+                    double value = double.Parse(txt.Text);
+                    if (value >= minValue && value <= maxValue) {
+                        //Just continue
+                    } else if (value < minValue) {
+                        errText = string.Format("The {0} is too big, minimum value is {1}", objText, minValue);
+                    } else if (value > maxValue) {
+                        errText = string.Format("The {0} is too big, maximum value is {1}", objText, maxValue);
+                    }
+                } catch (Exception ex) {
+                    if (ex is FormatException || ex is OverflowException) {
+                        errText = string.Format("The format of {0} isn't valid!", objText);
+                    }
+                }
+                errProvider.SetError(txt, errText);
+            }
+            
             return String.IsNullOrEmpty(errText);
         }
     }

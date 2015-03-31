@@ -65,6 +65,10 @@ namespace FlightAdmin.GUI.Helper {
             }
         }
 
+        public double DoubleValue() {
+            return double.Parse(Text);
+        }
+
         public bool AllowSpace {
             set {
                 this.allowSpace = value;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using System.Threading.Tasks;
 using FlightAdmin.Exceptions;
 using FlightAdmin.GUI;
 using FlightAdmin.MainService;
@@ -10,7 +11,7 @@ namespace FlightAdmin.Controller {
 
         #region Create / Update / Delete
 
-        public Airport CreateAirport(string name, string shortName, string city, string country, decimal latitude, decimal longtitude, int altitude, string timeZone) {
+        public Airport CreateAirport(string name, string shortName, string city, string country, double latitude, double longitude, double altitude, string timeZone) {
             Airport airport;
 
             try {
@@ -20,7 +21,7 @@ namespace FlightAdmin.Controller {
                     City = city,
                     Country = country,
                     Latitude = latitude,
-                    Longtitude = longtitude,
+                    Longitude = longitude,
                     Altitude = altitude,
                     TimeZone = timeZone //TODO ASD ENTITY SEARCH
                 };
@@ -29,6 +30,8 @@ namespace FlightAdmin.Controller {
                 }
             } catch (FaultException<DatabaseInsertFault> dbException) {
                 throw new DatabaseException(dbException.Message);
+            } catch (FaultException<AlreadyExistFault>) {
+                throw new AlreadyExistException();
             } catch (Exception ex) {
                 airport = null;
                 Console.WriteLine(@"CreateAirport Exception: " + ex);
@@ -39,14 +42,14 @@ namespace FlightAdmin.Controller {
             return airport;
         }
 
-        public Airport UpdateAirport(Airport airport, string name, string shortName, string city, string country, decimal latitude, decimal longtitude, int altitude, string timeZone) {
+        public Airport UpdateAirport(Airport airport, string name, string shortName, string city, string country, double latitude, double longitude, double altitude, string timeZone) {
             try {
                 airport.Name = name;
                 airport.ShortName = shortName;
                 airport.City = city;
                 airport.Country = country;
                 airport.Latitude = latitude;
-                airport.Longtitude = longtitude;
+                airport.Longitude = longitude;
                 airport.Altitude = altitude;
                 airport.TimeZone = timeZone;
                 using (AirportServiceClient client = new AirportServiceClient()) {
@@ -57,6 +60,8 @@ namespace FlightAdmin.Controller {
                 throw new NullException(ex.Message);
             } catch (FaultException<DatabaseUpdateFault> ex) {
                 throw new DatabaseException(ex.Message);
+            } catch (FaultException<AlreadyExistFault>) {
+                throw new AlreadyExistException();
             } catch (Exception ex) {
                 airport = null;
                 Console.WriteLine(@"UpdateAirport Exception: " + ex);
@@ -139,11 +144,11 @@ namespace FlightAdmin.Controller {
             return list;
         }
 
-        public List<Airport> GetAirportsByShortName(string shortName) {
+        public List<Airport> GetAirportsByShortName(string shortName, bool equalsTo) {
             List<Airport> list;
             try {
                 using (AirportServiceClient client = new AirportServiceClient()) {
-                    list = client.GetAirportsByShortName(shortName);
+                    list = client.GetAirportsByShortName(shortName, equalsTo);
                 }
             } catch (Exception ex) {
                 Console.WriteLine(@"GetAirportsByShortName Exception: " + ex);
@@ -151,7 +156,7 @@ namespace FlightAdmin.Controller {
             }
             return list;
         }
-
+        
         public List<string> GetCountries() {
             List<string> con;
 

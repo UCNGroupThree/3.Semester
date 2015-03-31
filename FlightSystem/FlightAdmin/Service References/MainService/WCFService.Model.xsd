@@ -14,13 +14,13 @@
   <xs:element name="Administrator" nillable="true" type="tns:Administrator" />
   <xs:complexType name="Airport">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Altitude" type="xs:int" />
+      <xs:element minOccurs="0" name="Altitude" type="xs:double" />
       <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Concurrency" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="Latitude" type="xs:decimal" />
-      <xs:element minOccurs="0" name="Longtitude" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Latitude" type="xs:double" />
+      <xs:element minOccurs="0" name="Longitude" type="xs:double" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Routes" nillable="true" type="tns:ArrayOfRoute" />
       <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />

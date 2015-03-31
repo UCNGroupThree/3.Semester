@@ -32,21 +32,22 @@
             this.lblCountry = new System.Windows.Forms.Label();
             this.lblLatitude = new System.Windows.Forms.Label();
             this.txtShortName = new System.Windows.Forms.TextBox();
-            this.lblLongtitude = new System.Windows.Forms.Label();
+            this.lblLongitude = new System.Windows.Forms.Label();
             this.lblAlittude = new System.Windows.Forms.Label();
             this.lblTimeZone = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnCreate = new System.Windows.Forms.Button();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.txtCountry = new System.Windows.Forms.TextBox();
-            this.txtLatitude = new FlightAdmin.GUI.Helper.NumericTextBox();
-            this.txtLongtitude = new FlightAdmin.GUI.Helper.NumericTextBox();
-            this.txtAltitude = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.txtTimeZone = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.txtLatitude = new FlightAdmin.GUI.Helper.NumericTextBox();
+            this.txtLongitude = new FlightAdmin.GUI.Helper.NumericTextBox();
+            this.txtAltitude = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -62,7 +63,7 @@
             this.tableLayoutPanel1.Controls.Add(this.lblCountry, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.lblLatitude, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.txtShortName, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblLongtitude, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.lblLongitude, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.lblAlittude, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.lblTimeZone, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.txtName, 2, 2);
@@ -70,7 +71,7 @@
             this.tableLayoutPanel1.Controls.Add(this.txtCity, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.txtCountry, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.txtLatitude, 2, 5);
-            this.tableLayoutPanel1.Controls.Add(this.txtLongtitude, 2, 6);
+            this.tableLayoutPanel1.Controls.Add(this.txtLongitude, 2, 6);
             this.tableLayoutPanel1.Controls.Add(this.txtAltitude, 2, 7);
             this.tableLayoutPanel1.Controls.Add(this.txtTimeZone, 2, 8);
             this.tableLayoutPanel1.Controls.Add(this.btnClose, 1, 9);
@@ -157,6 +158,7 @@
             // txtShortName
             // 
             this.txtShortName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtShortName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtShortName.Location = new System.Drawing.Point(108, 29);
             this.txtShortName.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtShortName.Name = "txtShortName";
@@ -165,15 +167,15 @@
             this.txtShortName.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
             this.txtShortName.Validating += new System.ComponentModel.CancelEventHandler(this.txtShortName_Validating);
             // 
-            // lblLongtitude
+            // lblLongitude
             // 
-            this.lblLongtitude.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblLongtitude.AutoSize = true;
-            this.lblLongtitude.Location = new System.Drawing.Point(18, 162);
-            this.lblLongtitude.Name = "lblLongtitude";
-            this.lblLongtitude.Size = new System.Drawing.Size(57, 13);
-            this.lblLongtitude.TabIndex = 1;
-            this.lblLongtitude.Text = "Longtitude";
+            this.lblLongitude.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblLongitude.AutoSize = true;
+            this.lblLongitude.Location = new System.Drawing.Point(18, 162);
+            this.lblLongitude.Name = "lblLongitude";
+            this.lblLongitude.Size = new System.Drawing.Size(54, 13);
+            this.lblLongitude.TabIndex = 1;
+            this.lblLongitude.Text = "Longitude";
             // 
             // lblAlittude
             // 
@@ -240,45 +242,6 @@
             this.txtCountry.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
             this.txtCountry.Validating += new System.ComponentModel.CancelEventHandler(this.txtCountry_Validating);
             // 
-            // txtLatitude
-            // 
-            this.txtLatitude.AllowSpace = false;
-            this.txtLatitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLatitude.Location = new System.Drawing.Point(108, 133);
-            this.txtLatitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtLatitude.Name = "txtLatitude";
-            this.txtLatitude.OnlyInt = false;
-            this.txtLatitude.Size = new System.Drawing.Size(146, 20);
-            this.txtLatitude.TabIndex = 4;
-            this.txtLatitude.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
-            this.txtLatitude.Validating += new System.ComponentModel.CancelEventHandler(this.txtLatitude_Validating);
-            // 
-            // txtLongtitude
-            // 
-            this.txtLongtitude.AllowSpace = false;
-            this.txtLongtitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLongtitude.Location = new System.Drawing.Point(108, 159);
-            this.txtLongtitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtLongtitude.Name = "txtLongtitude";
-            this.txtLongtitude.OnlyInt = false;
-            this.txtLongtitude.Size = new System.Drawing.Size(146, 20);
-            this.txtLongtitude.TabIndex = 4;
-            this.txtLongtitude.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
-            this.txtLongtitude.Validating += new System.ComponentModel.CancelEventHandler(this.txtLongtitude_Validating);
-            // 
-            // txtAltitude
-            // 
-            this.txtAltitude.AllowSpace = false;
-            this.txtAltitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAltitude.Location = new System.Drawing.Point(108, 185);
-            this.txtAltitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtAltitude.Name = "txtAltitude";
-            this.txtAltitude.OnlyInt = true;
-            this.txtAltitude.Size = new System.Drawing.Size(146, 20);
-            this.txtAltitude.TabIndex = 4;
-            this.txtAltitude.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
-            this.txtAltitude.Validating += new System.ComponentModel.CancelEventHandler(this.txtAltitude_Validating);
-            // 
             // txtTimeZone
             // 
             this.txtTimeZone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -301,9 +264,54 @@
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             // 
-            // errorProvider1
+            // errProvider
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.errProvider.ContainerControl = this;
+            // 
+            // bgWorker
+            // 
+            this.bgWorker.WorkerSupportsCancellation = true;
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
+            // 
+            // txtLatitude
+            // 
+            this.txtLatitude.AllowSpace = false;
+            this.txtLatitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLatitude.Location = new System.Drawing.Point(108, 133);
+            this.txtLatitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtLatitude.Name = "txtLatitude";
+            this.txtLatitude.OnlyInt = false;
+            this.txtLatitude.Size = new System.Drawing.Size(146, 20);
+            this.txtLatitude.TabIndex = 2;
+            this.txtLatitude.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
+            this.txtLatitude.Validating += new System.ComponentModel.CancelEventHandler(this.txtLatitude_Validating);
+            // 
+            // txtLongitude
+            // 
+            this.txtLongitude.AllowSpace = false;
+            this.txtLongitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLongitude.Location = new System.Drawing.Point(108, 159);
+            this.txtLongitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtLongitude.Name = "txtLongitude";
+            this.txtLongitude.OnlyInt = false;
+            this.txtLongitude.Size = new System.Drawing.Size(146, 20);
+            this.txtLongitude.TabIndex = 2;
+            this.txtLongitude.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
+            this.txtLongitude.Validating += new System.ComponentModel.CancelEventHandler(this.txtLongitude_Validating);
+            // 
+            // txtAltitude
+            // 
+            this.txtAltitude.AllowSpace = false;
+            this.txtAltitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAltitude.Location = new System.Drawing.Point(108, 185);
+            this.txtAltitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtAltitude.Name = "txtAltitude";
+            this.txtAltitude.OnlyInt = false;
+            this.txtAltitude.Size = new System.Drawing.Size(146, 20);
+            this.txtAltitude.TabIndex = 2;
+            this.txtAltitude.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
+            this.txtAltitude.Validating += new System.ComponentModel.CancelEventHandler(this.txtAltitude_Validating);
             // 
             // CreateAirport
             // 
@@ -321,7 +329,7 @@
             this.Text = "Create Airport";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -336,18 +344,19 @@
         private System.Windows.Forms.Label lblCountry;
         private System.Windows.Forms.Label lblLatitude;
         private System.Windows.Forms.TextBox txtShortName;
-        private System.Windows.Forms.Label lblLongtitude;
+        private System.Windows.Forms.Label lblLongitude;
         private System.Windows.Forms.Label lblAlittude;
         private System.Windows.Forms.Label lblTimeZone;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Button btnCreate;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errProvider;
         private System.Windows.Forms.TextBox txtCity;
         private System.Windows.Forms.TextBox txtCountry;
         private Helper.NumericTextBox txtLatitude;
-        private Helper.NumericTextBox txtLongtitude;
+        private Helper.NumericTextBox txtLongitude;
         private Helper.NumericTextBox txtAltitude;
         private System.Windows.Forms.TextBox txtTimeZone;
         private System.Windows.Forms.Button btnClose;
+        private System.ComponentModel.BackgroundWorker bgWorker;
     }
 }

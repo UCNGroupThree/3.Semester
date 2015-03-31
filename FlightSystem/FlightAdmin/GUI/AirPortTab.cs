@@ -110,7 +110,7 @@ namespace FlightAdmin.GUI {
                     }
                 }
             } else if (!String.IsNullOrWhiteSpace(txtShortName.Text)) {
-                e.Result = ctr.GetAirportsByShortName(txtShortName.Text.Trim());
+                e.Result = ctr.GetAirportsByShortName(txtShortName.Text.Trim(), false);
             } else if (!String.IsNullOrWhiteSpace(txtName.Text)) {
                 e.Result = ctr.GetAirportsByName(txtName.Text.Trim());
             } else if (!String.IsNullOrWhiteSpace(txtCity.Text)) {

@@ -19,7 +19,7 @@ namespace WCFService.WCF {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
             if (db.Airports.Any(r => r.ShortName.Equals(airport.ShortName))) {
-                throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault { Description = "The new shortName allready used in database" });
+                throw new FaultException<AlreadyExistFault>(new AlreadyExistFault());
             }
             try {
                 db.Airports.Add(airport);
@@ -36,8 +36,8 @@ namespace WCFService.WCF {
             if (airport == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
-            if (db.Airports.Any(r => !r.Equals(airport) && r.ShortName.Equals(airport.ShortName))) {
-                throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault { Description = "The new shortName allready used in database" });
+            if (db.Airports.Any(a => a.ID != airport.ID && a.ShortName.Equals(airport.ShortName))) {
+                throw new FaultException<AlreadyExistFault>(new AlreadyExistFault());
             }
             try {
                 db.Airports.Attach(airport);
@@ -107,11 +107,17 @@ namespace WCFService.WCF {
             return ret;
         }
 
-        public List<Airport> GetAirportsByShortName(string shortName) {
+        public List<Airport> GetAirportsByShortName(string shortName, bool equalsTo) {
             List<Airport> ret;
             try {
                 //db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s); //TODO DEBUG EF
-                ret = db.Airports.Where(a => a.ShortName.Contains(shortName)).ToList();
+                if (equalsTo) {
+                    ret =
+                        db.Airports.Where(a => a.ShortName.Equals(shortName, StringComparison.OrdinalIgnoreCase))
+                            .ToList();
+                } else {
+                    ret = db.Airports.Where(a => a.ShortName.Contains(shortName)).ToList();
+                }
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
                 ret = new List<Airport>();

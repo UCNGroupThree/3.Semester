@@ -156,6 +156,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="shortName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="equalsTo" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

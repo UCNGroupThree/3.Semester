@@ -90,6 +90,14 @@
     <Compile Include="Migrations\201503280640336_FlightRemovePrice.Designer.cs">
       <DependentUpon>201503280640336_FlightRemovePrice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503310526354_AirportLong-Lati-Alti-Fix.cs" />
+    <Compile Include="Migrations\201503310526354_AirportLong-Lati-Alti-Fix.Designer.cs">
+      <DependentUpon>201503310526354_AirportLong-Lati-Alti-Fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503310530045_Airport-LongitudeNameFix.cs" />
+    <Compile Include="Migrations\201503310530045_Airport-LongitudeNameFix.Designer.cs">
+      <DependentUpon>201503310530045_Airport-LongitudeNameFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\FlightDB.cs" />
@@ -151,6 +159,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503280640336_FlightRemovePrice.resx">
       <DependentUpon>201503280640336_FlightRemovePrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503310526354_AirportLong-Lati-Alti-Fix.resx">
+      <DependentUpon>201503310526354_AirportLong-Lati-Alti-Fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503310530045_Airport-LongitudeNameFix.resx">
+      <DependentUpon>201503310530045_Airport-LongitudeNameFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

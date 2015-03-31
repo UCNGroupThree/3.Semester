@@ -10,11 +10,13 @@ namespace WCFService.WCF.Interface {
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]
         [FaultContract(typeof(DatabaseInsertFault))]
+        [FaultContract(typeof(AlreadyExistFault))]
         int AddAirport(Airport airport);
 
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]
         [FaultContract(typeof(DatabaseUpdateFault))]
+        [FaultContract(typeof(AlreadyExistFault))]
         Airport UpdateAirport(Airport airport);
 
         [OperationContract]
@@ -35,7 +37,7 @@ namespace WCFService.WCF.Interface {
         List<Airport> GetAirportsByName(string name);
 
         [OperationContract]
-        List<Airport> GetAirportsByShortName(string shortName);
+        List<Airport> GetAirportsByShortName(string shortName, bool equalsTo);
 
         [OperationContract]
         List<string> GetCountries();
