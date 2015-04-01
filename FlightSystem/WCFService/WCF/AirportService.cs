@@ -33,14 +33,6 @@ namespace WCFService.WCF {
         }
 
         public Airport UpdateAirport(Airport airport) {
-            Debug.WriteLine("UpdateAirport");
-            Debug.WriteLine(airport.TimeZone);
-            Airport air = new Airport();
-            air.Name = airport.Name;
-            air.TimeZone = airport.TimeZone;
-            Debug.WriteLine(air.TimeZone);
-            Debug.WriteLine("UpdateAirport");
-            return air;
             if (airport == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
