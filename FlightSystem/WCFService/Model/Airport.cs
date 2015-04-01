@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 using System.Runtime.Serialization;
 
 namespace WCFService.Model {
 
     [DataContract(IsReference = true)]
     [KnownType(typeof (List<Route>))]
-    [KnownType(typeof (TimeZone))]
+    [KnownType(typeof (TimeZoneInfo))]
     public class Airport {
 
         public Airport() {
@@ -48,7 +49,9 @@ namespace WCFService.Model {
         public double Altitude { get; set; }
 
         [DataMember]
-        public string TimeZone { get; set; }
+        [Required]
+        [Column (name: "TimeZone")]
+        public string TimeZoneId { get; set; }
 
         [DataMember]
         public List<Route> Routes { get; set; }
@@ -81,6 +84,11 @@ namespace WCFService.Model {
             }
 
             return ret;
+        }
+
+        public TimeZoneInfo TimeZone {
+            get { return TimeZoneInfo.FindSystemTimeZoneById(TimeZoneId); }
+            set { TimeZoneId = value.Id; }
         }
     }
 }

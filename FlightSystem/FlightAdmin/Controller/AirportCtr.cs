@@ -11,7 +11,7 @@ namespace FlightAdmin.Controller {
 
         #region Create / Update / Delete
 
-        public Airport CreateAirport(string name, string shortName, string city, string country, double latitude, double longitude, double altitude, string timeZone) {
+        public Airport CreateAirport(string name, string shortName, string city, string country, double latitude, double longitude, double altitude, TimeZoneInfo timeZone) {
             Airport airport;
 
             try {
@@ -42,7 +42,7 @@ namespace FlightAdmin.Controller {
             return airport;
         }
 
-        public Airport UpdateAirport(Airport airport, string name, string shortName, string city, string country, double latitude, double longitude, double altitude, string timeZone) {
+        public Airport UpdateAirport(Airport airport, string name, string shortName, string city, string country, double latitude, double longitude, double altitude, TimeZoneInfo timeZone) {
             try {
                 airport.Name = name;
                 airport.ShortName = shortName;

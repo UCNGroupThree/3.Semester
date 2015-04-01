@@ -17,15 +17,20 @@ using FlightAdmin.MainService;
 namespace FlightAdmin.GUI.AirportTabExtensions {
     public partial class CreateAirport : Form {
         private readonly AirportCtr ctr = new AirportCtr();
-        private string nextShortName = null;
+        private string _nextShortName = null; //used by backgroundWorker
 
         public CreateAirport() {
             InitializeComponent();
             SetEvents();
+            //TODO TimezoneInfo!
+            //foreach (var v in TimeZoneInfo.GetSystemTimeZones()) {
+                //Console.WriteLine("{0} - #{1} - {2}",v, v.Id, v.StandardName);
+                
+            //}
         }
 
         private void SetEvents() {
-            txtShortName.TextChanged += (sender, args) => nextShortName = null;
+            txtShortName.TextChanged += (sender, args) => _nextShortName = null;
         }
 
 
@@ -71,7 +76,7 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
 
         private void txtShortName_Validating(object sender, CancelEventArgs e) {
             if (IsShortNameValid() && !string.IsNullOrWhiteSpace(txtShortName.Text)) {
-                nextShortName = txtShortName.Text.Trim();
+                _nextShortName = txtShortName.Text.Trim();
                 if (!bgWorker.IsBusy) {
                     bgWorker.RunWorkerAsync();
                 }
@@ -150,8 +155,8 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
 
         private void bgWorker_DoWork(object sender, DoWorkEventArgs e) {
             string exists = null;
-            while (nextShortName != null && !bgWorker.CancellationPending) {
-                string search = nextShortName;
+            while (_nextShortName != null && !bgWorker.CancellationPending) {
+                string search = _nextShortName;
                 List<Airport> list = ctr.GetAirportsByShortName(search, true);
 
                 if (list != null && list.Any()) {
@@ -160,9 +165,9 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
                     exists = null;
                 }
                 //Console.WriteLine("Exits: " + search + ": " + exists);
-                //Console.WriteLine("next: " + nextShortName);
-                if (search.Equals(nextShortName)) {
-                    nextShortName = null;
+                //Console.WriteLine("next: " + _nextShortName);
+                if (search.Equals(_nextShortName)) {
+                    _nextShortName = null;
                 }
                 //Thread.Sleep(3000);
             }
