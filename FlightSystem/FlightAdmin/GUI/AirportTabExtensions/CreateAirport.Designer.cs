@@ -39,13 +39,13 @@
             this.btnCreate = new System.Windows.Forms.Button();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.txtCountry = new System.Windows.Forms.TextBox();
-            this.txtTimeZone = new System.Windows.Forms.TextBox();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.errProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.txtLatitude = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.txtLongitude = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.txtAltitude = new FlightAdmin.GUI.Helper.NumericTextBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.errProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.cmbTimeZone = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errProvider)).BeginInit();
             this.SuspendLayout();
@@ -73,8 +73,8 @@
             this.tableLayoutPanel1.Controls.Add(this.txtLatitude, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.txtLongitude, 2, 6);
             this.tableLayoutPanel1.Controls.Add(this.txtAltitude, 2, 7);
-            this.tableLayoutPanel1.Controls.Add(this.txtTimeZone, 2, 8);
             this.tableLayoutPanel1.Controls.Add(this.btnClose, 1, 9);
+            this.tableLayoutPanel1.Controls.Add(this.cmbTimeZone, 2, 8);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -191,7 +191,7 @@
             // 
             this.lblTimeZone.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblTimeZone.AutoSize = true;
-            this.lblTimeZone.Location = new System.Drawing.Point(18, 214);
+            this.lblTimeZone.Location = new System.Drawing.Point(18, 215);
             this.lblTimeZone.Name = "lblTimeZone";
             this.lblTimeZone.Size = new System.Drawing.Size(55, 13);
             this.lblTimeZone.TabIndex = 1;
@@ -211,7 +211,7 @@
             // btnCreate
             // 
             this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreate.Location = new System.Drawing.Point(179, 242);
+            this.btnCreate.Location = new System.Drawing.Point(179, 243);
             this.btnCreate.Margin = new System.Windows.Forms.Padding(3, 8, 20, 3);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(75, 23);
@@ -241,38 +241,6 @@
             this.txtCountry.TabIndex = 2;
             this.txtCountry.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
             this.txtCountry.Validating += new System.ComponentModel.CancelEventHandler(this.txtCountry_Validating);
-            // 
-            // txtTimeZone
-            // 
-            this.txtTimeZone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTimeZone.Location = new System.Drawing.Point(108, 211);
-            this.txtTimeZone.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtTimeZone.Name = "txtTimeZone";
-            this.txtTimeZone.Size = new System.Drawing.Size(146, 20);
-            this.txtTimeZone.TabIndex = 2;
-            this.txtTimeZone.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
-            this.txtTimeZone.Validating += new System.ComponentModel.CancelEventHandler(this.txtTimeZone_Validating);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(18, 242);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 8, 20, 3);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(67, 23);
-            this.btnClose.TabIndex = 3;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            // 
-            // errProvider
-            // 
-            this.errProvider.ContainerControl = this;
-            // 
-            // bgWorker
-            // 
-            this.bgWorker.WorkerSupportsCancellation = true;
-            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
-            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
             // 
             // txtLatitude
             // 
@@ -312,6 +280,37 @@
             this.txtAltitude.TabIndex = 2;
             this.txtAltitude.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
             this.txtAltitude.Validating += new System.ComponentModel.CancelEventHandler(this.txtAltitude_Validating);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.Location = new System.Drawing.Point(18, 243);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 8, 20, 3);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(67, 23);
+            this.btnClose.TabIndex = 3;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            // 
+            // errProvider
+            // 
+            this.errProvider.ContainerControl = this;
+            // 
+            // bgWorker
+            // 
+            this.bgWorker.WorkerSupportsCancellation = true;
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
+            // 
+            // cmbTimeZone
+            // 
+            this.cmbTimeZone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbTimeZone.FormattingEnabled = true;
+            this.cmbTimeZone.Location = new System.Drawing.Point(108, 211);
+            this.cmbTimeZone.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.cmbTimeZone.Name = "cmbTimeZone";
+            this.cmbTimeZone.Size = new System.Drawing.Size(146, 21);
+            this.cmbTimeZone.TabIndex = 2;
             // 
             // CreateAirport
             // 
@@ -355,8 +354,8 @@
         private Helper.NumericTextBox txtLatitude;
         private Helper.NumericTextBox txtLongitude;
         private Helper.NumericTextBox txtAltitude;
-        private System.Windows.Forms.TextBox txtTimeZone;
         private System.Windows.Forms.Button btnClose;
         private System.ComponentModel.BackgroundWorker bgWorker;
+        private System.Windows.Forms.ComboBox cmbTimeZone;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -19,16 +20,18 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
         private readonly AirportCtr ctr = new AirportCtr();
         private string _nextShortName = null; //used by backgroundWorker
 
+
         public CreateAirport() {
             InitializeComponent();
             SetEvents();
-            //TODO TimezoneInfo!
-            //foreach (var v in TimeZoneInfo.GetSystemTimeZones()) {
-                //Console.WriteLine("{0} - #{1} - {2}",v, v.Id, v.StandardName);
-                
-            //}
+            InitializeTimeZones();
         }
 
+        private void InitializeTimeZones() {
+            cmbTimeZone.DataSource = TimeZoneInfo.GetSystemTimeZones();
+            cmbTimeZone.SelectedItem = TimeZoneInfo.Local;
+        }
+        
         private void SetEvents() {
             txtShortName.TextChanged += (sender, args) => _nextShortName = null;
         }
@@ -58,7 +61,7 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
         }
 
         private bool IsLongitudeValid() {
-            return FancyFeatures.IsTextBoxDoubleValid(txtLongitude, errProvider, lblLongitude.Text, -90, 90, false);
+            return FancyFeatures.IsTextBoxDoubleValid(txtLongitude, errProvider, lblLongitude.Text, -180, 180, false);
         }
 
         private bool IsAltitudeValid() {
@@ -105,10 +108,6 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
 
         private void txtAltitude_Validating(object sender, CancelEventArgs e) {
             IsAltitudeValid();
-        }
-
-        private void txtTimeZone_Validating(object sender, CancelEventArgs e) {
-            IsTimeZoneValid();
         }
 
         #endregion
