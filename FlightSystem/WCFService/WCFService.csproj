@@ -121,6 +121,7 @@
     <Compile Include="WCF\Dijkstra.cs" />
     <Compile Include="WCF\Faults\AlreadyExistFault.cs" />
     <Compile Include="WCF\Faults\DatabaseDeleteFault.cs" />
+    <Compile Include="WCF\Faults\TimeZoneFault.cs" />
     <Compile Include="WCF\Faults\DatabaseInsertFault.cs" />
     <Compile Include="WCF\Faults\DatabaseUpdateFault.cs" />
     <Compile Include="WCF\Faults\NullPointerFault.cs" />

@@ -40,8 +40,7 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
         #region Validating methods
 
         private bool IsShortNameValid() {
-            bool valid = FancyFeatures.IsTextBoxValid(txtShortName, errProvider, lblShortName.Text, 0, 3);
-            return valid;
+            return FancyFeatures.IsTextBoxValid(txtShortName, errProvider, lblShortName.Text, 0, 3);
         }
 
         private bool IsNameValid() {
@@ -69,10 +68,33 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
         }
 
         private bool IsTimeZoneValid() {
-            //TODO
-            return true;
-        }
+            return (cmbTimeZone.SelectedItem is TimeZoneInfo);
+        } 
 
+        private bool IsFormValid() {
+            bool valid = false;
+            if (!IsNameValid()) {
+                txtName.Focus();
+            } else if (!IsShortNameValid()) {
+                txtShortName.Focus();
+            } else if (!IsCityValid()) {
+                txtCity.Focus();
+            } else if (!IsCountryValid()) {
+                txtCountry.Focus();
+            } else if (!IsLatitudeValid()) {
+                txtLatitude.Focus();
+            } else if (!IsLongitudeValid()) {
+                txtLongitude.Focus();
+            } else if (!IsAltitudeValid()) {
+                txtAltitude.Focus();
+            } else if (!IsTimeZoneValid()) {
+                cmbTimeZone.Focus();
+            } else {
+                valid = true;
+            }
+            return valid;
+        }
+        
         #endregion
 
         #region Validating Events
@@ -113,12 +135,8 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
         #endregion
 
         #region Other Events
-
-        private void txtShortName_TextChanged(object sender, EventArgs e) {
-
-        }
-
-        private void txtFirstLetterUpper_TextChanged(object sender, EventArgs eventArgs) {
+        
+        private void txtFirstLetterUpper_TextChanged(object sender, EventArgs eventArgs) { //TODO Fancy Feature!
             TextBox txt = sender as TextBox;
             string str = txt.Text;
 
@@ -129,13 +147,31 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
             txt.Text = str.Substring(0, 1).ToUpper(CultureInfo.CurrentCulture) + str.Substring(1);
         }
 
-        private void button1_Click(object sender, EventArgs e) {
-            //Console.WriteLine("validating: " + FancyFeatures.IsTextBoxValid(txtShortName, errorProvider1, 1, 1));
-            //errorProvider1.SetError(txtShortName, "Test");
+        private void btnCreate_Click(object sender, EventArgs e) {
             if (bgWorker.IsBusy) {
                 bgWorker.CancelAsync();
             }
+            if (IsFormValid()) {
+                try {
+                    string name = txtName.Text.Trim();
+                    string shortName = txtShortName.Text.Trim();
+                    string city = txtCity.Text.Trim();
+                    string country = txtCountry.Text.Trim();
+                    double latitude = txtLatitude.DoubleValue();
+                    double longitude = txtLongitude.DoubleValue();
+                    double altitude = txtAltitude.DoubleValue();
+
+                    TimeZoneInfo timeZone = cmbTimeZone.SelectedItem as TimeZoneInfo;
+                    ctr.CreateAirport(name, shortName, city, country, latitude, longitude, altitude, timeZone);
+                } catch (Exception ex) {
+                    Console.WriteLine("Create Exception!");
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex);
+                    //throw;
+                }
+            }
         }
+        
 
         private void txtRemoveErrorOn_TextChanged(object sender, EventArgs e) {
             TextBox txt = sender as TextBox;

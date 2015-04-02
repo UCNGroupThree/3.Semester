@@ -39,13 +39,13 @@
             this.btnCreate = new System.Windows.Forms.Button();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.txtCountry = new System.Windows.Forms.TextBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.cmbTimeZone = new System.Windows.Forms.ComboBox();
+            this.errProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.txtLatitude = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.txtLongitude = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.txtAltitude = new FlightAdmin.GUI.Helper.NumericTextBox();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.errProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.bgWorker = new System.ComponentModel.BackgroundWorker();
-            this.cmbTimeZone = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errProvider)).BeginInit();
             this.SuspendLayout();
@@ -218,7 +218,7 @@
             this.btnCreate.TabIndex = 3;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = true;
-            this.btnCreate.Click += new System.EventHandler(this.button1_Click);
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // txtCity
             // 
@@ -241,6 +241,38 @@
             this.txtCountry.TabIndex = 2;
             this.txtCountry.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
             this.txtCountry.Validating += new System.ComponentModel.CancelEventHandler(this.txtCountry_Validating);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(18, 243);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 8, 20, 3);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(67, 23);
+            this.btnClose.TabIndex = 3;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            // 
+            // cmbTimeZone
+            // 
+            this.cmbTimeZone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbTimeZone.FormattingEnabled = true;
+            this.cmbTimeZone.Location = new System.Drawing.Point(108, 211);
+            this.cmbTimeZone.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.cmbTimeZone.Name = "cmbTimeZone";
+            this.cmbTimeZone.Size = new System.Drawing.Size(146, 21);
+            this.cmbTimeZone.TabIndex = 2;
+            // 
+            // errProvider
+            // 
+            this.errProvider.ContainerControl = this;
+            // 
+            // bgWorker
+            // 
+            this.bgWorker.WorkerSupportsCancellation = true;
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
             // 
             // txtLatitude
             // 
@@ -281,41 +313,12 @@
             this.txtAltitude.TextChanged += new System.EventHandler(this.txtRemoveErrorOn_TextChanged);
             this.txtAltitude.Validating += new System.ComponentModel.CancelEventHandler(this.txtAltitude_Validating);
             // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(18, 243);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 8, 20, 3);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(67, 23);
-            this.btnClose.TabIndex = 3;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            // 
-            // errProvider
-            // 
-            this.errProvider.ContainerControl = this;
-            // 
-            // bgWorker
-            // 
-            this.bgWorker.WorkerSupportsCancellation = true;
-            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
-            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
-            // 
-            // cmbTimeZone
-            // 
-            this.cmbTimeZone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbTimeZone.FormattingEnabled = true;
-            this.cmbTimeZone.Location = new System.Drawing.Point(108, 211);
-            this.cmbTimeZone.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.cmbTimeZone.Name = "cmbTimeZone";
-            this.cmbTimeZone.Size = new System.Drawing.Size(146, 21);
-            this.cmbTimeZone.TabIndex = 2;
-            // 
             // CreateAirport
             // 
+            this.AcceptButton = this.btnCreate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(284, 292);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;

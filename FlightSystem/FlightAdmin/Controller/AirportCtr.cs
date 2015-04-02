@@ -11,6 +11,10 @@ namespace FlightAdmin.Controller {
 
         #region Create / Update / Delete
 
+        /// <exception cref="DatabaseException" />
+        /// <exception cref="AlreadyExistException" />
+        /// <exception cref="TimeZoneException" />
+        /// <exception cref="Exception" />
         public Airport CreateAirport(string name, string shortName, string city, string country, double latitude, double longitude, double altitude, TimeZoneInfo timeZone) {
             Airport airport;
 
@@ -29,9 +33,11 @@ namespace FlightAdmin.Controller {
                     airport.ID = client.AddAirport(airport);
                 }
             } catch (FaultException<DatabaseInsertFault> dbException) {
-                throw new DatabaseException(dbException.Message);
+                throw new DatabaseException(dbException.Detail.Message);
             } catch (FaultException<AlreadyExistFault>) {
                 throw new AlreadyExistException();
+            } catch (FaultException<TimeZoneFault> ex) {
+                throw new TimeZoneException(ex.Detail.Message);
             } catch (Exception ex) {
                 airport = null;
                 Console.WriteLine(@"CreateAirport Exception: " + ex);
@@ -42,6 +48,11 @@ namespace FlightAdmin.Controller {
             return airport;
         }
 
+        /// <exception cref="NullException" />
+        /// <exception cref="DatabaseException" />
+        /// <exception cref="AlreadyExistException" />
+        /// <exception cref="TimeZoneException" />
+        /// <exception cref="Exception" />
         public Airport UpdateAirport(Airport airport, string name, string shortName, string city, string country, double latitude, double longitude, double altitude, TimeZoneInfo timeZone) {
             try {
                 airport.Name = name;
@@ -57,11 +68,13 @@ namespace FlightAdmin.Controller {
                 }
 
             } catch (FaultException<NullPointerFault> ex) {
-                throw new NullException(ex.Message);
+                throw new NullException(ex.Detail.Message);
             } catch (FaultException<DatabaseUpdateFault> ex) {
-                throw new DatabaseException(ex.Message);
+                throw new DatabaseException(ex.Detail.Message);
             } catch (FaultException<AlreadyExistFault>) {
                 throw new AlreadyExistException();
+            } catch (FaultException<TimeZoneFault> ex) {
+                throw new TimeZoneException(ex.Detail.Message);
             } catch (Exception ex) {
                 airport = null;
                 Console.WriteLine(@"UpdateAirport Exception: " + ex);
@@ -72,15 +85,19 @@ namespace FlightAdmin.Controller {
             return airport;
         }
 
+        /// <exception cref="DatabaseException" />
+        /// <exception cref="AlreadyExistException" />
+        /// <exception cref="TimeZoneException" />
+        /// <exception cref="Exception" />
         public void DeleteAirport(Airport airport) {
             try {
                 using (AirportServiceClient client = new AirportServiceClient()) {
                     client.DeleteAirport(airport);
                 }
             } catch (FaultException<NullPointerFault> ex) {
-                throw new NullException(ex.Message);
+                throw new NullException(ex.Detail.Message);
             } catch (FaultException<DatabaseDeleteFault> ex) {
-                throw new DatabaseException(ex.Message);
+                throw new DatabaseException(ex.Detail.Message);
             } catch (Exception ex) {
                 Console.WriteLine(@"DeleteAirport Exception: " + ex);
                 //TODO Exception Handler

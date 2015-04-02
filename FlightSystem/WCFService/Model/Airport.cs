@@ -48,6 +48,9 @@ namespace WCFService.Model {
         [DataMember]
         public double Altitude { get; set; }
 
+        /// <summary>
+        /// Dont set this, only for EntityFramework to save TimeZone to Database!
+        /// </summary>
         [DataMember]
         [Required]
         [Column (name: "TimeZone")]
@@ -86,6 +89,16 @@ namespace WCFService.Model {
             return ret;
         }
 
+        /// <summary>
+        /// Get or Set TimeZone from/to The TimeZoneId.
+        /// </summary>
+        /// 
+        /// <exception cref="OutOfMemoryException" />
+        /// <exception cref="ArgumentException" />
+        /// <exception cref="TimeZoneNotFoundException" />
+        /// <exception cref="System.Security.SecurityException" />
+        /// <exception cref="InvalidTimeZoneException" />
+        [NotMapped]
         public TimeZoneInfo TimeZone {
             get { return TimeZoneInfo.FindSystemTimeZoneById(TimeZoneId); }
             set { TimeZoneId = value.Id; }

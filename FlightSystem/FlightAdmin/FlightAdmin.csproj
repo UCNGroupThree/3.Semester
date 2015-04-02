@@ -58,6 +58,8 @@
     <Compile Include="Exceptions\ConnectionException.cs" />
     <Compile Include="Exceptions\DatabaseException.cs" />
     <Compile Include="Exceptions\NullException.cs" />
+    <Compile Include="Exceptions\SubmitException.cs" />
+    <Compile Include="Exceptions\TimeZoneException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="GUI\AirportTabExtensions\CreateAirport.cs">
       <SubType>Form</SubType>
