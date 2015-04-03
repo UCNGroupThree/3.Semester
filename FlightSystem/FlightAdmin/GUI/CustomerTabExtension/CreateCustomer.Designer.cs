@@ -39,11 +39,11 @@
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.txtCountry = new System.Windows.Forms.TextBox();
-            this.txtEmail = new FlightAdmin.GUI.Helper.NumericTextBox();
-            this.txtLongitude = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.txtEmail = new FlightAdmin.GUI.Helper.NumericTextBox();
+            this.txtLongitude = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -157,28 +157,6 @@
             this.txtCountry.Size = new System.Drawing.Size(209, 20);
             this.txtCountry.TabIndex = 2;
             // 
-            // txtEmail
-            // 
-            this.txtEmail.AllowSpace = false;
-            this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEmail.Location = new System.Drawing.Point(108, 133);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.OnlyInt = false;
-            this.txtEmail.Size = new System.Drawing.Size(209, 20);
-            this.txtEmail.TabIndex = 2;
-            // 
-            // txtLongitude
-            // 
-            this.txtLongitude.AllowSpace = false;
-            this.txtLongitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLongitude.Location = new System.Drawing.Point(108, 159);
-            this.txtLongitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtLongitude.Name = "txtLongitude";
-            this.txtLongitude.OnlyInt = false;
-            this.txtLongitude.Size = new System.Drawing.Size(209, 20);
-            this.txtLongitude.TabIndex = 2;
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -241,6 +219,29 @@
             this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.AllowSpace = false;
+            this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmail.Location = new System.Drawing.Point(108, 133);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.OnlyInt = false;
+            this.txtEmail.Size = new System.Drawing.Size(209, 20);
+            this.txtEmail.TabIndex = 2;
+            // 
+            // txtLongitude
+            // 
+            this.txtLongitude.AllowSpace = false;
+            this.txtLongitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLongitude.Location = new System.Drawing.Point(108, 159);
+            this.txtLongitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtLongitude.Name = "txtLongitude";
+            this.txtLongitude.OnlyInt = false;
+            this.txtLongitude.Size = new System.Drawing.Size(209, 20);
+            this.txtLongitude.TabIndex = 2;
             // 
             // CreateCustomer
             // 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlightAdmin.Controller;
 using FlightAdmin.Exceptions;
+using FlightAdmin.GUI.CustomerTabExtension;
 using FlightAdmin.GUI.Helper;
 using FlightAdmin.MainService;
 
@@ -142,6 +143,12 @@ namespace FlightAdmin.GUI {
                 }
             }
 
+        }
+
+        private void createToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateCustomer dialog = new CreateCustomer();
+            dialog.Show(this);
         }
 
    
