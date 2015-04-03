@@ -67,5 +67,10 @@ namespace FlightAdmin.GUI.Helper {
             
             return String.IsNullOrEmpty(errText);
         }
+
+        public static void ShowErrorDialog(IWin32Window parent, string text) {
+            MessageBox.Show(parent, text, @"Error", MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+        }
     }
 }

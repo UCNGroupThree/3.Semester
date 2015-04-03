@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
@@ -22,7 +23,8 @@ namespace FlightAdmin.GUI {
         public AirPortTab() {
             InitializeComponent();
             SetEvents();
-
+            timeZoneDataGridViewTextBoxColumn.DataPropertyName = "TimeZone";
+            //UpdateDataGrid(ctr.GetAirportsByCountry("denmark"));
         }
 
         private void SetEvents() {
@@ -52,6 +54,11 @@ namespace FlightAdmin.GUI {
         private void btnCreate_Click(object sender, EventArgs e) {
             CreateAirport dialog = new CreateAirport();
             dialog.ShowDialog(this);
+            var airport = dialog.Airport;
+            if (airport != null) {
+                airportBindingSource.Add(airport);
+            }
+            dialog.Dispose();
         }
 
         #region Search
@@ -80,12 +87,12 @@ namespace FlightAdmin.GUI {
         }
 
         private void btnSearch_Click(object sender, EventArgs e) {
-            //backgroundWorker1.DoWork += Search();
+            //bgWorker.DoWork += Search();
             //Thread t = new Thread(new ThreadStart(Search));
             //t.Start();
             loadingImg.Visible = true;
             DisableSearch(false);
-            backgroundWorker1.RunWorkerAsync();
+            bgWorker.RunWorkerAsync();
 
         }
 
@@ -95,7 +102,7 @@ namespace FlightAdmin.GUI {
             }
         }
 
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e) {
+        private void bgWorker_DoWork(object sender, DoWorkEventArgs e) {
             if (!String.IsNullOrWhiteSpace(txtID.Text)) {
                 int id = -1;
                 try {
@@ -120,7 +127,7 @@ namespace FlightAdmin.GUI {
             }
         }
 
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+        private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             loadingImg.Visible = false;
             DisableSearch(true);
             if (e.Error != null) {
@@ -136,6 +143,89 @@ namespace FlightAdmin.GUI {
         }
 
         #endregion
+
+        private Airport GetSelected() {
+            Airport air = null;
+            var current = dataGrid.CurrentRow;
+            if (current != null) {
+                air = current.DataBoundItem as Airport;
+            }
+            return air;
+        }
+
+        private void DeleteSelected() {
+            Airport selectedAirport = GetSelected();
+            if (selectedAirport != null) {
+                var text = string.Format("Are you sure you will delete {0} #{1}?", selectedAirport, selectedAirport.ID);
+                var confirm = MessageBox.Show(this, text, @"Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirm == DialogResult.Yes) {
+                    try {
+                        ctr.DeleteAirport(selectedAirport);
+                        var delText = string.Format("{0} #{1} is deleted!", selectedAirport, selectedAirport.ID);
+                        airportBindingSource.Remove(selectedAirport);
+                        MessageBox.Show(this, delText, @"Deleted!");
+                    } catch (NullException) {
+                        FancyFeatures.ShowErrorDialog(this, "Unknown Exception - NullExcetion");
+                    } catch (DatabaseException ex) {
+                        FancyFeatures.ShowErrorDialog(this, ex.Message);
+                    } catch (Exception ex) {
+                        FancyFeatures.ShowErrorDialog(this, "Unknown Exception\r\n" + ex);
+                    }
+                    
+                }
+            }
+        }
         
+        private void EditSelected() {
+            Airport selectedAirport = GetSelected();
+            if (selectedAirport != null) {
+                CreateAirport dialog = new CreateAirport(selectedAirport);
+                dialog.ShowDialog(this);
+
+
+                dialog.Dispose();
+            }
+            //MessageBox.Show("Edit Selected: " + selectedAirport);
+        }
+
+        #region Datagrid Events
+
+        private void deleteMenuItem_Click(object sender, EventArgs e) {
+            DeleteSelected();
+        }
+
+        private void editMenuItem_Click(object sender, EventArgs e) {
+            EditSelected();
+        }
+
+        private void dataGridMenu_Opening(object sender, CancelEventArgs e) {
+            //Only show menu, if datagrid has selected rows.
+            if (dataGrid.SelectedRows.Count != 1) {
+                e.Cancel = true;
+            }
+        }
+        
+        private void dataGrid_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e) {
+            if (e.Button == MouseButtons.Right) {
+                var hti = dataGrid.HitTest(e.X, e.Y);
+                dataGrid.ClearSelection();
+                var rowIndex = e.RowIndex;
+                if (rowIndex != -1) {
+                    dataGrid.Rows[rowIndex].Selected = true;
+                    //Set arrow to selected column
+                    dataGrid.CurrentCell = dataGrid.Rows[rowIndex].Cells[0]; 
+                }
+            }
+        }
+
+        private void dataGrid_KeyDown(object sender, KeyEventArgs e) {
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back) {
+                DeleteSelected();
+            } else if (e.KeyCode == Keys.Space) {
+                EditSelected();
+            }
+        }
+
+        #endregion
     }
 }

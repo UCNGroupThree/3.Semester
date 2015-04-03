@@ -70,7 +70,8 @@ namespace WCFService.WCF {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
             try {
-                db.Airports.Remove(airport);
+                db.Airports.Attach(airport);
+                db.Entry(airport).State = EntityState.Deleted;
                 db.SaveChanges();
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
@@ -81,15 +82,13 @@ namespace WCFService.WCF {
         /// <summary>
         /// Validate TimeZone on airport
         /// </summary>
-        /// <exception cref="OutOfMemoryException" />
-        /// <exception cref="ArgumentException" />
-        /// <exception cref="TimeZoneNotFoundException" />
-        /// <exception cref="System.Security.SecurityException" />
-        /// <exception cref="InvalidTimeZoneException" />
+        /// <exception cref="ArgumentNullException" />
+        /// <exception cref="FaultException"></exception>
         private void ValidateTimeZone(Airport airport) {
-            try {
-                var i = airport.TimeZone;
-            } catch (Exception) {
+            if (airport == null) {
+                throw new ArgumentNullException("airport");
+            }
+            if (airport.TimeZone == null) {
                 throw new FaultException<TimeZoneFault>(new TimeZoneFault());
             }
         }

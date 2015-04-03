@@ -86,8 +86,7 @@ namespace FlightAdmin.Controller {
         }
 
         /// <exception cref="DatabaseException" />
-        /// <exception cref="AlreadyExistException" />
-        /// <exception cref="TimeZoneException" />
+        /// <exception cref="NullException" />
         /// <exception cref="Exception" />
         public void DeleteAirport(Airport airport) {
             try {

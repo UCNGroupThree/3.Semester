@@ -3,20 +3,26 @@
 namespace FlightAdmin.MainService {
     public partial class Airport {
         public override string ToString() {
-            return Name;
+            var str = Name;
+            if (!string.IsNullOrWhiteSpace(ShortName)) {
+                str += string.Format(" ({0})", ShortName);
+            }
+            return str;
         }
 
         /// <summary>
         /// Get or Set TimeZone from/to The TimeZoneId.
         /// </summary>
-        /// 
-        /// <exception cref="OutOfMemoryException" />
-        /// <exception cref="ArgumentException" />
-        /// <exception cref="TimeZoneNotFoundException" />
-        /// <exception cref="System.Security.SecurityException" />
-        /// <exception cref="InvalidTimeZoneException" />
+        /// <returns>null if the TimeZoneId not exits in the System</returns>
         public TimeZoneInfo TimeZone {
-            get { return TimeZoneInfo.FindSystemTimeZoneById(TimeZoneId); }
+
+            get {
+                try {
+                    return TimeZoneInfo.FindSystemTimeZoneById(TimeZoneId);
+                } catch (Exception) {
+                    return null;
+                }
+            }
             set { TimeZoneId = value.Id; }
         }
     }
