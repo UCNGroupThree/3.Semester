@@ -8,14 +8,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DatabaseInsertFault" nillable="true" type="tns:DatabaseInsertFault" />
-  <xs:complexType name="AlreadyExistFault">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="AlreadyExistFault" nillable="true" type="tns:AlreadyExistFault" />
   <xs:complexType name="NullPointerFault">
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
@@ -32,6 +24,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TimeZoneFault" nillable="true" type="tns:TimeZoneFault" />
+  <xs:complexType name="AlreadyExistFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AlreadyExistFault" nillable="true" type="tns:AlreadyExistFault" />
   <xs:complexType name="DatabaseUpdateFault">
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />

@@ -60,6 +60,8 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -365,6 +367,7 @@
             this.passwordHashDataGridViewTextBoxColumn,
             this.phoneNumberDataGridViewTextBoxColumn,
             this.postalDataGridViewTextBoxColumn});
+            this.dataGrid.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGrid.DataSource = this.userBindingSource;
             this.dataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGrid.Location = new System.Drawing.Point(228, 3);
@@ -372,7 +375,6 @@
             this.dataGrid.ReadOnly = true;
             this.dataGrid.Size = new System.Drawing.Size(905, 403);
             this.dataGrid.TabIndex = 0;
-            this.dataGrid.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGrid_MouseDown);
             // 
             // addressDataGridViewTextBoxColumn
             // 
@@ -437,15 +439,29 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
+            this.toolStripMenuItem1,
+            this.editToolStripMenuItem,
+            this.createToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(95, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(94, 22);
-            this.toolStripMenuItem1.Text = "Edit";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Text = "Remove";
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // createToolStripMenuItem
+            // 
+            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createToolStripMenuItem.Text = "Create";
             // 
             // CustomerTab
             // 
@@ -507,5 +523,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn postalDataGridViewTextBoxColumn;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
     }
 }
