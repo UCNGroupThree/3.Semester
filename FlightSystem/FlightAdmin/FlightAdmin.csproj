@@ -67,6 +67,12 @@
     <Compile Include="GUI\AirportTabExtensions\CreateAirport.Designer.cs">
       <DependentUpon>CreateAirport.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\CustomerTabExtension\CreateCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\CustomerTabExtension\CreateCustomer.Designer.cs">
+      <DependentUpon>CreateCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Extensions\DataGridLoader.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -171,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\CustomerTab.resx">
       <DependentUpon>CustomerTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\CustomerTabExtension\CreateCustomer.resx">
+      <DependentUpon>CreateCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Extensions\DataGridLoader.resx">
       <DependentUpon>DataGridLoader.cs</DependentUpon>
@@ -306,9 +315,7 @@
   <ItemGroup>
     <None Include="Resources\image_836585.gif" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GUI\CustomerTabExtension\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

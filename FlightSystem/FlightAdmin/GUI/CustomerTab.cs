@@ -144,6 +144,20 @@ namespace FlightAdmin.GUI {
 
         }
 
+        private void dataGrid_MouseDown(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Right:
+                    {
+                      //  ContextMenuStrip1.Show(this, new Point(e.X, e.Y));
+                        
+                    }
+                    break;
+            }
+
+        }
+
      
     }
 }
