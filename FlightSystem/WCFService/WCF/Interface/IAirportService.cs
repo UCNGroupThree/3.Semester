@@ -19,7 +19,7 @@ namespace WCFService.WCF.Interface {
         [FaultContract(typeof(DatabaseUpdateFault))]
         [FaultContract(typeof(TimeZoneFault))]
         [FaultContract(typeof(AlreadyExistFault))]
-        Airport UpdateAirport(Airport airport);
+        void UpdateAirport(Airport airport);
 
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]

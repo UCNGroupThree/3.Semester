@@ -46,23 +46,25 @@ namespace WCFService.WCF {
             return airport.ID;
         }
 
-        public Airport UpdateAirport(Airport airport) {
+        public void UpdateAirport(Airport airport) {
+            //db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
             if (airport == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
-            if (db.Airports.Any(a => a.ID != airport.ID && a.ShortName.Equals(airport.ShortName))) {
+            if (db.Airports.Any(a => a.ID != airport.ID && !string.IsNullOrEmpty(a.ShortName) && a.ShortName.Equals(airport.ShortName))) {
                 throw new FaultException<AlreadyExistFault>(new AlreadyExistFault());
             }
+            //Debug.WriteLine("######");
             ValidateTimeZone(airport);
             try {
                 db.Airports.Attach(airport);
                 db.Entry(airport).State = EntityState.Modified;
                 db.SaveChanges();
+                //Debug.WriteLine("######");
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault("airport"));
             }
-            return airport;
         }
 
         public void DeleteAirport(Airport airport) {

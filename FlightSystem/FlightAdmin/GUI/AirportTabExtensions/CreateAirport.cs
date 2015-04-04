@@ -17,19 +17,21 @@ using FlightAdmin.GUI.Helper;
 using FlightAdmin.MainService;
 
 namespace FlightAdmin.GUI.AirportTabExtensions {
-    public sealed partial class CreateAirport : Form {
+    public partial class CreateAirport : Form {
         private readonly AirportCtr ctr = new AirportCtr();
-        private string _nextShortName = null; //used by backgroundWorker
+        private string _nextShortName = null; //used by shortNameWorker
         public Airport Airport { get; private set; }
         private bool IsEditing { get; set; }
+
+        #region Constructors
 
         /// <summary>
         /// Create new Airport
         /// </summary>
         public CreateAirport() {
             InitializeComponent();
-            SetShortNameEvent();
-            InitializeTimeZones();
+            txtShortName.TextChanged += (sender, args) => _nextShortName = null;
+            cmbTimeZone.DataSource = TimeZoneInfo.GetSystemTimeZones();
             cmbTimeZone.SelectedItem = TimeZoneInfo.Local;
         }
 
@@ -44,7 +46,7 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
             Airport = airport;
             IsEditing = true;
             string editText = string.Format("Edit Airport - #{0}", airport.ID);
-            Text = editText;
+            base.Text = editText;
             lblHeader.Text = editText;
 
             txtShortName.Text = airport.ShortName;
@@ -62,18 +64,70 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
 
         }
 
-        private void btnSaveForEditing_Click(object sender, EventArgs eventArgs) {
-            MessageBox.Show("Editing!");
-        }
 
-        private void InitializeTimeZones() {
-            cmbTimeZone.DataSource = TimeZoneInfo.GetSystemTimeZones();
-        }
+        #endregion
         
-        private void SetShortNameEvent() {
-            txtShortName.TextChanged += (sender, args) => _nextShortName = null;
+        #region Editing
+
+        private void btnSaveForEditing_Click(object sender, EventArgs eventArgs) {
+            if (!editWorker.IsBusy) {
+                if (shortNameWorker.IsBusy) {
+                    shortNameWorker.CancelAsync();
+                }
+                if (IsFormValid()) {
+                    loadingImg.Visible = true;
+                    editWorker.RunWorkerAsync(cmbTimeZone.SelectedItem);
+                }
+            } else {
+                MessageBox.Show(this, @"A saving is pending, please wait for it to complete!", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
+        private void editWorker_DoWork(object sender, DoWorkEventArgs e) {
+            string name = txtName.Text.Trim();
+            string shortName = txtShortName.Text.Trim();
+            string city = txtCity.Text.Trim();
+            string country = txtCountry.Text.Trim();
+            double latitude = txtLatitude.DoubleValue();
+            double longitude = txtLongitude.DoubleValue();
+            double altitude = txtAltitude.DoubleValue();
+            TimeZoneInfo timeZone = e.Argument as TimeZoneInfo;
+
+            e.Result = ctr.UpdateAirport(Airport, name, shortName, city, country, latitude, longitude, altitude,
+                timeZone);
+        }
+
+        private void editWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+            loadingImg.Visible = false;
+            if (e.Error != null) {
+                Exception ex = e.Error;
+                if (ex is AlreadyExistException) {
+                    errProvider.SetError(txtShortName, txtShortName.Text.Trim() + " already exists!");
+                    txtShortName.Focus();
+                } else if (ex is TimeZoneException) {
+                    errProvider.SetError(cmbTimeZone, ex.Message);
+                    cmbTimeZone.Focus();
+                } else {
+                    MessageBox.Show(this, ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Console.WriteLine("Edit Exception!");
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex);
+                }
+            } else {
+                Airport airport = e.Result as Airport;
+                if (airport != null) {
+                    Airport = airport;
+                    Visible = false;
+                    MessageBox.Show(this, @"The airport has been updated", @"Success", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                } else {
+                    MessageBox.Show(this, @"Unknown Error", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        #endregion
 
         #region Validating methods
 
@@ -102,11 +156,15 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
         }
 
         private bool IsAltitudeValid() {
-            return FancyFeatures.IsTextBoxDoubleValid(txtAltitude, errProvider, txtAltitude.Text, -90, 90, false);
+            return FancyFeatures.IsTextBoxDoubleValid(txtAltitude, errProvider, txtAltitude.Text, -180, 180, false);
         }
 
         private bool IsTimeZoneValid() {
-            return (cmbTimeZone.SelectedItem is TimeZoneInfo);
+            bool valid = (cmbTimeZone.SelectedItem is TimeZoneInfo);
+            if (!valid) {
+                errProvider.SetError(cmbTimeZone, "The specified time zone is not a valid system time zone");
+            }
+            return valid;
         } 
 
         private bool IsFormValid() {
@@ -140,8 +198,8 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
         private void txtShortName_Validating(object sender, CancelEventArgs e) {
             if (IsShortNameValid() && !string.IsNullOrWhiteSpace(txtShortName.Text)) {
                 _nextShortName = txtShortName.Text.Trim();
-                if (!ShortNameWorker.IsBusy) {
-                    ShortNameWorker.RunWorkerAsync();
+                if (!shortNameWorker.IsBusy) {
+                    shortNameWorker.RunWorkerAsync();
                 }
             }
         }
@@ -204,13 +262,13 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
         #region Creating
 
         private void btnSaveForCreation_Click(object sender, EventArgs e) {
-            if (!CreateWorker.IsBusy) {
-                if (ShortNameWorker.IsBusy) {
-                    ShortNameWorker.CancelAsync();
+            if (!createWorker.IsBusy) {
+                if (shortNameWorker.IsBusy) {
+                    shortNameWorker.CancelAsync();
                 }
                 if (IsFormValid()) {
                     loadingImg.Visible = true;
-                    CreateWorker.RunWorkerAsync(cmbTimeZone.SelectedItem);
+                    createWorker.RunWorkerAsync(cmbTimeZone.SelectedItem);
                 }
             } else {
                 MessageBox.Show(this, @"A creation is pending, please wait for it to complete!", @"Error", MessageBoxButtons.OK,
@@ -218,7 +276,7 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
             }
         }
 
-        private void CreateWorker_DoWork(object sender, DoWorkEventArgs e) {
+        private void createWorker_DoWork(object sender, DoWorkEventArgs e) {
             string name = txtName.Text.Trim();
             string shortName = txtShortName.Text.Trim();
             string city = txtCity.Text.Trim();
@@ -233,7 +291,7 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
             e.Result = ctr.CreateAirport(name, shortName, city, country, latitude, longitude, altitude, timeZone);
         }
 
-        private void CreateWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+        private void createWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             loadingImg.Visible = false;
             if (e.Error != null) {
                 Exception ex = e.Error;
@@ -242,15 +300,13 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
                     txtShortName.Focus();
                 } else if (ex is TimeZoneException) {
                     errProvider.SetError(cmbTimeZone, ex.Message);
-                    txtShortName.Focus();
+                    cmbTimeZone.Focus();
                 } else {
                     MessageBox.Show(this, ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Console.WriteLine("Create Exception!");
                     Console.WriteLine(ex.Message);
                     Console.WriteLine(ex);
                 }
-            } else if (e.Cancelled) {
-                //Form is not valid
             }
             else {
                 Airport airport = e.Result as Airport;
@@ -268,12 +324,17 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
 
         #region BackgroundWorker for txtShortName
 
-        private void ShortNameWorker_DoWork(object sender, DoWorkEventArgs e) {
+        private void shortNameWorker_DoWork(object sender, DoWorkEventArgs e) {
             string exists = null;
-            while (_nextShortName != null && !ShortNameWorker.CancellationPending) {
+            while (!string.IsNullOrWhiteSpace(_nextShortName) && !shortNameWorker.CancellationPending) {
                 string search = _nextShortName;
                 List<Airport> list = ctr.GetAirportsByShortName(search, true);
 
+                //remove Airport, if editing
+                if (Airport != null) {
+                    list.RemoveAll(a => a.ID == Airport.ID);
+                }
+                
                 if (list != null && list.Any()) {
                     exists = search;
                 } else {
@@ -286,20 +347,19 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
                 }
                 //Thread.Sleep(3000);
             }
-            if (ShortNameWorker.CancellationPending) {
+            if (shortNameWorker.CancellationPending) {
                 e.Cancel = true;
             }
             e.Result = exists;
         }
 
-        private void ShortNameWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+        private void shortNameWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             if (!e.Cancelled && e.Result != null && !txtShortName.ContainsFocus) {
                 errProvider.SetError(txtShortName, e.Result + " already exists!");
             }
         }
 
         #endregion
-
 
     }
 }

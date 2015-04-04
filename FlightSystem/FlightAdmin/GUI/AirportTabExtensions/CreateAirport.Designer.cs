@@ -47,8 +47,9 @@
             this.loadingImg = new System.Windows.Forms.PictureBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.errProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ShortNameWorker = new System.ComponentModel.BackgroundWorker();
-            this.CreateWorker = new System.ComponentModel.BackgroundWorker();
+            this.shortNameWorker = new System.ComponentModel.BackgroundWorker();
+            this.createWorker = new System.ComponentModel.BackgroundWorker();
+            this.editWorker = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadingImg)).BeginInit();
@@ -333,16 +334,21 @@
             // 
             this.errProvider.ContainerControl = this;
             // 
-            // ShortNameWorker
+            // shortNameWorker
             // 
-            this.ShortNameWorker.WorkerSupportsCancellation = true;
-            this.ShortNameWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ShortNameWorker_DoWork);
-            this.ShortNameWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.ShortNameWorker_RunWorkerCompleted);
+            this.shortNameWorker.WorkerSupportsCancellation = true;
+            this.shortNameWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.shortNameWorker_DoWork);
+            this.shortNameWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.shortNameWorker_RunWorkerCompleted);
             // 
-            // CreateWorker
+            // createWorker
             // 
-            this.CreateWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.CreateWorker_DoWork);
-            this.CreateWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.CreateWorker_RunWorkerCompleted);
+            this.createWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.createWorker_DoWork);
+            this.createWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.createWorker_RunWorkerCompleted);
+            // 
+            // editWorker
+            // 
+            this.editWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.editWorker_DoWork);
+            this.editWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.editWorker_RunWorkerCompleted);
             // 
             // CreateAirport
             // 
@@ -390,11 +396,12 @@
         private Helper.NumericTextBox txtLongitude;
         private Helper.NumericTextBox txtAltitude;
         private System.Windows.Forms.Button btnClose;
-        private System.ComponentModel.BackgroundWorker ShortNameWorker;
+        private System.ComponentModel.BackgroundWorker shortNameWorker;
         private System.Windows.Forms.ComboBox cmbTimeZone;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.PictureBox loadingImg;
-        private System.ComponentModel.BackgroundWorker CreateWorker;
+        private System.ComponentModel.BackgroundWorker createWorker;
+        private System.ComponentModel.BackgroundWorker editWorker;
     }
 }

@@ -179,9 +179,10 @@ namespace FlightAdmin.GUI {
         private void EditSelected() {
             Airport selectedAirport = GetSelected();
             if (selectedAirport != null) {
+                
                 CreateAirport dialog = new CreateAirport(selectedAirport);
                 dialog.ShowDialog(this);
-
+                dataGrid.Refresh();
 
                 dialog.Dispose();
             }

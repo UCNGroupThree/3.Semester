@@ -36,8 +36,8 @@ namespace WCFService {
             return new AirportService().AddAirport(airport);
         }
 
-        public Airport UpdateAirport(Airport airport) {
-            return new AirportService().UpdateAirport(airport);
+        public void UpdateAirport(Airport airport) {
+            new AirportService().UpdateAirport(airport);
         }
 
         public void DeleteAirport(Airport airport) {

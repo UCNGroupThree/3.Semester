@@ -54,7 +54,10 @@ namespace FlightAdmin.Controller {
         /// <exception cref="TimeZoneException" />
         /// <exception cref="Exception" />
         public Airport UpdateAirport(Airport airport, string name, string shortName, string city, string country, double latitude, double longitude, double altitude, TimeZoneInfo timeZone) {
+            Airport temp = null;
             try {
+                temp = airport.GetCopy();
+                
                 airport.Name = name;
                 airport.ShortName = shortName;
                 airport.City = city;
@@ -63,25 +66,29 @@ namespace FlightAdmin.Controller {
                 airport.Longitude = longitude;
                 airport.Altitude = altitude;
                 airport.TimeZone = timeZone;
+
                 using (AirportServiceClient client = new AirportServiceClient()) {
-                    airport = client.UpdateAirport(airport);
+                    client.UpdateAirport(airport);
                 }
 
             } catch (FaultException<NullPointerFault> ex) {
+                airport.SetToCopy(temp);
                 throw new NullException(ex.Detail.Message);
             } catch (FaultException<DatabaseUpdateFault> ex) {
+                airport.SetToCopy(temp);
                 throw new DatabaseException(ex.Detail.Message);
             } catch (FaultException<AlreadyExistFault>) {
+                airport.SetToCopy(temp);
                 throw new AlreadyExistException();
             } catch (FaultException<TimeZoneFault> ex) {
+                airport.SetToCopy(temp);
                 throw new TimeZoneException(ex.Detail.Message);
             } catch (Exception ex) {
-                airport = null;
+                airport.SetToCopy(temp);
                 Console.WriteLine(@"UpdateAirport Exception: " + ex);
                 //TODO Exception Handler
                 throw;
             }
-
             return airport;
         }
 

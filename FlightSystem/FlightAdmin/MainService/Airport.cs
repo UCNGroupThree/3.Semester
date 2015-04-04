@@ -25,5 +25,29 @@ namespace FlightAdmin.MainService {
             }
             set { TimeZoneId = value.Id; }
         }
+
+        public Airport GetCopy() {
+            return new Airport {
+                Name = Name,
+                ShortName = ShortName,
+                City = City,
+                Country = Country,
+                Latitude = Latitude,
+                Longitude = Longitude,
+                Altitude = Altitude,
+                TimeZoneId = TimeZoneId
+            };
+        }
+
+        public void SetToCopy(Airport copy) {
+            Name = copy.Name;
+            ShortName = copy.ShortName;
+            City = copy.City;
+            Country = copy.Country;
+            Latitude = copy.Latitude;
+            Longitude = copy.Longitude;
+            Altitude = copy.Altitude;
+            TimeZoneId = copy.TimeZoneId;
+        }
     }
 }
