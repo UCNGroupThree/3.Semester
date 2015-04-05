@@ -64,11 +64,9 @@ namespace FlightAdmin.GUI {
         #region Search
 
         private void DisableSearch(bool enable) {
-            foreach (var txt in tableLayoutCreate.Controls.OfType<TextBox>()) {
+            foreach (var txt in tableLayoutCreate.Controls.OfType<TextBox>().Where(t => t.TextLength > 0)) {
                 txt.Enabled = enable;
-                if (enable && txt.TextLength > 0) {
-                    txt.Focus();
-                }
+                txt.Focus();
             }
             btnClear.Enabled = enable;
             btnSearch.Enabled = enable;
