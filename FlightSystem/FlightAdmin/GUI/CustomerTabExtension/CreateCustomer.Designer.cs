@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblHeader = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
@@ -38,13 +39,15 @@
             this.lblPhone = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtCity = new System.Windows.Forms.TextBox();
-            this.txtCountry = new System.Windows.Forms.TextBox();
+            this.txtZip = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCreate = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.txtEmail = new FlightAdmin.GUI.Helper.NumericTextBox();
-            this.txtLongitude = new FlightAdmin.GUI.Helper.NumericTextBox();
+            this.txtPhone = new FlightAdmin.GUI.Helper.NumericTextBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.errProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // lblHeader
@@ -119,6 +122,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(209, 20);
             this.txtName.TabIndex = 2;
+            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
             // 
             // lblPhone
             // 
@@ -138,6 +142,7 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(209, 20);
             this.txtAddress.TabIndex = 2;
+            this.txtAddress.Validating += new System.ComponentModel.CancelEventHandler(this.txtAddress_Validating);
             // 
             // txtCity
             // 
@@ -147,15 +152,17 @@
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(209, 20);
             this.txtCity.TabIndex = 2;
+            this.txtCity.Validating += new System.ComponentModel.CancelEventHandler(this.txtCity_Validating);
             // 
-            // txtCountry
+            // txtZip
             // 
-            this.txtCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCountry.Location = new System.Drawing.Point(108, 107);
-            this.txtCountry.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtCountry.Name = "txtCountry";
-            this.txtCountry.Size = new System.Drawing.Size(209, 20);
-            this.txtCountry.TabIndex = 2;
+            this.txtZip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtZip.Location = new System.Drawing.Point(108, 107);
+            this.txtZip.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtZip.Name = "txtZip";
+            this.txtZip.Size = new System.Drawing.Size(209, 20);
+            this.txtZip.TabIndex = 2;
+            this.txtZip.Validating += new System.ComponentModel.CancelEventHandler(this.txtZip_Validating);
             // 
             // tableLayoutPanel1
             // 
@@ -177,9 +184,9 @@
             this.tableLayoutPanel1.Controls.Add(this.txtAddress, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnCreate, 2, 7);
             this.tableLayoutPanel1.Controls.Add(this.txtCity, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.txtCountry, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.txtZip, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.txtEmail, 2, 5);
-            this.tableLayoutPanel1.Controls.Add(this.txtLongitude, 2, 6);
+            this.tableLayoutPanel1.Controls.Add(this.txtPhone, 2, 6);
             this.tableLayoutPanel1.Controls.Add(this.btnClose, 1, 7);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -207,6 +214,31 @@
             this.btnCreate.TabIndex = 3;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = true;
+
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.AllowSpace = false;
+            this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmail.Location = new System.Drawing.Point(108, 133);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.OnlyInt = false;
+            this.txtEmail.Size = new System.Drawing.Size(209, 20);
+            this.txtEmail.TabIndex = 2;
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.AllowSpace = false;
+            this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPhone.Location = new System.Drawing.Point(108, 159);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.OnlyInt = false;
+            this.txtPhone.Size = new System.Drawing.Size(209, 20);
+            this.txtPhone.TabIndex = 2;
+            this.txtPhone.Validating += new System.ComponentModel.CancelEventHandler(this.txtPhone_Validating);
             // 
             // btnClose
             // 
@@ -221,27 +253,9 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // txtEmail
+            // errProvider
             // 
-            this.txtEmail.AllowSpace = false;
-            this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEmail.Location = new System.Drawing.Point(108, 133);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.OnlyInt = false;
-            this.txtEmail.Size = new System.Drawing.Size(209, 20);
-            this.txtEmail.TabIndex = 2;
-            // 
-            // txtLongitude
-            // 
-            this.txtLongitude.AllowSpace = false;
-            this.txtLongitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLongitude.Location = new System.Drawing.Point(108, 159);
-            this.txtLongitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtLongitude.Name = "txtLongitude";
-            this.txtLongitude.OnlyInt = false;
-            this.txtLongitude.Size = new System.Drawing.Size(209, 20);
-            this.txtLongitude.TabIndex = 2;
+            this.errProvider.ContainerControl = this;
             // 
             // CreateCustomer
             // 
@@ -253,6 +267,7 @@
             this.Text = "Create Customer";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -270,11 +285,12 @@
         private System.Windows.Forms.Label lblPhone;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtCity;
-        private System.Windows.Forms.TextBox txtCountry;
+        private System.Windows.Forms.TextBox txtZip;
         private Helper.NumericTextBox txtEmail;
-        private Helper.NumericTextBox txtLongitude;
+        private Helper.NumericTextBox txtPhone;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ErrorProvider errProvider;
 
 
     }

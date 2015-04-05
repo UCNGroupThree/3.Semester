@@ -18,7 +18,7 @@ namespace FlightAdmin.GUI {
     public partial class CustomerTab : UserControl {
 
         CustomerCtr customerCtr = new CustomerCtr();
-
+        private DataGridViewCellEventArgs mouseLocation;
         public CustomerTab() {
             InitializeComponent();
             SetEvents();
@@ -45,8 +45,11 @@ namespace FlightAdmin.GUI {
                PostCode = Int32.Parse(txtZip.Text),
                City = txtCity.Text
                
-           };      
-            customerCtr.CreateUser(txtName.Text, txtAddress.Text, postal, txtPhone.Text, txtEmail.Text);        
+           };
+
+            if (postal == null) throw new ArgumentNullException();              
+            
+            customerCtr.CreateUser(txtName.Text.Trim(), txtAddress.Text.Trim(), postal, txtPhone.Text.Trim(), txtEmail.Text.Trim());        
         }
 
         public void ClearFields()
@@ -149,6 +152,16 @@ namespace FlightAdmin.GUI {
         {
             CreateCustomer dialog = new CreateCustomer();
             dialog.Show(this);
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e) {
+
+         
+            var som = (User) dataGrid.Rows[mouseLocation.RowIndex].DataBoundItem;
+            if (som != null) {
+                customerCtr.DeleteUser(som);
+            }
+
         }
 
    
