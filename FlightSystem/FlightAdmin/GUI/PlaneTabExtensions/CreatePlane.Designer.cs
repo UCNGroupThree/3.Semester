@@ -28,47 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.spinnerSeats = new System.Windows.Forms.NumericUpDown();
+            this.btnCancelNewPlane = new System.Windows.Forms.Button();
+            this.btnCreateNewPlane = new System.Windows.Forms.Button();
+            this.epPlane = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinnerSeats)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epPlane)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.87851F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.12149F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.05578F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.94422F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.numericUpDown1, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button2, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txtName, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.spinnerSeats, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnCancelNewPlane, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnCreateNewPlane, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 335F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(641, 133);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 251F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(362, 112);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(4, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(209, 25);
+            this.label1.Size = new System.Drawing.Size(124, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -77,60 +78,62 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(4, 25);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(3, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(209, 25);
+            this.label2.Size = new System.Drawing.Size(124, 33);
             this.label2.TabIndex = 1;
             this.label2.Text = "Seats";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox1
+            // txtName
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(221, 4);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(416, 22);
-            this.textBox1.TabIndex = 2;
+            this.txtName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtName.Location = new System.Drawing.Point(135, 5);
+            this.txtName.Margin = new System.Windows.Forms.Padding(5);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(222, 20);
+            this.txtName.TabIndex = 2;
             // 
-            // numericUpDown1
+            // spinnerSeats
             // 
-            this.numericUpDown1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numericUpDown1.Location = new System.Drawing.Point(221, 29);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(416, 22);
-            this.numericUpDown1.TabIndex = 3;
+            this.spinnerSeats.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spinnerSeats.Location = new System.Drawing.Point(135, 33);
+            this.spinnerSeats.Margin = new System.Windows.Forms.Padding(5);
+            this.spinnerSeats.Name = "spinnerSeats";
+            this.spinnerSeats.Size = new System.Drawing.Size(222, 20);
+            this.spinnerSeats.TabIndex = 3;
             // 
-            // button1
+            // btnCancelNewPlane
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(468, 54);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 52);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Create New Plane";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCancelNewPlane.Location = new System.Drawing.Point(3, 64);
+            this.btnCancelNewPlane.Name = "btnCancelNewPlane";
+            this.btnCancelNewPlane.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelNewPlane.TabIndex = 4;
+            this.btnCancelNewPlane.Text = "Cancel";
+            this.btnCancelNewPlane.UseVisualStyleBackColor = true;
+            this.btnCancelNewPlane.Click += new System.EventHandler(this.btnCancelNewPlane_Click);
             // 
-            // button2
+            // btnCreateNewPlane
             // 
-            this.button2.Location = new System.Drawing.Point(4, 54);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(169, 52);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCreateNewPlane.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCreateNewPlane.Location = new System.Drawing.Point(284, 64);
+            this.btnCreateNewPlane.Name = "btnCreateNewPlane";
+            this.btnCreateNewPlane.Size = new System.Drawing.Size(75, 23);
+            this.btnCreateNewPlane.TabIndex = 5;
+            this.btnCreateNewPlane.Text = "Create";
+            this.btnCreateNewPlane.UseVisualStyleBackColor = true;
+            this.btnCreateNewPlane.Click += new System.EventHandler(this.btnCreateNewPlane_Click);
+            // 
+            // epPlane
+            // 
+            this.epPlane.ContainerControl = this;
             // 
             // CreatePlane
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(641, 133);
+            this.ClientSize = new System.Drawing.Size(362, 112);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CreatePlane";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -138,7 +141,8 @@
             this.Load += new System.EventHandler(this.CreatePlane_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinnerSeats)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epPlane)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -148,9 +152,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.NumericUpDown spinnerSeats;
+        private System.Windows.Forms.Button btnCancelNewPlane;
+        private System.Windows.Forms.Button btnCreateNewPlane;
+        private System.Windows.Forms.ErrorProvider epPlane;
     }
 }

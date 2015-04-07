@@ -101,7 +101,7 @@ namespace FlightAdmin.Controller {
                     foundPlane = client.GetPlane(id);
                 }
             } catch (Exception e) {
-                Console.WriteLine("Error in finding plane");
+                Console.WriteLine("Error in finding plane: " + e.Message);
             }
             
 

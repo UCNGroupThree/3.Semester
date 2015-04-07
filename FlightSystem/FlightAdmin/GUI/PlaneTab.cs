@@ -13,72 +13,108 @@ using FlightAdmin.MainService;
 
 namespace FlightAdmin.GUI {
     public partial class PlaneTab : UserControl {
+        
+        private readonly PlaneCtr ctr = new PlaneCtr();
+        
+
         public PlaneTab() {
             InitializeComponent();
         }
+        #region search methods
 
-        private void grpPlaneSearch_Enter(object sender, EventArgs e)
-        {
+        public void ClearPlaneSearch() {
 
+            txtID.Text = "";
+            txtNameSearch.Text = "";
+            spinnerPassengerCount.Text = "0";
         }
 
-        
-        private void btnCreatePlane_Click(object sender, EventArgs e)
-        {
-            // open dialog for create new plane'
+
+        public void SearchPlane() {
+
+            if (txtID.Text != null && txtID.Text == "") {
+
+                try {
+                    int id = int.Parse(txtID.Text);
+
+                    Plane foundPlane = ctr.GetPlaneByID(id);
+
+                    planeBindingSource.Clear();
+                    planeBindingSource.Add(foundPlane);
+                } catch (Exception e) {
+                    MessageBox.Show(e.Message);
+                }
+            }
+            else if (txtNameSearch != null && txtNameSearch.Text == "") {
+                
+            }
+        }
+
+        public void CreatePlane() {
+
             CreatePlane createPlaneWindow = new CreatePlane();
             createPlaneWindow.ShowDialog();
         }
 
-        private void btnClearPlaneSearch_Click(object sender, EventArgs e, object clearPlaneSearch) {
+        #endregion
 
-            //clearPlaneSearch();
+        #region right click menu methods
+
+        public void DeleteSelectedPlane() {
+            
         }
 
-
-        private void btnPlaneSearch_Click(object sender, EventArgs e) {
-
-            string searchPlaneID = txtID.Text;
-            string searchPlaneName = txtNameSearch.Text;
-            if (searchPlaneName == null) throw new ArgumentNullException("searchPlaneName");
-
-            //planeSearch(searchPlaneID, searchPlaneName);
+        public void EditSelectedPlane() {
+            
         }
 
+        #endregion
 
-        private void clearPlaneSearch() {
-
-            txtID.Text = "";
-            txtNameSearch.Text = "";
-            comboPassengerCountChoice.Text = "";
-            spinnerPassengerCount.Text = "0";
-        }
-
-        private void updateDataGrid(List<Plane> list)
+        private void btnClearPlaneSearch_Click(object sender, EventArgs e)
         {
+            ClearPlaneSearch();
+        }
 
-            if (list != null)
-            {
-                planeBindingSource.Clear();
+        #region Show All Planes in table
+        private void checkShowAllPlanes_CheckedChanged(object sender, EventArgs e)
+        {   
 
-                foreach (var a in list)
-                {
-                    planeBindingSource.Add(a);
-                }
+            if (checkShowAllPlanes.CheckState == CheckState.Checked) {
+                
+                List<Plane> planes;
+                planes = ctr.GetAllPlanes();
+                planeTable.DataSource = planes;
             }
+
         }
 
-        private void searchPlane(int id, string name) {
-             
-            List<Plane> foundPlanes = new List<Plane>();
+        #endregion
 
-            PlaneCtr ctr = new PlaneCtr();
-
-            foundPlanes = ctr.GetAllPlanes();
-
-            //if (foundPlanes != null) UpdateDataGrid(foundPlanes);
+        private void btnPlaneSearch_Click(object sender, EventArgs e)
+        {
+            SearchPlane(); 
         }
 
-       
+        private void btnCreatePlane_Click(object sender, EventArgs e)
+        {
+            CreatePlane();
+        }
+
+        private void createToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreatePlane();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteSelectedPlane();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditSelectedPlane();
+        }
+
     }
+
 }

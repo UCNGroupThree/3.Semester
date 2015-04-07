@@ -46,7 +46,13 @@
             this.planeTable = new System.Windows.Forms.DataGridView();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Seats = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.planeTableMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.planeBackgroundworker = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.grpPlaneSearch.SuspendLayout();
@@ -55,6 +61,7 @@
             this.grpCreatePlane.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.planeTable)).BeginInit();
+            this.planeTableMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.planeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,7 +107,6 @@
             this.grpPlaneSearch.TabIndex = 0;
             this.grpPlaneSearch.TabStop = false;
             this.grpPlaneSearch.Text = "Search Plane";
-            this.grpPlaneSearch.Enter += new System.EventHandler(this.grpPlaneSearch_Enter);
             // 
             // tableLayoutPanel3
             // 
@@ -253,6 +259,7 @@
             this.btnClearPlaneSearch.TabIndex = 10;
             this.btnClearPlaneSearch.Text = "Clear";
             this.btnClearPlaneSearch.UseVisualStyleBackColor = true;
+            this.btnClearPlaneSearch.Click += new System.EventHandler(this.btnClearPlaneSearch_Click);
             // 
             // checkShowAllPlanes
             // 
@@ -263,6 +270,7 @@
             this.checkShowAllPlanes.TabIndex = 11;
             this.checkShowAllPlanes.Text = "Show All Planes";
             this.checkShowAllPlanes.UseVisualStyleBackColor = true;
+            this.checkShowAllPlanes.CheckedChanged += new System.EventHandler(this.checkShowAllPlanes_CheckedChanged);
             // 
             // grpCreatePlane
             // 
@@ -280,7 +288,7 @@
             this.tableLayoutPanel4.ColumnCount = 3;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.tableLayoutPanel4.Controls.Add(this.btnCreatePlane, 1, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 16);
@@ -305,17 +313,21 @@
             // planeTable
             // 
             this.planeTable.AllowUserToAddRows = false;
+            this.planeTable.AllowUserToResizeRows = false;
             this.planeTable.AutoGenerateColumns = false;
             this.planeTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.planeTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.planeTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.planeTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn});
+            this.nameDataGridViewTextBoxColumn,
+            this.Seats});
+            this.planeTable.ContextMenuStrip = this.planeTableMenu;
             this.planeTable.DataSource = this.planeBindingSource;
             this.planeTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.planeTable.Enabled = false;
             this.planeTable.Location = new System.Drawing.Point(228, 3);
             this.planeTable.Name = "planeTable";
+            this.planeTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.planeTable.Size = new System.Drawing.Size(608, 347);
             this.planeTable.TabIndex = 1;
             // 
@@ -330,6 +342,44 @@
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // Seats
+            // 
+            this.Seats.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Seats.DataPropertyName = "Seats.count";
+            this.Seats.HeaderText = "Seats";
+            this.Seats.Name = "Seats";
+            this.Seats.Width = 188;
+            // 
+            // planeTableMenu
+            // 
+            this.planeTableMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem,
+            this.deleteToolStripMenuItem,
+            this.createToolStripMenuItem});
+            this.planeTableMenu.Name = "planeTableMenu";
+            this.planeTableMenu.Size = new System.Drawing.Size(109, 70);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // createToolStripMenuItem
+            // 
+            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.createToolStripMenuItem.Text = "Create";
+            this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
             // 
             // planeBindingSource
             // 
@@ -351,6 +401,7 @@
             this.grpCreatePlane.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.planeTable)).EndInit();
+            this.planeTableMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.planeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -376,10 +427,16 @@
         private System.Windows.Forms.ComboBox comboPassengerCountChoice;
         private System.Windows.Forms.Button btnPlaneSearch;
         private System.Windows.Forms.Button btnClearPlaneSearch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource planeBindingSource;
         private System.Windows.Forms.Button btnCreatePlane;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.CheckBox checkShowAllPlanes;
+        private System.ComponentModel.BackgroundWorker planeBackgroundworker;
+        private System.Windows.Forms.ContextMenuStrip planeTableMenu;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Seats;
     }
 }
