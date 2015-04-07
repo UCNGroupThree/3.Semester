@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlightAdmin.Controller;
 using FlightAdmin.GUI.Helper;
+using FlightAdmin.MainService;
 
 namespace FlightAdmin.GUI.CustomerTabExtension
 {
@@ -19,6 +20,25 @@ namespace FlightAdmin.GUI.CustomerTabExtension
         public CreateCustomer()
         {
             InitializeComponent();
+        }
+
+        public CreateCustomer(User user) : this() {
+            if (user == null) throw new ArgumentNullException();
+
+            base.Text = "Edit Customer";
+            lblHeader.Text = "Edit Customer";
+
+            txtName.Text = user.Name;
+            txtAddress.Text = user.Address;
+            txtCity.Text = user.Postal.City;
+            txtZip.Text = user.Postal.PostCode.ToString();
+            txtEmail.Text = user.Email;
+            txtPhone.Text = user.PhoneNumber;
+
+            btnSave.Text = "Save";
+            btnSave.Click -= btnSaveForCreation_Click;
+            btnSave.Click += btnSaveForEdit_Click;
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -34,32 +54,28 @@ namespace FlightAdmin.GUI.CustomerTabExtension
 
         private bool IsAddressValid()
         {
-            return FancyFeatures.IsTextBoxValid(txtName, errProvider, lblName.Text, 3, 60);
+            return FancyFeatures.IsTextBoxValid(txtAddress, errProvider, lblName.Text, 3, 60);
         }
 
         private bool IsCityValid()
         {
-            return FancyFeatures.IsTextBoxValid(txtName, errProvider, lblName.Text, 3, 60);
+            return FancyFeatures.IsTextBoxValid(txtCity, errProvider, lblName.Text, 3, 60);
         }
 
-        private bool IsCuntryValid()
+
+        private bool IsZipValid()
         {
             return FancyFeatures.IsTextBoxValid(txtZip, errProvider, lblName.Text, 3, 60);
         }
 
-        private bool IsZipValid()
-        {
-            return FancyFeatures.IsTextBoxValid(txtName, errProvider, lblName.Text, 3, 60);
-        }
-
         private bool IsEmailValid()
         {
-            return FancyFeatures.IsTextBoxValid(txtName, errProvider, lblName.Text, 3, 60);
+            return FancyFeatures.IsTextBoxValid(txtEmail, errProvider, lblName.Text, 3, 60);
         }
 
         private bool IsPhoneValid()
         {
-            return FancyFeatures.IsTextBoxValid(txtName, errProvider, lblName.Text, 3, 60);
+            return FancyFeatures.IsTextBoxValid(txtPhone, errProvider, lblName.Text, 3, 60);
         }
 
         private bool IsFormValid()
@@ -124,6 +140,16 @@ namespace FlightAdmin.GUI.CustomerTabExtension
         }
 
         #endregion
+
+      
+
+        private void btnSaveForEdit_Click(object sender, EventArgs e) {
+            MessageBox.Show("hello");
+        }
+
+        private void btnSaveForCreation_Click(object sender, EventArgs e) {
+            MessageBox.Show("Create");
+        }
 
        
 

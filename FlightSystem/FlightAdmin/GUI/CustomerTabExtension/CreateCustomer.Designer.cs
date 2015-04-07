@@ -41,7 +41,7 @@
             this.txtCity = new System.Windows.Forms.TextBox();
             this.txtZip = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCreate = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.txtEmail = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.txtPhone = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.btnClose = new System.Windows.Forms.Button();
@@ -116,7 +116,6 @@
             // txtName
             // 
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtName.Location = new System.Drawing.Point(108, 29);
             this.txtName.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtName.Name = "txtName";
@@ -182,7 +181,7 @@
             this.tableLayoutPanel1.Controls.Add(this.txtName, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblPhone, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.txtAddress, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnCreate, 2, 7);
+            this.tableLayoutPanel1.Controls.Add(this.btnSave, 2, 7);
             this.tableLayoutPanel1.Controls.Add(this.txtCity, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.txtZip, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.txtEmail, 2, 5);
@@ -203,18 +202,18 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(328, 268);
             this.tableLayoutPanel1.TabIndex = 1;
-          
             // 
-            // btnCreate
+            // btnSave
             // 
-            this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreate.Location = new System.Drawing.Point(242, 190);
-            this.btnCreate.Margin = new System.Windows.Forms.Padding(3, 8, 20, 3);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(75, 23);
-            this.btnCreate.TabIndex = 3;
-            this.btnCreate.Text = "Create";
-            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Location = new System.Drawing.Point(242, 190);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 8, 20, 3);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 3;
+            this.btnSave.Text = "Create";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSaveForCreation_Click);
             // 
             // txtEmail
             // 
@@ -272,6 +271,7 @@
 
         }
 
+
         #endregion
 
         private System.Windows.Forms.Label lblHeader;
@@ -288,7 +288,7 @@
         private System.Windows.Forms.TextBox txtZip;
         private Helper.NumericTextBox txtEmail;
         private Helper.NumericTextBox txtPhone;
-        private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.ErrorProvider errProvider;
 

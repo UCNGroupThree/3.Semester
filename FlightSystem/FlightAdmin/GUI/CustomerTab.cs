@@ -75,6 +75,17 @@ namespace FlightAdmin.GUI {
            
         }
 
+        private User GetSelectedUser() {
+            User user = null;
+            var current = dataGrid.CurrentRow;
+            if (current != null)
+            {
+                user = current.DataBoundItem as User;
+            }
+            return user;
+        }
+
+
 
         private void UpdateDataGrid(List<User> users)
         {
@@ -192,6 +203,8 @@ namespace FlightAdmin.GUI {
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e) {
 
+            CreateCustomer dialog = new CreateCustomer(GetSelectedUser());
+            dialog.Show(this);
           
         }
 
