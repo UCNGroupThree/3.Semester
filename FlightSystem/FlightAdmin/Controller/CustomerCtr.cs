@@ -119,12 +119,13 @@ namespace FlightAdmin.Controller
                 try
                 {
                     client.DeleteUser(user);
+                    
                 } catch (FaultException<NullPointerFault> nullException) {
                     throw new Exception(nullException.Message);
                 } catch (FaultException<DatabaseDeleteFault> dbException) {
                     throw new Exception(dbException.Message);
-                } catch (Exception e) {
-                    throw new ConnectionException("WCF Service Exception", e);
+                } catch (Exception ex) {
+                    throw new ConnectionException(ex.Message);
                 }
 
             }

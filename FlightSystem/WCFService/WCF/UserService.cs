@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
+using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
 using System.ServiceModel;
 using WCFService.Model;
@@ -42,8 +43,9 @@ namespace WCFService.WCF
         }
 
         public void DeleteUser(User user) {
-            _db.Users.Remove(user);
-            _db.SaveChanges();
+            _db.Users.Attach(user);
+            _db.Users.Remove(user);             
+            _db.SaveChanges(); 
         }
 
         public User GetUser(int id) {

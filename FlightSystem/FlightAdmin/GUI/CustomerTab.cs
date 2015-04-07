@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using FlightAdmin.Controller;
 using FlightAdmin.Exceptions;
 using FlightAdmin.GUI.CustomerTabExtension;
@@ -18,7 +20,7 @@ namespace FlightAdmin.GUI {
     public partial class CustomerTab : UserControl {
 
         CustomerCtr customerCtr = new CustomerCtr();
-        private DataGridViewCellEventArgs mouseLocation;
+        
         public CustomerTab() {
             InitializeComponent();
             SetEvents();
@@ -148,6 +150,26 @@ namespace FlightAdmin.GUI {
 
         }
 
+
+        private void DeleteCustomer(User user) {
+            DialogResult res = MessageBox.Show("Are you shure you want to delete this customer: " + user.Name,
+                "Remove", MessageBoxButtons.YesNo);
+            if (res == DialogResult.Yes) {
+
+                try {
+                    customerCtr.DeleteUser(user);
+                    userBindingSource.Remove(user);
+                } catch (NullException) {
+
+                    MessageBox.Show("The customer has alredy been deleted");
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+
+        }
+
         private void createToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CreateCustomer dialog = new CreateCustomer();
@@ -155,13 +177,22 @@ namespace FlightAdmin.GUI {
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e) {
-
-         
-            var som = (User) dataGrid.Rows[mouseLocation.RowIndex].DataBoundItem;
-            if (som != null) {
-                customerCtr.DeleteUser(som);
+          
+            var value = (User)dataGrid.CurrentRow.DataBoundItem;
+            int num = value.ID;
+            User user = customerCtr.GetUser(num);
+            if (user != null) {
+                DeleteCustomer(user);
             }
+            List<User> userDeleted = new List<User>();
 
+            UpdateDataGrid(userDeleted);
+        
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e) {
+
+          
         }
 
    
