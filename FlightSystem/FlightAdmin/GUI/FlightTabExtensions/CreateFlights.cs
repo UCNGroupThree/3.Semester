@@ -11,55 +11,119 @@ using FlightAdmin.Controller;
 using FlightAdmin.MainService;
 
 namespace FlightAdmin.GUI.FlightTabExtensions {
-    public partial class CreateFlights : UserControl {
+    public partial class CreateFlights : Form {
 
         public Route Route { get; set; }
+        private bool isEdit = false;
 
-        private int y;
+        private int y = 15;
         private int i = 25;
         private List<Plane> _planes;
-        private List<FlightHelper> _flights; 
+        private List<FlightHelper> _flights;
+        private bool loading = true;
 
         public CreateFlights() {
             InitializeComponent();
-            y = dateTimePicker1.Location.Y;
+            //y = dateTimePicker1.Location.Y;
             _flights = new List<FlightHelper>();
-            _flights.Add(new FlightHelper(dateTimePicker1, dateTimePicker2, comboBox1));
         }
 
+        public CreateFlights(Route route) {
+            Route = route;
+            if (route == null) throw new ArgumentNullException();
 
-        private void AddFlight() {
+            InitializeComponent();
+            _flights = new List<FlightHelper>();
+            isEdit = true;
+            
+            btnSave.Click -= btnSaveForCreate_Click;
+            btnSave.Click += btnSaveForEdit_Click;
+        }
 
-
+        private void AddFlight(Flight flight) {
+            DateTime dep = flight.DepartureTime;
+            DateTime arr = flight.ArrivalTime;
+            Plane plane = flight.Plane;
             try {
-                int interval = int.Parse(txtInterval.Text);
+                //int interval = int.Parse(txtInterval.Text);
 
                 var dt1 = new System.Windows.Forms.DateTimePicker {
-                    Location = new System.Drawing.Point(dateTimePicker1.Location.X, y + i),
+                    Location = new Point(1, y),
                     Name = "dateTimePicker1",
-                    Size = dateTimePicker1.Size,
-                    Format = dateTimePicker1.Format,
-                    CustomFormat = dateTimePicker1.CustomFormat
+                    Size = new Size(126, 20),
+                    Format = DateTimePickerFormat.Custom,
+                    CustomFormat = "yyyy.MM.dd HH:mm",
+                    Value = dep
                 };
                 dt1.Enter += new EventHandler(dateTimePicker_Enter);
                 selectionPanel.Controls.Add(dt1);
 
                 var dt2 = new System.Windows.Forms.DateTimePicker {
-                    Location = new System.Drawing.Point(dateTimePicker2.Location.X, y + i),
+                    Location = new Point(148, y),
                     Name = "dateTimePicker2",
-                    Size = dateTimePicker2.Size,
-                    Format = dateTimePicker2.Format,
-                    CustomFormat = dateTimePicker2.CustomFormat
+                    Size = new Size(126, 20),
+                    Format = DateTimePickerFormat.Custom,
+                    CustomFormat = "yyyy.MM.dd HH:mm",
+                    Value = arr
                 };
                 dt2.Enter += new EventHandler(dateTimePicker_Enter);
                 selectionPanel.Controls.Add(dt2);
 
                 var cmb = new System.Windows.Forms.ComboBox {
-                    DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList,
+                    DropDownStyle = ComboBoxStyle.DropDownList,
                     FormattingEnabled = true,
-                    Location = new System.Drawing.Point(comboBox1.Location.X, y + i),
+                    Location = new Point(294, y),
                     Name = "comboBox1",
-                    Size = comboBox1.Size
+                    Size = new Size(106, 21)
+                };
+                selectionPanel.Controls.Add(cmb);
+
+                cmb.DataSource = _planes.ToList();
+                cmb.DisplayMember = "Name";
+                cmb.ValueMember = "ID";
+
+                cmb.SelectedItem = plane;
+
+                y += i;
+                _flights.Add(new FlightHelper(dt1, dt2, cmb){Flight = flight});
+            } catch (Exception e) {
+                Console.WriteLine(e.InnerException);
+                Console.WriteLine(e.Message);
+                MessageBox.Show("Invalid Interval");
+            }
+        }
+
+
+        private void AddFlight(){
+            try {
+                int interval = int.Parse(txtInterval.Text);
+
+                var dt1 = new DateTimePicker {
+                    Location = new Point(1, y),
+                    Name = "dateTimePicker1",
+                    Size = new Size(126, 20),
+                    Format = DateTimePickerFormat.Custom,
+                    CustomFormat = "yyyy.MM.dd HH:mm"
+                };
+                dt1.Enter += new EventHandler(dateTimePicker_Enter);
+                selectionPanel.Controls.Add(dt1);
+
+                var dt2 = new DateTimePicker {
+                    Location = new Point(148, y),
+                    Name = "dateTimePicker2",
+                    Size = new Size(126, 20),
+                    Format = DateTimePickerFormat.Custom,
+                    CustomFormat = "yyyy.MM.dd HH:mm"
+                };
+                dt2.Enter += new EventHandler(dateTimePicker_Enter);
+                selectionPanel.Controls.Add(dt2);
+
+                var cmb = new ComboBox {
+                    DropDownStyle = ComboBoxStyle.DropDownList,
+                    FormattingEnabled = true,
+                    Location = new Point(294, y),
+                    Name = "comboBox1",
+                    Size = new Size(106, 21)
                 };
                 selectionPanel.Controls.Add(cmb);
 
@@ -102,6 +166,13 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
                 _planes = pl;
                 loadingPicture.Visible = false;
                 loadingPanel.Visible = false;
+                if (!isEdit) {
+                    AddFlight();
+                } else {
+                    foreach (var flight in Route.Flights) {
+                        AddFlight(flight);
+                    }
+                }
             });
 
             PopulateCmb();
@@ -137,12 +208,26 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
             AddFlight();
         }
 
-        private void btnCreate_Click(object sender, EventArgs e) {
+        private void btnSaveForCreate_Click(object sender, EventArgs e) {
+            RouteCtr rCtr = new RouteCtr();
 
+            List<Flight> flights = _flights.Select(flightHelper => new Flight {
+                ArrivalTime = flightHelper.ArrivalTime.Value, DepartureTime = flightHelper.DepartureTime.Value, Plane = (Plane) flightHelper.Plane.SelectedItem
+            }).ToList();
+
+            Route = rCtr.UpdateRoute(Route, Route.From, Route.To, flights);
+        }
+
+        private void btnSaveForEdit_Click(object sender, EventArgs e) {
+            FlightCtr fCtr = new FlightCtr();
+
+            List<Flight> flights = (from flightHelper in _flights where flightHelper.Flight != null select fCtr.UpdateFlight(flightHelper.Flight, flightHelper.ArrivalTime.Value, flightHelper.DepartureTime.Value, (Plane) flightHelper.Plane.SelectedItem)).ToList();
+
+            Route.Flights = flights;
         }
 
         private void btnCancel_Click(object sender, EventArgs e) {
-
+            this.Dispose();
         }
 
         #endregion

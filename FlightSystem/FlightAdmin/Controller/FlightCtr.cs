@@ -7,8 +7,10 @@ using FlightAdmin.MainService;
 namespace FlightAdmin.Controller {
     public class FlightCtr {
 
+
         #region Create
 
+        /*
         public Flight CreateFlight(DateTime arrival, DateTime departure, Plane plane) { //TODO Better Exception
             Flight flight = null;
 
@@ -30,6 +32,7 @@ namespace FlightAdmin.Controller {
 
             return flight;
         }
+        */
 
         #endregion
 

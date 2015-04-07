@@ -80,7 +80,7 @@
       <DependentUpon>DataGridLoader.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\FlightTabExtensions\CreateFlights.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\FlightTabExtensions\CreateFlights.Designer.cs">
       <DependentUpon>CreateFlights.cs</DependentUpon>
@@ -114,12 +114,6 @@
     </Compile>
     <Compile Include="GUI\FlightTab.Designer.cs">
       <DependentUpon>FlightTab.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\FlightTabExtensions\CreateFlight.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUI\FlightTabExtensions\CreateFlight.Designer.cs">
-      <DependentUpon>CreateFlight.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\FlightTabExtensions\FlightHelper.cs" />
     <Compile Include="GUI\Helper\BGHelper.cs" />
@@ -198,9 +192,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FlightTab.resx">
       <DependentUpon>FlightTab.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FlightTabExtensions\CreateFlight.resx">
-      <DependentUpon>CreateFlight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PlaneTab.resx">
       <DependentUpon>PlaneTab.cs</DependentUpon>

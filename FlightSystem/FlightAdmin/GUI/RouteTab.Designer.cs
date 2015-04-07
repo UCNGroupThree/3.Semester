@@ -39,22 +39,26 @@ namespace FlightAdmin.GUI {
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSearch = new System.Windows.Forms.Button();
             this.grpSearch = new System.Windows.Forms.GroupBox();
-            this.btnCreate = new System.Windows.Forms.Button();
+            this.btnCreateRoute = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.grpCreate = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.GridPanel = new System.Windows.Forms.Panel();
+            this.loadingPanel = new System.Windows.Forms.Panel();
+            this.dataRoute = new System.Windows.Forms.DataGridView();
             this.contextDataGridMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.routeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.loadingPanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fromDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataRoute = new System.Windows.Forms.DataGridView();
+            this.toDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.routeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnCreateFlights = new System.Windows.Forms.Button();
+            this.createFlightsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -64,11 +68,13 @@ namespace FlightAdmin.GUI {
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.GridPanel.SuspendLayout();
-            this.contextDataGridMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.routeBindingSource)).BeginInit();
             this.loadingPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataRoute)).BeginInit();
+            this.contextDataGridMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.routeBindingSource)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // fromDataGridViewTextBoxColumn
@@ -219,32 +225,32 @@ namespace FlightAdmin.GUI {
             this.grpSearch.TabStop = false;
             this.grpSearch.Text = "Search";
             // 
-            // btnCreate
+            // btnCreateRoute
             // 
-            this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreate.Location = new System.Drawing.Point(73, 6);
-            this.btnCreate.Margin = new System.Windows.Forms.Padding(0);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(66, 23);
-            this.btnCreate.TabIndex = 0;
-            this.btnCreate.Text = "Create!";
-            this.btnCreate.UseVisualStyleBackColor = true;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            this.btnCreateRoute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnCreateRoute.Location = new System.Drawing.Point(65, 0);
+            this.btnCreateRoute.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCreateRoute.Name = "btnCreateRoute";
+            this.btnCreateRoute.Size = new System.Drawing.Size(82, 25);
+            this.btnCreateRoute.TabIndex = 0;
+            this.btnCreateRoute.Text = "Create Route";
+            this.btnCreateRoute.UseVisualStyleBackColor = true;
+            this.btnCreateRoute.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.btnCreate, 1, 0);
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Controls.Add(this.btnCreateRoute, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(213, 35);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(213, 25);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // grpCreate
@@ -253,7 +259,7 @@ namespace FlightAdmin.GUI {
             this.grpCreate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpCreate.Location = new System.Drawing.Point(3, 103);
             this.grpCreate.Name = "grpCreate";
-            this.grpCreate.Size = new System.Drawing.Size(219, 54);
+            this.grpCreate.Size = new System.Drawing.Size(219, 44);
             this.grpCreate.TabIndex = 1;
             this.grpCreate.TabStop = false;
             this.grpCreate.Text = "Create";
@@ -264,13 +270,15 @@ namespace FlightAdmin.GUI {
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.grpCreate, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.grpSearch, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.groupBox1, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.Size = new System.Drawing.Size(225, 620);
             this.tableLayoutPanel2.TabIndex = 0;
@@ -301,32 +309,6 @@ namespace FlightAdmin.GUI {
             this.GridPanel.Size = new System.Drawing.Size(735, 614);
             this.GridPanel.TabIndex = 1;
             // 
-            // contextDataGridMenu
-            // 
-            this.contextDataGridMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.removeToolStripMenuItem,
-            this.editToolStripMenuItem});
-            this.contextDataGridMenu.Name = "contextDataGridMenu";
-            this.contextDataGridMenu.Size = new System.Drawing.Size(118, 48);
-            // 
-            // removeToolStripMenuItem
-            // 
-            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.removeToolStripMenuItem.Text = "Remove";
-            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
-            // 
-            // routeBindingSource
-            // 
-            this.routeBindingSource.DataSource = typeof(FlightAdmin.MainService.Route);
-            // 
             // loadingPanel
             // 
             this.loadingPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -339,36 +321,6 @@ namespace FlightAdmin.GUI {
             this.loadingPanel.Size = new System.Drawing.Size(738, 620);
             this.loadingPanel.TabIndex = 0;
             this.loadingPanel.Visible = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::FlightAdmin.Properties.Resources.image_836585;
-            this.pictureBox1.Location = new System.Drawing.Point(223, 189);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(117, 121);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // priceDataGridViewTextBoxColumn1
-            // 
-            this.priceDataGridViewTextBoxColumn1.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn1.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
-            this.priceDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // toDataGridViewTextBoxColumn1
-            // 
-            this.toDataGridViewTextBoxColumn1.DataPropertyName = "To";
-            this.toDataGridViewTextBoxColumn1.HeaderText = "To";
-            this.toDataGridViewTextBoxColumn1.Name = "toDataGridViewTextBoxColumn1";
-            this.toDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // fromDataGridViewTextBoxColumn1
-            // 
-            this.fromDataGridViewTextBoxColumn1.DataPropertyName = "From";
-            this.fromDataGridViewTextBoxColumn1.HeaderText = "From";
-            this.fromDataGridViewTextBoxColumn1.Name = "fromDataGridViewTextBoxColumn1";
-            this.fromDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // dataRoute
             // 
@@ -391,6 +343,108 @@ namespace FlightAdmin.GUI {
             this.dataRoute.TabIndex = 1;
             this.dataRoute.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataRoute_CellMouseEnter);
             // 
+            // contextDataGridMenu
+            // 
+            this.contextDataGridMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.createFlightsToolStripMenuItem});
+            this.contextDataGridMenu.Name = "contextDataGridMenu";
+            this.contextDataGridMenu.Size = new System.Drawing.Size(153, 92);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::FlightAdmin.Properties.Resources.image_836585;
+            this.pictureBox1.Location = new System.Drawing.Point(223, 189);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(117, 121);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // fromDataGridViewTextBoxColumn1
+            // 
+            this.fromDataGridViewTextBoxColumn1.DataPropertyName = "From";
+            this.fromDataGridViewTextBoxColumn1.HeaderText = "From";
+            this.fromDataGridViewTextBoxColumn1.Name = "fromDataGridViewTextBoxColumn1";
+            this.fromDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // toDataGridViewTextBoxColumn1
+            // 
+            this.toDataGridViewTextBoxColumn1.DataPropertyName = "To";
+            this.toDataGridViewTextBoxColumn1.HeaderText = "To";
+            this.toDataGridViewTextBoxColumn1.Name = "toDataGridViewTextBoxColumn1";
+            this.toDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // priceDataGridViewTextBoxColumn1
+            // 
+            this.priceDataGridViewTextBoxColumn1.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn1.HeaderText = "Price";
+            this.priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
+            this.priceDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // routeBindingSource
+            // 
+            this.routeBindingSource.DataSource = typeof(FlightAdmin.MainService.Route);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tableLayoutPanel7);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(3, 153);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(219, 44);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Create Flights";
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel7.Controls.Add(this.btnCreateFlights, 0, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(213, 25);
+            this.tableLayoutPanel7.TabIndex = 1;
+            // 
+            // btnCreateFlights
+            // 
+            this.btnCreateFlights.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnCreateFlights.Location = new System.Drawing.Point(65, 0);
+            this.btnCreateFlights.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCreateFlights.Name = "btnCreateFlights";
+            this.btnCreateFlights.Size = new System.Drawing.Size(82, 25);
+            this.btnCreateFlights.TabIndex = 0;
+            this.btnCreateFlights.Text = "Create Flights";
+            this.btnCreateFlights.UseVisualStyleBackColor = true;
+            // 
+            // createFlightsToolStripMenuItem
+            // 
+            this.createFlightsToolStripMenuItem.Name = "createFlightsToolStripMenuItem";
+            this.createFlightsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createFlightsToolStripMenuItem.Text = "Create Flights";
+            this.createFlightsToolStripMenuItem.Click += new System.EventHandler(this.createFlightsToolStripMenuItem_Click);
+            // 
             // RouteTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -408,11 +462,13 @@ namespace FlightAdmin.GUI {
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.GridPanel.ResumeLayout(false);
-            this.contextDataGridMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.routeBindingSource)).EndInit();
             this.loadingPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataRoute)).EndInit();
+            this.contextDataGridMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.routeBindingSource)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -427,7 +483,7 @@ namespace FlightAdmin.GUI {
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.GroupBox grpSearch;
-        private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.Button btnCreateRoute;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.GroupBox grpCreate;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
@@ -448,5 +504,9 @@ namespace FlightAdmin.GUI {
         private System.Windows.Forms.DataGridViewTextBoxColumn fromDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn toDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.Button btnCreateFlights;
+        private System.Windows.Forms.ToolStripMenuItem createFlightsToolStripMenuItem;
     }
 }

@@ -7,6 +7,8 @@ using FlightAdmin.MainService;
 namespace FlightAdmin.GUI.FlightTabExtensions {
     public class FlightHelper {
 
+        public Flight Flight { get; set; }
+
         public DateTimePicker ArrivalTime { get; set; }
 
         public DateTimePicker DepartureTime { get; set; }
@@ -19,14 +21,15 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
             Plane = plane;
         }
 
-        public bool Validate(CreateFlight main) {
+        public bool Validate(CreateFlights main) {
             if (DepartureTime.Value.CompareTo(ArrivalTime.Value) <= 0) {
-                main.epDate.SetError(DepartureTime, "Something Wrong!");
-                main.epDate.SetError(ArrivalTime, "Something Wrong!");
+                main.epFlights.SetError(DepartureTime, "Something Wrong!");
+                main.epFlights.SetError(ArrivalTime, "Something Wrong!");
                 return false;
             }
 
-            if (Plane == null || (int) Plane.SelectedValue < 1) {
+            if ((int) Plane.SelectedValue < 1) {
+                main.epFlights.SetError(Plane, "Something Wrong!");
                 return false;
             }
 

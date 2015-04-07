@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlightAdmin.Controller;
 using FlightAdmin.Exceptions;
+using FlightAdmin.GUI.FlightTabExtensions;
 using FlightAdmin.GUI.RouteTabExtensions;
 using FlightAdmin.MainService;
 
@@ -152,9 +153,9 @@ namespace FlightAdmin.GUI {
         #region Delete / Edit Event - DataGrid Menu
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e) {
-            var som = (Route)dataRoute.Rows[_mouseLocation.RowIndex].DataBoundItem;
-            if (som != null) {
-                DeleteRoute(som);
+            var route = (Route)dataRoute.Rows[_mouseLocation.RowIndex].DataBoundItem;
+            if (route != null) {
+                DeleteRoute(route);
             }
         }
 
@@ -163,6 +164,17 @@ namespace FlightAdmin.GUI {
         }
 
         #endregion
+
+        private void createFlightsToolStripMenuItem_Click(object sender, EventArgs e) {
+            var route = (Route)dataRoute.Rows[_mouseLocation.RowIndex].DataBoundItem;
+            CreateFlights f = null;
+            if (route.Flights == null || route.Flights.Count > 0) {
+                f = new CreateFlights(route);
+            } else {
+                f = new CreateFlights(){Route = route};
+            }
+            f.ShowDialog();
+        }
 
     }
 }

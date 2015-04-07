@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
+using System.Data.Entity.Migrations;
 using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
@@ -39,19 +40,29 @@ namespace WCFService.WCF {
         }
 
         public Route UpdateRoute(Route route) {
-            Route retRoute = route;
+            Route retRoute;
 
             if (route == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
 
             try {
-                db.Routes.Attach(route);
-                db.Entry(route).State = EntityState.Modified;
+                retRoute = db.Routes.Find(route.ID);
+                //db.Routes.Attach(route);
+                db.Entry(retRoute).State = EntityState.Modified;
+                foreach (var flight in retRoute.Flights) {
+                    if (flight.ID > 0) {
+                        db.Entry(flight).State = EntityState.Modified;
+                    } else {
+                        db.Entry(flight).State = EntityState.Added;
+                    }
+                }
+                //db.Entry(route.Flights).State = EntityState.Added;
                 db.SaveChanges();
             } catch (OptimisticConcurrencyException e) {
                 throw new FaultException<OptimisticConcurrencyFault>(new OptimisticConcurrencyFault() { Message = e.Message });
             } catch (Exception ex) {
+                Console.WriteLine(ex.InnerException);
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault() { Message = ex.Message });
             }
