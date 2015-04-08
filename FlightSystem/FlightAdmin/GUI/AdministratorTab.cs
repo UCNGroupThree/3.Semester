@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FlightAdmin.Controller;
 using FlightAdmin.MainService;
 
 namespace FlightAdmin.GUI {
     public partial class AdministratorTab : UserControl {
 
-        AdministratorCtr
+        private AdministratorCtr ctr;
 
         public AdministratorTab() {
             InitializeComponent();

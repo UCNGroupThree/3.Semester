@@ -16,15 +16,19 @@ namespace FlightAdmin.Controller
 
             Administrator administrator;
 
-            try {
+            try 
+            {
 
-                administrator = new Administrator() {
-                    Username = username;
-                };
-                using (AdministratorServiceClient client = new AdministratorServiceClient()) {
-                    administrator.ID = client.AddAdministrator(administrator);
+                administrator = new Administrator();
+
+                administrator.Username = username;
+
+                using (AdministratorServiceClient client = new AdministratorServiceClient()) 
+                {
+                   client.AddAdministrator(administrator);
                 }
-            } catch (Exception e) {
+                
+            } catch(Exception e) {
                 administrator = null;
                 Console.WriteLine(e.Message);
             } // TODO: more exceptions
@@ -52,6 +56,8 @@ namespace FlightAdmin.Controller
                 Console.WriteLine(e.Message);
             }
             // TODO: more exceptions
+
+            return administrator;
         }
 
         #endregion
@@ -74,7 +80,7 @@ namespace FlightAdmin.Controller
 
         public Administrator GetAdministrator(int id) {
 
-            Administrator administrator;
+            Administrator administrator = null;
 
             try {
                 using (var client = new AdministratorServiceClient()) {
@@ -84,6 +90,8 @@ namespace FlightAdmin.Controller
             } catch (Exception e) {
                 Console.WriteLine(e.Message);
             }
+
+            return administrator;
         }
 
         #endregion

@@ -39,6 +39,7 @@
             this.btnPlaneSearch = new System.Windows.Forms.Button();
             this.btnClearPlaneSearch = new System.Windows.Forms.Button();
             this.txtID = new FlightAdmin.GUI.Helper.NumericTextBox();
+            this.btnShowAllPlanes = new System.Windows.Forms.Button();
             this.grpCreatePlane = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCreatePlane = new System.Windows.Forms.Button();
@@ -51,7 +52,6 @@
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.planeBackgroundworker = new System.ComponentModel.BackgroundWorker();
-            this.btnShowAllPlanes = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.grpPlaneSearch.SuspendLayout();
@@ -263,6 +263,17 @@
             this.txtID.Size = new System.Drawing.Size(120, 20);
             this.txtID.TabIndex = 12;
             // 
+            // btnShowAllPlanes
+            // 
+            this.btnShowAllPlanes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnShowAllPlanes.Location = new System.Drawing.Point(84, 158);
+            this.btnShowAllPlanes.Name = "btnShowAllPlanes";
+            this.btnShowAllPlanes.Size = new System.Drawing.Size(120, 25);
+            this.btnShowAllPlanes.TabIndex = 13;
+            this.btnShowAllPlanes.Text = "Show All Planes";
+            this.btnShowAllPlanes.UseVisualStyleBackColor = true;
+            this.btnShowAllPlanes.Click += new System.EventHandler(this.btnShowAllPlanes_Click);
+            // 
             // grpCreatePlane
             // 
             this.grpCreatePlane.Controls.Add(this.tableLayoutPanel4);
@@ -366,17 +377,6 @@
             // planeBindingSource
             // 
             this.planeBindingSource.DataSource = typeof(FlightAdmin.MainService.Plane);
-            // 
-            // btnShowAllPlanes
-            // 
-            this.btnShowAllPlanes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnShowAllPlanes.Location = new System.Drawing.Point(84, 158);
-            this.btnShowAllPlanes.Name = "btnShowAllPlanes";
-            this.btnShowAllPlanes.Size = new System.Drawing.Size(120, 25);
-            this.btnShowAllPlanes.TabIndex = 13;
-            this.btnShowAllPlanes.Text = "Show All Planes";
-            this.btnShowAllPlanes.UseVisualStyleBackColor = true;
-            this.btnShowAllPlanes.Click += new System.EventHandler(this.btnShowAllPlanes_Click);
             // 
             // PlaneTab
             // 
