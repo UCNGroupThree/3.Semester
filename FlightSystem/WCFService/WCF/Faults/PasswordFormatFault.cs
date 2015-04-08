@@ -3,11 +3,11 @@
 namespace WCFService.WCF.Faults {
 
     [DataContract]
-    public class AlreadyExistFault {
+    public class PasswordFormatFault {
 
-        public AlreadyExistFault() {
+        public PasswordFormatFault() {
             Result = false;
-            Description = "The entry already exists";
+            Description = "The Password is not valid!";
             Message = Description;
         }
 

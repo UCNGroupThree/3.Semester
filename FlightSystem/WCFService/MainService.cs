@@ -11,21 +11,29 @@ namespace WCFService {
     public class MainService : IAdministratorService, IAirportService, IFlightService, IPlaneService, IRouteService, IUserService, IDijkstra {
 
         #region Administrator Service 
-
+        
         public int AddAdministrator(Administrator administrator) {
             return new AdministratorService().AddAdministrator(administrator);
         }
 
-        public Administrator UpdateAdministrator(Administrator administrator) {
-            return new AdministratorService().UpdateAdministrator(administrator);
+        public void UpdateAdministrator(Administrator administrator) {
+            new AdministratorService().UpdateAdministrator(administrator);
         }
 
+        public void UpdatePassword(Administrator administrator) {
+            new AdministratorService().UpdatePassword(administrator);
+        }
+        
         public void DeleteAdministrator(Administrator administrator) {
             new AdministratorService().DeleteAdministrator(administrator);
         }
 
         public Administrator GetAdministrator(int id) {
             return new AdministratorService().GetAdministrator(id);
+        }
+
+        public List<Administrator> GetAllAdministrators() {
+            return new AdministratorService().GetAllAdministrators();
         }
 
         #endregion
@@ -187,8 +195,5 @@ namespace WCFService {
 
         #endregion
 
-
-
-      
     }
 }

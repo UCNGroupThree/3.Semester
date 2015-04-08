@@ -28,8 +28,8 @@
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="c030d6f7-ca17-4319-a6e0-04c9ca452a23" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="16de33af-1ca1-47d6-bf4f-06bacb3ac4d6" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
     <MetadataFile FileName="WCFService.Model.xsd" MetadataType="Schema" ID="d68df7d2-2b92-4afd-a85c-e97a27156d7d" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
-    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="3d4e6936-f069-4b20-9822-b9e2ca8bb1e0" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
     <MetadataFile FileName="WCFService.WCF.Faults.xsd" MetadataType="Schema" ID="934c19ad-b59f-4692-b085-2e372a913524" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="3d4e6936-f069-4b20-9822-b9e2ca8bb1e0" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
     <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="597dbc8c-bda5-45a4-a8d2-10fce4d94d9a" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
   </Metadata>
   <Extensions>

@@ -25,9 +25,19 @@
   </xs:element>
   <xs:element name="UpdateAdministratorResponse">
     <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePassword">
+    <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="UpdateAdministratorResult" nillable="true" type="q3:Administrator" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="administrator" nillable="true" type="q3:Administrator" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePasswordResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteAdministrator">
@@ -56,10 +66,22 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetAllAdministrators">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllAdministratorsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAllAdministratorsResult" nillable="true" type="q6:ArrayOfAdministrator" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddAirport">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="airport" nillable="true" type="q6:Airport" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="airport" nillable="true" type="q7:Airport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -73,7 +95,7 @@
   <xs:element name="UpdateAirport">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="airport" nillable="true" type="q7:Airport" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="airport" nillable="true" type="q8:Airport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -85,7 +107,7 @@
   <xs:element name="DeleteAirport">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="airport" nillable="true" type="q8:Airport" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="airport" nillable="true" type="q9:Airport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -104,7 +126,7 @@
   <xs:element name="GetAirportResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAirportResult" nillable="true" type="q9:Airport" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAirportResult" nillable="true" type="q10:Airport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -118,7 +140,7 @@
   <xs:element name="GetAirportsByCountryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAirportsByCountryResult" nillable="true" type="q10:ArrayOfAirport" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAirportsByCountryResult" nillable="true" type="q11:ArrayOfAirport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -132,7 +154,7 @@
   <xs:element name="GetAirportsByCityResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAirportsByCityResult" nillable="true" type="q11:ArrayOfAirport" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAirportsByCityResult" nillable="true" type="q12:ArrayOfAirport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -146,7 +168,7 @@
   <xs:element name="GetAirportsByNameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAirportsByNameResult" nillable="true" type="q12:ArrayOfAirport" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAirportsByNameResult" nillable="true" type="q13:ArrayOfAirport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -161,7 +183,7 @@
   <xs:element name="GetAirportsByShortNameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAirportsByShortNameResult" nillable="true" type="q13:ArrayOfAirport" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAirportsByShortNameResult" nillable="true" type="q14:ArrayOfAirport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -173,14 +195,14 @@
   <xs:element name="GetCountriesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetCountriesResult" nillable="true" type="q14:ArrayOfstring" />
+        <xs:element xmlns:q15="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetCountriesResult" nillable="true" type="q15:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddFlight">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="flight" nillable="true" type="q15:Flight" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="flight" nillable="true" type="q16:Flight" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -194,21 +216,21 @@
   <xs:element name="UpdateFlight">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="flight" nillable="true" type="q16:Flight" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="flight" nillable="true" type="q17:Flight" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateFlightResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="UpdateFlightResult" nillable="true" type="q17:Flight" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="UpdateFlightResult" nillable="true" type="q18:Flight" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteFlight">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="flight" nillable="true" type="q18:Flight" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="flight" nillable="true" type="q19:Flight" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -227,14 +249,14 @@
   <xs:element name="GetFlightResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetFlightResult" nillable="true" type="q19:Flight" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetFlightResult" nillable="true" type="q20:Flight" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddPlane">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="plane" nillable="true" type="q20:Plane" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="plane" nillable="true" type="q21:Plane" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -248,21 +270,21 @@
   <xs:element name="UpdatePlane">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="plane" nillable="true" type="q21:Plane" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="plane" nillable="true" type="q22:Plane" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdatePlaneResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="UpdatePlaneResult" nillable="true" type="q22:Plane" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="UpdatePlaneResult" nillable="true" type="q23:Plane" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeletePlane">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="plane" nillable="true" type="q23:Plane" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="plane" nillable="true" type="q24:Plane" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -281,7 +303,7 @@
   <xs:element name="GetPlaneResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetPlaneResult" nillable="true" type="q24:Plane" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetPlaneResult" nillable="true" type="q25:Plane" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -293,7 +315,7 @@
   <xs:element name="GetAllPlanesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAllPlanesResult" nillable="true" type="q25:ArrayOfPlane" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAllPlanesResult" nillable="true" type="q26:ArrayOfPlane" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -307,7 +329,7 @@
   <xs:element name="GetPlanesWithEqualSeatNumberResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetPlanesWithEqualSeatNumberResult" nillable="true" type="q26:ArrayOfPlane" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetPlanesWithEqualSeatNumberResult" nillable="true" type="q27:ArrayOfPlane" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -321,7 +343,7 @@
   <xs:element name="GetPlaneswithLessThanOrEqualSeatNumberResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetPlaneswithLessThanOrEqualSeatNumberResult" nillable="true" type="q27:ArrayOfPlane" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetPlaneswithLessThanOrEqualSeatNumberResult" nillable="true" type="q28:ArrayOfPlane" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -335,42 +357,42 @@
   <xs:element name="GetPlaneswithMoreOrEqualSeatNumberResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetPlaneswithMoreOrEqualSeatNumberResult" nillable="true" type="q28:ArrayOfPlane" />
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetPlaneswithMoreOrEqualSeatNumberResult" nillable="true" type="q29:ArrayOfPlane" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddRoute">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="route" nillable="true" type="q29:Route" />
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="route" nillable="true" type="q30:Route" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddRouteResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="AddRouteResult" nillable="true" type="q30:Route" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="AddRouteResult" nillable="true" type="q31:Route" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateRoute">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="route" nillable="true" type="q31:Route" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="route" nillable="true" type="q32:Route" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateRouteResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="UpdateRouteResult" nillable="true" type="q32:Route" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="UpdateRouteResult" nillable="true" type="q33:Route" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteRoute">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="route" nillable="true" type="q33:Route" />
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="route" nillable="true" type="q34:Route" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -389,43 +411,43 @@
   <xs:element name="GetRouteResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetRouteResult" nillable="true" type="q34:Route" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetRouteResult" nillable="true" type="q35:Route" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetRouteByAirports">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="from" nillable="true" type="q35:Airport" />
-        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="to" nillable="true" type="q36:Airport" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="from" nillable="true" type="q36:Airport" />
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="to" nillable="true" type="q37:Airport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetRouteByAirportsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetRouteByAirportsResult" nillable="true" type="q37:Route" />
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetRouteByAirportsResult" nillable="true" type="q38:Route" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetRoutesByAirport">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="from" nillable="true" type="q38:Airport" />
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="from" nillable="true" type="q39:Airport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetRoutesByAirportResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetRoutesByAirportResult" nillable="true" type="q39:ArrayOfRoute" />
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetRoutesByAirportResult" nillable="true" type="q40:ArrayOfRoute" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="user" nillable="true" type="q40:User" />
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="user" nillable="true" type="q41:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -439,21 +461,21 @@
   <xs:element name="UpdateUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="user" nillable="true" type="q41:User" />
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="user" nillable="true" type="q42:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="UpdateUserResult" nillable="true" type="q42:User" />
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="UpdateUserResult" nillable="true" type="q43:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="user" nillable="true" type="q43:User" />
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="user" nillable="true" type="q44:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -472,7 +494,7 @@
   <xs:element name="GetUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetUserResult" nillable="true" type="q44:User" />
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetUserResult" nillable="true" type="q45:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -486,22 +508,22 @@
   <xs:element name="GetUserByNameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetUserByNameResult" nillable="true" type="q45:ArrayOfUser" />
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetUserByNameResult" nillable="true" type="q46:ArrayOfUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DijkstraStuff">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="from" nillable="true" type="q46:Airport" />
-        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="to" nillable="true" type="q47:Airport" />
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="from" nillable="true" type="q47:Airport" />
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="to" nillable="true" type="q48:Airport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DijkstraStuffResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="DijkstraStuffResult" nillable="true" type="q48:ArrayOfRoute" />
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="DijkstraStuffResult" nillable="true" type="q49:ArrayOfRoute" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -1,13 +1,17 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WCFService.WCF.Faults {
-
     [DataContract]
-    public class AlreadyExistFault {
+    public class NotFoundFault {
 
-        public AlreadyExistFault() {
+        public NotFoundFault() {
             Result = false;
-            Description = "The entry already exists";
+            Description = "The entry was not found";
             Message = Description;
         }
 
