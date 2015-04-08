@@ -7,12 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FlightAdmin.MainService;
 
 namespace FlightAdmin.GUI {
     public partial class AdministratorTab : UserControl {
+
+        AdministratorCtr
+
         public AdministratorTab() {
             InitializeComponent();
         }
+
+        #region datagridview update 
+
+        public void updateDataGridView(List<Administrator> list) {
+
+            foreach (var admin in list) {
+
+                administratorBindingSource.Add(admin);
+            }
+        } 
+
+        #endregion
 
         #region clear
 
@@ -40,9 +56,17 @@ namespace FlightAdmin.GUI {
         }
 
         #endregion
+        
+        #region show all admins
+
+        public void showAll() {
+            
+            
+        }
+
+        #endregion
 
         #region button methods
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             search();
@@ -56,6 +80,11 @@ namespace FlightAdmin.GUI {
         private void btnCreate_Click(object sender, EventArgs e)
         {
             create();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            showAll();
         }
 
         #endregion
