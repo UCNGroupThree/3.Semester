@@ -42,10 +42,12 @@
             this.txtZip = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new System.Windows.Forms.Button();
-            this.txtEmail = new FlightAdmin.GUI.Helper.NumericTextBox();
-            this.txtPhone = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.errProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.editWorker = new System.ComponentModel.BackgroundWorker();
+            this.createWorker = new System.ComponentModel.BackgroundWorker();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtPhone = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errProvider)).BeginInit();
             this.SuspendLayout();
@@ -184,9 +186,9 @@
             this.tableLayoutPanel1.Controls.Add(this.btnSave, 2, 7);
             this.tableLayoutPanel1.Controls.Add(this.txtCity, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.txtZip, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.txtEmail, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.txtPhone, 2, 6);
             this.tableLayoutPanel1.Controls.Add(this.btnClose, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.txtEmail, 2, 5);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
@@ -215,30 +217,6 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSaveForCreation_Click);
             // 
-            // txtEmail
-            // 
-            this.txtEmail.AllowSpace = false;
-            this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEmail.Location = new System.Drawing.Point(108, 133);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.OnlyInt = false;
-            this.txtEmail.Size = new System.Drawing.Size(209, 20);
-            this.txtEmail.TabIndex = 2;
-            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
-            // 
-            // txtPhone
-            // 
-            this.txtPhone.AllowSpace = false;
-            this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhone.Location = new System.Drawing.Point(108, 159);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.OnlyInt = false;
-            this.txtPhone.Size = new System.Drawing.Size(209, 20);
-            this.txtPhone.TabIndex = 2;
-            this.txtPhone.Validating += new System.ComponentModel.CancelEventHandler(this.txtPhone_Validating);
-            // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -255,6 +233,38 @@
             // errProvider
             // 
             this.errProvider.ContainerControl = this;
+            // 
+            // editWorker
+            // 
+            this.editWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.editWorker_DoWork);
+            this.editWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.editWorker_RunWorkerCompleted);
+            // 
+            // createWorker
+            // 
+            this.createWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.createWorker_DoWork);
+            this.createWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.createWorker_RunWorkerCompleted);
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmail.Location = new System.Drawing.Point(108, 133);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(209, 20);
+            this.txtEmail.TabIndex = 4;
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.AllowSpace = false;
+            this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPhone.Location = new System.Drawing.Point(108, 159);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.OnlyInt = false;
+            this.txtPhone.Size = new System.Drawing.Size(209, 20);
+            this.txtPhone.TabIndex = 2;
+            this.txtPhone.Validating += new System.ComponentModel.CancelEventHandler(this.txtPhone_Validating);
             // 
             // CreateCustomer
             // 
@@ -286,11 +296,13 @@
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtCity;
         private System.Windows.Forms.TextBox txtZip;
-        private Helper.NumericTextBox txtEmail;
         private Helper.NumericTextBox txtPhone;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.ErrorProvider errProvider;
+        private System.ComponentModel.BackgroundWorker editWorker;
+        private System.ComponentModel.BackgroundWorker createWorker;
+        private System.Windows.Forms.TextBox txtEmail;
 
 
     }

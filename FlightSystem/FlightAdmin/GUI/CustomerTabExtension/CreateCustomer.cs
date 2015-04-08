@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using FlightAdmin.Controller;
 using FlightAdmin.GUI.Helper;
 using FlightAdmin.MainService;
+using FlightAdmin.Exceptions;
 
 namespace FlightAdmin.GUI.CustomerTabExtension
 {
@@ -70,7 +71,7 @@ namespace FlightAdmin.GUI.CustomerTabExtension
 
         private bool IsEmailValid()
         {
-            return FancyFeatures.IsTextBoxValid(txtEmail, errProvider, lblName.Text, 3, 60);
+            return EmailValidation.IsEmailValid(txtEmail, errProvider, lblEmail.Text);
         }
 
         private bool IsPhoneValid()
@@ -150,6 +151,48 @@ namespace FlightAdmin.GUI.CustomerTabExtension
         private void btnSaveForCreation_Click(object sender, EventArgs e) {
             MessageBox.Show("Create");
         }
+
+        private void editWorker_DoWork(object sender, DoWorkEventArgs e) {
+
+        }
+
+        private void editWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+
+        }
+
+        private void createWorker_DoWork(object sender, DoWorkEventArgs e) {
+            Postal postal = new Postal
+            {
+                PostCode = Int32.Parse(txtZip.Text),
+                City = txtCity.Text
+
+            };
+
+            if (postal == null) throw new ArgumentNullException();
+
+            e.Result = customerCtr.CreateUser(txtName.Text.Trim(), txtAddress.Text.Trim(), postal, txtPhone.Text.Trim(), txtEmail.Text.Trim());        
+        }
+
+        private void createWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+            if (e.Error != null) {
+                Exception ex = e.Error;
+                if (ex is AlreadyExistException) {
+                    errProvider.SetError(txtName, txtName.Text.Trim() + "already exists!");
+                } else {
+                    MessageBox.Show(this, ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            } else {
+                User user = e.Result as User;
+                if (user != null) {
+                    MessageBox.Show(this, @"The customer has been created", @"Succese", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                } else {
+                    MessageBox.Show(this, @"Unknown Error", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+      
 
        
 

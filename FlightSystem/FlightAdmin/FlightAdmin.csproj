@@ -91,6 +91,7 @@
     <Compile Include="GUI\FlightTabExtensions\CreateFlights.Designer.cs">
       <DependentUpon>CreateFlights.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Helper\EmailValidation.cs" />
     <Compile Include="MainUI.cs">
       <SubType>Form</SubType>
     </Compile>
