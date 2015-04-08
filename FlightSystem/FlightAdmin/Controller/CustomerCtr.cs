@@ -100,7 +100,7 @@ namespace FlightAdmin.Controller
                     } catch (FaultException<DatabaseUpdateFault> updateException) {
                         throw new Exception(updateException.Message);
                     } catch (Exception e) {
-                        throw new ConnectionException("WCF Service Exception", e);
+                        throw new ConnectionException("WCF Service Exception 1", e);
                     }
                 return userUpdate;
                 

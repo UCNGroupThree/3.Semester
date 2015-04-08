@@ -42,12 +42,12 @@
             this.txtZip = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new System.Windows.Forms.Button();
+            this.txtPhone = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.btnClose = new System.Windows.Forms.Button();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.errProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.editWorker = new System.ComponentModel.BackgroundWorker();
             this.createWorker = new System.ComponentModel.BackgroundWorker();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.txtPhone = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errProvider)).BeginInit();
             this.SuspendLayout();
@@ -217,6 +217,18 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSaveForCreation_Click);
             // 
+            // txtPhone
+            // 
+            this.txtPhone.AllowSpace = false;
+            this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPhone.Location = new System.Drawing.Point(108, 159);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.OnlyInt = false;
+            this.txtPhone.Size = new System.Drawing.Size(209, 20);
+            this.txtPhone.TabIndex = 2;
+            this.txtPhone.Validating += new System.ComponentModel.CancelEventHandler(this.txtPhone_Validating);
+            // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -230,20 +242,6 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // errProvider
-            // 
-            this.errProvider.ContainerControl = this;
-            // 
-            // editWorker
-            // 
-            this.editWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.editWorker_DoWork);
-            this.editWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.editWorker_RunWorkerCompleted);
-            // 
-            // createWorker
-            // 
-            this.createWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.createWorker_DoWork);
-            this.createWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.createWorker_RunWorkerCompleted);
-            // 
             // txtEmail
             // 
             this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -254,17 +252,21 @@
             this.txtEmail.TabIndex = 4;
             this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
-            // txtPhone
+            // errProvider
             // 
-            this.txtPhone.AllowSpace = false;
-            this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhone.Location = new System.Drawing.Point(108, 159);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.OnlyInt = false;
-            this.txtPhone.Size = new System.Drawing.Size(209, 20);
-            this.txtPhone.TabIndex = 2;
-            this.txtPhone.Validating += new System.ComponentModel.CancelEventHandler(this.txtPhone_Validating);
+            this.errProvider.ContainerControl = this;
+            // 
+            // editWorker
+            // 
+            this.editWorker.WorkerSupportsCancellation = true;
+            this.editWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.editWorker_DoWork);
+            this.editWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.editWorker_RunWorkerCompleted);
+            // 
+            // createWorker
+            // 
+            this.createWorker.WorkerSupportsCancellation = true;
+            this.createWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.createWorker_DoWork);
+            this.createWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.createWorker_RunWorkerCompleted);
             // 
             // CreateCustomer
             // 

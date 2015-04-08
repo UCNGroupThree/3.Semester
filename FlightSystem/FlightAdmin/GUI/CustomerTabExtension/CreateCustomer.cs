@@ -18,6 +18,7 @@ namespace FlightAdmin.GUI.CustomerTabExtension
     {
 
         private readonly CustomerCtr customerCtr = new CustomerCtr();
+        public User User { get; set; }
         public CreateCustomer()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace FlightAdmin.GUI.CustomerTabExtension
         public CreateCustomer(User user) : this() {
             if (user == null) throw new ArgumentNullException();
 
+            User = user;
             base.Text = "Edit Customer";
             lblHeader.Text = "Edit Customer";
 
@@ -145,19 +147,59 @@ namespace FlightAdmin.GUI.CustomerTabExtension
       
 
         private void btnSaveForEdit_Click(object sender, EventArgs e) {
-            MessageBox.Show("hello");
+            if (IsFormValid())
+            {
+                editWorker.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.Show(this, @"Somthing went wrong!", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+          
         }
 
         private void btnSaveForCreation_Click(object sender, EventArgs e) {
-            MessageBox.Show("Create");
+            if (IsFormValid())
+            {
+                createWorker.RunWorkerAsync();
+            } else {
+                MessageBox.Show(this, @"Somthing went wrong!", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void editWorker_DoWork(object sender, DoWorkEventArgs e) {
 
+            Postal postal = User.Postal;
+            postal.PostCode = Int32.Parse(txtZip.Text);
+            postal.City = txtCity.Text;
+          
+            e.Result = customerCtr.UpdateUser(User, txtName.Text.Trim(), txtAddress.Text.Trim(), postal, txtPhone.Text.Trim(), txtEmail.Text.Trim());
+        
         }
 
         private void editWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-
+            if (e.Error != null)
+            {
+                Exception ex = e.Error;
+                if (ex is AlreadyExistException) {
+                    errProvider.SetError(txtName, txtName.Text.Trim() + "already exists!");
+                }
+                else{
+                    MessageBox.Show(this, ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else{
+                User user = e.Result as User;
+                if (user != null) {
+                    MessageBox.Show(this, @"The customer has been Updated", @"Succese", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else {
+                    MessageBox.Show(this, @"Unknown Error", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void createWorker_DoWork(object sender, DoWorkEventArgs e) {
