@@ -6,6 +6,7 @@ using System.Data.Entity.Core;
 using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
+using WCFService.Exceptions;
 using WCFService.Model;
 using WCFService.WCF.Faults;
 using WCFService.WCF.Interface;

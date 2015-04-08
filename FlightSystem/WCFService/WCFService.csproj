@@ -119,7 +119,7 @@
     <Compile Include="Model\SeatState.cs" />
     <Compile Include="Model\Ticket.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="PasswordFormatException.cs" />
+    <Compile Include="Exceptions\PasswordFormatException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WCF\AdministratorService.cs" />
     <Compile Include="WCF\AirportService.cs" />
@@ -185,9 +185,7 @@
       <DependentUpon>201504081741177_AdministratorChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
