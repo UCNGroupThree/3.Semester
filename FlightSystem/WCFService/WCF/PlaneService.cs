@@ -58,7 +58,7 @@ namespace WCFService.WCF
 
         public void DeletePlane(Plane plane) {
 
-            db.Planes.Remove(plane);
+            db.Planes.Attach(plane);
             //db.Entry(plane).State == EntityState.Deleted;
             db.SaveChanges();
         }    

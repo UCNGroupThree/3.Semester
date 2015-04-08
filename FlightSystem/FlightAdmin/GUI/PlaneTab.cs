@@ -25,30 +25,13 @@ namespace FlightAdmin.GUI {
         public void ClearPlaneSearch() {
 
             txtID.Text = "";
-            txtNameSearch.Text = "";
+            txtName.Text = "";
             spinnerPassengerCount.Text = "0";
         }
 
 
-        public void SearchPlane() {
+        
 
-            if (txtID.Text != null && txtID.Text == "") {
-
-                try {
-                    int id = int.Parse(txtID.Text);
-
-                    Plane foundPlane = ctr.GetPlaneByID(id);
-
-                    planeBindingSource.Clear();
-                    planeBindingSource.Add(foundPlane);
-                } catch (Exception e) {
-                    MessageBox.Show(e.Message);
-                }
-            }
-            else if (txtNameSearch != null && txtNameSearch.Text == "") {
-                
-            }
-        }
 
         public void CreatePlane() {
 
@@ -58,37 +41,91 @@ namespace FlightAdmin.GUI {
 
         #endregion
 
-        #region right click menu methods
+        #region datagrid methods
+
+        private void UpdateDataGrid(List<Plane> list)
+        {
+            if (list != null)
+            {
+                planeBindingSource.Clear();
+                foreach (var p in list) {
+                    planeBindingSource.Add(p);
+                }
+            }
+        }
+
+        public void SearchPlane()
+        {
+
+            int id = txtID.IntValue;
+
+            if (id > 0) {
+
+                List<Plane> list = new List<Plane>();
+                Plane p = ctr.GetPlaneByID(id);
+
+                if (p != null) {
+                    list.Add(p);
+                    UpdateDataGrid(list);
+                } else {
+                    
+                    MessageBox.Show("No planes with id #:{0} was found", id.ToString());
+                }
+            }
+        }
+
+        public void ShowAllPlanes() {
+
+            List<Plane> list = ctr.GetAllPlanes();
+            UpdateDataGrid(list);
+        }
 
         public void DeleteSelectedPlane() {
-            
+
+            Plane p = getSelected();
+
+            String deletemessage = "Do you want to delete plane" + p.Name + " with id #" + p.ID + ".";
+            if (MessageBox.Show(deletemessage, 
+                "Deleting Plane", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                ctr.DeletePlane(p);
+                planeBindingSource.Remove(p);
+            }
         }
 
         public void EditSelectedPlane() {
-            
+
+            Plane p = getSelected();
+
+            if (p != null) {
+
+                MessageBox.Show("Plane:" + p.Name.ToString() + ".");
+            }
+
+        }
+
+
+        public Plane getSelected() {
+
+            Plane p = null;
+            var index = planeTable.CurrentRow;
+
+            if (index != null) {
+                p = index.DataBoundItem as Plane;
+            }
+
+            return p;
         }
 
         #endregion
 
+        #region button methods
         private void btnClearPlaneSearch_Click(object sender, EventArgs e)
         {
             ClearPlaneSearch();
         }
 
-        #region Show All Planes in table
-        private void checkShowAllPlanes_CheckedChanged(object sender, EventArgs e)
-        {   
 
-            if (checkShowAllPlanes.CheckState == CheckState.Checked) {
-                
-                List<Plane> planes;
-                planes = ctr.GetAllPlanes();
-                planeTable.DataSource = planes;
-            }
-
-        }
-
-        #endregion
 
         private void btnPlaneSearch_Click(object sender, EventArgs e)
         {
@@ -99,7 +136,9 @@ namespace FlightAdmin.GUI {
         {
             CreatePlane();
         }
+        #endregion
 
+        #region right click menu methods
         private void createToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CreatePlane();
@@ -115,6 +154,26 @@ namespace FlightAdmin.GUI {
             EditSelectedPlane();
         }
 
+        #endregion
+
+
+        private void btnPlaneSearch_Click_1(object sender, EventArgs e)
+        {
+            SearchPlane();
+        }
+
+        private void btnCreatePlane_Click_1(object sender, EventArgs e) {
+            CreatePlane();
+        }
+
+        private void btnShowAllPlanes_Click(object sender, EventArgs e) {
+            ShowAllPlanes();
+        }
+
+        private void btnClearPlaneSearch_Click_1(object sender, EventArgs e)
+        {
+            ClearPlaneSearch();
+        }
     }
 
 }

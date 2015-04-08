@@ -61,6 +61,12 @@
     <Compile Include="Exceptions\SubmitException.cs" />
     <Compile Include="Exceptions\TimeZoneException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
+    <Compile Include="GUI\AdministratorTabExtensions\CreateAdministrator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AdministratorTabExtensions\CreateAdministrator.Designer.cs">
+      <DependentUpon>CreateAdministrator.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\AirportTabExtensions\CreateAirport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +172,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\AdministratorTabExtensions\CreateAdministrator.resx">
+      <DependentUpon>CreateAdministrator.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\AirportTabExtensions\CreateAirport.resx">
       <DependentUpon>CreateAirport.cs</DependentUpon>
     </EmbeddedResource>
