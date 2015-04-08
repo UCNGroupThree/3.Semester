@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Data.Entity.Core;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using WCFService.WCF.Interface;
 using WCFService.Model;
@@ -38,8 +39,8 @@ namespace WCFService.WCF {
             }
 
             try {
-                db.Flights.Attach(flight);
-                db.Entry(flight).State = EntityState.Modified;
+                db.Flights.AddOrUpdate(flight);
+                //db.Entry(flight).State = EntityState.Modified;
                 db.SaveChanges();
             } catch (OptimisticConcurrencyException e) {
                 throw new FaultException<OptimisticConcurrencyFault>(new OptimisticConcurrencyFault(){Message = e.Message});

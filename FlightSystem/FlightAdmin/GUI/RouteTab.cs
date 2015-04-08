@@ -62,23 +62,7 @@ namespace FlightAdmin.GUI {
 
         #endregion
 
-        #region DataGrid
-
-        private void UpdateDataGrid(List<Route> routes) {
-            BeginInvoke((MethodInvoker) delegate {
-                if (routes != null) {
-                    routeBindingSource.Clear();
-                    foreach (var r in routes) {
-                        routeBindingSource.Add(r);
-                    }
-                    loadingPanel.Visible = false;
-                }
-            });
-        }
-
-        #endregion
-
-        #region Buttons
+        #region Button Events
 
         private void btnSearch_Click(object sender, EventArgs e) {
             if (string.IsNullOrEmpty(txtFrom.Text) || string.IsNullOrWhiteSpace(txtFrom.Text)) {
@@ -111,21 +95,22 @@ namespace FlightAdmin.GUI {
 
         #endregion
 
-        #region Add Route Event
-
-        private void AddRoute(Route route) {
-            if (route != null) {
-                routeBindingSource.Clear();
-                routeBindingSource.Add(route);
-            }
-        }
-
-        #endregion
-
         #region DataGrid
 
         private void dataRoute_CellMouseEnter(object sender, DataGridViewCellEventArgs location) {
             _mouseLocation = location;
+        }
+
+        private void UpdateDataGrid(List<Route> routes) {
+            BeginInvoke((MethodInvoker)delegate {
+                if (routes != null) {
+                    routeBindingSource.Clear();
+                    foreach (var r in routes) {
+                        routeBindingSource.Add(r);
+                    }
+                    loadingPanel.Visible = false;
+                }
+            });
         }
 
         #endregion
@@ -150,7 +135,7 @@ namespace FlightAdmin.GUI {
 
         #endregion
 
-        #region Delete / Edit Event - DataGrid Menu
+        #region Delete / Edit Event / Create-Edit Flights - DataGrid Menu
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e) {
             var route = (Route)dataRoute.Rows[_mouseLocation.RowIndex].DataBoundItem;
@@ -163,18 +148,39 @@ namespace FlightAdmin.GUI {
 
         }
 
-        #endregion
-
         private void createFlightsToolStripMenuItem_Click(object sender, EventArgs e) {
             var route = (Route)dataRoute.Rows[_mouseLocation.RowIndex].DataBoundItem;
             CreateFlights f = null;
             if (route.Flights == null || route.Flights.Count > 0) {
                 f = new CreateFlights(route);
             } else {
-                f = new CreateFlights(){Route = route};
+                f = new CreateFlights() { Route = route };
             }
-            f.ShowDialog();
+
+            if (f.ShowDialog() == DialogResult.OK) {
+                ChangeSelection(route, f.Route);
+            }
         }
+
+        #endregion
+
+        #region Misc
+
+        private void ChangeSelection(Route from, Route to) {
+            int i = routeBindingSource.IndexOf(from);
+            routeBindingSource.Remove(from);
+            routeBindingSource.Insert(i, to);
+            dataRoute.CurrentCell = dataRoute.Rows[i].Cells[0];
+        }
+
+        private void AddRoute(Route route) {
+            if (route != null) {
+                routeBindingSource.Clear();
+                routeBindingSource.Add(route);
+            }
+        }
+
+        #endregion
 
     }
 }

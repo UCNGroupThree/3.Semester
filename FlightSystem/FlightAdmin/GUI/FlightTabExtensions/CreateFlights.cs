@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,8 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
             btnSave.Click -= btnSaveForCreate_Click;
             btnSave.Click += btnSaveForEdit_Click;
         }
+
+        #region AddFlights
 
         private void AddFlight(Flight flight) {
             DateTime dep = flight.DepartureTime;
@@ -139,11 +142,15 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
                     dt2.Value = _flights[(_flights.Count - 1)].DepartureTime.Value.AddHours(interval);
                 }
 
-                _flights.Add(new FlightHelper(dt1, dt2, cmb));
+                _flights.Add(new FlightHelper(dt1, dt2, cmb) {Flight = new Flight()});
             } catch (Exception) {
                 MessageBox.Show("Invalid Interval");
             }
         }
+
+        #endregion
+
+        #region ErrorProvider Enter Event
 
         private void dateTimePicker_Enter(object sender, EventArgs e) {
             if (sender != null) {
@@ -151,6 +158,15 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
             }
         }
 
+        #endregion
+
+        #region Load event
+
+        private void CreateFlights_Load(object sender, EventArgs e) {
+            BackgroundWorker bgWorker = new BackgroundWorker();
+            bgWorker.DoWork += new DoWorkEventHandler((obj, ex) => LoadPlanes());
+            bgWorker.RunWorkerAsync();
+        }
 
         private void LoadPlanes() {
             BeginInvoke((MethodInvoker)delegate {
@@ -170,6 +186,7 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
                     AddFlight();
                 } else {
                     foreach (var flight in Route.Flights) {
+                        System.Diagnostics.Debug.WriteLine(flight.ID + "added"); //TODO Remove after test
                         AddFlight(flight);
                     }
                 }
@@ -177,8 +194,6 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
 
             PopulateCmb();
         }
-
-        #region Load event
 
         private void PopulateCmb() {
             BeginInvoke((MethodInvoker)delegate {
@@ -188,16 +203,12 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
                     flightHelper.Plane.DataSource = pl;
                     flightHelper.Plane.DisplayMember = "Name";
                     flightHelper.Plane.ValueMember = "ID";
+
+                    if (flightHelper.Flight != null && flightHelper.Flight.Plane != null) {
+                        flightHelper.Plane.SelectedValue = flightHelper.Flight.Plane.ID;
+                    }
                 }
             });
-        }
-
-        
-
-        private void CreateFlights_Load(object sender, EventArgs e) {
-            BackgroundWorker bgWorker = new BackgroundWorker();
-            bgWorker.DoWork += new DoWorkEventHandler((obj, ex) => LoadPlanes());
-            bgWorker.RunWorkerAsync();
         }
 
         #endregion
@@ -216,14 +227,31 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
             }).ToList();
 
             Route = rCtr.UpdateRoute(Route, Route.From, Route.To, flights);
+
+            TestCrap(Route.Flights); //TODO Remove after test
+
+            DialogResult = DialogResult.OK;
+            this.Dispose();
         }
 
         private void btnSaveForEdit_Click(object sender, EventArgs e) {
-            FlightCtr fCtr = new FlightCtr();
+            RouteCtr rCtr = new RouteCtr();
 
-            List<Flight> flights = (from flightHelper in _flights where flightHelper.Flight != null select fCtr.UpdateFlight(flightHelper.Flight, flightHelper.ArrivalTime.Value, flightHelper.DepartureTime.Value, (Plane) flightHelper.Plane.SelectedItem)).ToList();
+            List<Flight> flights = _flights.Select(flightHelper => new Flight {
+                ArrivalTime = flightHelper.ArrivalTime.Value,
+                DepartureTime = flightHelper.DepartureTime.Value,
+                Plane = (Plane)flightHelper.Plane.SelectedItem,
+                ID = flightHelper.Flight.ID
+            }).ToList();
 
-            Route.Flights = flights;
+
+
+            Route = rCtr.UpdateRoute(Route, Route.From, Route.To, flights);
+
+            TestCrap(Route.Flights); //TODO Remove after test
+
+            DialogResult = DialogResult.OK;
+            this.Dispose();
         }
 
         private void btnCancel_Click(object sender, EventArgs e) {
@@ -231,6 +259,19 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
         }
 
         #endregion
+
+
+
+
+        private void TestCrap(List<Flight> fl) { //TODO Remove after test
+            foreach (var flight in fl) {
+                Debug.WriteLine(flight.ID + " Returned");
+            }
+        }
+
+
+
+
 
 
     }

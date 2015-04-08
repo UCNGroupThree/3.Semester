@@ -62,6 +62,10 @@ namespace FlightAdmin.Controller {
         public Flight UpdateFlight(Flight flight, DateTime arrival, DateTime departure, Plane plane) { //TODO Better Exception
             Flight retFlight = null;
 
+            if (flight == null) {
+                flight = new Flight();
+            }
+
             if (FlightValidation(arrival, departure, plane)) {
                 using (var client = new FlightServiceClient()) {
                     try {
@@ -71,9 +75,9 @@ namespace FlightAdmin.Controller {
 
                         retFlight = client.UpdateFlight(flight);
                     } catch (FaultException<OptimisticConcurrencyFault> concurrencyException) {
-                        throw new Exception(concurrencyException.Message);
+                        throw new Exception(concurrencyException.Detail.Message);
                     } catch (FaultException<DatabaseUpdateFault> updateException) {
-                        throw new Exception(updateException.Message);
+                        throw new Exception(updateException.Detail.Message);
                     } catch (Exception e) {
                         throw new ConnectionException("WCF Service Exception", e);
                     }

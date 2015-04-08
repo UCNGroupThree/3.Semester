@@ -51,9 +51,9 @@ namespace FlightAdmin.Controller {
 
                         retRoute = client.UpdateRoute(route);
                     } catch (FaultException<OptimisticConcurrencyFault> concurrencyException) {
-                        throw new Exception(concurrencyException.Message);
+                        throw new Exception(concurrencyException.Detail.Message);
                     } catch (FaultException<DatabaseUpdateFault> updateException) {
-                        throw new Exception(updateException.Message);
+                        throw new Exception(updateException.Detail.Message);
                     } catch (Exception e) {
                         throw new ConnectionException("WCF Service Exception", e);
                     }
