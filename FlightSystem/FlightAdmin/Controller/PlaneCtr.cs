@@ -8,6 +8,8 @@ using FlightAdmin.MainService;
 namespace FlightAdmin.Controller {
     public class PlaneCtr {
 
+        #region create plane
+
         // TODO: take account for rows and columns for seat count
         public Plane CreatePlane(string PlaneName, int SeatCount) {
             Plane plane = null;
@@ -23,7 +25,6 @@ namespace FlightAdmin.Controller {
 
                     plane.ID = client.AddPlane(plane);
                 }
-
              } 
              catch (FaultException<DatabaseInsertFault> dbException) {
                     throw new Exception(dbException.Message);
@@ -35,6 +36,9 @@ namespace FlightAdmin.Controller {
             return plane;
         }
 
+        #endregion
+
+        #region generate seats
 
         private List<Seat> GeneratePlaneSeats(int Seats) {
                  List<Seat> PlaneSeats = new List<Seat>();
@@ -59,6 +63,9 @@ namespace FlightAdmin.Controller {
             return PlaneSeats;
         }
 
+        #endregion
+
+        #region update plane
 
         public Plane UpdatePlane(Plane plane, string name) {
 
@@ -85,14 +92,40 @@ namespace FlightAdmin.Controller {
             return updatedPlane;
         }
 
+        #endregion
+
+        #region delete plane
+
         public void DeletePlane(Plane plane) {
             using (var client = new PlaneServiceClient()) {
                client.DeletePlane(plane);
             }
         }
 
-        //TODO: other get methods for plane
-    
+        #endregion
+        
+        #region get methods
+
+        // name
+        public List<Plane> GetPlaneByName(string name)
+        {
+            List<Plane> foundPlanes = null;
+
+            try
+            {
+                using (PlaneServiceClient client = new PlaneServiceClient()) {
+                    foundPlanes = client.GetPlanesByName(name);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error in finding plane with name: {0}. \nError message: {1}", name, e.Message);
+            }
+
+            return foundPlanes;
+        }
+
+        // id
         public Plane GetPlaneByID(int id) {
             Plane foundPlane = null;
 
@@ -103,20 +136,89 @@ namespace FlightAdmin.Controller {
             } catch (Exception e) {
                 Console.WriteLine("Error in finding plane: " + e.Message);
             }
-            
 
             return foundPlane;
         }
 
-        public List<Plane> GetAllPlanes() { //TODO Error handeling
+        // Get planes with seat number equal to input parameter
+        public List<Plane> GetPlanesWithSeatNumber(int seats) {
+
+            List<Plane> foundPlanes = null;
+
+            try
+            {
+                using (PlaneServiceClient client = new PlaneServiceClient()) {
+                    foundPlanes = client.GetPlanesWithSeatNumber(seats);
+                }
+            }
+            catch (Exception e) {
+                Console.WriteLine("Error in finding planes with seats number equal to: " + seats ". Error: " + e.Message);
+            }
+
+            return foundPlanes;
+        }
+
+        // Get planes with seat number less or equal to input parameter
+        public List<Plane> GetPlanesWithLessOrEqualSeatNumber(int seats)
+        {
+
+            List<Plane> foundPlanes = null;
+
+            try
+            {
+                using (PlaneServiceClient client = new PlaneServiceClient()) {
+                    foundPlanes = client.GetPlanesWithLessOrEqualSeatNumber(seats);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error in finding planes with seats number less or equal to: " + seats ". Error: " + e.Message);
+            }
+
+            return foundPlanes;
+        }
+
+        // Get planes with seat number more or equal to input parameter
+        public List<Plane> blah1(int seats)
+        {
+            List<Plane> foundPlanes = null;
+
+            try
+            {
+                using (PlaneServiceClient client = new PlaneServiceClient()) {
+                    foundPlanes = client.GetPlanesWithMoreOrEqualSeatNumber(seats);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error in finding planes with seats number with more or equal to: " + seats ". Error: " + e.Message);
+            }
+
+            return foundPlanes;
+        } 
+
+        // all planes
+        public List<Plane> GetAllPlanes()
+        { 
             List<Plane> planes = new List<Plane>();
 
-            using (PlaneServiceClient client = new PlaneServiceClient()) {
-                planes = client.GetAllPlanes();
+            try
+            {
+                using (PlaneServiceClient client = new PlaneServiceClient())
+                {
+
+                    planes = client.GetAllPlanes();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                planes = null;
             }
 
             return planes;
         }
+        #endregion
 
     }
 }

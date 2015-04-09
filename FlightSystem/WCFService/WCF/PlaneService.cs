@@ -13,7 +13,8 @@ namespace WCFService.WCF
 
         private readonly FlightDB db = new FlightDB();
 
-        public int AddPlane(Plane plane){   
+        #region add plane
+        public int AddPlane(Plane plane) {   
 
             if (plane == null) {
                 throw new FaultException("Nullpointer Exception"); //TODO vores egen Nullpointer Exception?
@@ -29,9 +30,10 @@ namespace WCFService.WCF
 
             return plane.ID;
         }
+        #endregion
 
-        public Plane UpdatePlane(Plane plane)
-        {
+        #region update plane
+        public Plane UpdatePlane(Plane plane) {
             if (plane == null) {
                 throw new FaultException("Nullpointer Exception"); //TODO vores egen Nullpointer Exception?
             }
@@ -55,41 +57,64 @@ namespace WCFService.WCF
 
             return plane;
         }
+        #endregion
 
+        #region delete plane
         public void DeletePlane(Plane plane) {
 
             db.Planes.Attach(plane);
-            //db.Entry(plane).State == EntityState.Deleted;
+            //db.Entry(plane).State == EntityState.Deleted; 
             db.SaveChanges();
         }    
 
-         // get methods
-        public Plane GetPlane(int id)
-        {
+        #endregion
+
+        #region get methods
+
+        public List<Plane> GetPlanesByName(string name) {
+
+            List<Plane> foundPlanes;
+
+            try {
+                foundPlanes = db.Planes.Where(p => p.Name.Contains(name)).ToList();
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                foundPlanes = null;
+            }
+
+            return foundPlanes;
+        }
+      
+        // id
+        public Plane GetPlaneByID(int id) {
+
             return db.Planes.SingleOrDefault(plane => plane.ID == id);
         }
 
         // find planes with a seat number equal to input parameter
-        public List<Plane> GetPlanesWithEqualSeatNumber(int seats) {
+        public List<Plane> GetPlanesWithSeatNumber(int seats) {
 
-            return db.Planes.Where(plane => plane.Seats.Count == seats).ToList();
+            return db.Planes.Where(plane => plane.Seats.Count.Equals(seats)).ToList();
         }
 
         // find planes with a seat number with less or equal to input parameter
-        public List<Plane> GetPlaneswithLessThanOrEqualSeatNumber(int seats) {
+        public List<Plane> GetPlanesWithLessOrEqualSeatNumber(int seats) {
 
             return db.Planes.Where(plane => plane.Seats.Count <= seats).ToList();
         }
 
         // find planes with a seat number with more or equal to input parameter
-        public List<Plane> GetPlaneswithMoreOrEqualSeatNumber(int seats)
-        {
+        public List<Plane> GetPlanesWithMoreOrEqualSeatNumber(int seats) {
 
             return db.Planes.Where(plane => plane.Seats.Count >= seats).ToList();
         }
-
+     
+        // get all planes
         public List<Plane> GetAllPlanes() {
             return db.Planes.ToList();
         }
+
+        #endregion
     }
 }

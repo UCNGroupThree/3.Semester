@@ -112,24 +112,28 @@ namespace WCFService {
             new PlaneService().DeletePlane(plane);
         }
 
-        public Plane GetPlane(int id) {
-            return new PlaneService().GetPlane(id);
+        public List<Plane> GetPlanesByName(string name) {
+            return new PlaneService().GetPlanesByName(name);
         }
 
+        public Plane GetPlaneByID(int id) {
+            return new PlaneService().GetPlaneByID(id);
+        }
+
+        public List<Plane> GetPlanesWithSeatNumber(int seats) {
+            return new PlaneService().GetPlanesWithSeatNumber(seats);
+        }
+
+        public List<Plane> GetPlanesWithLessOrEqualSeatNumber(int seats) {
+            return new PlaneService().GetPlanesWithLessOrEqualSeatNumber(seats);
+        }
+
+        public List<Plane> GetPlanesWithMoreOrEqualSeatNumber(int seats) {
+            return new PlaneService().GetPlanesWithMoreOrEqualSeatNumber(seats);
+        }
+        
         public List<Plane> GetAllPlanes() {
             return new PlaneService().GetAllPlanes();
-        }
-
-        public List<Plane> GetPlanesWithEqualSeatNumber(int seats) {
-            return new PlaneService().GetPlanesWithEqualSeatNumber(seats);
-        }
-
-        public List<Plane> GetPlaneswithLessThanOrEqualSeatNumber(int seats) {
-            return new PlaneService().GetPlaneswithLessThanOrEqualSeatNumber(seats);
-        }
-
-        public List<Plane> GetPlaneswithMoreOrEqualSeatNumber(int seats) {
-            return new PlaneService().GetPlaneswithMoreOrEqualSeatNumber(seats);
         }
 
         #endregion

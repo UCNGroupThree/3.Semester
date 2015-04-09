@@ -17,18 +17,21 @@ namespace WCFService.WCF.Interface {
         void DeletePlane(Plane plane);
 
         [OperationContract]
-        Plane GetPlane(int id);
+        List<Plane> GetPlanesByName(string name);
+
+        [OperationContract]
+        Plane  GetPlaneByID(int id);
+
+        [OperationContract]
+        List<Plane> GetPlanesWithSeatNumber(int seats);
+
+        [OperationContract]
+        List<Plane> GetPlanesWithLessOrEqualSeatNumber(int seats);
+
+        [OperationContract]
+        List<Plane> GetPlanesWithMoreOrEqualSeatNumber(int seats);
 
         [OperationContract]
         List<Plane> GetAllPlanes();
-
-        [OperationContract]
-        List<Plane> GetPlanesWithEqualSeatNumber(int seats);
-
-        [OperationContract]
-        List<Plane> GetPlaneswithLessThanOrEqualSeatNumber(int seats);
-
-        [OperationContract]
-        List<Plane> GetPlaneswithMoreOrEqualSeatNumber(int seats);
     }
 }
