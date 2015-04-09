@@ -163,25 +163,20 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
         #region Load event
 
         private void CreateFlights_Load(object sender, EventArgs e) {
+            Loading(true);
             BackgroundWorker bgWorker = new BackgroundWorker();
-            bgWorker.DoWork += new DoWorkEventHandler((obj, ex) => LoadPlanes());
+            bgWorker.DoWork += bgWorker_DoWork;
+            bgWorker.RunWorkerCompleted += bgWorker_RunWorkerCompleted;
             bgWorker.RunWorkerAsync();
         }
 
-        private void LoadPlanes() {
-            BeginInvoke((MethodInvoker)delegate {
-                loadingPanel.BringToFront();
-                loadingPanel.Visible = true;
-                loadingPicture.Visible = true;
-            });
-
-            PlaneCtr pCtr = new PlaneCtr();
-            List<Plane> pl = pCtr.GetAllPlanes();
-
-            BeginInvoke((MethodInvoker)delegate {
-                _planes = pl;
-                loadingPicture.Visible = false;
-                loadingPanel.Visible = false;
+        private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+            if (e.Error != null) {
+                //MessageBox.Show(this, e.Error.Message, @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Dispose();
+            } else {
+                List<Plane> planes = e.Result as List<Plane>;
+                _planes = planes;
                 if (!isEdit) {
                     AddFlight();
                 } else {
@@ -190,25 +185,30 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
                         AddFlight(flight);
                     }
                 }
-            });
 
-            PopulateCmb();
+                PopulateCmb(planes);
+
+                Loading(false);
+            }
         }
 
-        private void PopulateCmb() {
-            BeginInvoke((MethodInvoker)delegate {
-                foreach (var flightHelper in _flights) {
-                    List<Plane> pl = _planes.ToList();
+        private void bgWorker_DoWork(object sender, DoWorkEventArgs e) {
+            PlaneCtr pCtr = new PlaneCtr();
+            e.Result = pCtr.GetAllPlanes();
+        }
 
-                    flightHelper.Plane.DataSource = pl;
-                    flightHelper.Plane.DisplayMember = "Name";
-                    flightHelper.Plane.ValueMember = "ID";
+        private void PopulateCmb(List<Plane> planes) {
+            foreach (var flightHelper in _flights) {
+                List<Plane> pl = planes.ToList();
 
-                    if (flightHelper.Flight != null && flightHelper.Flight.Plane != null) {
-                        flightHelper.Plane.SelectedValue = flightHelper.Flight.Plane.ID;
-                    }
+                flightHelper.Plane.DataSource = pl;
+                flightHelper.Plane.DisplayMember = "Name";
+                flightHelper.Plane.ValueMember = "ID";
+
+                if (flightHelper.Flight != null && flightHelper.Flight.Plane != null) {
+                    flightHelper.Plane.SelectedValue = flightHelper.Flight.Plane.ID;
                 }
-            });
+            }
         }
 
         #endregion
@@ -269,10 +269,15 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
             }
         }
 
-
-
-
-
-
+        private void Loading(bool loading) {
+            if (!loading) {
+                loadingPicture.Visible = false;
+                loadingPanel.Visible = false;
+            } else {
+                loadingPanel.BringToFront();
+                loadingPanel.Visible = true;
+                loadingPicture.Visible = true;
+            }
+        }
     }
 }

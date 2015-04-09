@@ -21,7 +21,7 @@ namespace FlightAdmin.Controller {
                     try {
                         route = client.AddRoute(route);
                     } catch (FaultException<DatabaseInsertFault> dbException) {
-                        throw new DatabaseException(dbException.Message);
+                        throw new DatabaseException(dbException.Detail.Message);
                     } catch (FaultException<AlreadyExistFault> existException) {
                         throw new AlreadyExistException("The Route with that 'To' and 'From' Airport already exists");
                     } catch (Exception e) {

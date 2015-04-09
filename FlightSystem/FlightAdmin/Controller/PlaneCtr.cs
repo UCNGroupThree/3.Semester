@@ -131,7 +131,7 @@ namespace FlightAdmin.Controller {
 
             try {
                 using (PlaneServiceClient client = new PlaneServiceClient()) {
-                    foundPlane = client.GetPlane(id);
+                    //foundPlane = client.GetPlane(id);
                 }
             } catch (Exception e) {
                 Console.WriteLine("Error in finding plane: " + e.Message);
@@ -152,7 +152,7 @@ namespace FlightAdmin.Controller {
                 }
             }
             catch (Exception e) {
-                Console.WriteLine("Error in finding planes with seats number equal to: " + seats ". Error: " + e.Message);
+                Console.WriteLine("Error in finding planes with seats number equal to: " + seats + ". Error: " + e.Message);
             }
 
             return foundPlanes;
@@ -172,7 +172,7 @@ namespace FlightAdmin.Controller {
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error in finding planes with seats number less or equal to: " + seats ". Error: " + e.Message);
+                Console.WriteLine("Error in finding planes with seats number less or equal to: " + seats + ". Error: " + e.Message);
             }
 
             return foundPlanes;
@@ -191,7 +191,7 @@ namespace FlightAdmin.Controller {
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error in finding planes with seats number with more or equal to: " + seats ". Error: " + e.Message);
+                Console.WriteLine("Error in finding planes with seats number with more or equal to: " + seats + ". Error: " + e.Message);
             }
 
             return foundPlanes;
