@@ -16,7 +16,9 @@ namespace WCFService.WCF {
 
         private readonly FlightDB db = new FlightDB();
 
-        public int AddAdministrator(Administrator administrator) {
+        #region Create / Update / Delete
+
+        public Administrator AddAdministrator(Administrator administrator) {
             if (administrator == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }            
@@ -32,6 +34,8 @@ namespace WCFService.WCF {
             }
             try {
                 db.Administrators.Add(administrator);
+                Debug.WriteLine("Add Administrator Service! ID DON'T EMPTY: " + administrator.ID + "<--");
+                Debug.WriteLine("Add Administrator Service! Concurrency: DON'T EMPTY:" + administrator.Concurrency + "<--");
                 db.SaveChanges();
 
             } catch (Exception ex) {
@@ -40,10 +44,10 @@ namespace WCFService.WCF {
                 throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault("administrator"));
             }
 
-            return administrator.ID;
+            return administrator;
         }
 
-        public void UpdateAdministrator(Administrator administrator) {
+        public Administrator UpdateAdministrator(Administrator administrator) {
             if (administrator == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
@@ -63,9 +67,10 @@ namespace WCFService.WCF {
                 Debug.WriteLine(ex.Message); //TODO DEBUG MODE?
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault("administrator"));
             }
+            return administrator;
         }
 
-        public void UpdatePassword(Administrator administrator) {
+        public Administrator UpdatePassword(Administrator administrator) {
             if (administrator == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
@@ -87,6 +92,7 @@ namespace WCFService.WCF {
                 Debug.WriteLine(ex.Message); //TODO DEBUG MODE?
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault("administrator"));
             }
+            return administrator;
         }
         
         public void DeleteAdministrator(Administrator administrator) {
@@ -103,6 +109,9 @@ namespace WCFService.WCF {
             }
         }
 
+        #endregion
+        #region Read
+
         public Administrator GetAdministrator(int id) {
             return db.Administrators.FirstOrDefault(admin => admin.ID == id);
         }
@@ -110,6 +119,6 @@ namespace WCFService.WCF {
         public List<Administrator> GetAllAdministrators() {
             return db.Administrators.ToList();
         }
-
+        #endregion
     }
 }

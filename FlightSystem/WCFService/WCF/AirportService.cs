@@ -16,7 +16,7 @@ namespace WCFService.WCF {
 
         #region Add / Update / Delete
 
-        public int AddAirport(Airport airport) {
+        public Airport AddAirport(Airport airport) {
             if (airport == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
@@ -26,6 +26,8 @@ namespace WCFService.WCF {
             ValidateTimeZone(airport);
             try {
                 db.Airports.Add(airport);
+                Debug.WriteLine("Add Airport Service! ID DON'T EMPTY: " + airport.ID + "<--");
+                Debug.WriteLine("Add Airport Service! Concurrency DON'T EMPTY: " + airport.Concurrency + "<--");
                 db.SaveChanges();
             } catch (Exception ex) {
                 /*
@@ -43,10 +45,10 @@ namespace WCFService.WCF {
                 throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault("airport"));
             }
 
-            return airport.ID;
+            return airport;
         }
 
-        public void UpdateAirport(Airport airport) {
+        public Airport UpdateAirport(Airport airport) {
             //db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
             if (airport == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
@@ -65,6 +67,7 @@ namespace WCFService.WCF {
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault("airport"));
             }
+            return airport;
         }
 
         public void DeleteAirport(Airport airport) {

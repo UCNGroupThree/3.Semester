@@ -12,14 +12,14 @@ namespace WCFService.WCF.Interface {
         [FaultContract(typeof(DatabaseInsertFault))]
         [FaultContract(typeof(TimeZoneFault))]
         [FaultContract(typeof(AlreadyExistFault))]
-        int AddAirport(Airport airport);
+        Airport AddAirport(Airport airport);
 
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]
         [FaultContract(typeof(DatabaseUpdateFault))]
         [FaultContract(typeof(TimeZoneFault))]
         [FaultContract(typeof(AlreadyExistFault))]
-        void UpdateAirport(Airport airport);
+        Airport UpdateAirport(Airport airport);
 
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]

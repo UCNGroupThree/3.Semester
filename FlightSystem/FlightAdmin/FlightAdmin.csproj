@@ -86,6 +86,7 @@
       <DependentUpon>CreateFlights.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Helper\EmailValidation.cs" />
+    <Compile Include="MainService\Administrator.cs" />
     <Compile Include="MainUI.cs">
       <SubType>Form</SubType>
     </Compile>

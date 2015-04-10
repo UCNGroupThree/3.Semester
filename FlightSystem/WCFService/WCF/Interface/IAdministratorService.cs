@@ -12,21 +12,21 @@ namespace WCFService.WCF.Interface {
         [FaultContract(typeof(AlreadyExistFault))]
         [FaultContract(typeof(PasswordFormatFault))]
         [FaultContract(typeof(DatabaseInsertFault))]
-        int AddAdministrator(Administrator administrator);
+        Administrator AddAdministrator(Administrator administrator);
 
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]
         [FaultContract(typeof(AlreadyExistFault))]
         [FaultContract(typeof(NotFoundFault))]
         [FaultContract(typeof(DatabaseUpdateFault))]
-        void UpdateAdministrator(Administrator administrator);
+        Administrator UpdateAdministrator(Administrator administrator);
 
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]
         [FaultContract(typeof(NotFoundFault))]
         [FaultContract(typeof(PasswordFormatFault))]
         [FaultContract(typeof(DatabaseUpdateFault))]
-        void UpdatePassword(Administrator administrator);
+        Administrator UpdatePassword(Administrator administrator);
 
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]

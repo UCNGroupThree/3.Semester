@@ -12,16 +12,16 @@ namespace WCFService {
 
         #region Administrator Service 
         
-        public int AddAdministrator(Administrator administrator) {
+        public Administrator AddAdministrator(Administrator administrator) {
             return new AdministratorService().AddAdministrator(administrator);
         }
 
-        public void UpdateAdministrator(Administrator administrator) {
-            new AdministratorService().UpdateAdministrator(administrator);
+        public Administrator UpdateAdministrator(Administrator administrator) {
+            return new AdministratorService().UpdateAdministrator(administrator);
         }
 
-        public void UpdatePassword(Administrator administrator) {
-            new AdministratorService().UpdatePassword(administrator);
+        public Administrator UpdatePassword(Administrator administrator) {
+            return new AdministratorService().UpdatePassword(administrator);
         }
         
         public void DeleteAdministrator(Administrator administrator) {
@@ -40,12 +40,12 @@ namespace WCFService {
 
         #region Airport Service
         
-        public int AddAirport(Airport airport) {
+        public Airport AddAirport(Airport airport) {
             return new AirportService().AddAirport(airport);
         }
 
-        public void UpdateAirport(Airport airport) {
-            new AirportService().UpdateAirport(airport);
+        public Airport UpdateAirport(Airport airport) {
+            return new AirportService().UpdateAirport(airport);
         }
 
         public void DeleteAirport(Airport airport) {

@@ -10,7 +10,7 @@ using FlightAdmin.MainService;
 namespace FlightAdmin.Controller {
     class AdministratorCtr {
 
-        #region Create / Update / Delete
+        #region Create / Delete
 
         public Administrator CreateAdministrator(string username, string password) {
 
@@ -21,22 +21,17 @@ namespace FlightAdmin.Controller {
                     Username = username,
                     PasswordPlain = password
                 };
-
+                Console.WriteLine(administrator.PasswordPlain);
                 using (AdministratorServiceClient client = new AdministratorServiceClient()) {
-                    administrator.ID = client.AddAdministrator(administrator);
-                    administrator.PasswordPlain = null;
+                    administrator = client.AddAdministrator(administrator);
                 }
-            } catch (FaultException<NullPointerFault>) {
-                throw new NullException();
             } catch (FaultException<AlreadyExistFault>) {
                 throw new AlreadyExistException();
             } catch (FaultException<PasswordFormatFault>) {
                 throw new PasswordFormatException();
             } catch (FaultException<DatabaseInsertFault> dbException) {
                 throw new DatabaseException(dbException.Detail.Message);
-
             } catch (Exception ex) {
-                administrator = null;
                 Console.WriteLine(@"CreateAdministrator Exception: " + ex);
                 //TODO Exception Handler
                 throw;
@@ -44,37 +39,88 @@ namespace FlightAdmin.Controller {
 
             return administrator;
         }
-
-        public Administrator UpdateAdministrator(Administrator administrator, string username) {
-
-            Administrator updatedAdministrator = null;
-
-            try {
-
-                updatedAdministrator = administrator;
-                updatedAdministrator.Username = username;
-
-                using (AdministratorServiceClient client = new AdministratorServiceClient()) {
-                    client.UpdateAdministrator(updatedAdministrator);
-                }
-            } catch (Exception e) {
-
-                Console.WriteLine(e.Message);
-            }
-            // TODO: more exceptions
-
-            return administrator;
-        }
-
+        
         public void DeleteAdministrator(Administrator administrator) {
             try {
                 using (AdministratorServiceClient client = new AdministratorServiceClient()) {
                     client.DeleteAdministrator(administrator);
                 }
-            } catch (Exception e) {
-                Console.WriteLine(e.Message);
+            } catch (FaultException<NullPointerFault> ex) {
+                throw new NullException(ex.Detail.Message);
+            } catch (FaultException<DatabaseDeleteFault> ex) {
+                throw new DatabaseException(ex.Detail.Message);
+            } catch (Exception ex) {
+                Console.WriteLine(@"DeleteAdministrator Exception: " + ex);
+                //TODO Exception Handler
+                throw;
             }
         }
+
+        #endregion
+
+        #region Update
+
+        public Administrator UpdateAdministrator(Administrator administrator, string username) {
+
+            Administrator temp = null;
+
+            try {
+                temp = administrator.GetCopy();
+
+                administrator.Username = username;
+
+                using (AdministratorServiceClient client = new AdministratorServiceClient()) {
+                    administrator = client.UpdateAdministrator(administrator);
+                }
+            } catch (FaultException<AlreadyExistFault>) {
+                administrator.SetToCopy(temp);
+                throw new AlreadyExistException();
+            } catch (FaultException<NotFoundFault>) {
+                administrator.SetToCopy(temp);
+                throw new NotFoundException();
+            } catch (FaultException<DatabaseUpdateFault> ex) {
+                administrator.SetToCopy(temp);
+                throw new DatabaseException(ex.Detail.Message);
+            
+            } catch (Exception ex) {
+                administrator.SetToCopy(temp);
+                Console.WriteLine(@"UpdateAdministrator Exception: " + ex);
+                //TODO Exception Handler
+                throw;
+            }
+
+            return administrator;
+        }
+
+        public Administrator UpdatePassword(Administrator administrator, string password) {
+            Administrator temp = null;
+
+            try {
+                temp = administrator.GetCopy();
+
+                administrator.PasswordPlain = password;
+
+                using (AdministratorServiceClient client = new AdministratorServiceClient()) {
+                    administrator = client.UpdatePassword(administrator);
+                }
+            } catch (FaultException<NotFoundFault>) {
+                administrator.SetToCopy(temp);
+                throw new NotFoundException();
+            } catch (FaultException<PasswordFormatFault>) {
+                administrator.SetToCopy(temp);
+                throw new PasswordFormatException();
+            } catch (FaultException<DatabaseUpdateFault> ex) {
+                administrator.SetToCopy(temp);
+                throw new DatabaseException(ex.Detail.Message);
+            } catch (Exception ex) {
+                administrator.SetToCopy(temp);
+                Console.WriteLine(@"UpdateAdministrator Exception: " + ex);
+                //TODO Exception Handler
+                throw;
+            }
+
+            return administrator;
+        }   
 
         #endregion
 
@@ -90,12 +136,31 @@ namespace FlightAdmin.Controller {
                     administrator = client.GetAdministrator(id);
                 }
             } catch (Exception e) {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(@"GetAdministrator Exception: " + e);
+                throw new ConnectionException("WCF Service Exception", e);
             }
 
             return administrator;
         }
 
+        public List<Administrator> GetAllAdministrators() {
+
+            List<Administrator> administrators = null;
+
+            try {
+                using (var client = new AdministratorServiceClient()) {
+                    administrators = client.GetAllAdministrators();
+                }
+            } catch (Exception e) {
+                Console.WriteLine(@"GetAllAdministrators Exception: " + e);
+                throw new ConnectionException("WCF Service Exception", e);
+            }
+
+            return administrators;
+        }
+
         #endregion
     }
+
+    
 }

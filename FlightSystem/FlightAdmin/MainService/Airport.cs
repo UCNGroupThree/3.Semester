@@ -28,6 +28,7 @@ namespace FlightAdmin.MainService {
 
         public Airport GetCopy() {
             return new Airport {
+                ID = ID,
                 Name = Name,
                 ShortName = ShortName,
                 City = City,
@@ -40,6 +41,7 @@ namespace FlightAdmin.MainService {
         }
 
         public void SetToCopy(Airport copy) {
+            ID = copy.ID;
             Name = copy.Name;
             ShortName = copy.ShortName;
             City = copy.City;

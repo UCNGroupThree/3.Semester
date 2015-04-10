@@ -30,7 +30,7 @@ namespace FlightAdmin.Controller {
                     TimeZone = timeZone //TODO ASD ENTITY SEARCH
                 };
                 using (AirportServiceClient client = new AirportServiceClient()) {
-                    airport.ID = client.AddAirport(airport);
+                    airport = client.AddAirport(airport);
                 }
             } catch (FaultException<DatabaseInsertFault> dbException) {
                 throw new DatabaseException(dbException.Detail.Message);
@@ -68,18 +68,18 @@ namespace FlightAdmin.Controller {
                 airport.TimeZone = timeZone;
 
                 using (AirportServiceClient client = new AirportServiceClient()) {
-                    client.UpdateAirport(airport);
+                    airport = client.UpdateAirport(airport);
                 }
 
             } catch (FaultException<NullPointerFault> ex) {
                 airport.SetToCopy(temp);
                 throw new NullException(ex.Detail.Message);
-            } catch (FaultException<DatabaseUpdateFault> ex) {
-                airport.SetToCopy(temp);
-                throw new DatabaseException(ex.Detail.Message);
             } catch (FaultException<AlreadyExistFault>) {
                 airport.SetToCopy(temp);
                 throw new AlreadyExistException();
+            } catch (FaultException<DatabaseUpdateFault> ex) {
+                airport.SetToCopy(temp);
+                throw new DatabaseException(ex.Detail.Message);
             } catch (FaultException<TimeZoneFault> ex) {
                 airport.SetToCopy(temp);
                 throw new TimeZoneException(ex.Detail.Message);
@@ -89,7 +89,7 @@ namespace FlightAdmin.Controller {
                 //TODO Exception Handler
                 throw;
             }
-            return airport;
+            return airport; //TODO ASD Håndter at det er et andet object!
         }
 
         /// <exception cref="DatabaseException" />
