@@ -41,7 +41,6 @@
             this.comboPassengerCountChoice = new System.Windows.Forms.ComboBox();
             this.btnPlaneSearch = new System.Windows.Forms.Button();
             this.btnClearPlaneSearch = new System.Windows.Forms.Button();
-            this.txtID = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.btnShowAllPlanes = new System.Windows.Forms.Button();
             this.grpCreatePlane = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -55,6 +54,7 @@
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.planeBackgroundworker = new System.ComponentModel.BackgroundWorker();
+            this.txtID = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.grpPlaneSearch.SuspendLayout();
@@ -226,8 +226,8 @@
             this.comboPassengerCountChoice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboPassengerCountChoice.FormattingEnabled = true;
             this.comboPassengerCountChoice.Items.AddRange(new object[] {
-            "less and same",
             "same ",
+            "less and same",
             "more and same"});
             this.comboPassengerCountChoice.Location = new System.Drawing.Point(84, 68);
             this.comboPassengerCountChoice.Name = "comboPassengerCountChoice";
@@ -255,16 +255,6 @@
             this.btnClearPlaneSearch.Text = "Clear";
             this.btnClearPlaneSearch.UseVisualStyleBackColor = true;
             this.btnClearPlaneSearch.Click += new System.EventHandler(this.btnClearPlaneSearch_Click_1);
-            // 
-            // txtID
-            // 
-            this.txtID.AllowSpace = false;
-            this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtID.Location = new System.Drawing.Point(84, 3);
-            this.txtID.Name = "txtID";
-            this.txtID.OnlyInt = false;
-            this.txtID.Size = new System.Drawing.Size(120, 20);
-            this.txtID.TabIndex = 12;
             // 
             // btnShowAllPlanes
             // 
@@ -404,6 +394,16 @@
             // planeBindingSource
             // 
             this.planeBindingSource.DataSource = typeof(FlightAdmin.MainService.Plane);
+            // 
+            // txtID
+            // 
+            this.txtID.AllowSpace = false;
+            this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtID.Location = new System.Drawing.Point(84, 3);
+            this.txtID.Name = "txtID";
+            this.txtID.OnlyInt = false;
+            this.txtID.Size = new System.Drawing.Size(120, 20);
+            this.txtID.TabIndex = 12;
             // 
             // PlaneTab
             // 

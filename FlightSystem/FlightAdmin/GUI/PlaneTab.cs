@@ -15,30 +15,27 @@ namespace FlightAdmin.GUI {
     public partial class PlaneTab : UserControl {
         
         private readonly PlaneCtr ctr = new PlaneCtr();
-        
 
         public PlaneTab() {
             InitializeComponent();
         }
-        #region search methods
 
+        #region clear plane search
         public void ClearPlaneSearch() {
 
             txtID.Text = "";
             txtName.Text = "";
+            comboPassengerCountChoice.SelectedIndex = -1;
             spinnerPassengerCount.Text = "0";
         }
+        #endregion
 
-
-        
-
-
+        #region show create plane dialog
         public void CreatePlane() {
 
             CreatePlane createPlaneWindow = new CreatePlane();
             createPlaneWindow.ShowDialog();
         }
-
         #endregion
 
         #region datagrid methods
@@ -54,6 +51,21 @@ namespace FlightAdmin.GUI {
             }
         }
 
+        public Plane getSelected() {
+
+            Plane p = null;
+            var index = planeTable.CurrentRow;
+
+            if (index != null)
+            {
+                p = index.DataBoundItem as Plane;
+            }
+
+            return p;
+        }
+        #endregion
+
+        #region search plane
         public void SearchPlane()
         {
 
@@ -73,13 +85,17 @@ namespace FlightAdmin.GUI {
                 }
             }
         }
+        #endregion
 
+        #region show all planes
         public void ShowAllPlanes() {
 
             List<Plane> list = ctr.GetAllPlanes();
             UpdateDataGrid(list);
         }
+        #endregion
 
+        #region delete plane
         public void DeleteSelectedPlane() {
 
             Plane p = getSelected();
@@ -92,7 +108,9 @@ namespace FlightAdmin.GUI {
                 planeBindingSource.Remove(p);
             }
         }
+        #endregion
 
+        #region edit plane
         public void EditSelectedPlane() {
 
             Plane p = getSelected();
@@ -102,39 +120,6 @@ namespace FlightAdmin.GUI {
                 MessageBox.Show("Plane:" + p.Name.ToString() + ".");
             }
 
-        }
-
-
-        public Plane getSelected() {
-
-            Plane p = null;
-            var index = planeTable.CurrentRow;
-
-            if (index != null) {
-                p = index.DataBoundItem as Plane;
-            }
-
-            return p;
-        }
-
-        #endregion
-
-        #region button methods
-        private void btnClearPlaneSearch_Click(object sender, EventArgs e)
-        {
-            ClearPlaneSearch();
-        }
-
-
-
-        private void btnPlaneSearch_Click(object sender, EventArgs e)
-        {
-            SearchPlane(); 
-        }
-
-        private void btnCreatePlane_Click(object sender, EventArgs e)
-        {
-            CreatePlane();
         }
         #endregion
 
@@ -156,7 +141,7 @@ namespace FlightAdmin.GUI {
 
         #endregion
 
-
+        #region button methods
         private void btnPlaneSearch_Click_1(object sender, EventArgs e)
         {
             SearchPlane();
@@ -174,6 +159,8 @@ namespace FlightAdmin.GUI {
         {
             ClearPlaneSearch();
         }
+        #endregion
+
     }
 
 }
