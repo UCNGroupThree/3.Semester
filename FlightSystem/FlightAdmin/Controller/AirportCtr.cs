@@ -68,7 +68,8 @@ namespace FlightAdmin.Controller {
                 airport.TimeZone = timeZone;
 
                 using (AirportServiceClient client = new AirportServiceClient()) {
-                    airport = client.UpdateAirport(airport);
+                    var updated = client.UpdateAirport(airport);
+                    airport.SetToCopy(updated);
                 }
 
             } catch (FaultException<NullPointerFault> ex) {
@@ -89,7 +90,7 @@ namespace FlightAdmin.Controller {
                 //TODO Exception Handler
                 throw;
             }
-            return airport; //TODO ASD Håndter at det er et andet object!
+            return airport;
         }
 
         /// <exception cref="DatabaseException" />

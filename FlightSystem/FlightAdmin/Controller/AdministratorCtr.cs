@@ -70,7 +70,8 @@ namespace FlightAdmin.Controller {
                 administrator.Username = username;
 
                 using (AdministratorServiceClient client = new AdministratorServiceClient()) {
-                    administrator = client.UpdateAdministrator(administrator);
+                    var updated = client.UpdateAdministrator(administrator);
+                    administrator.SetToCopy(updated);
                 }
             } catch (FaultException<AlreadyExistFault>) {
                 administrator.SetToCopy(temp);
@@ -101,7 +102,8 @@ namespace FlightAdmin.Controller {
                 administrator.PasswordPlain = password;
 
                 using (AdministratorServiceClient client = new AdministratorServiceClient()) {
-                    administrator = client.UpdatePassword(administrator);
+                    var updated = client.UpdatePassword(administrator);
+                    administrator.SetToCopy(updated);
                 }
             } catch (FaultException<NotFoundFault>) {
                 administrator.SetToCopy(temp);

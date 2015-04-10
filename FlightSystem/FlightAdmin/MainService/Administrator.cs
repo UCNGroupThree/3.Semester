@@ -9,6 +9,8 @@ namespace FlightAdmin.MainService {
         
         public Administrator GetCopy() {
             return new Administrator {
+                ExtensionData = ExtensionData,
+                Concurrency = Concurrency,
                 ID = ID,
                 Username = Username,
                 PasswordPlain = PasswordPlain
@@ -16,6 +18,8 @@ namespace FlightAdmin.MainService {
         }
 
         public void SetToCopy(Administrator copy) {
+            ExtensionData = copy.ExtensionData;
+            Concurrency = copy.Concurrency;
             ID = copy.ID;
             Username = copy.Username;
             PasswordPlain = copy.PasswordPlain;

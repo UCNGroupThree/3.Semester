@@ -28,6 +28,8 @@ namespace FlightAdmin.MainService {
 
         public Airport GetCopy() {
             return new Airport {
+                ExtensionData = ExtensionData,
+                Concurrency = Concurrency,
                 ID = ID,
                 Name = Name,
                 ShortName = ShortName,
@@ -41,6 +43,8 @@ namespace FlightAdmin.MainService {
         }
 
         public void SetToCopy(Airport copy) {
+            ExtensionData = copy.ExtensionData;
+            Concurrency = copy.Concurrency;
             ID = copy.ID;
             Name = copy.Name;
             ShortName = copy.ShortName;
