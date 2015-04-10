@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FlightAdmin.Exceptions {
+namespace Common.Exceptions {
     public class DatabaseException : Exception {
         public DatabaseException() { }
 

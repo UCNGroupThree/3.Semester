@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlightAdmin.Exceptions {
-    class TimeZoneException : Exception {
+namespace Common.Exceptions {
+    public class TimeZoneException : Exception {
         public TimeZoneException() { }
 
         public TimeZoneException(string message) : base(message) { }

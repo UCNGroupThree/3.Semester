@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace FlightAdmin.Exceptions {
+namespace Common.Exceptions {
     public class SubmitException : Exception {
 
         /// <summary>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.ServiceModel;
-using FlightAdmin.Exceptions;
+using Common.Exceptions;
 using FlightAdmin.GUI;
 using FlightAdmin.MainService;
 

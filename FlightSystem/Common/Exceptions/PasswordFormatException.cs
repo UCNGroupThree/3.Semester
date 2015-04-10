@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WCFService.Exceptions {
+namespace Common.Exceptions {
     public class PasswordFormatException : Exception {
 
         public PasswordFormatException() { }

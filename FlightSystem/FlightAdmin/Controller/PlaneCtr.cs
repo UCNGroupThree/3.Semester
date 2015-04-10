@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceModel;
-using FlightAdmin.Exceptions;
+using Common.Exceptions;
 //using System.Runtime.InteropServices;
 using FlightAdmin.MainService;
 

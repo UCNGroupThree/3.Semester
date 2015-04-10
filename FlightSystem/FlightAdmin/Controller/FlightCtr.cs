@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
 using System.Windows.Forms;
-using FlightAdmin.Exceptions;
+using Common.Exceptions;
 using FlightAdmin.MainService;
 
 namespace FlightAdmin.Controller {

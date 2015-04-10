@@ -55,13 +55,6 @@
     <Compile Include="CustomTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Exceptions\AlreadyExistException.cs" />
-    <Compile Include="Exceptions\ConnectionException.cs" />
-    <Compile Include="Exceptions\DatabaseException.cs" />
-    <Compile Include="Exceptions\NullException.cs" />
-    <Compile Include="Exceptions\SubmitException.cs" />
-    <Compile Include="Exceptions\TimeZoneException.cs" />
-    <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="GUI\AdministratorTabExtensions\CreateAdministrator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -317,7 +310,12 @@
   <ItemGroup>
     <None Include="Resources\image_836585.gif" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{aaad32a8-0483-4cd1-ac4b-94456bc4eec2}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

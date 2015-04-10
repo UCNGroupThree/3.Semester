@@ -1,43 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Exceptions;
 using FlightAdmin.MainService;
 
-namespace FlightAdmin.Controller
-{
-    class AdministratorCtr
-    {
+namespace FlightAdmin.Controller {
+    class AdministratorCtr {
 
-        #region Create
+        #region Create / Update / Delete
 
-        public Administrator CreateAdministrator(string username) {
+        public Administrator CreateAdministrator(string username, string password) {
 
             Administrator administrator;
 
-            try 
-            {
+            try {
+                administrator = new Administrator {
+                    Username = username,
+                    PasswordPlain = password
+                };
 
-                administrator = new Administrator();
-
-                administrator.Username = username;
-
-                using (AdministratorServiceClient client = new AdministratorServiceClient()) 
-                {
-                   client.AddAdministrator(administrator);
+                using (AdministratorServiceClient client = new AdministratorServiceClient()) {
+                    administrator.ID = client.AddAdministrator(administrator);
+                    administrator.PasswordPlain = null;
                 }
-                
-            } catch(Exception e) {
+            } catch (FaultException<NullPointerFault>) {
+                throw new NullException();
+            } catch (FaultException<AlreadyExistFault>) {
+                throw new AlreadyExistException();
+            } catch (FaultException<PasswordFormatFault>) {
+                throw new PasswordFormatException();
+            } catch (FaultException<DatabaseInsertFault> dbException) {
+                throw new DatabaseException(dbException.Detail.Message);
+
+            } catch (Exception ex) {
                 administrator = null;
-                Console.WriteLine(e.Message);
-            } // TODO: more exceptions
+                Console.WriteLine(@"CreateAdministrator Exception: " + ex);
+                //TODO Exception Handler
+                throw;
+            }
 
             return administrator;
         }
-        #endregion
-
-        #region update
 
         public Administrator UpdateAdministrator(Administrator administrator, string username) {
 
@@ -59,10 +65,6 @@ namespace FlightAdmin.Controller
 
             return administrator;
         }
-
-        #endregion
-
-        #region delete
 
         public void DeleteAdministrator(Administrator administrator) {
             try {

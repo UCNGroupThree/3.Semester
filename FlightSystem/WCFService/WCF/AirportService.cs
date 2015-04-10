@@ -37,8 +37,8 @@ namespace WCFService.WCF {
                     }
                     Debug.WriteLine("#####");
                     ;
-                }
-                Debug.WriteLine(ex);*/
+                }*/
+                Debug.WriteLine(ex);
                 //TODO Håndtering af forskellige insert exception
                 throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault("airport"));
             }

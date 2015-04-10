@@ -11,8 +11,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using Common.Exceptions;
 using FlightAdmin.Controller;
-using FlightAdmin.Exceptions;
 using FlightAdmin.GUI.Helper;
 using FlightAdmin.MainService;
 

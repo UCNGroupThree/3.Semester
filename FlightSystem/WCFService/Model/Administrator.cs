@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 using System.ServiceModel;
-using WCFService.Exceptions;
+using Common.Exceptions;
 
 namespace WCFService.Model {
     [DataContract(IsReference = true)]

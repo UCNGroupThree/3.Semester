@@ -6,8 +6,8 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Markup;
+using Common.Exceptions;
 using FlightAdmin.MainService;
-using FlightAdmin.Exceptions;
 
 namespace FlightAdmin.Controller
 {
