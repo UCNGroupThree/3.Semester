@@ -32,6 +32,10 @@ namespace WCFService {
             return new AdministratorService().GetAdministrator(id);
         }
 
+        public List<Administrator> GetAdministratorsByUsername(string username, bool equalsTo) {
+            return new AdministratorService().GetAdministratorsByUsername(username, equalsTo);
+        }
+
         public List<Administrator> GetAllAdministrators() {
             return new AdministratorService().GetAllAdministrators();
         }

@@ -37,6 +37,9 @@ namespace WCFService.WCF.Interface {
         Administrator GetAdministrator(int id);
 
         [OperationContract]
+        List<Administrator> GetAdministratorsByUsername(string username, bool equalsTo);
+
+        [OperationContract]
         List<Administrator> GetAllAdministrators();
 
     }

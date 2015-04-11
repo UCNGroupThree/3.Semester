@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace FlightAdmin.MainService {
     public partial class Administrator {
-        
+
+        public override string ToString() {
+            return string.Format("{0} #{1}", Username, ID);
+        }
+
         public Administrator GetCopy() {
             return new Administrator {
                 ExtensionData = ExtensionData,

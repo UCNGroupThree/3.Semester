@@ -32,7 +32,7 @@ namespace FlightAdmin.GUI {
             foreach (TextBox t in tableLayoutPanel3.Controls.OfType<TextBox>())
             {
                 if (t == txtID) {
-                    t.TextChanged += FancyFeatures.TextChangedDisableParentsTextboxs;
+                    t.TextChanged += FancyFeatures.TextChangedDisableParentsInputControls;
                 }
             }           
         }

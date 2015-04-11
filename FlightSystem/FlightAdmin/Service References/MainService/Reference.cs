@@ -1899,6 +1899,12 @@ namespace FlightAdmin.MainService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/GetAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/GetAdministratorResponse")]
         System.Threading.Tasks.Task<FlightAdmin.MainService.Administrator> GetAdministratorAsync(int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/GetAdministratorsByUsername", ReplyAction="http://tempuri.org/IAdministratorService/GetAdministratorsByUsernameResponse")]
+        System.Collections.Generic.List<FlightAdmin.MainService.Administrator> GetAdministratorsByUsername(string username, bool equalsTo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/GetAdministratorsByUsername", ReplyAction="http://tempuri.org/IAdministratorService/GetAdministratorsByUsernameResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightAdmin.MainService.Administrator>> GetAdministratorsByUsernameAsync(string username, bool equalsTo);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/GetAllAdministrators", ReplyAction="http://tempuri.org/IAdministratorService/GetAllAdministratorsResponse")]
         System.Collections.Generic.List<FlightAdmin.MainService.Administrator> GetAllAdministrators();
         
@@ -1973,6 +1979,14 @@ namespace FlightAdmin.MainService {
             return base.Channel.GetAdministratorAsync(id);
         }
         
+        public System.Collections.Generic.List<FlightAdmin.MainService.Administrator> GetAdministratorsByUsername(string username, bool equalsTo) {
+            return base.Channel.GetAdministratorsByUsername(username, equalsTo);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightAdmin.MainService.Administrator>> GetAdministratorsByUsernameAsync(string username, bool equalsTo) {
+            return base.Channel.GetAdministratorsByUsernameAsync(username, equalsTo);
+        }
+        
         public System.Collections.Generic.List<FlightAdmin.MainService.Administrator> GetAllAdministrators() {
             return base.Channel.GetAllAdministrators();
         }
@@ -1988,19 +2002,19 @@ namespace FlightAdmin.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/AddAirport", ReplyAction="http://tempuri.org/IAirportService/AddAirportResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.TimeZoneFault), Action="http://tempuri.org/IAirportService/AddAirportTimeZoneFaultFault", Name="TimeZoneFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.DatabaseInsertFault), Action="http://tempuri.org/IAirportService/AddAirportDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IAirportService/AddAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.AlreadyExistFault), Action="http://tempuri.org/IAirportService/AddAirportAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IAirportService/AddAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.DatabaseInsertFault), Action="http://tempuri.org/IAirportService/AddAirportDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         FlightAdmin.MainService.Airport AddAirport(FlightAdmin.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/AddAirport", ReplyAction="http://tempuri.org/IAirportService/AddAirportResponse")]
         System.Threading.Tasks.Task<FlightAdmin.MainService.Airport> AddAirportAsync(FlightAdmin.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/UpdateAirport", ReplyAction="http://tempuri.org/IAirportService/UpdateAirportResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IAirportService/UpdateAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IAirportService/UpdateAirportDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.TimeZoneFault), Action="http://tempuri.org/IAirportService/UpdateAirportTimeZoneFaultFault", Name="TimeZoneFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.AlreadyExistFault), Action="http://tempuri.org/IAirportService/UpdateAirportAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IAirportService/UpdateAirportDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IAirportService/UpdateAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         FlightAdmin.MainService.Airport UpdateAirport(FlightAdmin.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/UpdateAirport", ReplyAction="http://tempuri.org/IAirportService/UpdateAirportResponse")]
@@ -2156,17 +2170,17 @@ namespace FlightAdmin.MainService {
     public interface IFlightService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/AddFlight", ReplyAction="http://tempuri.org/IFlightService/AddFlightResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/AddFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.DatabaseInsertFault), Action="http://tempuri.org/IFlightService/AddFlightDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/AddFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         int AddFlight(FlightAdmin.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/AddFlight", ReplyAction="http://tempuri.org/IFlightService/AddFlightResponse")]
         System.Threading.Tasks.Task<int> AddFlightAsync(FlightAdmin.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/UpdateFlight", ReplyAction="http://tempuri.org/IFlightService/UpdateFlightResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.OptimisticConcurrencyFault), Action="http://tempuri.org/IFlightService/UpdateFlightOptimisticConcurrencyFaultFault", Name="OptimisticConcurrencyFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/UpdateFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IFlightService/UpdateFlightDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.OptimisticConcurrencyFault), Action="http://tempuri.org/IFlightService/UpdateFlightOptimisticConcurrencyFaultFault", Name="OptimisticConcurrencyFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         FlightAdmin.MainService.Flight UpdateFlight(FlightAdmin.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/UpdateFlight", ReplyAction="http://tempuri.org/IFlightService/UpdateFlightResponse")]
@@ -2412,8 +2426,8 @@ namespace FlightAdmin.MainService {
     public interface IRouteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/AddRoute", ReplyAction="http://tempuri.org/IRouteService/AddRouteResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.AlreadyExistFault), Action="http://tempuri.org/IRouteService/AddRouteAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/AddRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.AlreadyExistFault), Action="http://tempuri.org/IRouteService/AddRouteAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.DatabaseInsertFault), Action="http://tempuri.org/IRouteService/AddRouteDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         FlightAdmin.MainService.Route AddRoute(FlightAdmin.MainService.Route route);
         
@@ -2421,9 +2435,9 @@ namespace FlightAdmin.MainService {
         System.Threading.Tasks.Task<FlightAdmin.MainService.Route> AddRouteAsync(FlightAdmin.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/UpdateRoute", ReplyAction="http://tempuri.org/IRouteService/UpdateRouteResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/UpdateRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.OptimisticConcurrencyFault), Action="http://tempuri.org/IRouteService/UpdateRouteOptimisticConcurrencyFaultFault", Name="OptimisticConcurrencyFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IRouteService/UpdateRouteDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.OptimisticConcurrencyFault), Action="http://tempuri.org/IRouteService/UpdateRouteOptimisticConcurrencyFaultFault", Name="OptimisticConcurrencyFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightAdmin.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/UpdateRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         FlightAdmin.MainService.Route UpdateRoute(FlightAdmin.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/UpdateRoute", ReplyAction="http://tempuri.org/IRouteService/UpdateRouteResponse")]
