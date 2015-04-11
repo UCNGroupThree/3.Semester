@@ -99,12 +99,6 @@
     <Compile Include="MainUI.Designer.cs">
       <DependentUpon>MainUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\AdministratorTabOld.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUI\AdministratorTabOld.Designer.cs">
-      <DependentUpon>AdministratorTabOld.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\AirPortTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -197,9 +191,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainUI.resx">
       <DependentUpon>MainUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\AdministratorTabOld.resx">
-      <DependentUpon>AdministratorTabOld.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AirPortTab.resx">
       <DependentUpon>AirPortTab.cs</DependentUpon>
