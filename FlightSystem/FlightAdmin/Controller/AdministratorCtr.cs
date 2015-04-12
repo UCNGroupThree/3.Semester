@@ -129,8 +129,7 @@ namespace FlightAdmin.Controller {
         #region read
 
         public Administrator GetAdministrator(int id) {
-
-            Administrator administrator = null;
+            Administrator administrator;
 
             try {
                 using (var client = new AdministratorServiceClient()) {
@@ -145,23 +144,38 @@ namespace FlightAdmin.Controller {
             return administrator;
         }
 
-        public List<Administrator> GetAllAdministrators() {
-
-            List<Administrator> administrators = null;
+        public List<Administrator> GetAdministratorsByUsername(string username, bool equalsTo) {
+            List<Administrator> list;
 
             try {
                 using (var client = new AdministratorServiceClient()) {
-                    administrators = client.GetAllAdministrators();
+                    list = client.GetAdministratorsByUsername(username, equalsTo);
+                }
+            } catch (Exception e) {
+                Console.WriteLine(@"GetAdministratorsByUsername Exception: " + e);
+                throw new ConnectionException("WCF Service Exception", e);
+            }
+
+            return list;
+        }
+
+        public List<Administrator> GetAllAdministrators() {
+            List<Administrator> list;
+
+            try {
+                using (var client = new AdministratorServiceClient()) {
+                    list = client.GetAllAdministrators();
                 }
             } catch (Exception e) {
                 Console.WriteLine(@"GetAllAdministrators Exception: " + e);
                 throw new ConnectionException("WCF Service Exception", e);
             }
 
-            return administrators;
+            return list;
         }
 
         #endregion
+
     }
 
     

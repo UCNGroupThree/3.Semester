@@ -61,6 +61,12 @@
     <Compile Include="GUI\AdministratorTabExtensions\CreateAdministrator.Designer.cs">
       <DependentUpon>CreateAdministrator.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\AdministratorTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\AdministratorTab.Designer.cs">
+      <DependentUpon>AdministratorTab.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\AirportTabExtensions\CreateAirport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,12 +98,6 @@
     </Compile>
     <Compile Include="MainUI.Designer.cs">
       <DependentUpon>MainUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\AdministratorTab.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUI\AdministratorTab.Designer.cs">
-      <DependentUpon>AdministratorTab.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\AirPortTab.cs">
       <SubType>UserControl</SubType>
@@ -171,6 +171,9 @@
     <EmbeddedResource Include="GUI\AdministratorTabExtensions\CreateAdministrator.resx">
       <DependentUpon>CreateAdministrator.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AdministratorTab.resx">
+      <DependentUpon>AdministratorTab.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\AirportTabExtensions\CreateAirport.resx">
       <DependentUpon>CreateAirport.cs</DependentUpon>
     </EmbeddedResource>
@@ -188,9 +191,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainUI.resx">
       <DependentUpon>MainUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\AdministratorTab.resx">
-      <DependentUpon>AdministratorTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AirPortTab.resx">
       <DependentUpon>AirPortTab.cs</DependentUpon>

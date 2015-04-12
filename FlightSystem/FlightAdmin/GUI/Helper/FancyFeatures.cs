@@ -8,11 +8,12 @@ using System.Windows.Forms;
 namespace FlightAdmin.GUI.Helper {
     class FancyFeatures {
 
-        public static void TextChangedDisableParentsTextboxs(object sender, EventArgs e) {
-            TextBox txtChanged = sender as TextBox;
-            if (txtChanged != null) {
-                foreach (var c in ((TextBox)sender).Parent.Controls.OfType<TextBox>()) {
-                    if (!txtChanged.Equals(c) && txtChanged.Text.Trim().Length > 0) {
+        public static void TextChangedDisableParentsInputControls(object sender, EventArgs e) {
+            TextBox txt = sender as TextBox;
+            if (txt != null) {
+                List<Control> list = GetParentsControls(txt);
+                foreach (var c in list) {
+                    if (!txt.Equals(c) && txt.Text.Trim().Length > 0) {
                         c.Enabled = false;
                     }
                     else {
@@ -22,6 +23,27 @@ namespace FlightAdmin.GUI.Helper {
             }
         }
 
+        public static void CheckedChangedDisableParentsInputControls(object sender, EventArgs e) {
+            CheckBox chb = sender as CheckBox;
+            if (chb != null) {
+                List<Control> list = GetParentsControls(chb);
+                foreach (var c in list) {
+                    if (!chb.Equals(c) && chb.Checked) {
+                        c.Enabled = false;
+                    } else {
+                        c.Enabled = true;
+                    }
+                }
+            }
+        }
+
+        private static List<Control> GetParentsControls(Control control) {
+            var list = new List<Control>();
+            list.AddRange(control.Parent.Controls.OfType<TextBox>());
+            list.AddRange(control.Parent.Controls.OfType<CheckBox>());
+            return list;
+        }
+        
         public static bool IsTextBoxValid(TextBox txt, ErrorProvider errProvider, string objText, int minLength, int maxLength) {
             if (txt == null || errProvider == null) {
                 throw new NullReferenceException("txt and errProvider can't be null!");
@@ -71,6 +93,21 @@ namespace FlightAdmin.GUI.Helper {
         public static void ShowErrorDialog(IWin32Window parent, string text) {
             MessageBox.Show(parent, text, @"Error", MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
+        }
+
+        /// <summary>
+        /// Check if a Control object is empty or not selected.
+        /// </summary>
+        /// <param name="sender">Only checks TextBox and CheckBox objects</param>
+        /// <returns>true if textbox is empty, or CheckBox is not checked</returns>
+        public static bool IsSenderEmpty(object sender) {
+            TextBox txt = sender as TextBox;
+            CheckBox chb = sender as CheckBox;
+            bool empty = txt != null && txt.TextLength == 0;
+            if (chb != null) {
+                empty = !chb.Checked;
+            }
+            return empty;
         }
     }
 }

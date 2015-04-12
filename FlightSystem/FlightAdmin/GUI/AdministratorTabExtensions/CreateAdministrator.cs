@@ -7,14 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FlightAdmin.MainService;
 
 namespace FlightAdmin.GUI.AdministratorTabExtensions
 {
     public partial class CreateAdministrator : Form
     {
+        public Administrator Administrator { get; set; }
         public CreateAdministrator()
         {
             InitializeComponent();
+        }
+
+        public CreateAdministrator(Administrator admin) {
+            
         }
 
         #region create new admin

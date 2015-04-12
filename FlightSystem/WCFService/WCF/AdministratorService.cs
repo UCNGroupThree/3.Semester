@@ -113,11 +113,42 @@ namespace WCFService.WCF {
         #region Read
 
         public Administrator GetAdministrator(int id) {
-            return db.Administrators.FirstOrDefault(admin => admin.ID == id);
+            Administrator ret;
+            try {
+                ret = db.Administrators.FirstOrDefault(a => a.ID == id);
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                ret = null;
+            }
+            return ret;
+        }
+
+        public List<Administrator> GetAdministratorsByUsername(string username, bool equalsTo) {
+            List<Administrator> ret;
+            try {
+                if (equalsTo) {
+                    ret =
+                        db.Administrators.Where(a => a.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
+                            .ToList();
+                } else {
+                    ret = db.Administrators.Where(a => a.Username.Contains(username)).ToList();
+                }
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                ret = new List<Administrator>();
+            }
+            return ret;
         }
 
         public List<Administrator> GetAllAdministrators() {
-            return db.Administrators.ToList();
+            List<Administrator> ret;
+            try {
+                ret = db.Administrators.ToList();
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                ret = null;
+            }
+            return ret;
         }
         #endregion
     }

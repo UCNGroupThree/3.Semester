@@ -29,7 +29,7 @@ namespace FlightAdmin.GUI {
 
         private void SetEvents() {
             foreach (TextBox t in tableLayoutCreate.Controls.OfType<TextBox>()) {
-                t.TextChanged += FancyFeatures.TextChangedDisableParentsTextboxs;
+                t.TextChanged += FancyFeatures.TextChangedDisableParentsInputControls;
                 t.TextChanged += ChangeButtons;
             }
         }

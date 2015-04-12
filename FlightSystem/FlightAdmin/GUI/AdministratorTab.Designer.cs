@@ -1,4 +1,6 @@
-﻿namespace FlightAdmin.GUI {
+﻿using FlightAdmin.GUI.Helper;
+
+namespace FlightAdmin.GUI {
     partial class AdministratorTab {
         /// <summary> 
         /// Required designer variable.
@@ -27,37 +29,40 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.grpCreate = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCreate = new System.Windows.Forms.Button();
             this.grpSearch = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutCreate = new System.Windows.Forms.TableLayoutPanel();
+            this.lblUsername = new System.Windows.Forms.Label();
+            this.lblID = new System.Windows.Forms.Label();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.chbShowAll = new System.Windows.Forms.CheckBox();
+            this.lblShowAll = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblName = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.loadingImg = new System.Windows.Forms.PictureBox();
+            this.dataGrid = new System.Windows.Forms.DataGridView();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.administratorBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.administratorTableMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changePasswordMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adminBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.txtID = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.grpCreate.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
-            this.grpSearch.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.administratorBindingSource)).BeginInit();
-            this.administratorTableMenu.SuspendLayout();
+            this.grpSearch.SuspendLayout();
+            this.tableLayoutCreate.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loadingImg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
+            this.dataGridMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.adminBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -66,207 +71,223 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 225F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.dataGrid, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(761, 510);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(716, 494);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.Controls.Add(this.grpCreate, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.grpSearch, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(225, 510);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(219, 488);
+            this.tableLayoutPanel2.TabIndex = 1;
             // 
             // grpCreate
             // 
-            this.grpCreate.Controls.Add(this.tableLayoutPanel3);
+            this.grpCreate.Controls.Add(this.tableLayoutPanel4);
             this.grpCreate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpCreate.Location = new System.Drawing.Point(3, 119);
+            this.grpCreate.Location = new System.Drawing.Point(3, 159);
             this.grpCreate.Name = "grpCreate";
-            this.grpCreate.Size = new System.Drawing.Size(219, 54);
+            this.grpCreate.Size = new System.Drawing.Size(213, 55);
             this.grpCreate.TabIndex = 1;
             this.grpCreate.TabStop = false;
             this.grpCreate.Text = "Create";
             // 
-            // tableLayoutPanel3
+            // tableLayoutPanel4
             // 
-            this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.btnCreate, 1, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(213, 35);
-            this.tableLayoutPanel3.TabIndex = 0;
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.btnCreate, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(207, 36);
+            this.tableLayoutPanel4.TabIndex = 0;
             // 
             // btnCreate
             // 
-            this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreate.Location = new System.Drawing.Point(73, 6);
-            this.btnCreate.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCreate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCreate.AutoSize = true;
+            this.btnCreate.Location = new System.Drawing.Point(66, 6);
             this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(66, 23);
-            this.btnCreate.TabIndex = 0;
+            this.btnCreate.Size = new System.Drawing.Size(75, 23);
+            this.btnCreate.TabIndex = 5;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // grpSearch
             // 
-            this.grpSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.grpSearch.Controls.Add(this.tableLayoutPanel4);
+            this.grpSearch.Controls.Add(this.tableLayoutCreate);
+            this.grpSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpSearch.Location = new System.Drawing.Point(3, 3);
             this.grpSearch.Name = "grpSearch";
-            this.grpSearch.Size = new System.Drawing.Size(219, 110);
+            this.grpSearch.Size = new System.Drawing.Size(213, 150);
             this.grpSearch.TabIndex = 0;
             this.grpSearch.TabStop = false;
             this.grpSearch.Text = "Search";
             // 
-            // tableLayoutPanel4
+            // tableLayoutCreate
             // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel6, 0, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 16);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(213, 91);
-            this.tableLayoutPanel4.TabIndex = 0;
+            this.tableLayoutCreate.ColumnCount = 2;
+            this.tableLayoutCreate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutCreate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutCreate.Controls.Add(this.lblUsername, 0, 1);
+            this.tableLayoutCreate.Controls.Add(this.lblID, 0, 0);
+            this.tableLayoutCreate.Controls.Add(this.txtID, 1, 0);
+            this.tableLayoutCreate.Controls.Add(this.txtUsername, 1, 1);
+            this.tableLayoutCreate.Controls.Add(this.chbShowAll, 1, 2);
+            this.tableLayoutCreate.Controls.Add(this.lblShowAll, 0, 2);
+            this.tableLayoutCreate.Controls.Add(this.btnClear, 0, 3);
+            this.tableLayoutCreate.Controls.Add(this.panel1, 1, 3);
+            this.tableLayoutCreate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutCreate.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutCreate.Name = "tableLayoutCreate";
+            this.tableLayoutCreate.RowCount = 4;
+            this.tableLayoutCreate.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutCreate.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutCreate.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutCreate.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutCreate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutCreate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutCreate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutCreate.Size = new System.Drawing.Size(207, 131);
+            this.tableLayoutCreate.TabIndex = 0;
             // 
-            // tableLayoutPanel5
+            // lblUsername
             // 
-            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel5.Controls.Add(this.btnClear, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.btnSearch, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.button1, 0, 1);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 36);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 14F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(213, 55);
-            this.tableLayoutPanel5.TabIndex = 0;
+            this.lblUsername.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.Location = new System.Drawing.Point(3, 32);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(55, 13);
+            this.lblUsername.TabIndex = 3;
+            this.lblUsername.Text = "Username";
+            this.lblUsername.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblID
+            // 
+            this.lblID.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblID.AutoSize = true;
+            this.lblID.Location = new System.Drawing.Point(3, 6);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(18, 13);
+            this.lblID.TabIndex = 0;
+            this.lblID.Text = "ID";
+            this.lblID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtUsername.Location = new System.Drawing.Point(84, 29);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(120, 20);
+            this.txtUsername.TabIndex = 1;
+            // 
+            // chbShowAll
+            // 
+            this.chbShowAll.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.chbShowAll.AutoSize = true;
+            this.chbShowAll.Location = new System.Drawing.Point(136, 55);
+            this.chbShowAll.Name = "chbShowAll";
+            this.chbShowAll.Size = new System.Drawing.Size(15, 14);
+            this.chbShowAll.TabIndex = 1;
+            this.chbShowAll.UseVisualStyleBackColor = true;
+            // 
+            // lblShowAll
+            // 
+            this.lblShowAll.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblShowAll.AutoSize = true;
+            this.lblShowAll.Location = new System.Drawing.Point(3, 55);
+            this.lblShowAll.Name = "lblShowAll";
+            this.lblShowAll.Size = new System.Drawing.Size(48, 13);
+            this.lblShowAll.TabIndex = 3;
+            this.lblShowAll.Text = "Show All";
+            this.lblShowAll.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnClear
             // 
-            this.btnClear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnClear.Location = new System.Drawing.Point(0, 0);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(0);
+            this.btnClear.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnClear.Enabled = false;
+            this.btnClear.Location = new System.Drawing.Point(3, 90);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(81, 26);
-            this.btnClear.TabIndex = 0;
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 3;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnSearch);
+            this.panel1.Controls.Add(this.loadingImg);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(84, 75);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(120, 53);
+            this.panel1.TabIndex = 6;
+            // 
             // btnSearch
             // 
             this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSearch.Location = new System.Drawing.Point(138, 0);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSearch.Enabled = false;
+            this.btnSearch.Location = new System.Drawing.Point(45, 15);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 25);
-            this.btnSearch.TabIndex = 1;
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // button1
+            // loadingImg
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(0, 26);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 27);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Show All";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.loadingImg.Image = global::FlightAdmin.Properties.Resources.loading1;
+            this.loadingImg.Location = new System.Drawing.Point(27, 15);
+            this.loadingImg.Name = "loadingImg";
+            this.loadingImg.Size = new System.Drawing.Size(20, 20);
+            this.loadingImg.TabIndex = 5;
+            this.loadingImg.TabStop = false;
+            this.loadingImg.Visible = false;
             // 
-            // tableLayoutPanel6
+            // dataGrid
             // 
-            this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel6.Controls.Add(this.lblName, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.txtName, 1, 0);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(213, 36);
-            this.tableLayoutPanel6.TabIndex = 1;
-            // 
-            // lblName
-            // 
-            this.lblName.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(3, 3);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(38, 13);
-            this.lblName.TabIndex = 0;
-            this.lblName.Text = "Name:";
-            // 
-            // txtName
-            // 
-            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtName.Location = new System.Drawing.Point(44, 0);
-            this.txtName.Margin = new System.Windows.Forms.Padding(0);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(169, 20);
-            this.txtName.TabIndex = 1;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGrid.AllowUserToAddRows = false;
+            this.dataGrid.AllowUserToDeleteRows = false;
+            this.dataGrid.AllowUserToOrderColumns = true;
+            this.dataGrid.AutoGenerateColumns = false;
+            this.dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
-            this.usernameDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.administratorBindingSource;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(228, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(530, 504);
-            this.dataGridView1.TabIndex = 1;
+            this.Username});
+            this.dataGrid.ContextMenuStrip = this.dataGridMenu;
+            this.dataGrid.DataSource = this.adminBindingSource;
+            this.dataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGrid.Location = new System.Drawing.Point(228, 3);
+            this.dataGrid.MultiSelect = false;
+            this.dataGrid.Name = "dataGrid";
+            this.dataGrid.ReadOnly = true;
+            this.dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGrid.Size = new System.Drawing.Size(485, 488);
+            this.dataGrid.TabIndex = 6;
+            this.dataGrid.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGrid_CellMouseDown);
+            this.dataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGrid_KeyDown);
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -275,70 +296,83 @@
             this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
             this.iDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // usernameDataGridViewTextBoxColumn
+            // Username
             // 
-            this.usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
-            this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
-            this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
-            this.usernameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.Username.DataPropertyName = "Username";
+            this.Username.HeaderText = "Username";
+            this.Username.Name = "Username";
+            this.Username.ReadOnly = true;
             // 
-            // administratorBindingSource
+            // dataGridMenu
             // 
-            this.administratorBindingSource.DataSource = typeof(FlightAdmin.MainService.Administrator);
+            this.dataGridMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editMenuItem,
+            this.changePasswordMenuItem,
+            this.deleteMenuItem});
+            this.dataGridMenu.Name = "dataGridMenu";
+            this.dataGridMenu.Size = new System.Drawing.Size(169, 70);
+            this.dataGridMenu.Opening += new System.ComponentModel.CancelEventHandler(this.dataGridMenu_Opening);
             // 
-            // administratorTableMenu
+            // editMenuItem
             // 
-            this.administratorTableMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editToolStripMenuItem,
-            this.deleteToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.createToolStripMenuItem});
-            this.administratorTableMenu.Name = "administratorTableMenu";
-            this.administratorTableMenu.Size = new System.Drawing.Size(109, 76);
+            this.editMenuItem.Name = "editMenuItem";
+            this.editMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.editMenuItem.Text = "Edit";
+            this.editMenuItem.Click += new System.EventHandler(this.editMenuItem_Click);
             // 
-            // editToolStripMenuItem
+            // changePasswordMenuItem
             // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.changePasswordMenuItem.Name = "changePasswordMenuItem";
+            this.changePasswordMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.changePasswordMenuItem.Text = "Change Password";
             // 
-            // deleteToolStripMenuItem
+            // deleteMenuItem
             // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteMenuItem.Name = "deleteMenuItem";
+            this.deleteMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.deleteMenuItem.Text = "Delete";
+            this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
             // 
-            // toolStripMenuItem1
+            // adminBindingSource
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(105, 6);
+            this.adminBindingSource.DataSource = typeof(FlightAdmin.MainService.Administrator);
             // 
-            // createToolStripMenuItem
+            // bgWorker
             // 
-            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
-            this.createToolStripMenuItem.Text = "Create";
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
+            // 
+            // txtID
+            // 
+            this.txtID.AllowSpace = false;
+            this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtID.Location = new System.Drawing.Point(84, 3);
+            this.txtID.MaxLength = 8;
+            this.txtID.Name = "txtID";
+            this.txtID.OnlyInt = true;
+            this.txtID.Size = new System.Drawing.Size(120, 20);
+            this.txtID.TabIndex = 1;
             // 
             // AdministratorTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ContextMenuStrip = this.administratorTableMenu;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "AdministratorTab";
-            this.Size = new System.Drawing.Size(761, 510);
+            this.Size = new System.Drawing.Size(716, 494);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.grpCreate.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.grpSearch.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.administratorBindingSource)).EndInit();
-            this.administratorTableMenu.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
+            this.grpSearch.ResumeLayout(false);
+            this.tableLayoutCreate.ResumeLayout(false);
+            this.tableLayoutCreate.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.loadingImg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
+            this.dataGridMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.adminBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -346,27 +380,30 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.DataGridView dataGrid;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.GroupBox grpSearch;
         private System.Windows.Forms.GroupBox grpCreate;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutCreate;
+        private System.Windows.Forms.Label lblID;
+        private FlightAdmin.GUI.Helper.NumericTextBox txtID;
+        private System.Windows.Forms.Label lblUsername;
+        private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.BindingSource administratorBindingSource;
+        private System.Windows.Forms.Button btnCreate;
+        private System.ComponentModel.BackgroundWorker bgWorker;
+        private System.Windows.Forms.ContextMenuStrip dataGridMenu;
+        private System.Windows.Forms.ToolStripMenuItem deleteMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ContextMenuStrip administratorTableMenu;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Username;
+        private System.Windows.Forms.BindingSource adminBindingSource;
+        private System.Windows.Forms.ToolStripMenuItem changePasswordMenuItem;
+        private System.Windows.Forms.Label lblShowAll;
+        private System.Windows.Forms.CheckBox chbShowAll;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.PictureBox loadingImg;
+        private System.Windows.Forms.Button btnClear;
     }
 }
