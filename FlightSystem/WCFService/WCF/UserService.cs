@@ -67,7 +67,15 @@ namespace WCFService.WCF
 
 
         public List<User> GetAllUsers() {
-            return _db.Users.ToList();
+            List<User> list = new List<User>();
+          
+            foreach (User user in _db.Users.ToList()) {
+                int id = user.ID;
+                list.Add(GetUser(id));
+                                  
+            }
+            return list;
         }
+
     }
 }
