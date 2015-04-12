@@ -19,6 +19,8 @@ namespace FlightAdmin.GUI.CustomerTabExtension
 
         private readonly CustomerCtr customerCtr = new CustomerCtr();
         public User User { get; set; }
+
+        #region Cunstructors
         public CreateCustomer()
         {
             InitializeComponent();
@@ -44,10 +46,128 @@ namespace FlightAdmin.GUI.CustomerTabExtension
 
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        #endregion
+
+        #region Editing
+
+        private void btnSaveForEdit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (IsFormValid())
+            {
+                editWorker.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.Show(this, @"Somthing went wrong!", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
         }
+
+        private void editWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+            Postal postal = User.Postal;
+            postal.PostCode = Int32.Parse(txtZip.Text);
+            postal.City = txtCity.Text;
+
+            e.Result = customerCtr.UpdateUser(User, txtName.Text.Trim(), txtAddress.Text.Trim(), postal, txtPhone.Text.Trim(), txtEmail.Text.Trim());
+
+        }
+
+        private void editWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                Exception ex = e.Error;
+                if (ex is AlreadyExistException)
+                {
+                    errProvider.SetError(txtName, txtName.Text.Trim() + "already exists!");
+                }
+                else
+                {
+                    MessageBox.Show(this, ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                User user = e.Result as User;
+                if (user != null)
+                {
+                    MessageBox.Show(this, @"The customer has been Updated", @"Succese", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(this, @"Unknown Error", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
+        #endregion
+
+        #region Creating
+
+        private void btnSaveForCreation_Click(object sender, EventArgs e)
+        {
+            if (IsFormValid())
+            {
+                createWorker.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.Show(this, @"Somthing went wrong!", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+
+
+        private void createWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Postal postal = new Postal
+            {
+                PostCode = Int32.Parse(txtZip.Text),
+                City = txtCity.Text
+
+            };
+
+            if (postal == null) throw new ArgumentNullException();
+
+            e.Result = customerCtr.CreateUser(txtName.Text.Trim(), txtAddress.Text.Trim(), postal, txtPhone.Text.Trim(), txtEmail.Text.Trim());
+        }
+
+        private void createWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                Exception ex = e.Error;
+                if (ex is AlreadyExistException)
+                {
+                    errProvider.SetError(txtName, txtName.Text.Trim() + "already exists!");
+                }
+                else
+                {
+                    MessageBox.Show(this, ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                User user = e.Result as User;
+                if (user != null)
+                {
+                    MessageBox.Show(this, @"The customer has been created", @"Succese", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(this, @"Unknown Error", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        #endregion
 
         #region validating
         private bool IsNameValid()
@@ -144,105 +264,14 @@ namespace FlightAdmin.GUI.CustomerTabExtension
 
         #endregion
 
-      
+        #region Other Events
 
-        private void btnSaveForEdit_Click(object sender, EventArgs e) {
-            if (IsFormValid())
-            {
-                editWorker.RunWorkerAsync();
-            }
-            else
-            {
-                MessageBox.Show(this, @"Somthing went wrong!", @"Error", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-          
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
-        private void btnSaveForCreation_Click(object sender, EventArgs e) {
-            if (IsFormValid())
-            {
-                createWorker.RunWorkerAsync();
-            } else {
-                MessageBox.Show(this, @"Somthing went wrong!", @"Error", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
-
-        private void editWorker_DoWork(object sender, DoWorkEventArgs e) {
-
-            Postal postal = User.Postal;
-            postal.PostCode = Int32.Parse(txtZip.Text);
-            postal.City = txtCity.Text;
-          
-            e.Result = customerCtr.UpdateUser(User, txtName.Text.Trim(), txtAddress.Text.Trim(), postal, txtPhone.Text.Trim(), txtEmail.Text.Trim());
-        
-        }
-
-        private void editWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-            if (e.Error != null)
-            {
-                Exception ex = e.Error;
-                if (ex is AlreadyExistException) {
-                    errProvider.SetError(txtName, txtName.Text.Trim() + "already exists!");
-                }
-                else{
-                    MessageBox.Show(this, ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else{
-                User user = e.Result as User;
-                if (user != null) {
-                    MessageBox.Show(this, @"The customer has been Updated", @"Succese", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                }
-                else {
-                    MessageBox.Show(this, @"Unknown Error", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void createWorker_DoWork(object sender, DoWorkEventArgs e) {
-            Postal postal = new Postal
-            {
-                PostCode = Int32.Parse(txtZip.Text),
-                City = txtCity.Text
-
-            };
-
-            if (postal == null) throw new ArgumentNullException();
-
-            e.Result = customerCtr.CreateUser(txtName.Text.Trim(), txtAddress.Text.Trim(), postal, txtPhone.Text.Trim(), txtEmail.Text.Trim());        
-        }
-
-        private void createWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-            if (e.Error != null) {
-                Exception ex = e.Error;
-                if (ex is AlreadyExistException) {
-                    errProvider.SetError(txtName, txtName.Text.Trim() + "already exists!");
-                } else {
-                    MessageBox.Show(this, ex.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            } else {
-                User user = e.Result as User;
-                if (user != null) {
-                    MessageBox.Show(this, @"The customer has been created", @"Succese", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                } else {
-                    MessageBox.Show(this, @"Unknown Error", @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-      
-
-       
-
-       
-
-
-
-
+        #endregion
 
 
     }
