@@ -20,29 +20,6 @@ namespace FlightAdmin.GUI {
     public partial class CustomerTab : UserControl {
 
         CustomerCtr customerCtr = new CustomerCtr();
-<<<<<<< HEAD
-=======
-        
-        public CustomerTab() {
-            InitializeComponent();
-            SetEvents();
-        }
-
-
-        private void SetEvents()
-        {
-            foreach (TextBox t in tableLayoutPanel3.Controls.OfType<TextBox>())
-            {
-                if (t == txtID) {
-                    t.TextChanged += FancyFeatures.TextChangedDisableParentsInputControls;
-                }
-            }           
-        }
-
-        private void btnClear_Click(object sender, EventArgs e) {
-            ClearFields();
-        }
->>>>>>> origin/master
 
         #region Constructors
 
@@ -233,7 +210,7 @@ namespace FlightAdmin.GUI {
             foreach (TextBox t in tableLayoutPanel3.Controls.OfType<TextBox>())
             {
                 if (t == txtID) {
-                    t.TextChanged += FancyFeatures.TextChangedDisableParentsTextboxs;
+                    t.TextChanged += FancyFeatures.CheckedChangedDisableParentsInputControls;
                 }
             }           
         }
