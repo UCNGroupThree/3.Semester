@@ -54,22 +54,41 @@ namespace WCFService.WCF {
             if (db.Administrators.Any(a => a.ID != administrator.ID && a.Username.Equals(administrator.Username, StringComparison.OrdinalIgnoreCase))) {
                 throw new FaultException<AlreadyExistFault>(new AlreadyExistFault());
             }
-            Administrator orginal = GetAdministrator(administrator.ID);
+            /*Administrator orginal = GetAdministrator(administrator.ID);
             if (orginal == null) {
                 throw new FaultException<NotFoundFault>(new NotFoundFault());
-            }
+            }*/
+            bool changedPassword;
             try {
-                administrator.PasswordHash = orginal.PasswordHash;
-
+                changedPassword = true;
+                administrator.GenerateHash(); //Try generate new hash
+            } catch (NullReferenceException) {
+                changedPassword = false;
+                administrator.PasswordHash = "TempPa55w0rd"; //Set for Attaching to DBSet, for validation works.
+                //administrator.PasswordHash = orginal.PasswordHash; //Set same passwordHash as in database.
+            } catch (PasswordFormatException) {
+                throw new FaultException<PasswordFormatFault>(new PasswordFormatFault());
+            }
+            //Debug.WriteLine("admin: {0}, {1}, {2}", administrator.ID, administrator.Username, administrator.PasswordHash);
+            //Debug.WriteLine("orginal: {0}, {1}, {2}", orginal.ID, orginal.Username, orginal.PasswordHash);
+            try {
+                db.Administrators.Attach(administrator);
                 db.Entry(administrator).State = EntityState.Modified;
+                //db.Entry(administrator).Property(a => a.Username).IsModified = true;
+                //Debug.WriteLine("ChangedPass: " + changedPassword);
+                db.Entry(administrator).Property(a => a.PasswordHash).IsModified = changedPassword;
                 db.SaveChanges();
             } catch (Exception ex) {
-                Debug.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Debug.WriteLine("#####");
+                Debug.WriteLine(ex); //TODO DEBUG MODE?
+                Debug.WriteLine("-----");
+                Debug.WriteLine(ex.Message);
+                Debug.WriteLine("#####");
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault("administrator"));
             }
             return administrator;
         }
-
+/*
         public Administrator UpdatePassword(Administrator administrator) {
             if (administrator == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
@@ -94,7 +113,7 @@ namespace WCFService.WCF {
             }
             return administrator;
         }
-        
+*/        
         public void DeleteAdministrator(Administrator administrator) {
             if (administrator == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());

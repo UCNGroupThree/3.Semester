@@ -19,10 +19,6 @@ namespace WCFService {
         public Administrator UpdateAdministrator(Administrator administrator) {
             return new AdministratorService().UpdateAdministrator(administrator);
         }
-
-        public Administrator UpdatePassword(Administrator administrator) {
-            return new AdministratorService().UpdatePassword(administrator);
-        }
         
         public void DeleteAdministrator(Administrator administrator) {
             new AdministratorService().DeleteAdministrator(administrator);

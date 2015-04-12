@@ -55,17 +55,17 @@
     <Compile Include="CustomTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GUI\AdministratorTabExtensions\CreateAdministrator.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\AdministratorTabExtensions\CreateAdministrator.Designer.cs">
-      <DependentUpon>CreateAdministrator.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\AdministratorTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GUI\AdministratorTab.Designer.cs">
       <DependentUpon>AdministratorTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AdministratorTabExtensions\CreateAdministrator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AdministratorTabExtensions\CreateAdministrator.Designer.cs">
+      <DependentUpon>CreateAdministrator.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\AirportTabExtensions\CreateAirport.cs">
       <SubType>Form</SubType>
@@ -168,11 +168,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="GUI\AdministratorTabExtensions\CreateAdministrator.resx">
-      <DependentUpon>CreateAdministrator.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\AdministratorTab.resx">
       <DependentUpon>AdministratorTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AdministratorTabExtensions\CreateAdministrator.resx">
+      <DependentUpon>CreateAdministrator.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AirportTabExtensions\CreateAirport.resx">
       <DependentUpon>CreateAirport.cs</DependentUpon>

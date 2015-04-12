@@ -60,7 +60,7 @@ namespace FlightAdmin.Controller {
 
         #region Update
 
-        public Administrator UpdateAdministrator(Administrator administrator, string username) {
+        public Administrator UpdateAdministrator(Administrator administrator, string username, string password) {
 
             Administrator temp = null;
 
@@ -68,6 +68,7 @@ namespace FlightAdmin.Controller {
                 temp = administrator.GetCopy();
 
                 administrator.Username = username;
+                administrator.PasswordPlain = password;
 
                 using (AdministratorServiceClient client = new AdministratorServiceClient()) {
                     var updated = client.UpdateAdministrator(administrator);
@@ -76,9 +77,9 @@ namespace FlightAdmin.Controller {
             } catch (FaultException<AlreadyExistFault>) {
                 administrator.SetToCopy(temp);
                 throw new AlreadyExistException();
-            } catch (FaultException<NotFoundFault>) {
+            } catch (FaultException<PasswordFormatFault>) {
                 administrator.SetToCopy(temp);
-                throw new NotFoundException();
+                throw new PasswordFormatException();
             } catch (FaultException<DatabaseUpdateFault> ex) {
                 administrator.SetToCopy(temp);
                 throw new DatabaseException(ex.Detail.Message);
@@ -93,7 +94,7 @@ namespace FlightAdmin.Controller {
             return administrator;
         }
 
-        public Administrator UpdatePassword(Administrator administrator, string password) {
+      /*  public Administrator UpdatePassword(Administrator administrator, string password) {
             Administrator temp = null;
 
             try {
@@ -123,7 +124,7 @@ namespace FlightAdmin.Controller {
 
             return administrator;
         }   
-
+*/
         #endregion
 
         #region read

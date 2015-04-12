@@ -35,6 +35,7 @@ namespace FlightAdmin.GUI {
             this.tableLayoutCreate = new System.Windows.Forms.TableLayoutPanel();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
+            this.txtID = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.chbShowAll = new System.Windows.Forms.CheckBox();
             this.lblShowAll = new System.Windows.Forms.Label();
@@ -45,13 +46,11 @@ namespace FlightAdmin.GUI {
             this.dataGrid = new System.Windows.Forms.DataGridView();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changePasswordMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
-            this.txtID = new FlightAdmin.GUI.Helper.NumericTextBox();
+            this.editMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.grpCreate.SuspendLayout();
@@ -61,8 +60,8 @@ namespace FlightAdmin.GUI {
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadingImg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
-            this.dataGridMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.adminBindingSource)).BeginInit();
+            this.dataGridMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -192,6 +191,17 @@ namespace FlightAdmin.GUI {
             this.lblID.Text = "ID";
             this.lblID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtID
+            // 
+            this.txtID.AllowSpace = false;
+            this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtID.Location = new System.Drawing.Point(84, 3);
+            this.txtID.MaxLength = 8;
+            this.txtID.Name = "txtID";
+            this.txtID.OnlyInt = true;
+            this.txtID.Size = new System.Drawing.Size(120, 20);
+            this.txtID.TabIndex = 1;
+            // 
             // txtUsername
             // 
             this.txtUsername.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -303,36 +313,6 @@ namespace FlightAdmin.GUI {
             this.Username.Name = "Username";
             this.Username.ReadOnly = true;
             // 
-            // dataGridMenu
-            // 
-            this.dataGridMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editMenuItem,
-            this.changePasswordMenuItem,
-            this.deleteMenuItem});
-            this.dataGridMenu.Name = "dataGridMenu";
-            this.dataGridMenu.Size = new System.Drawing.Size(169, 70);
-            this.dataGridMenu.Opening += new System.ComponentModel.CancelEventHandler(this.dataGridMenu_Opening);
-            // 
-            // editMenuItem
-            // 
-            this.editMenuItem.Name = "editMenuItem";
-            this.editMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.editMenuItem.Text = "Edit";
-            this.editMenuItem.Click += new System.EventHandler(this.editMenuItem_Click);
-            // 
-            // changePasswordMenuItem
-            // 
-            this.changePasswordMenuItem.Name = "changePasswordMenuItem";
-            this.changePasswordMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.changePasswordMenuItem.Text = "Change Password";
-            // 
-            // deleteMenuItem
-            // 
-            this.deleteMenuItem.Name = "deleteMenuItem";
-            this.deleteMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.deleteMenuItem.Text = "Delete";
-            this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
-            // 
             // adminBindingSource
             // 
             this.adminBindingSource.DataSource = typeof(FlightAdmin.MainService.Administrator);
@@ -342,16 +322,28 @@ namespace FlightAdmin.GUI {
             this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
             this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
             // 
-            // txtID
+            // editMenuItem
             // 
-            this.txtID.AllowSpace = false;
-            this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtID.Location = new System.Drawing.Point(84, 3);
-            this.txtID.MaxLength = 8;
-            this.txtID.Name = "txtID";
-            this.txtID.OnlyInt = true;
-            this.txtID.Size = new System.Drawing.Size(120, 20);
-            this.txtID.TabIndex = 1;
+            this.editMenuItem.Name = "editMenuItem";
+            this.editMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editMenuItem.Text = "Edit";
+            this.editMenuItem.Click += new System.EventHandler(this.editMenuItem_Click);
+            // 
+            // deleteMenuItem
+            // 
+            this.deleteMenuItem.Name = "deleteMenuItem";
+            this.deleteMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteMenuItem.Text = "Delete";
+            this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
+            // 
+            // dataGridMenu
+            // 
+            this.dataGridMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editMenuItem,
+            this.deleteMenuItem});
+            this.dataGridMenu.Name = "dataGridMenu";
+            this.dataGridMenu.Size = new System.Drawing.Size(153, 70);
+            this.dataGridMenu.Opening += new System.ComponentModel.CancelEventHandler(this.dataGridMenu_Opening);
             // 
             // AdministratorTab
             // 
@@ -371,8 +363,8 @@ namespace FlightAdmin.GUI {
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.loadingImg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
-            this.dataGridMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.adminBindingSource)).EndInit();
+            this.dataGridMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -392,18 +384,17 @@ namespace FlightAdmin.GUI {
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button btnCreate;
         private System.ComponentModel.BackgroundWorker bgWorker;
-        private System.Windows.Forms.ContextMenuStrip dataGridMenu;
-        private System.Windows.Forms.ToolStripMenuItem deleteMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Username;
         private System.Windows.Forms.BindingSource adminBindingSource;
-        private System.Windows.Forms.ToolStripMenuItem changePasswordMenuItem;
         private System.Windows.Forms.Label lblShowAll;
         private System.Windows.Forms.CheckBox chbShowAll;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.PictureBox loadingImg;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.ContextMenuStrip dataGridMenu;
+        private System.Windows.Forms.ToolStripMenuItem editMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteMenuItem;
     }
 }

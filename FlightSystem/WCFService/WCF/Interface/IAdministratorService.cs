@@ -17,17 +17,17 @@ namespace WCFService.WCF.Interface {
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]
         [FaultContract(typeof(AlreadyExistFault))]
-        [FaultContract(typeof(NotFoundFault))]
+        [FaultContract(typeof(PasswordFormatFault))]
         [FaultContract(typeof(DatabaseUpdateFault))]
         Administrator UpdateAdministrator(Administrator administrator);
-
+/*
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]
         [FaultContract(typeof(NotFoundFault))]
         [FaultContract(typeof(PasswordFormatFault))]
         [FaultContract(typeof(DatabaseUpdateFault))]
         Administrator UpdatePassword(Administrator administrator);
-
+*/
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]
         [FaultContract(typeof(DatabaseDeleteFault))]
