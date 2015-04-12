@@ -54,13 +54,17 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.errProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.btnShowAll = new System.Windows.Forms.Button();
+            this.btnSearchByName = new System.Windows.Forms.Button();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailHashDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.postalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.namelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -69,17 +73,18 @@
             this.grpCreate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel4
             // 
+            this.tableLayoutPanel4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127F));
             this.tableLayoutPanel4.Controls.Add(this.btnUpdate, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnCreate, 0, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
@@ -114,9 +119,9 @@
             // 
             this.lblName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(3, 32);
+            this.lblName.Location = new System.Drawing.Point(3, 31);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(35, 13);
+            this.lblName.Size = new System.Drawing.Size(41, 15);
             this.lblName.TabIndex = 3;
             this.lblName.Text = "Name";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -125,9 +130,9 @@
             // 
             this.lblID.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(3, 6);
+            this.lblID.Location = new System.Drawing.Point(3, 5);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(18, 13);
+            this.lblID.Size = new System.Drawing.Size(19, 15);
             this.lblID.TabIndex = 0;
             this.lblID.Text = "ID";
             this.lblID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -147,6 +152,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(121, 20);
             this.txtName.TabIndex = 2;
+            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
             // 
             // txtAddress
             // 
@@ -155,14 +161,15 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(121, 20);
             this.txtAddress.TabIndex = 2;
+            this.txtAddress.Validating += new System.ComponentModel.CancelEventHandler(this.txtAddress_Validating);
             // 
             // lblAddress
             // 
             this.lblAddress.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(3, 58);
+            this.lblAddress.Location = new System.Drawing.Point(3, 57);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(45, 13);
+            this.lblAddress.Size = new System.Drawing.Size(51, 15);
             this.lblAddress.TabIndex = 3;
             this.lblAddress.Text = "Address";
             this.lblAddress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -171,9 +178,9 @@
             // 
             this.lblCity.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCity.AutoSize = true;
-            this.lblCity.Location = new System.Drawing.Point(3, 84);
+            this.lblCity.Location = new System.Drawing.Point(3, 83);
             this.lblCity.Name = "lblCity";
-            this.lblCity.Size = new System.Drawing.Size(24, 13);
+            this.lblCity.Size = new System.Drawing.Size(26, 15);
             this.lblCity.TabIndex = 3;
             this.lblCity.Text = "City";
             this.lblCity.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -185,14 +192,15 @@
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(121, 20);
             this.txtCity.TabIndex = 2;
+            this.txtCity.Validating += new System.ComponentModel.CancelEventHandler(this.txtCity_Validating);
             // 
             // lblZip
             // 
             this.lblZip.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblZip.AutoSize = true;
-            this.lblZip.Location = new System.Drawing.Point(3, 110);
+            this.lblZip.Location = new System.Drawing.Point(3, 109);
             this.lblZip.Name = "lblZip";
-            this.lblZip.Size = new System.Drawing.Size(22, 13);
+            this.lblZip.Size = new System.Drawing.Size(24, 15);
             this.lblZip.TabIndex = 3;
             this.lblZip.Text = "Zip";
             // 
@@ -203,14 +211,15 @@
             this.txtZip.Name = "txtZip";
             this.txtZip.Size = new System.Drawing.Size(121, 20);
             this.txtZip.TabIndex = 2;
+            this.txtZip.Validating += new System.ComponentModel.CancelEventHandler(this.txtZip_Validating);
             // 
             // lblEmail
             // 
             this.lblEmail.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(3, 136);
+            this.lblEmail.Location = new System.Drawing.Point(3, 135);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(32, 13);
+            this.lblEmail.Size = new System.Drawing.Size(39, 15);
             this.lblEmail.TabIndex = 5;
             this.lblEmail.Text = "Email";
             // 
@@ -220,22 +229,23 @@
             this.txtEmail.Location = new System.Drawing.Point(84, 133);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(121, 20);
-            this.txtEmail.TabIndex = 6;
+            this.txtEmail.TabIndex = 2;
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
             // lblPhone
             // 
             this.lblPhone.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(3, 162);
+            this.lblPhone.Location = new System.Drawing.Point(3, 161);
             this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(38, 13);
+            this.lblPhone.Size = new System.Drawing.Size(43, 15);
             this.lblPhone.TabIndex = 7;
             this.lblPhone.Text = "Phone";
             // 
             // btnClear
             // 
             this.btnClear.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnClear.Location = new System.Drawing.Point(3, 195);
+            this.btnClear.Location = new System.Drawing.Point(3, 185);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 4;
@@ -260,11 +270,11 @@
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.Controls.Add(this.grpSearch, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.grpCreate, 0, 2);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
@@ -276,11 +286,10 @@
             // 
             // grpSearch
             // 
-            this.grpSearch.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.grpSearch.Controls.Add(this.tableLayoutPanel3);
             this.grpSearch.Location = new System.Drawing.Point(3, 3);
             this.grpSearch.Name = "grpSearch";
-            this.grpSearch.Size = new System.Drawing.Size(213, 251);
+            this.grpSearch.Size = new System.Drawing.Size(213, 279);
             this.grpSearch.TabIndex = 0;
             this.grpSearch.TabStop = false;
             this.grpSearch.Text = "Search";
@@ -306,10 +315,11 @@
             this.tableLayoutPanel3.Controls.Add(this.btnClear, 0, 8);
             this.tableLayoutPanel3.Controls.Add(this.btnSearch, 1, 8);
             this.tableLayoutPanel3.Controls.Add(this.txtPhone, 1, 7);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel3.Controls.Add(this.btnShowAll, 0, 9);
+            this.tableLayoutPanel3.Controls.Add(this.btnSearchByName, 1, 9);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 30);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 9;
+            this.tableLayoutPanel3.RowCount = 10;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -319,15 +329,16 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(207, 232);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(207, 253);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // btnSearch
             // 
-            this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSearch.Location = new System.Drawing.Point(130, 195);
+            this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnSearch.Location = new System.Drawing.Point(84, 185);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(120, 23);
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -339,12 +350,14 @@
             this.txtPhone.Location = new System.Drawing.Point(84, 159);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(121, 20);
-            this.txtPhone.TabIndex = 8;
+            this.txtPhone.TabIndex = 2;
+            this.txtPhone.Validating += new System.ComponentModel.CancelEventHandler(this.txtPhone_Validating);
             // 
             // grpCreate
             // 
+            this.grpCreate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.grpCreate.Controls.Add(this.tableLayoutPanel4);
-            this.grpCreate.Location = new System.Drawing.Point(3, 260);
+            this.grpCreate.Location = new System.Drawing.Point(3, 317);
             this.grpCreate.Name = "grpCreate";
             this.grpCreate.Size = new System.Drawing.Size(213, 53);
             this.grpCreate.TabIndex = 1;
@@ -359,17 +372,17 @@
             this.dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.namelDataGridViewTextBoxColumn,
             this.addressDataGridViewTextBoxColumn,
-            this.postalDataGridViewTextBoxColumn,
-            this.emailHashDataGridViewTextBoxColumn,
-            this.phoneNumberDataGridViewTextBoxColumn});
+            this.emailDataGridViewTextBoxColumn,
+            this.iDDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.phoneNumberDataGridViewTextBoxColumn,
+            this.postalDataGridViewTextBoxColumn});
             this.dataGrid.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGrid.DataSource = this.userBindingSource;
             this.dataGrid.Location = new System.Drawing.Point(228, 3);
             this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(905, 403);
+            this.dataGrid.Size = new System.Drawing.Size(515, 403);
             this.dataGrid.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -379,26 +392,26 @@
             this.editToolStripMenuItem,
             this.createToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(118, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(123, 76);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
-            this.toolStripMenuItem1.Text = "Remove";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem1.Text = "Delete";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // createToolStripMenuItem
             // 
             this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
             this.createToolStripMenuItem.Text = "Create";
             this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
             // 
@@ -409,33 +422,43 @@
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // errProvider
+            // 
+            this.errProvider.ContainerControl = this;
+            this.errProvider.RightToLeft = true;
+            // 
+            // backgroundWorker2
+            // 
+            this.backgroundWorker2.WorkerReportsProgress = true;
+            this.backgroundWorker2.WorkerSupportsCancellation = true;
+            this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
+            this.backgroundWorker2.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker2_RunWorkerCompleted);
+            // 
+            // btnShowAll
+            // 
+            this.btnShowAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnShowAll.Location = new System.Drawing.Point(3, 220);
+            this.btnShowAll.Name = "btnShowAll";
+            this.btnShowAll.Size = new System.Drawing.Size(75, 23);
+            this.btnShowAll.TabIndex = 8;
+            this.btnShowAll.Text = "Show All";
+            this.btnShowAll.UseVisualStyleBackColor = true;
+            this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
+            // 
+            // btnSearchByName
+            // 
+            this.btnSearchByName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearchByName.Location = new System.Drawing.Point(84, 220);
+            this.btnSearchByName.Name = "btnSearchByName";
+            this.btnSearchByName.Size = new System.Drawing.Size(121, 23);
+            this.btnSearchByName.TabIndex = 9;
+            this.btnSearchByName.Text = "Search By Name";
+            this.btnSearchByName.UseVisualStyleBackColor = true;
+            this.btnSearchByName.Click += new System.EventHandler(this.btnSearchByName_Click);
+            // 
             // userBindingSource
             // 
             this.userBindingSource.DataSource = typeof(FlightAdmin.MainService.User);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.idDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // phoneNumberDataGridViewTextBoxColumn
-            // 
-            this.phoneNumberDataGridViewTextBoxColumn.DataPropertyName = "PhoneNumber";
-            this.phoneNumberDataGridViewTextBoxColumn.HeaderText = "PhoneNumber";
-            this.phoneNumberDataGridViewTextBoxColumn.Name = "phoneNumberDataGridViewTextBoxColumn";
-            // 
-            // emailHashDataGridViewTextBoxColumn
-            // 
-            this.emailHashDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailHashDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailHashDataGridViewTextBoxColumn.Name = "emailHashDataGridViewTextBoxColumn";
-            // 
-            // postalDataGridViewTextBoxColumn
-            // 
-            this.postalDataGridViewTextBoxColumn.DataPropertyName = "Postal";
-            this.postalDataGridViewTextBoxColumn.HeaderText = "Postal";
-            this.postalDataGridViewTextBoxColumn.Name = "postalDataGridViewTextBoxColumn";
             // 
             // addressDataGridViewTextBoxColumn
             // 
@@ -443,11 +466,35 @@
             this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
             // 
-            // namelDataGridViewTextBoxColumn
+            // emailDataGridViewTextBoxColumn
             // 
-            this.namelDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.namelDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.namelDataGridViewTextBoxColumn.Name = "namelDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // phoneNumberDataGridViewTextBoxColumn
+            // 
+            this.phoneNumberDataGridViewTextBoxColumn.DataPropertyName = "PhoneNumber";
+            this.phoneNumberDataGridViewTextBoxColumn.HeaderText = "PhoneNumber";
+            this.phoneNumberDataGridViewTextBoxColumn.Name = "phoneNumberDataGridViewTextBoxColumn";
+            // 
+            // postalDataGridViewTextBoxColumn
+            // 
+            this.postalDataGridViewTextBoxColumn.DataPropertyName = "Postal";
+            this.postalDataGridViewTextBoxColumn.HeaderText = "Postal";
+            this.postalDataGridViewTextBoxColumn.Name = "postalDataGridViewTextBoxColumn";
             // 
             // CustomerTab
             // 
@@ -466,6 +513,7 @@
             this.grpCreate.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -503,12 +551,16 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn namelDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn postalDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailHashDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phoneNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource userBindingSource;
+        private System.Windows.Forms.ErrorProvider errProvider;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private System.Windows.Forms.Button btnShowAll;
+        private System.Windows.Forms.Button btnSearchByName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phoneNumberDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn postalDataGridViewTextBoxColumn;
     }
 }

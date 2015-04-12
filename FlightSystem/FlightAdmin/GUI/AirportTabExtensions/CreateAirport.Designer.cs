@@ -95,7 +95,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(274, 282);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(274, 273);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lblHeader
@@ -104,10 +104,10 @@
             this.lblHeader.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.lblHeader, 3);
             this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader.Location = new System.Drawing.Point(76, 3);
+            this.lblHeader.Location = new System.Drawing.Point(63, 3);
             this.lblHeader.Margin = new System.Windows.Forms.Padding(3);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(122, 20);
+            this.lblHeader.Size = new System.Drawing.Size(147, 25);
             this.lblHeader.TabIndex = 0;
             this.lblHeader.Text = "Create Airport";
             // 
@@ -115,9 +115,9 @@
             // 
             this.lblShortName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblShortName.AutoSize = true;
-            this.lblShortName.Location = new System.Drawing.Point(18, 32);
+            this.lblShortName.Location = new System.Drawing.Point(18, 36);
             this.lblShortName.Name = "lblShortName";
-            this.lblShortName.Size = new System.Drawing.Size(60, 13);
+            this.lblShortName.Size = new System.Drawing.Size(70, 15);
             this.lblShortName.TabIndex = 1;
             this.lblShortName.Text = "ShortName";
             // 
@@ -125,9 +125,9 @@
             // 
             this.lblName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(18, 58);
+            this.lblName.Location = new System.Drawing.Point(18, 62);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(35, 13);
+            this.lblName.Size = new System.Drawing.Size(41, 15);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "Name";
             // 
@@ -135,9 +135,9 @@
             // 
             this.lblCity.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCity.AutoSize = true;
-            this.lblCity.Location = new System.Drawing.Point(18, 84);
+            this.lblCity.Location = new System.Drawing.Point(18, 88);
             this.lblCity.Name = "lblCity";
-            this.lblCity.Size = new System.Drawing.Size(24, 13);
+            this.lblCity.Size = new System.Drawing.Size(26, 15);
             this.lblCity.TabIndex = 1;
             this.lblCity.Text = "City";
             // 
@@ -145,9 +145,9 @@
             // 
             this.lblCountry.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCountry.AutoSize = true;
-            this.lblCountry.Location = new System.Drawing.Point(18, 110);
+            this.lblCountry.Location = new System.Drawing.Point(18, 114);
             this.lblCountry.Name = "lblCountry";
-            this.lblCountry.Size = new System.Drawing.Size(43, 13);
+            this.lblCountry.Size = new System.Drawing.Size(48, 15);
             this.lblCountry.TabIndex = 1;
             this.lblCountry.Text = "Country";
             // 
@@ -155,9 +155,9 @@
             // 
             this.lblLatitude.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblLatitude.AutoSize = true;
-            this.lblLatitude.Location = new System.Drawing.Point(18, 136);
+            this.lblLatitude.Location = new System.Drawing.Point(18, 140);
             this.lblLatitude.Name = "lblLatitude";
-            this.lblLatitude.Size = new System.Drawing.Size(45, 13);
+            this.lblLatitude.Size = new System.Drawing.Size(51, 15);
             this.lblLatitude.TabIndex = 1;
             this.lblLatitude.Text = "Latitude";
             // 
@@ -165,7 +165,7 @@
             // 
             this.txtShortName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtShortName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtShortName.Location = new System.Drawing.Point(108, 29);
+            this.txtShortName.Location = new System.Drawing.Point(108, 34);
             this.txtShortName.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtShortName.Name = "txtShortName";
             this.txtShortName.Size = new System.Drawing.Size(146, 20);
@@ -177,9 +177,9 @@
             // 
             this.lblLongitude.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblLongitude.AutoSize = true;
-            this.lblLongitude.Location = new System.Drawing.Point(18, 162);
+            this.lblLongitude.Location = new System.Drawing.Point(18, 166);
             this.lblLongitude.Name = "lblLongitude";
-            this.lblLongitude.Size = new System.Drawing.Size(54, 13);
+            this.lblLongitude.Size = new System.Drawing.Size(62, 15);
             this.lblLongitude.TabIndex = 1;
             this.lblLongitude.Text = "Longitude";
             // 
@@ -187,9 +187,9 @@
             // 
             this.lblAlittude.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblAlittude.AutoSize = true;
-            this.lblAlittude.Location = new System.Drawing.Point(18, 188);
+            this.lblAlittude.Location = new System.Drawing.Point(18, 192);
             this.lblAlittude.Name = "lblAlittude";
-            this.lblAlittude.Size = new System.Drawing.Size(42, 13);
+            this.lblAlittude.Size = new System.Drawing.Size(47, 15);
             this.lblAlittude.TabIndex = 1;
             this.lblAlittude.Text = "Altitude";
             // 
@@ -197,16 +197,16 @@
             // 
             this.lblTimeZone.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblTimeZone.AutoSize = true;
-            this.lblTimeZone.Location = new System.Drawing.Point(18, 215);
+            this.lblTimeZone.Location = new System.Drawing.Point(18, 220);
             this.lblTimeZone.Name = "lblTimeZone";
-            this.lblTimeZone.Size = new System.Drawing.Size(55, 13);
+            this.lblTimeZone.Size = new System.Drawing.Size(63, 15);
             this.lblTimeZone.TabIndex = 1;
             this.lblTimeZone.Text = "TimeZone";
             // 
             // txtName
             // 
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtName.Location = new System.Drawing.Point(108, 55);
+            this.txtName.Location = new System.Drawing.Point(108, 60);
             this.txtName.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(146, 20);
@@ -217,7 +217,7 @@
             // txtCity
             // 
             this.txtCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCity.Location = new System.Drawing.Point(108, 81);
+            this.txtCity.Location = new System.Drawing.Point(108, 86);
             this.txtCity.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(146, 20);
@@ -228,7 +228,7 @@
             // txtCountry
             // 
             this.txtCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCountry.Location = new System.Drawing.Point(108, 107);
+            this.txtCountry.Location = new System.Drawing.Point(108, 112);
             this.txtCountry.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(146, 20);
@@ -240,7 +240,7 @@
             // 
             this.txtLatitude.AllowSpace = false;
             this.txtLatitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLatitude.Location = new System.Drawing.Point(108, 133);
+            this.txtLatitude.Location = new System.Drawing.Point(108, 138);
             this.txtLatitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtLatitude.Name = "txtLatitude";
             this.txtLatitude.OnlyInt = false;
@@ -253,7 +253,7 @@
             // 
             this.txtLongitude.AllowSpace = false;
             this.txtLongitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLongitude.Location = new System.Drawing.Point(108, 159);
+            this.txtLongitude.Location = new System.Drawing.Point(108, 164);
             this.txtLongitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtLongitude.Name = "txtLongitude";
             this.txtLongitude.OnlyInt = false;
@@ -266,7 +266,7 @@
             // 
             this.txtAltitude.AllowSpace = false;
             this.txtAltitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAltitude.Location = new System.Drawing.Point(108, 185);
+            this.txtAltitude.Location = new System.Drawing.Point(108, 190);
             this.txtAltitude.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtAltitude.Name = "txtAltitude";
             this.txtAltitude.OnlyInt = false;
@@ -279,7 +279,7 @@
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(18, 243);
+            this.btnClose.Location = new System.Drawing.Point(18, 250);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 8, 20, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(67, 23);
@@ -292,7 +292,7 @@
             // 
             this.cmbTimeZone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbTimeZone.FormattingEnabled = true;
-            this.cmbTimeZone.Location = new System.Drawing.Point(108, 211);
+            this.cmbTimeZone.Location = new System.Drawing.Point(108, 216);
             this.cmbTimeZone.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.cmbTimeZone.Name = "cmbTimeZone";
             this.cmbTimeZone.Size = new System.Drawing.Size(146, 21);
@@ -303,7 +303,7 @@
             this.panel1.Controls.Add(this.loadingImg);
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(108, 238);
+            this.panel1.Location = new System.Drawing.Point(108, 245);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(146, 41);
@@ -357,7 +357,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(284, 292);
+            this.ClientSize = new System.Drawing.Size(284, 283);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(500, 330);

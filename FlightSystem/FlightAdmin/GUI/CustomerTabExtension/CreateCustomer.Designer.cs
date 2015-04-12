@@ -42,12 +42,12 @@
             this.txtZip = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new System.Windows.Forms.Button();
-            this.txtPhone = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.errProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.editWorker = new System.ComponentModel.BackgroundWorker();
             this.createWorker = new System.ComponentModel.BackgroundWorker();
+            this.txtPhone = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errProvider)).BeginInit();
             this.SuspendLayout();
@@ -58,10 +58,10 @@
             this.lblHeader.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.lblHeader, 3);
             this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader.Location = new System.Drawing.Point(96, 3);
+            this.lblHeader.Location = new System.Drawing.Point(80, 3);
             this.lblHeader.Margin = new System.Windows.Forms.Padding(3);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(145, 20);
+            this.lblHeader.Size = new System.Drawing.Size(176, 25);
             this.lblHeader.TabIndex = 0;
             this.lblHeader.Text = "Create Customer";
             // 
@@ -69,9 +69,9 @@
             // 
             this.lblName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(18, 32);
+            this.lblName.Location = new System.Drawing.Point(18, 36);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(35, 13);
+            this.lblName.Size = new System.Drawing.Size(41, 15);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "Name";
             // 
@@ -79,9 +79,9 @@
             // 
             this.lblAddress.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(18, 58);
+            this.lblAddress.Location = new System.Drawing.Point(18, 62);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(45, 13);
+            this.lblAddress.Size = new System.Drawing.Size(51, 15);
             this.lblAddress.TabIndex = 1;
             this.lblAddress.Text = "Address";
             // 
@@ -89,9 +89,9 @@
             // 
             this.lblCity.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCity.AutoSize = true;
-            this.lblCity.Location = new System.Drawing.Point(18, 84);
+            this.lblCity.Location = new System.Drawing.Point(18, 88);
             this.lblCity.Name = "lblCity";
-            this.lblCity.Size = new System.Drawing.Size(24, 13);
+            this.lblCity.Size = new System.Drawing.Size(26, 15);
             this.lblCity.TabIndex = 1;
             this.lblCity.Text = "City";
             // 
@@ -99,9 +99,9 @@
             // 
             this.lblZip.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblZip.AutoSize = true;
-            this.lblZip.Location = new System.Drawing.Point(18, 110);
+            this.lblZip.Location = new System.Drawing.Point(18, 114);
             this.lblZip.Name = "lblZip";
-            this.lblZip.Size = new System.Drawing.Size(22, 13);
+            this.lblZip.Size = new System.Drawing.Size(24, 15);
             this.lblZip.TabIndex = 1;
             this.lblZip.Text = "Zip";
             // 
@@ -109,16 +109,16 @@
             // 
             this.lblEmail.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(18, 136);
+            this.lblEmail.Location = new System.Drawing.Point(18, 140);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(32, 13);
+            this.lblEmail.Size = new System.Drawing.Size(39, 15);
             this.lblEmail.TabIndex = 1;
             this.lblEmail.Text = "Email";
             // 
             // txtName
             // 
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtName.Location = new System.Drawing.Point(108, 29);
+            this.txtName.Location = new System.Drawing.Point(108, 34);
             this.txtName.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(209, 20);
@@ -129,16 +129,16 @@
             // 
             this.lblPhone.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(18, 162);
+            this.lblPhone.Location = new System.Drawing.Point(18, 166);
             this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(38, 13);
+            this.lblPhone.Size = new System.Drawing.Size(43, 15);
             this.lblPhone.TabIndex = 1;
             this.lblPhone.Text = "Phone";
             // 
             // txtAddress
             // 
             this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAddress.Location = new System.Drawing.Point(108, 55);
+            this.txtAddress.Location = new System.Drawing.Point(108, 60);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(209, 20);
@@ -148,7 +148,7 @@
             // txtCity
             // 
             this.txtCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCity.Location = new System.Drawing.Point(108, 81);
+            this.txtCity.Location = new System.Drawing.Point(108, 86);
             this.txtCity.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(209, 20);
@@ -158,7 +158,7 @@
             // txtZip
             // 
             this.txtZip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtZip.Location = new System.Drawing.Point(108, 107);
+            this.txtZip.Location = new System.Drawing.Point(108, 112);
             this.txtZip.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtZip.Name = "txtZip";
             this.txtZip.Size = new System.Drawing.Size(209, 20);
@@ -208,7 +208,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(242, 190);
+            this.btnSave.Location = new System.Drawing.Point(242, 195);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 8, 20, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
@@ -217,23 +217,11 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSaveForCreation_Click);
             // 
-            // txtPhone
-            // 
-            this.txtPhone.AllowSpace = false;
-            this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhone.Location = new System.Drawing.Point(108, 159);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.OnlyInt = false;
-            this.txtPhone.Size = new System.Drawing.Size(209, 20);
-            this.txtPhone.TabIndex = 2;
-            this.txtPhone.Validating += new System.ComponentModel.CancelEventHandler(this.txtPhone_Validating);
-            // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(18, 190);
+            this.btnClose.Location = new System.Drawing.Point(18, 195);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 8, 20, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(67, 23);
@@ -245,11 +233,11 @@
             // txtEmail
             // 
             this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEmail.Location = new System.Drawing.Point(108, 133);
+            this.txtEmail.Location = new System.Drawing.Point(108, 138);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(209, 20);
-            this.txtEmail.TabIndex = 4;
+            this.txtEmail.TabIndex = 2;
             this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
             // errProvider
@@ -267,6 +255,18 @@
             this.createWorker.WorkerSupportsCancellation = true;
             this.createWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.createWorker_DoWork);
             this.createWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.createWorker_RunWorkerCompleted);
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.AllowSpace = false;
+            this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPhone.Location = new System.Drawing.Point(108, 164);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.OnlyInt = false;
+            this.txtPhone.Size = new System.Drawing.Size(209, 20);
+            this.txtPhone.TabIndex = 2;
+            this.txtPhone.Validating += new System.ComponentModel.CancelEventHandler(this.txtPhone_Validating);
             // 
             // CreateCustomer
             // 

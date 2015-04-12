@@ -20,7 +20,7 @@ namespace FlightAdmin.GUI.CustomerTabExtension
         private readonly CustomerCtr customerCtr = new CustomerCtr();
         public User User { get; set; }
 
-        #region Cunstructors
+        #region Constructors
         public CreateCustomer()
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace FlightAdmin.GUI.CustomerTabExtension
 
         public CreateCustomer(User user) : this() {
             if (user == null) throw new ArgumentNullException();
-
+            if (user.Postal == null) throw new ArgumentNullException();
             User = user;
             base.Text = "Edit Customer";
             lblHeader.Text = "Edit Customer";
@@ -177,18 +177,18 @@ namespace FlightAdmin.GUI.CustomerTabExtension
 
         private bool IsAddressValid()
         {
-            return FancyFeatures.IsTextBoxValid(txtAddress, errProvider, lblName.Text, 3, 60);
+            return FancyFeatures.IsTextBoxValid(txtAddress, errProvider, lblAddress.Text, 3, 60);
         }
 
         private bool IsCityValid()
         {
-            return FancyFeatures.IsTextBoxValid(txtCity, errProvider, lblName.Text, 3, 60);
+            return FancyFeatures.IsTextBoxValid(txtCity, errProvider, lblCity.Text, 3, 60);
         }
 
 
         private bool IsZipValid()
         {
-            return FancyFeatures.IsTextBoxValid(txtZip, errProvider, lblName.Text, 3, 60);
+            return FancyFeatures.IsTextBoxValid(txtZip, errProvider, lblZip.Text, 3, 60);
         }
 
         private bool IsEmailValid()
@@ -198,7 +198,7 @@ namespace FlightAdmin.GUI.CustomerTabExtension
 
         private bool IsPhoneValid()
         {
-            return FancyFeatures.IsTextBoxValid(txtPhone, errProvider, lblName.Text, 3, 60);
+            return FancyFeatures.IsTextBoxValid(txtPhone, errProvider, lblPhone.Text, 3, 60);
         }
 
         private bool IsFormValid()

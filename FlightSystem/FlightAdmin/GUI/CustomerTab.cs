@@ -35,9 +35,7 @@ namespace FlightAdmin.GUI {
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //SearchUser();
             backgroundWorker1.RunWorkerAsync();
-            //  SearchUserByName();
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -67,7 +65,7 @@ namespace FlightAdmin.GUI {
 
             }
 
-            //UpdateDataGrid(userList);
+   
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -83,6 +81,7 @@ namespace FlightAdmin.GUI {
                 if (userList != null && userList.Count > 0)
                 {
                     UpdateDataGrid(userList);
+                    errProvider.Clear();
                 }
                 else
                 {
@@ -100,16 +99,59 @@ namespace FlightAdmin.GUI {
             {
                 user = current.DataBoundItem as User;
             }
+            MessageBox.Show(user.Name);
             return user;
         }
 
-        private void SearchUserByName()
+        private void btnSearchByName_Click(object sender, EventArgs e)
+        {
+            backgroundWorker2.RunWorkerAsync();
+        }
+
+
+        private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
         {
 
-            List<User> userList = customerCtr.GetUserByName(txtName.Text);
-            UpdateDataGrid(userList);
+            try
+            {
+                e.Result = customerCtr.GetUserByName(txtName.Text);
+                UpdateDataGrid(e.Result as List<User>);
+            }
+            catch (NullException ex) {
+               
+                MessageBox.Show(ex.Message);
+                return;
+            }
+          
 
         }
+
+        private void backgroundWorker2_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+         
+            if (e.Error != null)
+            {
+                MessageBox.Show(this, e.Error.Message, @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                List<User> userList = e.Result as List<User>;
+                if (userList != null && userList.Count > 0)
+                {
+                    UpdateDataGrid(userList);
+                    errProvider.Clear();
+                }
+                else
+                {
+                    MessageBox.Show(this, @"No Users found", @"Sorry", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void btnShowAll_Click(object sender, EventArgs e) {
+            List<User> users = customerCtr.GetAllUsers();
+            UpdateDataGrid(users);
+        }
+      
 
         #endregion
 
@@ -145,8 +187,7 @@ namespace FlightAdmin.GUI {
                 }
                 catch (NullException)
                 {
-
-                    MessageBox.Show("The customer has alredy been deleted");
+                    MessageBox.Show("The customer has already been deleted");
                 }
                 catch (Exception ex)
                 {
@@ -203,6 +244,105 @@ namespace FlightAdmin.GUI {
 
         #endregion
 
+        #region Validation
+
+        private bool IsNameValid()
+        {
+            return FancyFeatures.IsTextBoxValid(txtName, errProvider, lblName.Text, 3, 60);
+        }
+
+        private bool IsAddressValid()
+        {
+            return FancyFeatures.IsTextBoxValid(txtAddress, errProvider, lblAddress.Text, 3, 60);
+        }
+
+        private bool IsCityValid()
+        {
+            return FancyFeatures.IsTextBoxValid(txtCity, errProvider, lblCity.Text, 3, 60);
+        }
+
+
+        private bool IsZipValid()
+        {
+            return FancyFeatures.IsTextBoxValid(txtZip, errProvider, lblZip.Text, 3, 60);
+        }
+
+        private bool IsEmailValid()
+        {
+            return EmailValidation.IsEmailValid(txtEmail, errProvider, lblEmail.Text);
+        }
+
+        private bool IsPhoneValid()
+        {
+            return FancyFeatures.IsTextBoxValid(txtPhone, errProvider, lblPhone.Text, 3, 60);
+        }
+
+        private bool IsFormValid()
+        {
+            bool valid = false;
+            if (!IsNameValid())
+            {
+                txtName.Focus();
+            }
+            else if (!IsAddressValid())
+            {
+                txtAddress.Focus();
+            }
+            else if (!IsCityValid())
+            {
+                txtCity.Focus();
+            }
+            else if (!IsZipValid())
+            {
+                txtZip.Focus();
+            }
+            else if (!IsEmailValid())
+            {
+                txtEmail.Focus();
+            }
+            else if (!IsPhoneValid())
+            {
+                txtPhone.Focus();
+            }
+            else
+            {
+                valid = true;
+            }
+            return valid;
+        }
+
+        #endregion
+
+        #region Validating events
+
+        private void txtName_Validating(object sender, CancelEventArgs e) {
+
+            IsNameValid();
+        }
+
+        private void txtAddress_Validating(object sender, CancelEventArgs e) {
+            IsAddressValid();
+        }
+
+        private void txtCity_Validating(object sender, CancelEventArgs e) {
+            IsCityValid();
+        }
+
+        private void txtZip_Validating(object sender, CancelEventArgs e) {
+            IsZipValid();
+        }
+
+        private void txtEmail_Validating(object sender, CancelEventArgs e) {
+            IsEmailValid();
+        }
+
+        private void txtPhone_Validating(object sender, CancelEventArgs e) {
+            IsPhoneValid();
+        }
+
+        #endregion
+
+
 
 
         private void SetEvents()
@@ -218,8 +358,7 @@ namespace FlightAdmin.GUI {
         private void btnClear_Click(object sender, EventArgs e) {
             ClearFields();
         }
-
-       
+ 
 
         public void ClearFields()
         {
@@ -231,6 +370,8 @@ namespace FlightAdmin.GUI {
             txtPhone.Text = "";
             txtEmail.Text = "";
             txtID.Text = "";
+
+            errProvider.Clear();
 
         }
 
@@ -250,6 +391,10 @@ namespace FlightAdmin.GUI {
                 }
             });
         }
+
+       
+
+       
 
      
     }

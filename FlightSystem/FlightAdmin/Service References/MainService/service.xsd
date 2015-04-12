@@ -533,18 +533,30 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetAllUsers">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetAllUsersResult" nillable="true" type="q52:ArrayOfUser" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="DijkstraStuff">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="from" nillable="true" type="q52:Airport" />
-        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="to" nillable="true" type="q53:Airport" />
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="from" nillable="true" type="q53:Airport" />
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="to" nillable="true" type="q54:Airport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DijkstraStuffResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="DijkstraStuffResult" nillable="true" type="q54:ArrayOfRoute" />
+        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="DijkstraStuffResult" nillable="true" type="q55:ArrayOfRoute" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

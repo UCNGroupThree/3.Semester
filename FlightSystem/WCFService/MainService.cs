@@ -189,6 +189,10 @@ namespace WCFService {
             return new UserService().GetUserByName(name);
         }
 
+        public List<User> GetAllUsers() {
+            return new UserService().GetAllUsers();
+        } 
+
         #endregion
 
         #region Dijktra

@@ -64,5 +64,10 @@ namespace WCFService.WCF
             }
             return list;
         }
+
+
+        public List<User> GetAllUsers() {
+            return _db.Users.ToList();
+        }
     }
 }

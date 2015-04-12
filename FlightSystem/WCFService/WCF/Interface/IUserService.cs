@@ -22,6 +22,9 @@ namespace WCFService.WCF.Interface {
 
         [OperationContract]
         List<User> GetUserByName(string name);
+
+        [OperationContract]
+        List<User> GetAllUsers();
     } 
 
 }

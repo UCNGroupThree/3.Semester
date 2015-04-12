@@ -42,7 +42,7 @@ namespace FlightAdmin.Controller
 
         #endregion
 
-        #region read
+        #region Read
 
         public User GetUser(int id) {
             User user = null;
@@ -75,6 +75,26 @@ namespace FlightAdmin.Controller
                 throw new ConnectionException("WCF Service Exception", ex);
             }
             return userList;
+        }
+
+        public List<User> GetAllUsers() {
+
+            List<User> userList;
+            try
+            {
+                using (UserServiceClient client = new UserServiceClient())
+                {
+                    userList = client.GetAllUsers();
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new ConnectionException("WCF Service Exception", ex);
+            }
+            return userList;
+            
         } 
 
         #endregion
