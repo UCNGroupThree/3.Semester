@@ -81,11 +81,11 @@ namespace WCFService.WCF {
         public List<Flight> GetFlights(Airport from, Airport to) {
             RouteService rService = new RouteService();
             Route route = rService.GetRouteByAirports(from, to);
-            if (route == null || route.Flights != null) {
-                throw new FaultException<NullPointerFault>(new NullPointerFault());
+            if (route == null) {
+                throw new FaultException<NullPointerFault>(new NullPointerFault(){Message = String.Format("A Route from {0} to {1} could not be found", from.Name, to.Name)});
             }
-            if (route.Flights.Count > 0) {
-                throw new FaultException<NullPointerFault>(new NullPointerFault());
+            if (route.Flights == null || !(route.Flights.Count > 0)) {
+                throw new FaultException<NullPointerFault>(new NullPointerFault(){Message = String.Format("The Route: {0} -> {1} does not contain any flights", from.Name, to.Name)});
             }
 
             return route.Flights;
