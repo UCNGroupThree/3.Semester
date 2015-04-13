@@ -14,10 +14,6 @@ namespace FlightAdmin.GUI {
         public FlightTab() { //Todo Nick D PEdersen
             InitializeComponent();
         }
-        /*
-        private void btnCreate_Click(object sender, EventArgs e) {
-            CreateFlightsForm f = new CreateFlightsForm();
-        }
-         * */
+        
     }
 }

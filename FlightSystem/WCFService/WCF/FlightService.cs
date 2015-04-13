@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Data.Entity.Migrations;
@@ -16,7 +17,7 @@ namespace WCFService.WCF {
         public int AddFlight(Flight flight)
         {
             if (flight == null) {
-                throw new FaultException<NullPointerFault>(new NullPointerFault());  //TODO vores egen Nullpointer Exception?
+                throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
             try {
                 db.Flights.Add(flight);
@@ -35,12 +36,11 @@ namespace WCFService.WCF {
             Flight retFlight = flight;
 
             if (flight == null){
-                throw new FaultException<NullPointerFault>(new NullPointerFault()); //TODO vores egen Nullpointer Exception?
+                throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
 
             try {
                 db.Flights.AddOrUpdate(flight);
-                //db.Entry(flight).State = EntityState.Modified;
                 db.SaveChanges();
             } catch (OptimisticConcurrencyException e) {
                 throw new FaultException<OptimisticConcurrencyFault>(new OptimisticConcurrencyFault(){Message = e.Message});
@@ -55,7 +55,7 @@ namespace WCFService.WCF {
         public void DeleteFlight(Flight flight)
         {
             if (flight == null) {
-                throw new FaultException<NullPointerFault>(new NullPointerFault()); //TODO vores egen Nullpointer Exception?
+                throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
             try {
                 db.Flights.Remove(flight);
@@ -72,10 +72,23 @@ namespace WCFService.WCF {
             Flight flight = db.Flights.SingleOrDefault(x => x.ID == id);
 
             if (flight == null) {
-                throw new FaultException<NullPointerFault>(new NullPointerFault()); //TODO vores egen Nullpointer Exception?
+                throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
 
             return flight;
         }
+
+        public List<Flight> GetFlights(Airport from, Airport to) {
+            RouteService rService = new RouteService();
+            Route route = rService.GetRouteByAirports(from, to);
+            if (route == null || route.Flights != null) {
+                throw new FaultException<NullPointerFault>(new NullPointerFault());
+            }
+            if (route.Flights.Count > 0) {
+                throw new FaultException<NullPointerFault>(new NullPointerFault());
+            }
+
+            return route.Flights;
+        } 
     }
 }

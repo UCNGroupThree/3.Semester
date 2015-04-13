@@ -95,6 +95,9 @@ namespace WCFService {
         public Flight GetFlight(int id) {
             return new FlightService().GetFlight(id);
         }
+        public List<Flight> GetFlights(Airport from, Airport to) {
+            return new FlightService().GetFlights(from, to);
+        }
 
         #endregion
 
