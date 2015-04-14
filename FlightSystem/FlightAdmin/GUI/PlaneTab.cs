@@ -111,16 +111,19 @@ namespace FlightAdmin.GUI {
         #endregion
 
         #region edit plane
-        public void EditSelectedPlane() {
 
-            Plane p = getSelected();
+        private void EditSelectedPlane() {
+            Plane selectedPlane = getSelected();
+            if (selectedPlane != null) {
 
-            if (p != null) {
+                CreatePlane dialog = new CreatePlane(selectedPlane);
+                dialog.ShowDialog(this);
+                planeTable.Refresh();
 
-                MessageBox.Show("Plane:" + p.Name.ToString() + ".");
+                dialog.Dispose();
             }
-
         }
+
         #endregion
 
         #region right click menu methods

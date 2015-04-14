@@ -99,9 +99,24 @@
             this.spinnerSeats.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spinnerSeats.Location = new System.Drawing.Point(135, 33);
             this.spinnerSeats.Margin = new System.Windows.Forms.Padding(5);
+            this.spinnerSeats.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.spinnerSeats.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.spinnerSeats.Name = "spinnerSeats";
             this.spinnerSeats.Size = new System.Drawing.Size(222, 20);
             this.spinnerSeats.TabIndex = 3;
+            this.spinnerSeats.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // btnCancelNewPlane
             // 

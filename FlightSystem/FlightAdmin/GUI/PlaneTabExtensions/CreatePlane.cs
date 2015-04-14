@@ -14,9 +14,21 @@ namespace FlightAdmin.GUI.PlaneTabExtensions
 {
     public partial class CreatePlane : Form
     {
-        public CreatePlane()
+        public Plane plane { get; private set; }
+
+
+        // Empty constructor
+        public CreatePlane() 
         {
             InitializeComponent();
+        }
+
+        public CreatePlane(Plane plane) {
+            InitializeComponent();
+            plane = plane;
+            txtName.Text = plane.Name;
+            spinnerSeats.Text = plane.Seats.Count.ToString();
+
         }
 
         private bool ValidatePlane() {

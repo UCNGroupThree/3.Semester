@@ -39,7 +39,11 @@ namespace FlightAdmin.Controller {
         #endregion
 
         #region generate seats
-
+        /*
+         * Generate a list of planesets from input parameter of seat count
+         * Each column will always have 10 seats (should probably changes)
+         * 
+         */
         private List<Seat> GeneratePlaneSeats(int Seats) {
                  List<Seat> PlaneSeats = new List<Seat>();
 
@@ -48,8 +52,13 @@ namespace FlightAdmin.Controller {
             int rows = Seats/10;
             int columns = 10;
 
-            for (int i = 0; i >= rows; i++) {
-                for (int j = 0; j >= columns; j++) {
+            // counters
+            int i = 0;
+            int j = 0;
+
+            for (i = 0; i < columns; ++i)
+            {
+               for (j = 0; j < rows; ++j) {
                     
                     Seat NewPlaneSeat = new Seat();
 
@@ -57,6 +66,9 @@ namespace FlightAdmin.Controller {
                     NewPlaneSeat.PosY = j;
 
                     PlaneSeats.Add(NewPlaneSeat);
+                    
+                   // DEBUG TEXT
+                   //Console.WriteLine("seat: x: {0} and y: {1}", NewPlaneSeat.PosX, NewPlaneSeat.PosY);
                 }
             }
 
