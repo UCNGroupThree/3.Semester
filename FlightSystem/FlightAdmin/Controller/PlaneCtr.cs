@@ -191,7 +191,7 @@ namespace FlightAdmin.Controller {
         }
 
         // Get planes with seat number more or equal to input parameter
-        public List<Plane> blah1(int seats)
+        public List<Plane> GetPlanesWithMoreOrEqualSeatNumber(int seats)
         {
             List<Plane> foundPlanes = null;
 
@@ -216,7 +216,7 @@ namespace FlightAdmin.Controller {
 
             try
             {
-                using (PlaneServiceClient client = new PlaneServiceClient())
+                using (var client = new PlaneServiceClient())
                 {
 
                     planes = client.GetAllPlanes();

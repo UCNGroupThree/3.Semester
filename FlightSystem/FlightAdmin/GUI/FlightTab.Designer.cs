@@ -46,13 +46,13 @@
             this.txtTo = new System.Windows.Forms.TextBox();
             this.lblFrom = new System.Windows.Forms.Label();
             this.txtFrom = new System.Windows.Forms.TextBox();
+            this.txtID = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtID = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.contextDataGridMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataRoute)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flightBindingSource)).BeginInit();
@@ -302,6 +302,17 @@
             this.txtFrom.Size = new System.Drawing.Size(174, 20);
             this.txtFrom.TabIndex = 1;
             // 
+            // txtID
+            // 
+            this.txtID.AllowSpace = false;
+            this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtID.Location = new System.Drawing.Point(39, 46);
+            this.txtID.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.txtID.Name = "txtID";
+            this.txtID.OnlyInt = false;
+            this.txtID.Size = new System.Drawing.Size(174, 20);
+            this.txtID.TabIndex = 4;
+            // 
             // lblID
             // 
             this.lblID.AutoSize = true;
@@ -367,17 +378,6 @@
             this.toDataGridViewTextBoxColumn.HeaderText = "To";
             this.toDataGridViewTextBoxColumn.Name = "toDataGridViewTextBoxColumn";
             this.toDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // txtID
-            // 
-            this.txtID.AllowSpace = false;
-            this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtID.Location = new System.Drawing.Point(39, 46);
-            this.txtID.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
-            this.txtID.Name = "txtID";
-            this.txtID.OnlyInt = false;
-            this.txtID.Size = new System.Drawing.Size(174, 20);
-            this.txtID.TabIndex = 4;
             // 
             // FlightTab
             // 
