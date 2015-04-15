@@ -8,7 +8,7 @@ using WCFService.WCF;
 using WCFService.WCF.Interface;
 
 namespace WCFService {
-    public class MainService : IAdministratorService, IAirportService, IFlightService, IPlaneService, IRouteService, IUserService, IDijkstra {
+    public class MainService : IAdministratorService, IAirportService, IFlightService, IPlaneService, IRouteService, IUserService, IPostalService, IDijkstra {
 
         #region Administrator Service 
         
@@ -195,6 +195,28 @@ namespace WCFService {
         public List<User> GetAllUsers() {
             return new UserService().GetAllUsers();
         } 
+
+        #endregion
+
+        #region Postal Service
+
+        public int AddPostal(Postal postal)
+        {
+            return new PostalService().AddPostal(postal);
+        }
+
+        public int DeletePostal(Postal postal)
+        {
+            return new PostalService().DeletePostal(postal);
+        }
+
+        public Postal GetPostal(int postalNumber) {
+            return new PostalService().GetPostal(postalNumber);
+        }
+
+        public Postal UpdatePostal(Postal postal) {
+            return new PostalService().UpdatePostal(postal);
+        }
 
         #endregion
 

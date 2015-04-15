@@ -219,8 +219,17 @@ namespace FlightAdmin.GUI {
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            CreateCustomer();
-            ClearFields();
+            if (IsFormValid())
+            {
+                CreateCustomer();
+                ClearFields();
+            }
+            else
+            {
+                MessageBox.Show(this, @"The form isn't valid or completed!", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+          
         }
 
 

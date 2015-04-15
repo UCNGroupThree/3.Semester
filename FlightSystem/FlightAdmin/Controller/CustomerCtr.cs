@@ -16,8 +16,8 @@ namespace FlightAdmin.Controller
         #region Create
 
         public User CreateUser(string name, string address,Postal postal, string phoneNumber, string email) {
-            
 
+            
             User user = new User {
                 Name = name,
                 Address = address,
@@ -25,6 +25,7 @@ namespace FlightAdmin.Controller
                 PhoneNumber = phoneNumber,
                 Email = email
             };
+            if (user == null) throw new ArgumentNullException();
 
             try {
                 using (var client = new UserServiceClient()) {
