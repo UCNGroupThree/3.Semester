@@ -15,7 +15,7 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
     public partial class CreateFlights : Form {
 
         public Route Route { get; set; }
-        private bool isEdit = false;
+        private bool isEdit;
 
         private int y = 15;
         private int i = 25;
@@ -27,6 +27,7 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
             InitializeComponent();
             //y = dateTimePicker1.Location.Y;
             _flights = new List<FlightHelper>();
+            isEdit = false;
         }
 
         public CreateFlights(Route route) {
