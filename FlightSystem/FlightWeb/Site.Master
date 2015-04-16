@@ -11,7 +11,7 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-
+    <asp:ContentPlaceHolder ID="StyleSection" runat="server"></asp:ContentPlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
@@ -58,7 +58,7 @@
                 </div>
             </div>
         </div>
-        <div class="container body-content">
+        <div class="container body-content" style="margin-top: 10px;">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
