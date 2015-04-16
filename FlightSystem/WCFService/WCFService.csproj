@@ -106,6 +106,10 @@
     <Compile Include="Migrations\201504081741177_AdministratorChange.Designer.cs">
       <DependentUpon>201504081741177_AdministratorChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504160717250_AirportRouteFixOnDelete.cs" />
+    <Compile Include="Migrations\201504160717250_AirportRouteFixOnDelete.Designer.cs">
+      <DependentUpon>201504160717250_AirportRouteFixOnDelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\FlightDB.cs" />
@@ -182,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504081741177_AdministratorChange.resx">
       <DependentUpon>201504081741177_AdministratorChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504160717250_AirportRouteFixOnDelete.resx">
+      <DependentUpon>201504160717250_AirportRouteFixOnDelete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
