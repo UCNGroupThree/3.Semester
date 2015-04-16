@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightAdmin", "FlightAdmin\FlightAdmin.csproj", "{70F35D2E-0CED-49BB-96EB-198960FCE8C8}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dijkstra", "Dijkstra\Dijkst
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{AAAD32A8-0483-4CD1-AC4B-94456BC4EEC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightWeb", "FlightWeb\FlightWeb.csproj", "{2C8BE7EF-37F0-47E3-BC17-49B45D204B2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{AAAD32A8-0483-4CD1-AC4B-94456BC4EEC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAAD32A8-0483-4CD1-AC4B-94456BC4EEC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAAD32A8-0483-4CD1-AC4B-94456BC4EEC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C8BE7EF-37F0-47E3-BC17-49B45D204B2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C8BE7EF-37F0-47E3-BC17-49B45D204B2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C8BE7EF-37F0-47E3-BC17-49B45D204B2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C8BE7EF-37F0-47E3-BC17-49B45D204B2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

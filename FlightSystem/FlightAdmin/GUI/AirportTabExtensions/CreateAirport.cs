@@ -156,7 +156,7 @@ namespace FlightAdmin.GUI.AirportTabExtensions {
         }
 
         private bool IsAltitudeValid() {
-            return FancyFeatures.IsTextBoxDoubleValid(txtAltitude, errProvider, txtAltitude.Text, -180, 180, false);
+            return FancyFeatures.IsTextBoxDoubleValid(txtAltitude, errProvider, txtAltitude.Text, -500, 500, false);
         }
 
         private bool IsTimeZoneValid() {
