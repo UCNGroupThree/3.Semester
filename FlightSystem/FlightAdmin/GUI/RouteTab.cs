@@ -32,8 +32,8 @@ namespace FlightAdmin.GUI {
 
             try {
                 AirportCtr aCtr = new AirportCtr();
-                Airport fromAirport = aCtr.GetAirportsByName(from)[0]; //TODO Change to a "select" list?
-                Airport toAirport = aCtr.GetAirportsByName(to)[0];
+                Airport fromAirport = GetAirport(from);
+                Airport toAirport = GetAirport(to);
 
                route = _rCtr.GetRouteByAirports(fromAirport, toAirport);
             } catch (NullException e) {
@@ -49,15 +49,26 @@ namespace FlightAdmin.GUI {
 
             try {
                 AirportCtr aCtr = new AirportCtr();
-                Airport fromAirport = aCtr.GetAirportsByName(from)[0]; //TODO Change to a "select" list?
+                Airport fromAirport = GetAirport(from);
 
                 routes = _rCtr.GetRoutesByAirport(fromAirport);
             } catch (NullException e) {
                 MessageBox.Show(e.Message); //TODO Better error handeling?
+                UpdateDataGrid(new List<Route>());
                 return;
             }
 
             UpdateDataGrid(routes);
+        }
+
+        private Airport GetAirport(string airport) {
+            AirportCtr aCtr = new AirportCtr();
+            List<Airport> airports = aCtr.GetAirportsByName(airport);
+            if (!(airports.Count > 0)) {
+                throw new NullException(string.Format("No airport with the name {0} exists", airport));
+            }
+
+            return airports[0];
         }
 
         #endregion
