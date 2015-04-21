@@ -69,6 +69,7 @@
     <Compile Include="Dijkstra\Matrix.cs" />
     <Compile Include="Dijkstra\Program.cs" />
     <Compile Include="Dijkstra\Vertex.cs" />
+    <Compile Include="Helper\PasswordHelper.cs" />
     <Compile Include="MainService.cs" />
     <Compile Include="Migrations\201503240728569_init.cs" />
     <Compile Include="Migrations\201503240728569_init.Designer.cs">
