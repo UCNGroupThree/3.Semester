@@ -222,8 +222,8 @@ namespace WCFService {
 
         #region Dijktra
 
-        public List<Route> DijkstraStuff(Airport from, Airport to) {
-            return new WCF.Dijkstra().DijkstraStuff(from, to);
+        public List<Route> DijkstraStuff(Airport from, Airport to, DateTime startTime) {
+            return new WCF.Dijkstra().DijkstraStuff(from, to, startTime);
         }
 
         #endregion

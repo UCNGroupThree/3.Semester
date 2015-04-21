@@ -49,14 +49,13 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
             DateTime arr = flight.ArrivalTime;
             Plane plane = flight.Plane;
             try {
-                //int interval = int.Parse(txtInterval.Text);
-
                 var dt1 = new System.Windows.Forms.DateTimePicker {
                     Location = new Point(1, y),
                     Name = "dateTimePicker1",
                     Size = new Size(126, 20),
                     Format = DateTimePickerFormat.Custom,
                     CustomFormat = "yyyy.MM.dd HH:mm",
+                    //Value = arr
                     Value = dep
                 };
                 dt1.Enter += new EventHandler(dateTimePicker_Enter);
@@ -68,6 +67,7 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
                     Size = new Size(126, 20),
                     Format = DateTimePickerFormat.Custom,
                     CustomFormat = "yyyy.MM.dd HH:mm",
+                    //Value = dep
                     Value = arr
                 };
                 dt2.Enter += new EventHandler(dateTimePicker_Enter);
@@ -89,7 +89,7 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
                 cmb.SelectedItem = plane;
 
                 y += i;
-                _flights.Add(new FlightHelper(dt1, dt2, cmb){Flight = flight});
+                _flights.Add(new FlightHelper(dt2, dt1, cmb){Flight = flight});
             } catch (Exception e) {
                 Console.WriteLine(e.InnerException);
                 Console.WriteLine(e.Message);
@@ -139,11 +139,11 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
 
 
                 if (interval != 0) {
-                    dt1.Value = _flights[(_flights.Count - 1)].ArrivalTime.Value.AddHours(interval);
-                    dt2.Value = _flights[(_flights.Count - 1)].DepartureTime.Value.AddHours(interval);
+                    dt2.Value = _flights[(_flights.Count - 1)].ArrivalTime.Value.AddHours(interval);
+                    dt1.Value = _flights[(_flights.Count - 1)].DepartureTime.Value.AddHours(interval);
                 }
 
-                _flights.Add(new FlightHelper(dt1, dt2, cmb) {Flight = new Flight()});
+                _flights.Add(new FlightHelper(dt2, dt1, cmb) {Flight = new Flight()});
             } catch (Exception) {
                 MessageBox.Show("Invalid Interval");
             }
@@ -181,9 +181,13 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
                 if (!isEdit) {
                     AddFlight();
                 } else {
-                    foreach (var flight in Route.Flights) {
-                        System.Diagnostics.Debug.WriteLine(flight.ID + "added"); //TODO Remove after test
-                        AddFlight(flight);
+                    if (Route.Flights != null) {
+                        foreach (var flight in Route.Flights) {
+                            System.Diagnostics.Debug.WriteLine(flight.ID + "added"); //TODO Remove after test
+                            AddFlight(flight);
+                        }
+                    } else {
+                        AddFlight();
                     }
                 }
 

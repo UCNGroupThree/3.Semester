@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Resources;
 using System.ServiceModel;
@@ -17,7 +18,7 @@ namespace WCFService.Dijkstra {
         private List<Edge<Airport>> edges = new List<Edge<Airport>>();
 
         public Matrix() {
-            List<Airport> nodes = _db.Airports.OrderBy(n => n.ID).Include(n => n.Routes).ToList();
+            List<Airport> nodes = _db.Airports.OrderBy(n => n.ID).Include(n => n.Routes.Select(a => a.Flights)).ToList();
 
             foreach (var airport in nodes) {
                 var edge = new Edge<Airport>(airport);
@@ -44,7 +45,11 @@ namespace WCFService.Dijkstra {
 
         }
 
-        public List<Route> GetShortestPath(Airport from, Airport to) {
+        public List<Route> GetShortestPath(Airport from, Airport to, DateTime startTime) {
+            //var time = startTime;
+            var times = new Dictionary<Airport, DateTime>();
+            times[from] = startTime;
+
             if (from == null || to == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault(){Message = "Airports cant be null"});
             }
@@ -93,12 +98,35 @@ namespace WCFService.Dijkstra {
 
                 foreach (var neighbor in edges.Single(e => e.Data.ID == smallest.ID).Neighbors) {
                     var alt = distance[smallest] + neighbor.Price;
+                    Flight flight = null;
+                    var time = times[smallest];
+
                     try {
-                        if (alt < distance[neighbor.Data]) {
-                            distance[neighbor.Data] = alt;
-                            previous[neighbor.Data] = smallest;
+                        Debug.WriteLine(smallest.ID + " -> " + neighbor.Data.ID);
+                        if (smallest.ID == 5) {
+                            Console.Write("hi");
                         }
-                    } catch (KeyNotFoundException) { }
+
+                        List<Flight> flights = smallest.GetRouteTo(neighbor.Data).Flights;
+                        flights.Sort(new Comparison<Flight>((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
+                        flight = flights.FirstOrDefault(dep => dep.DepartureTime.TimeOfDay > time.TimeOfDay);
+                        
+                        Debug.WriteLine("Current Time: " + time.TimeOfDay);
+                        Debug.WriteLine("Departure Time: " + flight.DepartureTime.TimeOfDay);
+                        Debug.WriteLine("Arrival Time: " + flight.ArrivalTime.TimeOfDay);
+                    } catch (NullReferenceException) {
+                        
+                    }
+
+                    if (flight != null) {
+                        try {
+                            if (alt < distance[neighbor.Data]) {
+                                times[neighbor.Data] = flight.ArrivalTime;
+                                distance[neighbor.Data] = alt;
+                                previous[neighbor.Data] = smallest;
+                            }
+                        } catch (KeyNotFoundException) {} catch (NullReferenceException) {}
+                    }
                 }
             }
 

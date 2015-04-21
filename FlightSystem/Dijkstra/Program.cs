@@ -18,8 +18,9 @@ namespace Dijkstra {
                     int id2 = int.Parse(Console.ReadLine());
 
                     Console.WriteLine("---------------------------");
+                    DateTime dateTime = DateTime.Now.AddHours(-2);
 
-                    PrintStuff(id1, id2);
+                    PrintStuff(id1, id2, dateTime);
 
                     Console.ReadKey();
                 }catch(Exception){}
@@ -28,7 +29,7 @@ namespace Dijkstra {
         }
 
 
-        static void PrintStuff(int id1, int id2) {
+        static void PrintStuff(int id1, int id2, DateTime startTime) {
             decimal dm = 0;
             var watch = Stopwatch.StartNew();
             Airport a1;
@@ -41,7 +42,7 @@ namespace Dijkstra {
             List<Route> aps;
 
             using (DijkstraClient client = new DijkstraClient()) {
-                aps = client.DijkstraStuff(a1, a2);
+                aps = client.DijkstraStuff(a1, a2, startTime);
             }
 
             if (aps != null && aps.Count > 0) {
@@ -59,7 +60,7 @@ namespace Dijkstra {
             Console.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
         }
 
-        static void PrintStuff2(int id1, int id2) {
+        static void PrintStuff2(int id1, int id2, DateTime startTime) {
             decimal dm = 0;
             Airport a1;
             Airport a2;
@@ -71,7 +72,7 @@ namespace Dijkstra {
             List<Route> aps;
 
             using (DijkstraClient client = new DijkstraClient()) {
-                aps = client.DijkstraStuff(a1, a2);
+                aps = client.DijkstraStuff(a1, a2, startTime);
             }
 
             if (aps != null && aps.Count > 0) {

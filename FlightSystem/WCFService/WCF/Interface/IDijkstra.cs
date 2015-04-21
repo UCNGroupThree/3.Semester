@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 using WCFService.Model;
 
@@ -8,7 +9,7 @@ namespace WCFService.WCF.Interface {
     public interface IDijkstra {
 
         [OperationContract]
-        List<Route> DijkstraStuff(Airport from, Airport to);
+        List<Route> DijkstraStuff(Airport from, Airport to, DateTime startTime);
 
     }
 }

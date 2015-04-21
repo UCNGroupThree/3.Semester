@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Security.AccessControl;
 using WCFService.Dijkstra;
 using WCFService.Model;
@@ -9,10 +10,10 @@ namespace WCFService.WCF {
 
         private static Matrix matrix = new Matrix();
 
-        public List<Route> DijkstraStuff(Airport from, Airport to) {
+        public List<Route> DijkstraStuff(Airport from, Airport to, DateTime startTime) {
            // matrix = new Matrix();
 
-            List<Route> ret = matrix.GetShortestPath(from, to);
+            List<Route> ret = matrix.GetShortestPath(from, to, startTime);
 
 
             return ret;
