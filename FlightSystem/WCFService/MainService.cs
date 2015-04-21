@@ -10,30 +10,47 @@ using WCFService.WCF.Interface;
 namespace WCFService {
     public class MainService : IAdministratorService, IAirportService, IFlightService, IPlaneService, IRouteService, IUserService, IPostalService, IDijkstra {
 
-        #region Administrator Service 
+        #region Initial
+
+        private readonly IAdministratorService _adminService = new AdministratorService();
+        private readonly IAirportService _airportService = new AirportService();
+        private readonly IFlightService _flightService = new FlightService();
+        private readonly IPlaneService _planeService = new PlaneService();
+        private readonly IRouteService _routeService = new RouteService();
+        private readonly IUserService _userService = new UserService();
+        private readonly IPostalService _postalService = new PostalService();
+        private readonly IDijkstra _dijkstraService = new WCF.Dijkstra();
+
+        #endregion
         
+        #region Administrator Service
+
         public Administrator AddAdministrator(Administrator administrator) {
-            return new AdministratorService().AddAdministrator(administrator);
+            return _adminService.AddAdministrator(administrator);
         }
 
         public Administrator UpdateAdministrator(Administrator administrator) {
-            return new AdministratorService().UpdateAdministrator(administrator);
+            return _adminService.UpdateAdministrator(administrator);
         }
         
         public void DeleteAdministrator(Administrator administrator) {
-            new AdministratorService().DeleteAdministrator(administrator);
+            _adminService.DeleteAdministrator(administrator);
         }
 
         public Administrator GetAdministrator(int id) {
-            return new AdministratorService().GetAdministrator(id);
+            return _adminService.GetAdministrator(id);
         }
 
         public List<Administrator> GetAdministratorsByUsername(string username, bool equalsTo) {
-            return new AdministratorService().GetAdministratorsByUsername(username, equalsTo);
+            return _adminService.GetAdministratorsByUsername(username, equalsTo);
         }
 
         public List<Administrator> GetAllAdministrators() {
-            return new AdministratorService().GetAllAdministrators();
+            return _adminService.GetAllAdministrators();
+        }
+
+        public bool ValidateLogin(string username, string password) {
+            return _adminService.ValidateLogin(username, password);
         }
 
         #endregion
@@ -41,39 +58,39 @@ namespace WCFService {
         #region Airport Service
         
         public Airport AddAirport(Airport airport) {
-            return new AirportService().AddAirport(airport);
+            return _airportService.AddAirport(airport);
         }
 
         public Airport UpdateAirport(Airport airport) {
-            return new AirportService().UpdateAirport(airport);
+            return _airportService.UpdateAirport(airport);
         }
 
         public void DeleteAirport(Airport airport) {
-            new AirportService().DeleteAirport(airport);
+            _airportService.DeleteAirport(airport);
         }
 
         public Airport GetAirport(int id) {
-            return new AirportService().GetAirport(id);
+            return _airportService.GetAirport(id);
         }
 
         public List<Airport> GetAirportsByCountry(string country) {
-            return new AirportService().GetAirportsByCountry(country);
+            return _airportService.GetAirportsByCountry(country);
         }
 
         public List<Airport> GetAirportsByCity(string city) {
-            return new AirportService().GetAirportsByCity(city);
+            return _airportService.GetAirportsByCity(city);
         }
 
         public List<Airport> GetAirportsByName(string name) {
-            return new AirportService().GetAirportsByName(name);
+            return _airportService.GetAirportsByName(name);
         }
 
         public List<Airport> GetAirportsByShortName(string shortName, bool equalsTo) {
-            return new AirportService().GetAirportsByShortName(shortName, equalsTo);
+            return _airportService.GetAirportsByShortName(shortName, equalsTo);
         }
 
         public List<string> GetCountries() {
-            return new AirportService().GetCountries();
+            return _airportService.GetCountries();
         }
 
         #endregion
@@ -81,22 +98,22 @@ namespace WCFService {
         #region Flight Service
 
         public int AddFlight(Flight flight) {
-            return new FlightService().AddFlight(flight);
+            return _flightService.AddFlight(flight);
         }
 
         public Flight UpdateFlight(Flight flight) {
-            return new FlightService().UpdateFlight(flight);
+            return _flightService.UpdateFlight(flight);
         }
 
         public void DeleteFlight(Flight flight) {
-            new FlightService().DeleteFlight(flight);
+            _flightService.DeleteFlight(flight);
         }
 
         public Flight GetFlight(int id) {
-            return new FlightService().GetFlight(id);
+            return _flightService.GetFlight(id);
         }
         public List<Flight> GetFlights(Airport from, Airport to) {
-            return new FlightService().GetFlights(from, to);
+            return _flightService.GetFlights(from, to);
         }
 
         #endregion
@@ -104,39 +121,39 @@ namespace WCFService {
         #region Plane Service
 
         public int AddPlane(Plane plane) {
-            return new PlaneService().AddPlane(plane);
+            return _planeService.AddPlane(plane);
         }
 
         public Plane UpdatePlane(Plane plane) {
-            return new PlaneService().UpdatePlane(plane);
+            return _planeService.UpdatePlane(plane);
         }
 
         public void DeletePlane(Plane plane) {
-            new PlaneService().DeletePlane(plane);
+            _planeService.DeletePlane(plane);
         }
 
         public List<Plane> GetPlanesByName(string name) {
-            return new PlaneService().GetPlanesByName(name);
+            return _planeService.GetPlanesByName(name);
         }
 
         public Plane GetPlaneByID(int id) {
-            return new PlaneService().GetPlaneByID(id);
+            return _planeService.GetPlaneByID(id);
         }
 
         public List<Plane> GetPlanesWithSeatNumber(int seats) {
-            return new PlaneService().GetPlanesWithSeatNumber(seats);
+            return _planeService.GetPlanesWithSeatNumber(seats);
         }
 
         public List<Plane> GetPlanesWithLessOrEqualSeatNumber(int seats) {
-            return new PlaneService().GetPlanesWithLessOrEqualSeatNumber(seats);
+            return _planeService.GetPlanesWithLessOrEqualSeatNumber(seats);
         }
 
         public List<Plane> GetPlanesWithMoreOrEqualSeatNumber(int seats) {
-            return new PlaneService().GetPlanesWithMoreOrEqualSeatNumber(seats);
+            return _planeService.GetPlanesWithMoreOrEqualSeatNumber(seats);
         }
         
         public List<Plane> GetAllPlanes() {
-            return new PlaneService().GetAllPlanes();
+            return _planeService.GetAllPlanes();
         }
 
         #endregion
@@ -144,27 +161,27 @@ namespace WCFService {
         #region Route Service
 
         public Route AddRoute(Route route) {
-            return new RouteService().AddRoute(route);
+            return _routeService.AddRoute(route);
         }
 
         public Route UpdateRoute(Route route) {
-            return new RouteService().UpdateRoute(route);
+            return _routeService.UpdateRoute(route);
         }
 
         public void DeleteRoute(Route route) {
-            new RouteService().DeleteRoute(route);
+            _routeService.DeleteRoute(route);
         }
 
         public Route GetRoute(int id) {
-            return new RouteService().GetRoute(id);
+            return _routeService.GetRoute(id);
         }
 
         public Route GetRouteByAirports(Airport from, Airport to) {
-            return new RouteService().GetRouteByAirports(from, to);
+            return _routeService.GetRouteByAirports(from, to);
         }
 
         public List<Route> GetRoutesByAirport(Airport from) {
-            return new RouteService().GetRoutesByAirport(from);
+            return _routeService.GetRoutesByAirport(from);
         }
 
         #endregion
@@ -172,28 +189,28 @@ namespace WCFService {
         #region User Service
 
         public int AddUser(User user) {
-            return new UserService().AddUser(user);
+            return _userService.AddUser(user);
         }
 
         public User UpdateUser(User user) {
-            return new UserService().UpdateUser(user);
+            return _userService.UpdateUser(user);
         }
 
         public void DeleteUser(User user) {
-            new UserService().DeleteUser(user);
+            _userService.DeleteUser(user);
         }
 
         public User GetUser(int id) {
-            return new UserService().GetUser(id);
+            return _userService.GetUser(id);
         }
 
         public List<User> GetUserByName(string name)
         {
-            return new UserService().GetUserByName(name);
+            return _userService.GetUserByName(name);
         }
 
         public List<User> GetAllUsers() {
-            return new UserService().GetAllUsers();
+            return _userService.GetAllUsers();
         } 
 
         #endregion
@@ -202,20 +219,20 @@ namespace WCFService {
 
         public int AddPostal(Postal postal)
         {
-            return new PostalService().AddPostal(postal);
+            return _postalService.AddPostal(postal);
         }
 
         public int DeletePostal(Postal postal)
         {
-            return new PostalService().DeletePostal(postal);
+            return _postalService.DeletePostal(postal);
         }
 
         public Postal GetPostal(int postalNumber) {
-            return new PostalService().GetPostal(postalNumber);
+            return _postalService.GetPostal(postalNumber);
         }
 
         public Postal UpdatePostal(Postal postal) {
-            return new PostalService().UpdatePostal(postal);
+            return _postalService.UpdatePostal(postal);
         }
 
         #endregion
@@ -223,7 +240,7 @@ namespace WCFService {
         #region Dijktra
 
         public List<Route> DijkstraStuff(Airport from, Airport to, DateTime startTime) {
-            return new WCF.Dijkstra().DijkstraStuff(from, to, startTime);
+            return _dijkstraService.DijkstraStuff(from, to, startTime);
         }
 
         #endregion

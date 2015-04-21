@@ -42,5 +42,8 @@ namespace WCFService.WCF.Interface {
         [OperationContract]
         List<Administrator> GetAllAdministrators();
 
+        [OperationContract]
+        bool ValidateLogin(string username, string password);
+
     }
 }

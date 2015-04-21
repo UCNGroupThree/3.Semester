@@ -8,100 +8,115 @@ using System.Threading.Tasks;
 using Common.Exceptions;
 
 namespace WCFService.Helper {
-    class PasswordHelper {
-        private static readonly HashAlgorithm Hash = HashAlgorithm.Create("SHA256");
-        private const int SaltValueSize = 4;
-        private static readonly UnicodeEncoding Encode = new UnicodeEncoding();
+    
+    /// <summary>
+    /// Salted password hashing with PBKDF2-SHA1.
+    /// Author: havoc AT defuse.ca with changed by UCN Group 3
+    /// www: http://crackstation.net/hashing-security.htm
+    /// Compatibility: .NET 3.0 and later.
+    /// </summary>
+    public class PasswordHelper {
+        // The following constants may be changed without breaking existing hashes.
+        public const int SALT_BYTE_SIZE = 24;
+        public const int HASH_BYTE_SIZE = 24;
+        public const int PBKDF2_ITERATIONS = 10000;
+        /*
+        public const int ITERATION_INDEX = 0;
+        public const int SALT_INDEX = 1;
+        public const int PBKDF2_INDEX = 2;
+        */
+        /// <summary>
+        /// Creates a salted PBKDF2 hash of the password.
+        /// </summary>
+        /// <param name="password">The password to hash.</param>
+        /// <exception cref="NullReferenceException" />
+        /// <exception cref="PasswordFormatException"/>
+        /// <returns>The hash of the password.</returns>
+        public static string CreateHash(string password) {
+            ValidatePasswordFormat(password);
+            // Generate a random salt
+            RNGCryptoServiceProvider csprng = new RNGCryptoServiceProvider();
+            byte[] salt = new byte[SALT_BYTE_SIZE];
+            csprng.GetBytes(salt);
 
+            // Hash the password and encode the parameters
+            byte[] hash = PBKDF2(password, salt, PBKDF2_ITERATIONS, HASH_BYTE_SIZE);
 
-        private static string GenerateSaltValue() {
-            string saltValueString = null;
-            using (var rngCsp = new RNGCryptoServiceProvider()) {
-                byte[] saltValue = new byte[SaltValueSize];
-                rngCsp.GetBytes(saltValue);
-                saltValueString = Encode.GetString(saltValue);
-            }
+            return Convert.ToBase64String(salt) + Convert.ToBase64String(hash);
 
-            return saltValueString;
+            //return PBKDF2_ITERATIONS + ":" +
+            //    Convert.ToBase64String(salt) + ":" +
+            //    Convert.ToBase64String(hash);
+        }
+
+        /// <summary>
+        /// Validates a password given a hash of the correct one.
+        /// </summary>
+        /// <param name="password">The password to check.</param>
+        /// <param name="correctHash">A hash of the correct password.</param>
+        /// <returns>True if the password is correct. False otherwise.</returns>
+        public static bool ValidatePassword(string password, string correctHash) {
+            // Extract the parameters from the hash
+            /* char[] delimiter = { ':' };
+             string[] split = correctHash.Split(delimiter);
+             int iterations = Int32.Parse(split[ITERATION_INDEX]);
+             byte[] salt = Convert.FromBase64String(split[SALT_INDEX]);
+             byte[] hash = Convert.FromBase64String(split[PBKDF2_INDEX]);
+            */
+            
+            byte[] hashWithSalt = Convert.FromBase64String(correctHash);
+            byte[] salt = new byte[SALT_BYTE_SIZE];
+            Array.Copy(hashWithSalt, 0, salt, 0, SALT_BYTE_SIZE);
+            byte[] hashedPass = new byte[HASH_BYTE_SIZE];
+            Array.Copy(hashWithSalt, SALT_BYTE_SIZE, hashedPass, 0, HASH_BYTE_SIZE);
+            byte[] testHash;
+            
+            testHash = PBKDF2(password, salt, PBKDF2_ITERATIONS, HASH_BYTE_SIZE);
+            
+            return SlowEquals(hashedPass, testHash);
+        }
+
+        /// <summary>
+        /// Compares two byte arrays in length-constant time. This comparison
+        /// method is used so that password hashes cannot be extracted from
+        /// on-line systems using a timing attack and then attacked off-line.
+        /// </summary>
+        /// <param name="a">The first byte array.</param>
+        /// <param name="b">The second byte array.</param>
+        /// <returns>True if both byte arrays are equal. False otherwise.</returns>
+        private static bool SlowEquals(byte[] a, byte[] b) {
+            uint diff = (uint)a.Length ^ (uint)b.Length;
+            for (int i = 0; i < a.Length && i < b.Length; i++)
+                diff |= (uint)(a[i] ^ b[i]);
+            return diff == 0;
+        }
+
+        /// <summary>
+        /// Computes the PBKDF2-SHA1 hash of a password.
+        /// </summary>
+        /// <param name="password">The password to hash.</param>
+        /// <param name="salt">The salt.</param>
+        /// <param name="iterations">The PBKDF2 iteration count.</param>
+        /// <param name="outputBytes">The length of the hash to generate, in bytes.</param>
+        /// <returns>A hash of the password.</returns>
+        private static byte[] PBKDF2(string password, byte[] salt, int iterations, int outputBytes) {
+            Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(password, salt);
+            pbkdf2.IterationCount = iterations;
+            return pbkdf2.GetBytes(outputBytes);
         }
 
         /// <exception cref="NullReferenceException" />
         /// <exception cref="PasswordFormatException"/>
-        private static string HashPassword(string passwordPlain, string saltValue = null) {
-            ValidatePasswordFormat(passwordPlain);
-
-            // If the salt string is null or the length is invalid then
-            // create a new valid salt value.
-
-            if (saltValue == null) {
-                // Generate a salt string.
-                saltValue = GenerateSaltValue();
-            }
-
-            // Convert the salt string and the passwordPlain string to a single
-            // array of bytes. Note that the passwordPlain string is Unicode and
-            // therefore may or may not have a zero in every other byte.
-
-            byte[] binarySaltValue = new byte[SaltValueSize];
-
-            binarySaltValue[0] = byte.Parse(saltValue.Substring(0, 2), System.Globalization.NumberStyles.HexNumber, CultureInfo.InvariantCulture.NumberFormat);
-            binarySaltValue[1] = byte.Parse(saltValue.Substring(2, 2), System.Globalization.NumberStyles.HexNumber, CultureInfo.InvariantCulture.NumberFormat);
-            binarySaltValue[2] = byte.Parse(saltValue.Substring(4, 2), System.Globalization.NumberStyles.HexNumber, CultureInfo.InvariantCulture.NumberFormat);
-            binarySaltValue[3] = byte.Parse(saltValue.Substring(6, 2), System.Globalization.NumberStyles.HexNumber, CultureInfo.InvariantCulture.NumberFormat);
-
-            byte[] valueToHash = new byte[SaltValueSize + Encode.GetByteCount(passwordPlain)];
-            byte[] binaryPassword = Encode.GetBytes(passwordPlain);
-
-            // Copy the salt value and the passwordPlain to the Hash buffer.
-
-            binarySaltValue.CopyTo(valueToHash, 0);
-            binaryPassword.CopyTo(valueToHash, SaltValueSize);
-
-            byte[] hashValue = Hash.ComputeHash(valueToHash);
-
-            // The hashed passwordPlain is the salt plus the Hash value (as a string).
-
-            string hashedPassword = saltValue;
-
-            foreach (byte hexdigit in hashValue) {
-                hashedPassword += hexdigit.ToString("X2", CultureInfo.InvariantCulture.NumberFormat);
-            }
-
-            // Return the hashed passwordPlain as a string.
-
-            return hashedPassword;
-
-        }
-
-        /// <exception cref="NullReferenceException" />
-        /// <exception cref="PasswordFormatException"/>
-        private static void ValidatePasswordFormat(string passwordPlain) {
-            if (passwordPlain == null) {
+        private static void ValidatePasswordFormat(string password) {
+            if (password == null) {
                 throw new NullReferenceException("No new Password to generate hash!");
             }
             //TODO Validation af passwordformatet!
-            bool valid = false;
-            if (valid) {
+            bool valid = password.Length >= 4 && password.Any(char.IsUpper) && password.Any(char.IsLower) && password.Any(char.IsDigit);
+
+            if (!valid) {
                 throw new PasswordFormatException();
             }
-        }
-
-        private bool VerifyHashedPassword(string passwordPlain, string passswordHashed) {
-            const int saltLength = SaltValueSize * UnicodeEncoding.CharSize;
-           
-            if (string.IsNullOrEmpty(passswordHashed) ||
-                string.IsNullOrEmpty(passwordPlain) ||
-                passswordHashed.Length < saltLength) {
-                throw new ArgumentNullException();
-            }
-
-            // Strip the salt value off the front of the stored passwordPlain.
-            string saltValue = passswordHashed.Substring(0, saltLength);
-
-            string hashedPassword = HashPassword(passwordPlain, saltValue);
-            
-            // None of the hashing algorithms could verify the passwordPlain.
-            return passswordHashed.Equals(hashedPassword, StringComparison.Ordinal);
         }
     }
 }

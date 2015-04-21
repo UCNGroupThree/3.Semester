@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Dijkstra.MainService {
+namespace FlightWeb.MainService {
     using System.Runtime.Serialization;
     using System;
     
@@ -602,7 +602,7 @@ namespace Dijkstra.MainService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Dijkstra.MainService.Route> RoutesField;
+        private FlightWeb.MainService.Route[] RoutesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ShortNameField;
@@ -725,7 +725,7 @@ namespace Dijkstra.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<Dijkstra.MainService.Route> Routes {
+        public FlightWeb.MainService.Route[] Routes {
             get {
                 return this.RoutesField;
             }
@@ -786,10 +786,10 @@ namespace Dijkstra.MainService {
         private byte[] ConcurrencyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Dijkstra.MainService.Flight> FlightsField;
+        private FlightWeb.MainService.Flight[] FlightsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Dijkstra.MainService.Airport FromField;
+        private FlightWeb.MainService.Airport FromField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
@@ -798,7 +798,7 @@ namespace Dijkstra.MainService {
         private decimal PriceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Dijkstra.MainService.Airport ToField;
+        private FlightWeb.MainService.Airport ToField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -824,7 +824,7 @@ namespace Dijkstra.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<Dijkstra.MainService.Flight> Flights {
+        public FlightWeb.MainService.Flight[] Flights {
             get {
                 return this.FlightsField;
             }
@@ -837,7 +837,7 @@ namespace Dijkstra.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Dijkstra.MainService.Airport From {
+        public FlightWeb.MainService.Airport From {
             get {
                 return this.FromField;
             }
@@ -876,7 +876,7 @@ namespace Dijkstra.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Dijkstra.MainService.Airport To {
+        public FlightWeb.MainService.Airport To {
             get {
                 return this.ToField;
             }
@@ -917,7 +917,7 @@ namespace Dijkstra.MainService {
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Dijkstra.MainService.Plane PlaneField;
+        private FlightWeb.MainService.Plane PlaneField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -969,7 +969,7 @@ namespace Dijkstra.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Dijkstra.MainService.Plane Plane {
+        public FlightWeb.MainService.Plane Plane {
             get {
                 return this.PlaneField;
             }
@@ -1007,7 +1007,7 @@ namespace Dijkstra.MainService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Dijkstra.MainService.Seat> SeatsField;
+        private FlightWeb.MainService.Seat[] SeatsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1046,7 +1046,7 @@ namespace Dijkstra.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<Dijkstra.MainService.Seat> Seats {
+        public FlightWeb.MainService.Seat[] Seats {
             get {
                 return this.SeatsField;
             }
@@ -1330,10 +1330,10 @@ namespace Dijkstra.MainService {
         private string PhoneNumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Dijkstra.MainService.Postal PostalField;
+        private FlightWeb.MainService.Postal PostalField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Dijkstra.MainService.Ticket> TicketsField;
+        private FlightWeb.MainService.Ticket[] TicketsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1437,7 +1437,7 @@ namespace Dijkstra.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Dijkstra.MainService.Postal Postal {
+        public FlightWeb.MainService.Postal Postal {
             get {
                 return this.PostalField;
             }
@@ -1450,7 +1450,7 @@ namespace Dijkstra.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<Dijkstra.MainService.Ticket> Tickets {
+        public FlightWeb.MainService.Ticket[] Tickets {
             get {
                 return this.TicketsField;
             }
@@ -1571,7 +1571,7 @@ namespace Dijkstra.MainService {
         private string OrderStateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<Dijkstra.MainService.SeatReservation> SeatReservationsField;
+        private FlightWeb.MainService.SeatReservation[] SeatReservationsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1636,7 +1636,7 @@ namespace Dijkstra.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<Dijkstra.MainService.SeatReservation> SeatReservations {
+        public FlightWeb.MainService.SeatReservation[] SeatReservations {
             get {
                 return this.SeatReservationsField;
             }
@@ -1668,7 +1668,7 @@ namespace Dijkstra.MainService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Dijkstra.MainService.Flight FlightField;
+        private FlightWeb.MainService.Flight FlightField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
@@ -1677,7 +1677,7 @@ namespace Dijkstra.MainService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Dijkstra.MainService.Seat SeatField;
+        private FlightWeb.MainService.Seat SeatField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string StateField;
@@ -1693,7 +1693,7 @@ namespace Dijkstra.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Dijkstra.MainService.Flight Flight {
+        public FlightWeb.MainService.Flight Flight {
             get {
                 return this.FlightField;
             }
@@ -1732,7 +1732,7 @@ namespace Dijkstra.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Dijkstra.MainService.Seat Seat {
+        public FlightWeb.MainService.Seat Seat {
             get {
                 return this.SeatField;
             }
@@ -1772,58 +1772,58 @@ namespace Dijkstra.MainService {
     public interface IAdministratorService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/AddAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/AddAdministratorResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.AlreadyExistFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.PasswordFormatFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorPasswordFormatFaultFault" +
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.AlreadyExistFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.PasswordFormatFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorPasswordFormatFaultFault" +
             "", Name="PasswordFormatFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseInsertFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorDatabaseInsertFaultFault" +
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseInsertFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorDatabaseInsertFaultFault" +
             "", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        Dijkstra.MainService.Administrator AddAdministrator(Dijkstra.MainService.Administrator administrator);
+        FlightWeb.MainService.Administrator AddAdministrator(FlightWeb.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/AddAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/AddAdministratorResponse")]
-        System.Threading.Tasks.Task<Dijkstra.MainService.Administrator> AddAdministratorAsync(Dijkstra.MainService.Administrator administrator);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Administrator> AddAdministratorAsync(FlightWeb.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/UpdateAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/UpdateAdministratorResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorNullPointerFaultFault" +
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorNullPointerFaultFault" +
             "", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.AlreadyExistFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorAlreadyExistFaultFaul" +
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.AlreadyExistFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorAlreadyExistFaultFaul" +
             "t", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.PasswordFormatFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorPasswordFormatFaultFa" +
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.PasswordFormatFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorPasswordFormatFaultFa" +
             "ult", Name="PasswordFormatFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorDatabaseUpdateFaultFa" +
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorDatabaseUpdateFaultFa" +
             "ult", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        Dijkstra.MainService.Administrator UpdateAdministrator(Dijkstra.MainService.Administrator administrator);
+        FlightWeb.MainService.Administrator UpdateAdministrator(FlightWeb.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/UpdateAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/UpdateAdministratorResponse")]
-        System.Threading.Tasks.Task<Dijkstra.MainService.Administrator> UpdateAdministratorAsync(Dijkstra.MainService.Administrator administrator);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Administrator> UpdateAdministratorAsync(FlightWeb.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/DeleteAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/DeleteAdministratorResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IAdministratorService/DeleteAdministratorNullPointerFaultFault" +
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IAdministratorService/DeleteAdministratorNullPointerFaultFault" +
             "", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IAdministratorService/DeleteAdministratorDatabaseDeleteFaultFa" +
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IAdministratorService/DeleteAdministratorDatabaseDeleteFaultFa" +
             "ult", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        void DeleteAdministrator(Dijkstra.MainService.Administrator administrator);
+        void DeleteAdministrator(FlightWeb.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/DeleteAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/DeleteAdministratorResponse")]
-        System.Threading.Tasks.Task DeleteAdministratorAsync(Dijkstra.MainService.Administrator administrator);
+        System.Threading.Tasks.Task DeleteAdministratorAsync(FlightWeb.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/GetAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/GetAdministratorResponse")]
-        Dijkstra.MainService.Administrator GetAdministrator(int id);
+        FlightWeb.MainService.Administrator GetAdministrator(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/GetAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/GetAdministratorResponse")]
-        System.Threading.Tasks.Task<Dijkstra.MainService.Administrator> GetAdministratorAsync(int id);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Administrator> GetAdministratorAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/GetAdministratorsByUsername", ReplyAction="http://tempuri.org/IAdministratorService/GetAdministratorsByUsernameResponse")]
-        System.Collections.Generic.List<Dijkstra.MainService.Administrator> GetAdministratorsByUsername(string username, bool equalsTo);
+        FlightWeb.MainService.Administrator[] GetAdministratorsByUsername(string username, bool equalsTo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/GetAdministratorsByUsername", ReplyAction="http://tempuri.org/IAdministratorService/GetAdministratorsByUsernameResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Administrator>> GetAdministratorsByUsernameAsync(string username, bool equalsTo);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Administrator[]> GetAdministratorsByUsernameAsync(string username, bool equalsTo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/GetAllAdministrators", ReplyAction="http://tempuri.org/IAdministratorService/GetAllAdministratorsResponse")]
-        System.Collections.Generic.List<Dijkstra.MainService.Administrator> GetAllAdministrators();
+        FlightWeb.MainService.Administrator[] GetAllAdministrators();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/GetAllAdministrators", ReplyAction="http://tempuri.org/IAdministratorService/GetAllAdministratorsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Administrator>> GetAllAdministratorsAsync();
+        System.Threading.Tasks.Task<FlightWeb.MainService.Administrator[]> GetAllAdministratorsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/ValidateLogin", ReplyAction="http://tempuri.org/IAdministratorService/ValidateLoginResponse")]
         bool ValidateLogin(string username, string password);
@@ -1833,12 +1833,12 @@ namespace Dijkstra.MainService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IAdministratorServiceChannel : Dijkstra.MainService.IAdministratorService, System.ServiceModel.IClientChannel {
+    public interface IAdministratorServiceChannel : FlightWeb.MainService.IAdministratorService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class AdministratorServiceClient : System.ServiceModel.ClientBase<Dijkstra.MainService.IAdministratorService>, Dijkstra.MainService.IAdministratorService {
+    public partial class AdministratorServiceClient : System.ServiceModel.ClientBase<FlightWeb.MainService.IAdministratorService>, FlightWeb.MainService.IAdministratorService {
         
         public AdministratorServiceClient() {
         }
@@ -1859,51 +1859,51 @@ namespace Dijkstra.MainService {
                 base(binding, remoteAddress) {
         }
         
-        public Dijkstra.MainService.Administrator AddAdministrator(Dijkstra.MainService.Administrator administrator) {
+        public FlightWeb.MainService.Administrator AddAdministrator(FlightWeb.MainService.Administrator administrator) {
             return base.Channel.AddAdministrator(administrator);
         }
         
-        public System.Threading.Tasks.Task<Dijkstra.MainService.Administrator> AddAdministratorAsync(Dijkstra.MainService.Administrator administrator) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Administrator> AddAdministratorAsync(FlightWeb.MainService.Administrator administrator) {
             return base.Channel.AddAdministratorAsync(administrator);
         }
         
-        public Dijkstra.MainService.Administrator UpdateAdministrator(Dijkstra.MainService.Administrator administrator) {
+        public FlightWeb.MainService.Administrator UpdateAdministrator(FlightWeb.MainService.Administrator administrator) {
             return base.Channel.UpdateAdministrator(administrator);
         }
         
-        public System.Threading.Tasks.Task<Dijkstra.MainService.Administrator> UpdateAdministratorAsync(Dijkstra.MainService.Administrator administrator) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Administrator> UpdateAdministratorAsync(FlightWeb.MainService.Administrator administrator) {
             return base.Channel.UpdateAdministratorAsync(administrator);
         }
         
-        public void DeleteAdministrator(Dijkstra.MainService.Administrator administrator) {
+        public void DeleteAdministrator(FlightWeb.MainService.Administrator administrator) {
             base.Channel.DeleteAdministrator(administrator);
         }
         
-        public System.Threading.Tasks.Task DeleteAdministratorAsync(Dijkstra.MainService.Administrator administrator) {
+        public System.Threading.Tasks.Task DeleteAdministratorAsync(FlightWeb.MainService.Administrator administrator) {
             return base.Channel.DeleteAdministratorAsync(administrator);
         }
         
-        public Dijkstra.MainService.Administrator GetAdministrator(int id) {
+        public FlightWeb.MainService.Administrator GetAdministrator(int id) {
             return base.Channel.GetAdministrator(id);
         }
         
-        public System.Threading.Tasks.Task<Dijkstra.MainService.Administrator> GetAdministratorAsync(int id) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Administrator> GetAdministratorAsync(int id) {
             return base.Channel.GetAdministratorAsync(id);
         }
         
-        public System.Collections.Generic.List<Dijkstra.MainService.Administrator> GetAdministratorsByUsername(string username, bool equalsTo) {
+        public FlightWeb.MainService.Administrator[] GetAdministratorsByUsername(string username, bool equalsTo) {
             return base.Channel.GetAdministratorsByUsername(username, equalsTo);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Administrator>> GetAdministratorsByUsernameAsync(string username, bool equalsTo) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Administrator[]> GetAdministratorsByUsernameAsync(string username, bool equalsTo) {
             return base.Channel.GetAdministratorsByUsernameAsync(username, equalsTo);
         }
         
-        public System.Collections.Generic.List<Dijkstra.MainService.Administrator> GetAllAdministrators() {
+        public FlightWeb.MainService.Administrator[] GetAllAdministrators() {
             return base.Channel.GetAllAdministrators();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Administrator>> GetAllAdministratorsAsync() {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Administrator[]> GetAllAdministratorsAsync() {
             return base.Channel.GetAllAdministratorsAsync();
         }
         
@@ -1921,77 +1921,77 @@ namespace Dijkstra.MainService {
     public interface IAirportService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/AddAirport", ReplyAction="http://tempuri.org/IAirportService/AddAirportResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IAirportService/AddAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.TimeZoneFault), Action="http://tempuri.org/IAirportService/AddAirportTimeZoneFaultFault", Name="TimeZoneFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.AlreadyExistFault), Action="http://tempuri.org/IAirportService/AddAirportAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseInsertFault), Action="http://tempuri.org/IAirportService/AddAirportDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        Dijkstra.MainService.Airport AddAirport(Dijkstra.MainService.Airport airport);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IAirportService/AddAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.TimeZoneFault), Action="http://tempuri.org/IAirportService/AddAirportTimeZoneFaultFault", Name="TimeZoneFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.AlreadyExistFault), Action="http://tempuri.org/IAirportService/AddAirportAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseInsertFault), Action="http://tempuri.org/IAirportService/AddAirportDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        FlightWeb.MainService.Airport AddAirport(FlightWeb.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/AddAirport", ReplyAction="http://tempuri.org/IAirportService/AddAirportResponse")]
-        System.Threading.Tasks.Task<Dijkstra.MainService.Airport> AddAirportAsync(Dijkstra.MainService.Airport airport);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Airport> AddAirportAsync(FlightWeb.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/UpdateAirport", ReplyAction="http://tempuri.org/IAirportService/UpdateAirportResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.TimeZoneFault), Action="http://tempuri.org/IAirportService/UpdateAirportTimeZoneFaultFault", Name="TimeZoneFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IAirportService/UpdateAirportDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IAirportService/UpdateAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.AlreadyExistFault), Action="http://tempuri.org/IAirportService/UpdateAirportAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        Dijkstra.MainService.Airport UpdateAirport(Dijkstra.MainService.Airport airport);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.TimeZoneFault), Action="http://tempuri.org/IAirportService/UpdateAirportTimeZoneFaultFault", Name="TimeZoneFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IAirportService/UpdateAirportDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IAirportService/UpdateAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.AlreadyExistFault), Action="http://tempuri.org/IAirportService/UpdateAirportAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        FlightWeb.MainService.Airport UpdateAirport(FlightWeb.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/UpdateAirport", ReplyAction="http://tempuri.org/IAirportService/UpdateAirportResponse")]
-        System.Threading.Tasks.Task<Dijkstra.MainService.Airport> UpdateAirportAsync(Dijkstra.MainService.Airport airport);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Airport> UpdateAirportAsync(FlightWeb.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/DeleteAirport", ReplyAction="http://tempuri.org/IAirportService/DeleteAirportResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IAirportService/DeleteAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IAirportService/DeleteAirportDatabaseDeleteFaultFault", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        void DeleteAirport(Dijkstra.MainService.Airport airport);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IAirportService/DeleteAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IAirportService/DeleteAirportDatabaseDeleteFaultFault", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        void DeleteAirport(FlightWeb.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/DeleteAirport", ReplyAction="http://tempuri.org/IAirportService/DeleteAirportResponse")]
-        System.Threading.Tasks.Task DeleteAirportAsync(Dijkstra.MainService.Airport airport);
+        System.Threading.Tasks.Task DeleteAirportAsync(FlightWeb.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirport", ReplyAction="http://tempuri.org/IAirportService/GetAirportResponse")]
-        Dijkstra.MainService.Airport GetAirport(int id);
+        FlightWeb.MainService.Airport GetAirport(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirport", ReplyAction="http://tempuri.org/IAirportService/GetAirportResponse")]
-        System.Threading.Tasks.Task<Dijkstra.MainService.Airport> GetAirportAsync(int id);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Airport> GetAirportAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByCountry", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByCountryResponse")]
-        System.Collections.Generic.List<Dijkstra.MainService.Airport> GetAirportsByCountry(string country);
+        FlightWeb.MainService.Airport[] GetAirportsByCountry(string country);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByCountry", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByCountryResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Airport>> GetAirportsByCountryAsync(string country);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Airport[]> GetAirportsByCountryAsync(string country);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByCity", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByCityResponse")]
-        System.Collections.Generic.List<Dijkstra.MainService.Airport> GetAirportsByCity(string city);
+        FlightWeb.MainService.Airport[] GetAirportsByCity(string city);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByCity", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByCityResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Airport>> GetAirportsByCityAsync(string city);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Airport[]> GetAirportsByCityAsync(string city);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByName", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByNameResponse")]
-        System.Collections.Generic.List<Dijkstra.MainService.Airport> GetAirportsByName(string name);
+        FlightWeb.MainService.Airport[] GetAirportsByName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByName", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByNameResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Airport>> GetAirportsByNameAsync(string name);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Airport[]> GetAirportsByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByShortName", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByShortNameResponse")]
-        System.Collections.Generic.List<Dijkstra.MainService.Airport> GetAirportsByShortName(string shortName, bool equalsTo);
+        FlightWeb.MainService.Airport[] GetAirportsByShortName(string shortName, bool equalsTo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByShortName", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByShortNameResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Airport>> GetAirportsByShortNameAsync(string shortName, bool equalsTo);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Airport[]> GetAirportsByShortNameAsync(string shortName, bool equalsTo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetCountries", ReplyAction="http://tempuri.org/IAirportService/GetCountriesResponse")]
-        System.Collections.Generic.List<string> GetCountries();
+        string[] GetCountries();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetCountries", ReplyAction="http://tempuri.org/IAirportService/GetCountriesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetCountriesAsync();
+        System.Threading.Tasks.Task<string[]> GetCountriesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IAirportServiceChannel : Dijkstra.MainService.IAirportService, System.ServiceModel.IClientChannel {
+    public interface IAirportServiceChannel : FlightWeb.MainService.IAirportService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class AirportServiceClient : System.ServiceModel.ClientBase<Dijkstra.MainService.IAirportService>, Dijkstra.MainService.IAirportService {
+    public partial class AirportServiceClient : System.ServiceModel.ClientBase<FlightWeb.MainService.IAirportService>, FlightWeb.MainService.IAirportService {
         
         public AirportServiceClient() {
         }
@@ -2012,75 +2012,75 @@ namespace Dijkstra.MainService {
                 base(binding, remoteAddress) {
         }
         
-        public Dijkstra.MainService.Airport AddAirport(Dijkstra.MainService.Airport airport) {
+        public FlightWeb.MainService.Airport AddAirport(FlightWeb.MainService.Airport airport) {
             return base.Channel.AddAirport(airport);
         }
         
-        public System.Threading.Tasks.Task<Dijkstra.MainService.Airport> AddAirportAsync(Dijkstra.MainService.Airport airport) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Airport> AddAirportAsync(FlightWeb.MainService.Airport airport) {
             return base.Channel.AddAirportAsync(airport);
         }
         
-        public Dijkstra.MainService.Airport UpdateAirport(Dijkstra.MainService.Airport airport) {
+        public FlightWeb.MainService.Airport UpdateAirport(FlightWeb.MainService.Airport airport) {
             return base.Channel.UpdateAirport(airport);
         }
         
-        public System.Threading.Tasks.Task<Dijkstra.MainService.Airport> UpdateAirportAsync(Dijkstra.MainService.Airport airport) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Airport> UpdateAirportAsync(FlightWeb.MainService.Airport airport) {
             return base.Channel.UpdateAirportAsync(airport);
         }
         
-        public void DeleteAirport(Dijkstra.MainService.Airport airport) {
+        public void DeleteAirport(FlightWeb.MainService.Airport airport) {
             base.Channel.DeleteAirport(airport);
         }
         
-        public System.Threading.Tasks.Task DeleteAirportAsync(Dijkstra.MainService.Airport airport) {
+        public System.Threading.Tasks.Task DeleteAirportAsync(FlightWeb.MainService.Airport airport) {
             return base.Channel.DeleteAirportAsync(airport);
         }
         
-        public Dijkstra.MainService.Airport GetAirport(int id) {
+        public FlightWeb.MainService.Airport GetAirport(int id) {
             return base.Channel.GetAirport(id);
         }
         
-        public System.Threading.Tasks.Task<Dijkstra.MainService.Airport> GetAirportAsync(int id) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Airport> GetAirportAsync(int id) {
             return base.Channel.GetAirportAsync(id);
         }
         
-        public System.Collections.Generic.List<Dijkstra.MainService.Airport> GetAirportsByCountry(string country) {
+        public FlightWeb.MainService.Airport[] GetAirportsByCountry(string country) {
             return base.Channel.GetAirportsByCountry(country);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Airport>> GetAirportsByCountryAsync(string country) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Airport[]> GetAirportsByCountryAsync(string country) {
             return base.Channel.GetAirportsByCountryAsync(country);
         }
         
-        public System.Collections.Generic.List<Dijkstra.MainService.Airport> GetAirportsByCity(string city) {
+        public FlightWeb.MainService.Airport[] GetAirportsByCity(string city) {
             return base.Channel.GetAirportsByCity(city);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Airport>> GetAirportsByCityAsync(string city) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Airport[]> GetAirportsByCityAsync(string city) {
             return base.Channel.GetAirportsByCityAsync(city);
         }
         
-        public System.Collections.Generic.List<Dijkstra.MainService.Airport> GetAirportsByName(string name) {
+        public FlightWeb.MainService.Airport[] GetAirportsByName(string name) {
             return base.Channel.GetAirportsByName(name);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Airport>> GetAirportsByNameAsync(string name) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Airport[]> GetAirportsByNameAsync(string name) {
             return base.Channel.GetAirportsByNameAsync(name);
         }
         
-        public System.Collections.Generic.List<Dijkstra.MainService.Airport> GetAirportsByShortName(string shortName, bool equalsTo) {
+        public FlightWeb.MainService.Airport[] GetAirportsByShortName(string shortName, bool equalsTo) {
             return base.Channel.GetAirportsByShortName(shortName, equalsTo);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Airport>> GetAirportsByShortNameAsync(string shortName, bool equalsTo) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Airport[]> GetAirportsByShortNameAsync(string shortName, bool equalsTo) {
             return base.Channel.GetAirportsByShortNameAsync(shortName, equalsTo);
         }
         
-        public System.Collections.Generic.List<string> GetCountries() {
+        public string[] GetCountries() {
             return base.Channel.GetCountries();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetCountriesAsync() {
+        public System.Threading.Tasks.Task<string[]> GetCountriesAsync() {
             return base.Channel.GetCountriesAsync();
         }
     }
@@ -2090,52 +2090,52 @@ namespace Dijkstra.MainService {
     public interface IFlightService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/AddFlight", ReplyAction="http://tempuri.org/IFlightService/AddFlightResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/AddFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseInsertFault), Action="http://tempuri.org/IFlightService/AddFlightDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        int AddFlight(Dijkstra.MainService.Flight flight);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/AddFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseInsertFault), Action="http://tempuri.org/IFlightService/AddFlightDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        int AddFlight(FlightWeb.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/AddFlight", ReplyAction="http://tempuri.org/IFlightService/AddFlightResponse")]
-        System.Threading.Tasks.Task<int> AddFlightAsync(Dijkstra.MainService.Flight flight);
+        System.Threading.Tasks.Task<int> AddFlightAsync(FlightWeb.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/UpdateFlight", ReplyAction="http://tempuri.org/IFlightService/UpdateFlightResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IFlightService/UpdateFlightDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/UpdateFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.OptimisticConcurrencyFault), Action="http://tempuri.org/IFlightService/UpdateFlightOptimisticConcurrencyFaultFault", Name="OptimisticConcurrencyFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        Dijkstra.MainService.Flight UpdateFlight(Dijkstra.MainService.Flight flight);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IFlightService/UpdateFlightDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/UpdateFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.OptimisticConcurrencyFault), Action="http://tempuri.org/IFlightService/UpdateFlightOptimisticConcurrencyFaultFault", Name="OptimisticConcurrencyFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        FlightWeb.MainService.Flight UpdateFlight(FlightWeb.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/UpdateFlight", ReplyAction="http://tempuri.org/IFlightService/UpdateFlightResponse")]
-        System.Threading.Tasks.Task<Dijkstra.MainService.Flight> UpdateFlightAsync(Dijkstra.MainService.Flight flight);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Flight> UpdateFlightAsync(FlightWeb.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/DeleteFlight", ReplyAction="http://tempuri.org/IFlightService/DeleteFlightResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/DeleteFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IFlightService/DeleteFlightDatabaseDeleteFaultFault", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        void DeleteFlight(Dijkstra.MainService.Flight flight);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/DeleteFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IFlightService/DeleteFlightDatabaseDeleteFaultFault", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        void DeleteFlight(FlightWeb.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/DeleteFlight", ReplyAction="http://tempuri.org/IFlightService/DeleteFlightResponse")]
-        System.Threading.Tasks.Task DeleteFlightAsync(Dijkstra.MainService.Flight flight);
+        System.Threading.Tasks.Task DeleteFlightAsync(FlightWeb.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/GetFlight", ReplyAction="http://tempuri.org/IFlightService/GetFlightResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/GetFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        Dijkstra.MainService.Flight GetFlight(int id);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/GetFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        FlightWeb.MainService.Flight GetFlight(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/GetFlight", ReplyAction="http://tempuri.org/IFlightService/GetFlightResponse")]
-        System.Threading.Tasks.Task<Dijkstra.MainService.Flight> GetFlightAsync(int id);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Flight> GetFlightAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/GetFlights", ReplyAction="http://tempuri.org/IFlightService/GetFlightsResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/GetFlightsNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        System.Collections.Generic.List<Dijkstra.MainService.Flight> GetFlights(Dijkstra.MainService.Airport from, Dijkstra.MainService.Airport to);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/GetFlightsNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        FlightWeb.MainService.Flight[] GetFlights(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/GetFlights", ReplyAction="http://tempuri.org/IFlightService/GetFlightsResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Flight>> GetFlightsAsync(Dijkstra.MainService.Airport from, Dijkstra.MainService.Airport to);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Flight[]> GetFlightsAsync(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IFlightServiceChannel : Dijkstra.MainService.IFlightService, System.ServiceModel.IClientChannel {
+    public interface IFlightServiceChannel : FlightWeb.MainService.IFlightService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class FlightServiceClient : System.ServiceModel.ClientBase<Dijkstra.MainService.IFlightService>, Dijkstra.MainService.IFlightService {
+    public partial class FlightServiceClient : System.ServiceModel.ClientBase<FlightWeb.MainService.IFlightService>, FlightWeb.MainService.IFlightService {
         
         public FlightServiceClient() {
         }
@@ -2156,43 +2156,43 @@ namespace Dijkstra.MainService {
                 base(binding, remoteAddress) {
         }
         
-        public int AddFlight(Dijkstra.MainService.Flight flight) {
+        public int AddFlight(FlightWeb.MainService.Flight flight) {
             return base.Channel.AddFlight(flight);
         }
         
-        public System.Threading.Tasks.Task<int> AddFlightAsync(Dijkstra.MainService.Flight flight) {
+        public System.Threading.Tasks.Task<int> AddFlightAsync(FlightWeb.MainService.Flight flight) {
             return base.Channel.AddFlightAsync(flight);
         }
         
-        public Dijkstra.MainService.Flight UpdateFlight(Dijkstra.MainService.Flight flight) {
+        public FlightWeb.MainService.Flight UpdateFlight(FlightWeb.MainService.Flight flight) {
             return base.Channel.UpdateFlight(flight);
         }
         
-        public System.Threading.Tasks.Task<Dijkstra.MainService.Flight> UpdateFlightAsync(Dijkstra.MainService.Flight flight) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Flight> UpdateFlightAsync(FlightWeb.MainService.Flight flight) {
             return base.Channel.UpdateFlightAsync(flight);
         }
         
-        public void DeleteFlight(Dijkstra.MainService.Flight flight) {
+        public void DeleteFlight(FlightWeb.MainService.Flight flight) {
             base.Channel.DeleteFlight(flight);
         }
         
-        public System.Threading.Tasks.Task DeleteFlightAsync(Dijkstra.MainService.Flight flight) {
+        public System.Threading.Tasks.Task DeleteFlightAsync(FlightWeb.MainService.Flight flight) {
             return base.Channel.DeleteFlightAsync(flight);
         }
         
-        public Dijkstra.MainService.Flight GetFlight(int id) {
+        public FlightWeb.MainService.Flight GetFlight(int id) {
             return base.Channel.GetFlight(id);
         }
         
-        public System.Threading.Tasks.Task<Dijkstra.MainService.Flight> GetFlightAsync(int id) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Flight> GetFlightAsync(int id) {
             return base.Channel.GetFlightAsync(id);
         }
         
-        public System.Collections.Generic.List<Dijkstra.MainService.Flight> GetFlights(Dijkstra.MainService.Airport from, Dijkstra.MainService.Airport to) {
+        public FlightWeb.MainService.Flight[] GetFlights(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to) {
             return base.Channel.GetFlights(from, to);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Flight>> GetFlightsAsync(Dijkstra.MainService.Airport from, Dijkstra.MainService.Airport to) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Flight[]> GetFlightsAsync(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to) {
             return base.Channel.GetFlightsAsync(from, to);
         }
     }
@@ -2202,67 +2202,67 @@ namespace Dijkstra.MainService {
     public interface IPlaneService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/AddPlane", ReplyAction="http://tempuri.org/IPlaneService/AddPlaneResponse")]
-        int AddPlane(Dijkstra.MainService.Plane plane);
+        int AddPlane(FlightWeb.MainService.Plane plane);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/AddPlane", ReplyAction="http://tempuri.org/IPlaneService/AddPlaneResponse")]
-        System.Threading.Tasks.Task<int> AddPlaneAsync(Dijkstra.MainService.Plane plane);
+        System.Threading.Tasks.Task<int> AddPlaneAsync(FlightWeb.MainService.Plane plane);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/UpdatePlane", ReplyAction="http://tempuri.org/IPlaneService/UpdatePlaneResponse")]
-        Dijkstra.MainService.Plane UpdatePlane(Dijkstra.MainService.Plane plane);
+        FlightWeb.MainService.Plane UpdatePlane(FlightWeb.MainService.Plane plane);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/UpdatePlane", ReplyAction="http://tempuri.org/IPlaneService/UpdatePlaneResponse")]
-        System.Threading.Tasks.Task<Dijkstra.MainService.Plane> UpdatePlaneAsync(Dijkstra.MainService.Plane plane);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Plane> UpdatePlaneAsync(FlightWeb.MainService.Plane plane);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/DeletePlane", ReplyAction="http://tempuri.org/IPlaneService/DeletePlaneResponse")]
-        void DeletePlane(Dijkstra.MainService.Plane plane);
+        void DeletePlane(FlightWeb.MainService.Plane plane);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/DeletePlane", ReplyAction="http://tempuri.org/IPlaneService/DeletePlaneResponse")]
-        System.Threading.Tasks.Task DeletePlaneAsync(Dijkstra.MainService.Plane plane);
+        System.Threading.Tasks.Task DeletePlaneAsync(FlightWeb.MainService.Plane plane);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlanesByName", ReplyAction="http://tempuri.org/IPlaneService/GetPlanesByNameResponse")]
-        System.Collections.Generic.List<Dijkstra.MainService.Plane> GetPlanesByName(string name);
+        FlightWeb.MainService.Plane[] GetPlanesByName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlanesByName", ReplyAction="http://tempuri.org/IPlaneService/GetPlanesByNameResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Plane>> GetPlanesByNameAsync(string name);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetPlanesByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlaneByID", ReplyAction="http://tempuri.org/IPlaneService/GetPlaneByIDResponse")]
-        Dijkstra.MainService.Plane GetPlaneByID(int id);
+        FlightWeb.MainService.Plane GetPlaneByID(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlaneByID", ReplyAction="http://tempuri.org/IPlaneService/GetPlaneByIDResponse")]
-        System.Threading.Tasks.Task<Dijkstra.MainService.Plane> GetPlaneByIDAsync(int id);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Plane> GetPlaneByIDAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlanesWithSeatNumber", ReplyAction="http://tempuri.org/IPlaneService/GetPlanesWithSeatNumberResponse")]
-        System.Collections.Generic.List<Dijkstra.MainService.Plane> GetPlanesWithSeatNumber(int seats);
+        FlightWeb.MainService.Plane[] GetPlanesWithSeatNumber(int seats);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlanesWithSeatNumber", ReplyAction="http://tempuri.org/IPlaneService/GetPlanesWithSeatNumberResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Plane>> GetPlanesWithSeatNumberAsync(int seats);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetPlanesWithSeatNumberAsync(int seats);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlanesWithLessOrEqualSeatNumber", ReplyAction="http://tempuri.org/IPlaneService/GetPlanesWithLessOrEqualSeatNumberResponse")]
-        System.Collections.Generic.List<Dijkstra.MainService.Plane> GetPlanesWithLessOrEqualSeatNumber(int seats);
+        FlightWeb.MainService.Plane[] GetPlanesWithLessOrEqualSeatNumber(int seats);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlanesWithLessOrEqualSeatNumber", ReplyAction="http://tempuri.org/IPlaneService/GetPlanesWithLessOrEqualSeatNumberResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Plane>> GetPlanesWithLessOrEqualSeatNumberAsync(int seats);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetPlanesWithLessOrEqualSeatNumberAsync(int seats);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlanesWithMoreOrEqualSeatNumber", ReplyAction="http://tempuri.org/IPlaneService/GetPlanesWithMoreOrEqualSeatNumberResponse")]
-        System.Collections.Generic.List<Dijkstra.MainService.Plane> GetPlanesWithMoreOrEqualSeatNumber(int seats);
+        FlightWeb.MainService.Plane[] GetPlanesWithMoreOrEqualSeatNumber(int seats);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlanesWithMoreOrEqualSeatNumber", ReplyAction="http://tempuri.org/IPlaneService/GetPlanesWithMoreOrEqualSeatNumberResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Plane>> GetPlanesWithMoreOrEqualSeatNumberAsync(int seats);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetPlanesWithMoreOrEqualSeatNumberAsync(int seats);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetAllPlanes", ReplyAction="http://tempuri.org/IPlaneService/GetAllPlanesResponse")]
-        System.Collections.Generic.List<Dijkstra.MainService.Plane> GetAllPlanes();
+        FlightWeb.MainService.Plane[] GetAllPlanes();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetAllPlanes", ReplyAction="http://tempuri.org/IPlaneService/GetAllPlanesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Plane>> GetAllPlanesAsync();
+        System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetAllPlanesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IPlaneServiceChannel : Dijkstra.MainService.IPlaneService, System.ServiceModel.IClientChannel {
+    public interface IPlaneServiceChannel : FlightWeb.MainService.IPlaneService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class PlaneServiceClient : System.ServiceModel.ClientBase<Dijkstra.MainService.IPlaneService>, Dijkstra.MainService.IPlaneService {
+    public partial class PlaneServiceClient : System.ServiceModel.ClientBase<FlightWeb.MainService.IPlaneService>, FlightWeb.MainService.IPlaneService {
         
         public PlaneServiceClient() {
         }
@@ -2283,75 +2283,75 @@ namespace Dijkstra.MainService {
                 base(binding, remoteAddress) {
         }
         
-        public int AddPlane(Dijkstra.MainService.Plane plane) {
+        public int AddPlane(FlightWeb.MainService.Plane plane) {
             return base.Channel.AddPlane(plane);
         }
         
-        public System.Threading.Tasks.Task<int> AddPlaneAsync(Dijkstra.MainService.Plane plane) {
+        public System.Threading.Tasks.Task<int> AddPlaneAsync(FlightWeb.MainService.Plane plane) {
             return base.Channel.AddPlaneAsync(plane);
         }
         
-        public Dijkstra.MainService.Plane UpdatePlane(Dijkstra.MainService.Plane plane) {
+        public FlightWeb.MainService.Plane UpdatePlane(FlightWeb.MainService.Plane plane) {
             return base.Channel.UpdatePlane(plane);
         }
         
-        public System.Threading.Tasks.Task<Dijkstra.MainService.Plane> UpdatePlaneAsync(Dijkstra.MainService.Plane plane) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Plane> UpdatePlaneAsync(FlightWeb.MainService.Plane plane) {
             return base.Channel.UpdatePlaneAsync(plane);
         }
         
-        public void DeletePlane(Dijkstra.MainService.Plane plane) {
+        public void DeletePlane(FlightWeb.MainService.Plane plane) {
             base.Channel.DeletePlane(plane);
         }
         
-        public System.Threading.Tasks.Task DeletePlaneAsync(Dijkstra.MainService.Plane plane) {
+        public System.Threading.Tasks.Task DeletePlaneAsync(FlightWeb.MainService.Plane plane) {
             return base.Channel.DeletePlaneAsync(plane);
         }
         
-        public System.Collections.Generic.List<Dijkstra.MainService.Plane> GetPlanesByName(string name) {
+        public FlightWeb.MainService.Plane[] GetPlanesByName(string name) {
             return base.Channel.GetPlanesByName(name);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Plane>> GetPlanesByNameAsync(string name) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetPlanesByNameAsync(string name) {
             return base.Channel.GetPlanesByNameAsync(name);
         }
         
-        public Dijkstra.MainService.Plane GetPlaneByID(int id) {
+        public FlightWeb.MainService.Plane GetPlaneByID(int id) {
             return base.Channel.GetPlaneByID(id);
         }
         
-        public System.Threading.Tasks.Task<Dijkstra.MainService.Plane> GetPlaneByIDAsync(int id) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Plane> GetPlaneByIDAsync(int id) {
             return base.Channel.GetPlaneByIDAsync(id);
         }
         
-        public System.Collections.Generic.List<Dijkstra.MainService.Plane> GetPlanesWithSeatNumber(int seats) {
+        public FlightWeb.MainService.Plane[] GetPlanesWithSeatNumber(int seats) {
             return base.Channel.GetPlanesWithSeatNumber(seats);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Plane>> GetPlanesWithSeatNumberAsync(int seats) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetPlanesWithSeatNumberAsync(int seats) {
             return base.Channel.GetPlanesWithSeatNumberAsync(seats);
         }
         
-        public System.Collections.Generic.List<Dijkstra.MainService.Plane> GetPlanesWithLessOrEqualSeatNumber(int seats) {
+        public FlightWeb.MainService.Plane[] GetPlanesWithLessOrEqualSeatNumber(int seats) {
             return base.Channel.GetPlanesWithLessOrEqualSeatNumber(seats);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Plane>> GetPlanesWithLessOrEqualSeatNumberAsync(int seats) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetPlanesWithLessOrEqualSeatNumberAsync(int seats) {
             return base.Channel.GetPlanesWithLessOrEqualSeatNumberAsync(seats);
         }
         
-        public System.Collections.Generic.List<Dijkstra.MainService.Plane> GetPlanesWithMoreOrEqualSeatNumber(int seats) {
+        public FlightWeb.MainService.Plane[] GetPlanesWithMoreOrEqualSeatNumber(int seats) {
             return base.Channel.GetPlanesWithMoreOrEqualSeatNumber(seats);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Plane>> GetPlanesWithMoreOrEqualSeatNumberAsync(int seats) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetPlanesWithMoreOrEqualSeatNumberAsync(int seats) {
             return base.Channel.GetPlanesWithMoreOrEqualSeatNumberAsync(seats);
         }
         
-        public System.Collections.Generic.List<Dijkstra.MainService.Plane> GetAllPlanes() {
+        public FlightWeb.MainService.Plane[] GetAllPlanes() {
             return base.Channel.GetAllPlanes();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Plane>> GetAllPlanesAsync() {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetAllPlanesAsync() {
             return base.Channel.GetAllPlanesAsync();
         }
     }
@@ -2361,60 +2361,60 @@ namespace Dijkstra.MainService {
     public interface IRouteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/AddRoute", ReplyAction="http://tempuri.org/IRouteService/AddRouteResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseInsertFault), Action="http://tempuri.org/IRouteService/AddRouteDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/AddRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.AlreadyExistFault), Action="http://tempuri.org/IRouteService/AddRouteAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        Dijkstra.MainService.Route AddRoute(Dijkstra.MainService.Route route);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseInsertFault), Action="http://tempuri.org/IRouteService/AddRouteDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/AddRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.AlreadyExistFault), Action="http://tempuri.org/IRouteService/AddRouteAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        FlightWeb.MainService.Route AddRoute(FlightWeb.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/AddRoute", ReplyAction="http://tempuri.org/IRouteService/AddRouteResponse")]
-        System.Threading.Tasks.Task<Dijkstra.MainService.Route> AddRouteAsync(Dijkstra.MainService.Route route);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Route> AddRouteAsync(FlightWeb.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/UpdateRoute", ReplyAction="http://tempuri.org/IRouteService/UpdateRouteResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/UpdateRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IRouteService/UpdateRouteDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.OptimisticConcurrencyFault), Action="http://tempuri.org/IRouteService/UpdateRouteOptimisticConcurrencyFaultFault", Name="OptimisticConcurrencyFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        Dijkstra.MainService.Route UpdateRoute(Dijkstra.MainService.Route route);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/UpdateRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IRouteService/UpdateRouteDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.OptimisticConcurrencyFault), Action="http://tempuri.org/IRouteService/UpdateRouteOptimisticConcurrencyFaultFault", Name="OptimisticConcurrencyFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        FlightWeb.MainService.Route UpdateRoute(FlightWeb.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/UpdateRoute", ReplyAction="http://tempuri.org/IRouteService/UpdateRouteResponse")]
-        System.Threading.Tasks.Task<Dijkstra.MainService.Route> UpdateRouteAsync(Dijkstra.MainService.Route route);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Route> UpdateRouteAsync(FlightWeb.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/DeleteRoute", ReplyAction="http://tempuri.org/IRouteService/DeleteRouteResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/DeleteRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IRouteService/DeleteRouteDatabaseDeleteFaultFault", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        void DeleteRoute(Dijkstra.MainService.Route route);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/DeleteRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IRouteService/DeleteRouteDatabaseDeleteFaultFault", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        void DeleteRoute(FlightWeb.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/DeleteRoute", ReplyAction="http://tempuri.org/IRouteService/DeleteRouteResponse")]
-        System.Threading.Tasks.Task DeleteRouteAsync(Dijkstra.MainService.Route route);
+        System.Threading.Tasks.Task DeleteRouteAsync(FlightWeb.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/GetRoute", ReplyAction="http://tempuri.org/IRouteService/GetRouteResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/GetRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        Dijkstra.MainService.Route GetRoute(int id);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/GetRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        FlightWeb.MainService.Route GetRoute(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/GetRoute", ReplyAction="http://tempuri.org/IRouteService/GetRouteResponse")]
-        System.Threading.Tasks.Task<Dijkstra.MainService.Route> GetRouteAsync(int id);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Route> GetRouteAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/GetRouteByAirports", ReplyAction="http://tempuri.org/IRouteService/GetRouteByAirportsResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/GetRouteByAirportsNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        Dijkstra.MainService.Route GetRouteByAirports(Dijkstra.MainService.Airport from, Dijkstra.MainService.Airport to);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/GetRouteByAirportsNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        FlightWeb.MainService.Route GetRouteByAirports(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/GetRouteByAirports", ReplyAction="http://tempuri.org/IRouteService/GetRouteByAirportsResponse")]
-        System.Threading.Tasks.Task<Dijkstra.MainService.Route> GetRouteByAirportsAsync(Dijkstra.MainService.Airport from, Dijkstra.MainService.Airport to);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Route> GetRouteByAirportsAsync(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/GetRoutesByAirport", ReplyAction="http://tempuri.org/IRouteService/GetRoutesByAirportResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/GetRoutesByAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        System.Collections.Generic.List<Dijkstra.MainService.Route> GetRoutesByAirport(Dijkstra.MainService.Airport from);
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/GetRoutesByAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        FlightWeb.MainService.Route[] GetRoutesByAirport(FlightWeb.MainService.Airport from);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/GetRoutesByAirport", ReplyAction="http://tempuri.org/IRouteService/GetRoutesByAirportResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Route>> GetRoutesByAirportAsync(Dijkstra.MainService.Airport from);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Route[]> GetRoutesByAirportAsync(FlightWeb.MainService.Airport from);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IRouteServiceChannel : Dijkstra.MainService.IRouteService, System.ServiceModel.IClientChannel {
+    public interface IRouteServiceChannel : FlightWeb.MainService.IRouteService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class RouteServiceClient : System.ServiceModel.ClientBase<Dijkstra.MainService.IRouteService>, Dijkstra.MainService.IRouteService {
+    public partial class RouteServiceClient : System.ServiceModel.ClientBase<FlightWeb.MainService.IRouteService>, FlightWeb.MainService.IRouteService {
         
         public RouteServiceClient() {
         }
@@ -2435,51 +2435,51 @@ namespace Dijkstra.MainService {
                 base(binding, remoteAddress) {
         }
         
-        public Dijkstra.MainService.Route AddRoute(Dijkstra.MainService.Route route) {
+        public FlightWeb.MainService.Route AddRoute(FlightWeb.MainService.Route route) {
             return base.Channel.AddRoute(route);
         }
         
-        public System.Threading.Tasks.Task<Dijkstra.MainService.Route> AddRouteAsync(Dijkstra.MainService.Route route) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Route> AddRouteAsync(FlightWeb.MainService.Route route) {
             return base.Channel.AddRouteAsync(route);
         }
         
-        public Dijkstra.MainService.Route UpdateRoute(Dijkstra.MainService.Route route) {
+        public FlightWeb.MainService.Route UpdateRoute(FlightWeb.MainService.Route route) {
             return base.Channel.UpdateRoute(route);
         }
         
-        public System.Threading.Tasks.Task<Dijkstra.MainService.Route> UpdateRouteAsync(Dijkstra.MainService.Route route) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Route> UpdateRouteAsync(FlightWeb.MainService.Route route) {
             return base.Channel.UpdateRouteAsync(route);
         }
         
-        public void DeleteRoute(Dijkstra.MainService.Route route) {
+        public void DeleteRoute(FlightWeb.MainService.Route route) {
             base.Channel.DeleteRoute(route);
         }
         
-        public System.Threading.Tasks.Task DeleteRouteAsync(Dijkstra.MainService.Route route) {
+        public System.Threading.Tasks.Task DeleteRouteAsync(FlightWeb.MainService.Route route) {
             return base.Channel.DeleteRouteAsync(route);
         }
         
-        public Dijkstra.MainService.Route GetRoute(int id) {
+        public FlightWeb.MainService.Route GetRoute(int id) {
             return base.Channel.GetRoute(id);
         }
         
-        public System.Threading.Tasks.Task<Dijkstra.MainService.Route> GetRouteAsync(int id) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Route> GetRouteAsync(int id) {
             return base.Channel.GetRouteAsync(id);
         }
         
-        public Dijkstra.MainService.Route GetRouteByAirports(Dijkstra.MainService.Airport from, Dijkstra.MainService.Airport to) {
+        public FlightWeb.MainService.Route GetRouteByAirports(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to) {
             return base.Channel.GetRouteByAirports(from, to);
         }
         
-        public System.Threading.Tasks.Task<Dijkstra.MainService.Route> GetRouteByAirportsAsync(Dijkstra.MainService.Airport from, Dijkstra.MainService.Airport to) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Route> GetRouteByAirportsAsync(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to) {
             return base.Channel.GetRouteByAirportsAsync(from, to);
         }
         
-        public System.Collections.Generic.List<Dijkstra.MainService.Route> GetRoutesByAirport(Dijkstra.MainService.Airport from) {
+        public FlightWeb.MainService.Route[] GetRoutesByAirport(FlightWeb.MainService.Airport from) {
             return base.Channel.GetRoutesByAirport(from);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Route>> GetRoutesByAirportAsync(Dijkstra.MainService.Airport from) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Route[]> GetRoutesByAirportAsync(FlightWeb.MainService.Airport from) {
             return base.Channel.GetRoutesByAirportAsync(from);
         }
     }
@@ -2489,49 +2489,49 @@ namespace Dijkstra.MainService {
     public interface IUserService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddUser", ReplyAction="http://tempuri.org/IUserService/AddUserResponse")]
-        int AddUser(Dijkstra.MainService.User user);
+        int AddUser(FlightWeb.MainService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddUser", ReplyAction="http://tempuri.org/IUserService/AddUserResponse")]
-        System.Threading.Tasks.Task<int> AddUserAsync(Dijkstra.MainService.User user);
+        System.Threading.Tasks.Task<int> AddUserAsync(FlightWeb.MainService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
-        Dijkstra.MainService.User UpdateUser(Dijkstra.MainService.User user);
+        FlightWeb.MainService.User UpdateUser(FlightWeb.MainService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
-        System.Threading.Tasks.Task<Dijkstra.MainService.User> UpdateUserAsync(Dijkstra.MainService.User user);
+        System.Threading.Tasks.Task<FlightWeb.MainService.User> UpdateUserAsync(FlightWeb.MainService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
-        void DeleteUser(Dijkstra.MainService.User user);
+        void DeleteUser(FlightWeb.MainService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
-        System.Threading.Tasks.Task DeleteUserAsync(Dijkstra.MainService.User user);
+        System.Threading.Tasks.Task DeleteUserAsync(FlightWeb.MainService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUser", ReplyAction="http://tempuri.org/IUserService/GetUserResponse")]
-        Dijkstra.MainService.User GetUser(int id);
+        FlightWeb.MainService.User GetUser(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUser", ReplyAction="http://tempuri.org/IUserService/GetUserResponse")]
-        System.Threading.Tasks.Task<Dijkstra.MainService.User> GetUserAsync(int id);
+        System.Threading.Tasks.Task<FlightWeb.MainService.User> GetUserAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserByName", ReplyAction="http://tempuri.org/IUserService/GetUserByNameResponse")]
-        System.Collections.Generic.List<Dijkstra.MainService.User> GetUserByName(string name);
+        FlightWeb.MainService.User[] GetUserByName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserByName", ReplyAction="http://tempuri.org/IUserService/GetUserByNameResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.User>> GetUserByNameAsync(string name);
+        System.Threading.Tasks.Task<FlightWeb.MainService.User[]> GetUserByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetAllUsers", ReplyAction="http://tempuri.org/IUserService/GetAllUsersResponse")]
-        System.Collections.Generic.List<Dijkstra.MainService.User> GetAllUsers();
+        FlightWeb.MainService.User[] GetAllUsers();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetAllUsers", ReplyAction="http://tempuri.org/IUserService/GetAllUsersResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.User>> GetAllUsersAsync();
+        System.Threading.Tasks.Task<FlightWeb.MainService.User[]> GetAllUsersAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IUserServiceChannel : Dijkstra.MainService.IUserService, System.ServiceModel.IClientChannel {
+    public interface IUserServiceChannel : FlightWeb.MainService.IUserService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class UserServiceClient : System.ServiceModel.ClientBase<Dijkstra.MainService.IUserService>, Dijkstra.MainService.IUserService {
+    public partial class UserServiceClient : System.ServiceModel.ClientBase<FlightWeb.MainService.IUserService>, FlightWeb.MainService.IUserService {
         
         public UserServiceClient() {
         }
@@ -2552,51 +2552,51 @@ namespace Dijkstra.MainService {
                 base(binding, remoteAddress) {
         }
         
-        public int AddUser(Dijkstra.MainService.User user) {
+        public int AddUser(FlightWeb.MainService.User user) {
             return base.Channel.AddUser(user);
         }
         
-        public System.Threading.Tasks.Task<int> AddUserAsync(Dijkstra.MainService.User user) {
+        public System.Threading.Tasks.Task<int> AddUserAsync(FlightWeb.MainService.User user) {
             return base.Channel.AddUserAsync(user);
         }
         
-        public Dijkstra.MainService.User UpdateUser(Dijkstra.MainService.User user) {
+        public FlightWeb.MainService.User UpdateUser(FlightWeb.MainService.User user) {
             return base.Channel.UpdateUser(user);
         }
         
-        public System.Threading.Tasks.Task<Dijkstra.MainService.User> UpdateUserAsync(Dijkstra.MainService.User user) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.User> UpdateUserAsync(FlightWeb.MainService.User user) {
             return base.Channel.UpdateUserAsync(user);
         }
         
-        public void DeleteUser(Dijkstra.MainService.User user) {
+        public void DeleteUser(FlightWeb.MainService.User user) {
             base.Channel.DeleteUser(user);
         }
         
-        public System.Threading.Tasks.Task DeleteUserAsync(Dijkstra.MainService.User user) {
+        public System.Threading.Tasks.Task DeleteUserAsync(FlightWeb.MainService.User user) {
             return base.Channel.DeleteUserAsync(user);
         }
         
-        public Dijkstra.MainService.User GetUser(int id) {
+        public FlightWeb.MainService.User GetUser(int id) {
             return base.Channel.GetUser(id);
         }
         
-        public System.Threading.Tasks.Task<Dijkstra.MainService.User> GetUserAsync(int id) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.User> GetUserAsync(int id) {
             return base.Channel.GetUserAsync(id);
         }
         
-        public System.Collections.Generic.List<Dijkstra.MainService.User> GetUserByName(string name) {
+        public FlightWeb.MainService.User[] GetUserByName(string name) {
             return base.Channel.GetUserByName(name);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.User>> GetUserByNameAsync(string name) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.User[]> GetUserByNameAsync(string name) {
             return base.Channel.GetUserByNameAsync(name);
         }
         
-        public System.Collections.Generic.List<Dijkstra.MainService.User> GetAllUsers() {
+        public FlightWeb.MainService.User[] GetAllUsers() {
             return base.Channel.GetAllUsers();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.User>> GetAllUsersAsync() {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.User[]> GetAllUsersAsync() {
             return base.Channel.GetAllUsersAsync();
         }
     }
@@ -2606,19 +2606,19 @@ namespace Dijkstra.MainService {
     public interface IDijkstra {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDijkstra/DijkstraStuff", ReplyAction="http://tempuri.org/IDijkstra/DijkstraStuffResponse")]
-        System.Collections.Generic.List<Dijkstra.MainService.Route> DijkstraStuff(Dijkstra.MainService.Airport from, Dijkstra.MainService.Airport to, System.DateTime startTime);
+        FlightWeb.MainService.Route[] DijkstraStuff(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to, System.DateTime startTime);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDijkstra/DijkstraStuff", ReplyAction="http://tempuri.org/IDijkstra/DijkstraStuffResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Route>> DijkstraStuffAsync(Dijkstra.MainService.Airport from, Dijkstra.MainService.Airport to, System.DateTime startTime);
+        System.Threading.Tasks.Task<FlightWeb.MainService.Route[]> DijkstraStuffAsync(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to, System.DateTime startTime);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IDijkstraChannel : Dijkstra.MainService.IDijkstra, System.ServiceModel.IClientChannel {
+    public interface IDijkstraChannel : FlightWeb.MainService.IDijkstra, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class DijkstraClient : System.ServiceModel.ClientBase<Dijkstra.MainService.IDijkstra>, Dijkstra.MainService.IDijkstra {
+    public partial class DijkstraClient : System.ServiceModel.ClientBase<FlightWeb.MainService.IDijkstra>, FlightWeb.MainService.IDijkstra {
         
         public DijkstraClient() {
         }
@@ -2639,11 +2639,11 @@ namespace Dijkstra.MainService {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.Generic.List<Dijkstra.MainService.Route> DijkstraStuff(Dijkstra.MainService.Airport from, Dijkstra.MainService.Airport to, System.DateTime startTime) {
+        public FlightWeb.MainService.Route[] DijkstraStuff(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to, System.DateTime startTime) {
             return base.Channel.DijkstraStuff(from, to, startTime);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dijkstra.MainService.Route>> DijkstraStuffAsync(Dijkstra.MainService.Airport from, Dijkstra.MainService.Airport to, System.DateTime startTime) {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Route[]> DijkstraStuffAsync(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to, System.DateTime startTime) {
             return base.Channel.DijkstraStuffAsync(from, to, startTime);
         }
     }

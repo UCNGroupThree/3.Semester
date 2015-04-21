@@ -18,6 +18,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{AAAD32A8-0483-4CD1-AC4B-94456BC4EEC2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightWeb", "FlightWeb\FlightWeb.csproj", "{FF441F49-0F23-4FF7-B4B8-6B25A78DE2FA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{32E1689C-C8F3-4161-94ED-8492F485395E} = {32E1689C-C8F3-4161-94ED-8492F485395E}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

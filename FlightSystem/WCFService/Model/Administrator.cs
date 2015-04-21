@@ -12,7 +12,7 @@ namespace WCFService.Model {
 
         [DataMember]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //Fortæller at ID skal være IDENTITY
-        public int ID { get; private set; }
+        public int ID { get; set; }
 
         [DataMember]
         [Required]
@@ -21,7 +21,7 @@ namespace WCFService.Model {
 
         [NotMapped]
         [DataMember]
-        public string PasswordPlain { private get; set; }
+        public string PasswordPlain { get; set; }
 
         //[DataMember]
         [Required]
@@ -32,6 +32,8 @@ namespace WCFService.Model {
         [Timestamp] // Timestamp for ændringer i objektet, til håndtering af concurrency i entityframework
         public byte[] Concurrency { get; set; }
 
+
+        /*
         /// <exception cref="NullReferenceException" />
         /// <exception cref="PasswordFormatException"/>
         public void GenerateHash() {
@@ -56,7 +58,7 @@ namespace WCFService.Model {
 
         public bool ValidateLogin() { //TODO SALT AND HASH! CHECK
             return true;
-        }
+        }*/
     }
 
 }
