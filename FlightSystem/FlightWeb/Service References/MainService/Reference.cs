@@ -602,7 +602,7 @@ namespace FlightWeb.MainService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightWeb.MainService.Route[] RoutesField;
+        private System.Collections.Generic.List<FlightWeb.MainService.Route> RoutesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ShortNameField;
@@ -725,7 +725,7 @@ namespace FlightWeb.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightWeb.MainService.Route[] Routes {
+        public System.Collections.Generic.List<FlightWeb.MainService.Route> Routes {
             get {
                 return this.RoutesField;
             }
@@ -786,7 +786,7 @@ namespace FlightWeb.MainService {
         private byte[] ConcurrencyField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightWeb.MainService.Flight[] FlightsField;
+        private System.Collections.Generic.List<FlightWeb.MainService.Flight> FlightsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private FlightWeb.MainService.Airport FromField;
@@ -824,7 +824,7 @@ namespace FlightWeb.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightWeb.MainService.Flight[] Flights {
+        public System.Collections.Generic.List<FlightWeb.MainService.Flight> Flights {
             get {
                 return this.FlightsField;
             }
@@ -1007,7 +1007,7 @@ namespace FlightWeb.MainService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightWeb.MainService.Seat[] SeatsField;
+        private System.Collections.Generic.List<FlightWeb.MainService.Seat> SeatsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1046,7 +1046,7 @@ namespace FlightWeb.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightWeb.MainService.Seat[] Seats {
+        public System.Collections.Generic.List<FlightWeb.MainService.Seat> Seats {
             get {
                 return this.SeatsField;
             }
@@ -1333,7 +1333,7 @@ namespace FlightWeb.MainService {
         private FlightWeb.MainService.Postal PostalField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightWeb.MainService.Ticket[] TicketsField;
+        private System.Collections.Generic.List<FlightWeb.MainService.Ticket> TicketsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1450,7 +1450,7 @@ namespace FlightWeb.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightWeb.MainService.Ticket[] Tickets {
+        public System.Collections.Generic.List<FlightWeb.MainService.Ticket> Tickets {
             get {
                 return this.TicketsField;
             }
@@ -1571,7 +1571,7 @@ namespace FlightWeb.MainService {
         private string OrderStateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private FlightWeb.MainService.SeatReservation[] SeatReservationsField;
+        private System.Collections.Generic.List<FlightWeb.MainService.SeatReservation> SeatReservationsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1636,7 +1636,7 @@ namespace FlightWeb.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public FlightWeb.MainService.SeatReservation[] SeatReservations {
+        public System.Collections.Generic.List<FlightWeb.MainService.SeatReservation> SeatReservations {
             get {
                 return this.SeatReservationsField;
             }
@@ -1814,16 +1814,16 @@ namespace FlightWeb.MainService {
         System.Threading.Tasks.Task<FlightWeb.MainService.Administrator> GetAdministratorAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/GetAdministratorsByUsername", ReplyAction="http://tempuri.org/IAdministratorService/GetAdministratorsByUsernameResponse")]
-        FlightWeb.MainService.Administrator[] GetAdministratorsByUsername(string username, bool equalsTo);
+        System.Collections.Generic.List<FlightWeb.MainService.Administrator> GetAdministratorsByUsername(string username, bool equalsTo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/GetAdministratorsByUsername", ReplyAction="http://tempuri.org/IAdministratorService/GetAdministratorsByUsernameResponse")]
-        System.Threading.Tasks.Task<FlightWeb.MainService.Administrator[]> GetAdministratorsByUsernameAsync(string username, bool equalsTo);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Administrator>> GetAdministratorsByUsernameAsync(string username, bool equalsTo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/GetAllAdministrators", ReplyAction="http://tempuri.org/IAdministratorService/GetAllAdministratorsResponse")]
-        FlightWeb.MainService.Administrator[] GetAllAdministrators();
+        System.Collections.Generic.List<FlightWeb.MainService.Administrator> GetAllAdministrators();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/GetAllAdministrators", ReplyAction="http://tempuri.org/IAdministratorService/GetAllAdministratorsResponse")]
-        System.Threading.Tasks.Task<FlightWeb.MainService.Administrator[]> GetAllAdministratorsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Administrator>> GetAllAdministratorsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/ValidateLogin", ReplyAction="http://tempuri.org/IAdministratorService/ValidateLoginResponse")]
         bool ValidateLogin(string username, string password);
@@ -1891,19 +1891,19 @@ namespace FlightWeb.MainService {
             return base.Channel.GetAdministratorAsync(id);
         }
         
-        public FlightWeb.MainService.Administrator[] GetAdministratorsByUsername(string username, bool equalsTo) {
+        public System.Collections.Generic.List<FlightWeb.MainService.Administrator> GetAdministratorsByUsername(string username, bool equalsTo) {
             return base.Channel.GetAdministratorsByUsername(username, equalsTo);
         }
         
-        public System.Threading.Tasks.Task<FlightWeb.MainService.Administrator[]> GetAdministratorsByUsernameAsync(string username, bool equalsTo) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Administrator>> GetAdministratorsByUsernameAsync(string username, bool equalsTo) {
             return base.Channel.GetAdministratorsByUsernameAsync(username, equalsTo);
         }
         
-        public FlightWeb.MainService.Administrator[] GetAllAdministrators() {
+        public System.Collections.Generic.List<FlightWeb.MainService.Administrator> GetAllAdministrators() {
             return base.Channel.GetAllAdministrators();
         }
         
-        public System.Threading.Tasks.Task<FlightWeb.MainService.Administrator[]> GetAllAdministratorsAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Administrator>> GetAllAdministratorsAsync() {
             return base.Channel.GetAllAdministratorsAsync();
         }
         
@@ -1955,34 +1955,34 @@ namespace FlightWeb.MainService {
         System.Threading.Tasks.Task<FlightWeb.MainService.Airport> GetAirportAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByCountry", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByCountryResponse")]
-        FlightWeb.MainService.Airport[] GetAirportsByCountry(string country);
+        System.Collections.Generic.List<FlightWeb.MainService.Airport> GetAirportsByCountry(string country);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByCountry", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByCountryResponse")]
-        System.Threading.Tasks.Task<FlightWeb.MainService.Airport[]> GetAirportsByCountryAsync(string country);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Airport>> GetAirportsByCountryAsync(string country);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByCity", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByCityResponse")]
-        FlightWeb.MainService.Airport[] GetAirportsByCity(string city);
+        System.Collections.Generic.List<FlightWeb.MainService.Airport> GetAirportsByCity(string city);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByCity", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByCityResponse")]
-        System.Threading.Tasks.Task<FlightWeb.MainService.Airport[]> GetAirportsByCityAsync(string city);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Airport>> GetAirportsByCityAsync(string city);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByName", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByNameResponse")]
-        FlightWeb.MainService.Airport[] GetAirportsByName(string name);
+        System.Collections.Generic.List<FlightWeb.MainService.Airport> GetAirportsByName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByName", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByNameResponse")]
-        System.Threading.Tasks.Task<FlightWeb.MainService.Airport[]> GetAirportsByNameAsync(string name);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Airport>> GetAirportsByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByShortName", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByShortNameResponse")]
-        FlightWeb.MainService.Airport[] GetAirportsByShortName(string shortName, bool equalsTo);
+        System.Collections.Generic.List<FlightWeb.MainService.Airport> GetAirportsByShortName(string shortName, bool equalsTo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetAirportsByShortName", ReplyAction="http://tempuri.org/IAirportService/GetAirportsByShortNameResponse")]
-        System.Threading.Tasks.Task<FlightWeb.MainService.Airport[]> GetAirportsByShortNameAsync(string shortName, bool equalsTo);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Airport>> GetAirportsByShortNameAsync(string shortName, bool equalsTo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetCountries", ReplyAction="http://tempuri.org/IAirportService/GetCountriesResponse")]
-        string[] GetCountries();
+        System.Collections.Generic.List<string> GetCountries();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/GetCountries", ReplyAction="http://tempuri.org/IAirportService/GetCountriesResponse")]
-        System.Threading.Tasks.Task<string[]> GetCountriesAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetCountriesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2044,43 +2044,43 @@ namespace FlightWeb.MainService {
             return base.Channel.GetAirportAsync(id);
         }
         
-        public FlightWeb.MainService.Airport[] GetAirportsByCountry(string country) {
+        public System.Collections.Generic.List<FlightWeb.MainService.Airport> GetAirportsByCountry(string country) {
             return base.Channel.GetAirportsByCountry(country);
         }
         
-        public System.Threading.Tasks.Task<FlightWeb.MainService.Airport[]> GetAirportsByCountryAsync(string country) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Airport>> GetAirportsByCountryAsync(string country) {
             return base.Channel.GetAirportsByCountryAsync(country);
         }
         
-        public FlightWeb.MainService.Airport[] GetAirportsByCity(string city) {
+        public System.Collections.Generic.List<FlightWeb.MainService.Airport> GetAirportsByCity(string city) {
             return base.Channel.GetAirportsByCity(city);
         }
         
-        public System.Threading.Tasks.Task<FlightWeb.MainService.Airport[]> GetAirportsByCityAsync(string city) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Airport>> GetAirportsByCityAsync(string city) {
             return base.Channel.GetAirportsByCityAsync(city);
         }
         
-        public FlightWeb.MainService.Airport[] GetAirportsByName(string name) {
+        public System.Collections.Generic.List<FlightWeb.MainService.Airport> GetAirportsByName(string name) {
             return base.Channel.GetAirportsByName(name);
         }
         
-        public System.Threading.Tasks.Task<FlightWeb.MainService.Airport[]> GetAirportsByNameAsync(string name) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Airport>> GetAirportsByNameAsync(string name) {
             return base.Channel.GetAirportsByNameAsync(name);
         }
         
-        public FlightWeb.MainService.Airport[] GetAirportsByShortName(string shortName, bool equalsTo) {
+        public System.Collections.Generic.List<FlightWeb.MainService.Airport> GetAirportsByShortName(string shortName, bool equalsTo) {
             return base.Channel.GetAirportsByShortName(shortName, equalsTo);
         }
         
-        public System.Threading.Tasks.Task<FlightWeb.MainService.Airport[]> GetAirportsByShortNameAsync(string shortName, bool equalsTo) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Airport>> GetAirportsByShortNameAsync(string shortName, bool equalsTo) {
             return base.Channel.GetAirportsByShortNameAsync(shortName, equalsTo);
         }
         
-        public string[] GetCountries() {
+        public System.Collections.Generic.List<string> GetCountries() {
             return base.Channel.GetCountries();
         }
         
-        public System.Threading.Tasks.Task<string[]> GetCountriesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetCountriesAsync() {
             return base.Channel.GetCountriesAsync();
         }
     }
@@ -2123,10 +2123,10 @@ namespace FlightWeb.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/GetFlights", ReplyAction="http://tempuri.org/IFlightService/GetFlightsResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/GetFlightsNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        FlightWeb.MainService.Flight[] GetFlights(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to);
+        System.Collections.Generic.List<FlightWeb.MainService.Flight> GetFlights(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/GetFlights", ReplyAction="http://tempuri.org/IFlightService/GetFlightsResponse")]
-        System.Threading.Tasks.Task<FlightWeb.MainService.Flight[]> GetFlightsAsync(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Flight>> GetFlightsAsync(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2188,11 +2188,11 @@ namespace FlightWeb.MainService {
             return base.Channel.GetFlightAsync(id);
         }
         
-        public FlightWeb.MainService.Flight[] GetFlights(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to) {
+        public System.Collections.Generic.List<FlightWeb.MainService.Flight> GetFlights(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to) {
             return base.Channel.GetFlights(from, to);
         }
         
-        public System.Threading.Tasks.Task<FlightWeb.MainService.Flight[]> GetFlightsAsync(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Flight>> GetFlightsAsync(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to) {
             return base.Channel.GetFlightsAsync(from, to);
         }
     }
@@ -2220,10 +2220,10 @@ namespace FlightWeb.MainService {
         System.Threading.Tasks.Task DeletePlaneAsync(FlightWeb.MainService.Plane plane);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlanesByName", ReplyAction="http://tempuri.org/IPlaneService/GetPlanesByNameResponse")]
-        FlightWeb.MainService.Plane[] GetPlanesByName(string name);
+        System.Collections.Generic.List<FlightWeb.MainService.Plane> GetPlanesByName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlanesByName", ReplyAction="http://tempuri.org/IPlaneService/GetPlanesByNameResponse")]
-        System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetPlanesByNameAsync(string name);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Plane>> GetPlanesByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlaneByID", ReplyAction="http://tempuri.org/IPlaneService/GetPlaneByIDResponse")]
         FlightWeb.MainService.Plane GetPlaneByID(int id);
@@ -2232,28 +2232,28 @@ namespace FlightWeb.MainService {
         System.Threading.Tasks.Task<FlightWeb.MainService.Plane> GetPlaneByIDAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlanesWithSeatNumber", ReplyAction="http://tempuri.org/IPlaneService/GetPlanesWithSeatNumberResponse")]
-        FlightWeb.MainService.Plane[] GetPlanesWithSeatNumber(int seats);
+        System.Collections.Generic.List<FlightWeb.MainService.Plane> GetPlanesWithSeatNumber(int seats);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlanesWithSeatNumber", ReplyAction="http://tempuri.org/IPlaneService/GetPlanesWithSeatNumberResponse")]
-        System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetPlanesWithSeatNumberAsync(int seats);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Plane>> GetPlanesWithSeatNumberAsync(int seats);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlanesWithLessOrEqualSeatNumber", ReplyAction="http://tempuri.org/IPlaneService/GetPlanesWithLessOrEqualSeatNumberResponse")]
-        FlightWeb.MainService.Plane[] GetPlanesWithLessOrEqualSeatNumber(int seats);
+        System.Collections.Generic.List<FlightWeb.MainService.Plane> GetPlanesWithLessOrEqualSeatNumber(int seats);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlanesWithLessOrEqualSeatNumber", ReplyAction="http://tempuri.org/IPlaneService/GetPlanesWithLessOrEqualSeatNumberResponse")]
-        System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetPlanesWithLessOrEqualSeatNumberAsync(int seats);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Plane>> GetPlanesWithLessOrEqualSeatNumberAsync(int seats);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlanesWithMoreOrEqualSeatNumber", ReplyAction="http://tempuri.org/IPlaneService/GetPlanesWithMoreOrEqualSeatNumberResponse")]
-        FlightWeb.MainService.Plane[] GetPlanesWithMoreOrEqualSeatNumber(int seats);
+        System.Collections.Generic.List<FlightWeb.MainService.Plane> GetPlanesWithMoreOrEqualSeatNumber(int seats);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetPlanesWithMoreOrEqualSeatNumber", ReplyAction="http://tempuri.org/IPlaneService/GetPlanesWithMoreOrEqualSeatNumberResponse")]
-        System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetPlanesWithMoreOrEqualSeatNumberAsync(int seats);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Plane>> GetPlanesWithMoreOrEqualSeatNumberAsync(int seats);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetAllPlanes", ReplyAction="http://tempuri.org/IPlaneService/GetAllPlanesResponse")]
-        FlightWeb.MainService.Plane[] GetAllPlanes();
+        System.Collections.Generic.List<FlightWeb.MainService.Plane> GetAllPlanes();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlaneService/GetAllPlanes", ReplyAction="http://tempuri.org/IPlaneService/GetAllPlanesResponse")]
-        System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetAllPlanesAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Plane>> GetAllPlanesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2307,11 +2307,11 @@ namespace FlightWeb.MainService {
             return base.Channel.DeletePlaneAsync(plane);
         }
         
-        public FlightWeb.MainService.Plane[] GetPlanesByName(string name) {
+        public System.Collections.Generic.List<FlightWeb.MainService.Plane> GetPlanesByName(string name) {
             return base.Channel.GetPlanesByName(name);
         }
         
-        public System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetPlanesByNameAsync(string name) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Plane>> GetPlanesByNameAsync(string name) {
             return base.Channel.GetPlanesByNameAsync(name);
         }
         
@@ -2323,35 +2323,35 @@ namespace FlightWeb.MainService {
             return base.Channel.GetPlaneByIDAsync(id);
         }
         
-        public FlightWeb.MainService.Plane[] GetPlanesWithSeatNumber(int seats) {
+        public System.Collections.Generic.List<FlightWeb.MainService.Plane> GetPlanesWithSeatNumber(int seats) {
             return base.Channel.GetPlanesWithSeatNumber(seats);
         }
         
-        public System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetPlanesWithSeatNumberAsync(int seats) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Plane>> GetPlanesWithSeatNumberAsync(int seats) {
             return base.Channel.GetPlanesWithSeatNumberAsync(seats);
         }
         
-        public FlightWeb.MainService.Plane[] GetPlanesWithLessOrEqualSeatNumber(int seats) {
+        public System.Collections.Generic.List<FlightWeb.MainService.Plane> GetPlanesWithLessOrEqualSeatNumber(int seats) {
             return base.Channel.GetPlanesWithLessOrEqualSeatNumber(seats);
         }
         
-        public System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetPlanesWithLessOrEqualSeatNumberAsync(int seats) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Plane>> GetPlanesWithLessOrEqualSeatNumberAsync(int seats) {
             return base.Channel.GetPlanesWithLessOrEqualSeatNumberAsync(seats);
         }
         
-        public FlightWeb.MainService.Plane[] GetPlanesWithMoreOrEqualSeatNumber(int seats) {
+        public System.Collections.Generic.List<FlightWeb.MainService.Plane> GetPlanesWithMoreOrEqualSeatNumber(int seats) {
             return base.Channel.GetPlanesWithMoreOrEqualSeatNumber(seats);
         }
         
-        public System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetPlanesWithMoreOrEqualSeatNumberAsync(int seats) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Plane>> GetPlanesWithMoreOrEqualSeatNumberAsync(int seats) {
             return base.Channel.GetPlanesWithMoreOrEqualSeatNumberAsync(seats);
         }
         
-        public FlightWeb.MainService.Plane[] GetAllPlanes() {
+        public System.Collections.Generic.List<FlightWeb.MainService.Plane> GetAllPlanes() {
             return base.Channel.GetAllPlanes();
         }
         
-        public System.Threading.Tasks.Task<FlightWeb.MainService.Plane[]> GetAllPlanesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Plane>> GetAllPlanesAsync() {
             return base.Channel.GetAllPlanesAsync();
         }
     }
@@ -2402,10 +2402,10 @@ namespace FlightWeb.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/GetRoutesByAirport", ReplyAction="http://tempuri.org/IRouteService/GetRoutesByAirportResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/GetRoutesByAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        FlightWeb.MainService.Route[] GetRoutesByAirport(FlightWeb.MainService.Airport from);
+        System.Collections.Generic.List<FlightWeb.MainService.Route> GetRoutesByAirport(FlightWeb.MainService.Airport from);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/GetRoutesByAirport", ReplyAction="http://tempuri.org/IRouteService/GetRoutesByAirportResponse")]
-        System.Threading.Tasks.Task<FlightWeb.MainService.Route[]> GetRoutesByAirportAsync(FlightWeb.MainService.Airport from);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Route>> GetRoutesByAirportAsync(FlightWeb.MainService.Airport from);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2475,11 +2475,11 @@ namespace FlightWeb.MainService {
             return base.Channel.GetRouteByAirportsAsync(from, to);
         }
         
-        public FlightWeb.MainService.Route[] GetRoutesByAirport(FlightWeb.MainService.Airport from) {
+        public System.Collections.Generic.List<FlightWeb.MainService.Route> GetRoutesByAirport(FlightWeb.MainService.Airport from) {
             return base.Channel.GetRoutesByAirport(from);
         }
         
-        public System.Threading.Tasks.Task<FlightWeb.MainService.Route[]> GetRoutesByAirportAsync(FlightWeb.MainService.Airport from) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Route>> GetRoutesByAirportAsync(FlightWeb.MainService.Airport from) {
             return base.Channel.GetRoutesByAirportAsync(from);
         }
     }
@@ -2513,16 +2513,16 @@ namespace FlightWeb.MainService {
         System.Threading.Tasks.Task<FlightWeb.MainService.User> GetUserAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserByName", ReplyAction="http://tempuri.org/IUserService/GetUserByNameResponse")]
-        FlightWeb.MainService.User[] GetUserByName(string name);
+        System.Collections.Generic.List<FlightWeb.MainService.User> GetUserByName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserByName", ReplyAction="http://tempuri.org/IUserService/GetUserByNameResponse")]
-        System.Threading.Tasks.Task<FlightWeb.MainService.User[]> GetUserByNameAsync(string name);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.User>> GetUserByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetAllUsers", ReplyAction="http://tempuri.org/IUserService/GetAllUsersResponse")]
-        FlightWeb.MainService.User[] GetAllUsers();
+        System.Collections.Generic.List<FlightWeb.MainService.User> GetAllUsers();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetAllUsers", ReplyAction="http://tempuri.org/IUserService/GetAllUsersResponse")]
-        System.Threading.Tasks.Task<FlightWeb.MainService.User[]> GetAllUsersAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.User>> GetAllUsersAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2584,19 +2584,19 @@ namespace FlightWeb.MainService {
             return base.Channel.GetUserAsync(id);
         }
         
-        public FlightWeb.MainService.User[] GetUserByName(string name) {
+        public System.Collections.Generic.List<FlightWeb.MainService.User> GetUserByName(string name) {
             return base.Channel.GetUserByName(name);
         }
         
-        public System.Threading.Tasks.Task<FlightWeb.MainService.User[]> GetUserByNameAsync(string name) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.User>> GetUserByNameAsync(string name) {
             return base.Channel.GetUserByNameAsync(name);
         }
         
-        public FlightWeb.MainService.User[] GetAllUsers() {
+        public System.Collections.Generic.List<FlightWeb.MainService.User> GetAllUsers() {
             return base.Channel.GetAllUsers();
         }
         
-        public System.Threading.Tasks.Task<FlightWeb.MainService.User[]> GetAllUsersAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.User>> GetAllUsersAsync() {
             return base.Channel.GetAllUsersAsync();
         }
     }
@@ -2606,10 +2606,10 @@ namespace FlightWeb.MainService {
     public interface IDijkstra {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDijkstra/DijkstraStuff", ReplyAction="http://tempuri.org/IDijkstra/DijkstraStuffResponse")]
-        FlightWeb.MainService.Route[] DijkstraStuff(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to, System.DateTime startTime);
+        System.Collections.Generic.List<FlightWeb.MainService.Route> DijkstraStuff(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to, System.DateTime startTime);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDijkstra/DijkstraStuff", ReplyAction="http://tempuri.org/IDijkstra/DijkstraStuffResponse")]
-        System.Threading.Tasks.Task<FlightWeb.MainService.Route[]> DijkstraStuffAsync(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to, System.DateTime startTime);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Route>> DijkstraStuffAsync(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to, System.DateTime startTime);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2639,11 +2639,11 @@ namespace FlightWeb.MainService {
                 base(binding, remoteAddress) {
         }
         
-        public FlightWeb.MainService.Route[] DijkstraStuff(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to, System.DateTime startTime) {
+        public System.Collections.Generic.List<FlightWeb.MainService.Route> DijkstraStuff(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to, System.DateTime startTime) {
             return base.Channel.DijkstraStuff(from, to, startTime);
         }
         
-        public System.Threading.Tasks.Task<FlightWeb.MainService.Route[]> DijkstraStuffAsync(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to, System.DateTime startTime) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Route>> DijkstraStuffAsync(FlightWeb.MainService.Airport from, FlightWeb.MainService.Airport to, System.DateTime startTime) {
             return base.Channel.DijkstraStuffAsync(from, to, startTime);
         }
     }
