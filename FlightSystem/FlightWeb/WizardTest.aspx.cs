@@ -16,7 +16,7 @@ namespace FlightWeb {
                 {
                     var list = client.GetCountries();
                     var countries = list.Select(ListItem.FromString).ToList();
-                    countries.Insert(0, new ListItem("--- Select ---", null));
+                    countries.Insert(0, new ListItem("--- Please select ---", "-1"));
 
                     ddlCountryFrom.Items.AddRange(countries.ToArray());
                     ddlCountryTo.Items.AddRange(countries.ToArray());
@@ -28,6 +28,15 @@ namespace FlightWeb {
                 }
             }
             
+        }
+
+        [WebMethod]
+        public static List<ListItem> GetAirportsFromCountry(string country) {
+            using (AirportServiceClient client = new AirportServiceClient()) {
+                var airports = client.GetAirportsByCountry(country);
+                var list = airports.ConvertAll(a => new ListItem(a.ToString(), a.ID.ToString()));
+                return list;
+            }
         }
 
     }

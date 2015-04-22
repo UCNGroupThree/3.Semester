@@ -8,6 +8,59 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    
+    <!--<script type="text/javascript" src="Scripts/wizardJS.js"></script>-->
+    <script>
+        $(document).ready(function () {
+            var pageUrl = '<%=ResolveUrl("~/WizardTest.aspx")%>';
+
+            function populate(list, control) {
+                if (list.length > 0) {
+                    $(control).removeAttr("disabled");
+                    $(control).empty().append('<option selected="selected" value="-1">--- Please select ---</option>');
+                    $.each(list, function (key, value) {
+                        $(control).append($("<option></option>").val(value.Value).html(value.Text));
+                    });
+                }
+                else {
+                    control.empty().append('<option selected="selected" value="-1">No Airports<option>');
+                }
+            }
+
+            function makeAirportBox(sender, returnTo) {
+                var country = $(sender).val();
+                $(returnTo).attr("disabled", "disabled");
+                if (country === "-1") {
+                    $(returnTo).empty().append('<option selected="selected" value="-1">--- Select country first ---</option>');
+                } else {
+                    $(returnTo).empty().append('<option selected="selected" value="-1">Loading...</option>');
+                    $.ajax({
+                        url: pageUrl + "/GetAirportsFromCountry",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({ country: country }),
+                        dataType: "json",
+                        success: function (result) {
+                            populate(result.d, returnTo);
+                        },
+                        error: function(xhr, status) {
+                            console.log("An error occurred: " + status);
+                            console.log(xhr.status);
+                            console.log(xhr.responseText);
+                        }
+
+                    });
+                }
+            }
+            
+            $("#<%=ddlCountryFrom.ClientID%>").change(function () {
+                makeAirportBox(this, "#<%=ddlFrom.ClientID%>");
+            });
+            $(<%=ddlCountryTo.ClientID%>).change(function () {
+                makeAirportBox(this, "#<%=ddlTo.ClientID%>");
+            });
+        });
+    </script>
 
 
     <asp:Wizard ID="Wizard1" runat="server" ActiveStepIndex="0" BackColor="#EFF3FB" BorderColor="#B5C7DE" BorderWidth="1px" Height="100%" Width="100%">
@@ -23,7 +76,9 @@
                         <div class="form-group">
                             <asp:Label class="control-label col-sm-2" ID="lblFrom" runat="server">From:</asp:Label>
                             <div class="col-sm-10 form">
-                                <asp:DropDownList ID="ddlFrom" class="form-control" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlFrom" Enabled="False" CssClass="form-control" runat="server">
+                                    <asp:ListItem Value="-1" Text="--- Select Country first ---"></asp:ListItem>
+                                </asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-group">
@@ -35,7 +90,9 @@
                         <div class="form-group">
                             <asp:Label class="control-label col-sm-2" ID="lblTo" runat="server">To:</asp:Label>
                             <div class="col-sm-10 form">
-                                <asp:DropDownList ID="ddlTo" class="form-control" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlTo" Enabled="False" CssClass="form-control" runat="server">
+                                    <asp:ListItem Value="-1" Text="--- Select Country first ---"></asp:ListItem>
+                                </asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-group">
