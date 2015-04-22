@@ -30,12 +30,5 @@ namespace FlightWeb {
             
         }
 
-        protected void ddlCountryFrom_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Debug.WriteLine("hej!");
-            ddlFrom.Items.Add("HEJ!");
-        }
-
-     
     }
 }
