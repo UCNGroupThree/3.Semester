@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -9,7 +10,9 @@ using System.Threading.Tasks;
 namespace WCFService.Model {
     public class FlightDB : DbContext {
 
-        public FlightDB() : base(@"Server=kraka.ucn.dk;Database=dmaa0214_3Sem_3;User Id=dmaa0214_3Sem_3;Password=IsAllowed;") {
+        private static readonly string ConnStr = ConfigurationManager.ConnectionStrings["dbConn"].ToString();
+
+        public FlightDB() : base(ConnStr) {
             
         }
 
