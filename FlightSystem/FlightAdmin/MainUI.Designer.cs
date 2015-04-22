@@ -26,36 +26,37 @@ namespace FlightAdmin {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainUI));
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cakeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cookiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lasseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unitTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tabAdministrator = new System.Windows.Forms.TabPage();
-            this.tabReservation = new System.Windows.Forms.TabPage();
-            this.tabFlight = new System.Windows.Forms.TabPage();
-            this.tabAirPort = new System.Windows.Forms.TabPage();
-            this.tabRoute = new System.Windows.Forms.TabPage();
-            this.tabCustomer = new System.Windows.Forms.TabPage();
-            this.tabPlane = new System.Windows.Forms.TabPage();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.planeTab1 = new FlightAdmin.GUI.PlaneTab();
-            this.customerTab1 = new FlightAdmin.GUI.CustomerTab();
-            this.routeTab1 = new FlightAdmin.GUI.RouteTab();
-            this.airPortTab1 = new FlightAdmin.GUI.AirPortTab();
-            this.flightTab1 = new FlightAdmin.GUI.FlightTab();
-            this.reservationTab1 = new FlightAdmin.GUI.ReservationTab();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tabAdministrator = new System.Windows.Forms.TabPage();
             this.administratorTab1 = new FlightAdmin.GUI.AdministratorTab();
+            this.tabReservation = new System.Windows.Forms.TabPage();
+            this.reservationTab1 = new FlightAdmin.GUI.ReservationTab();
+            this.tabFlight = new System.Windows.Forms.TabPage();
+            this.flightTab1 = new FlightAdmin.GUI.FlightTab();
+            this.tabAirPort = new System.Windows.Forms.TabPage();
+            this.airPortTab1 = new FlightAdmin.GUI.AirPortTab();
+            this.tabRoute = new System.Windows.Forms.TabPage();
+            this.routeTab1 = new FlightAdmin.GUI.RouteTab();
+            this.tabCustomer = new System.Windows.Forms.TabPage();
+            this.customerTab1 = new FlightAdmin.GUI.CustomerTab();
+            this.tabPlane = new System.Windows.Forms.TabPage();
+            this.planeTab1 = new FlightAdmin.GUI.PlaneTab();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.menuStrip2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabAdministrator.SuspendLayout();
@@ -117,11 +118,52 @@ namespace FlightAdmin {
             this.lasseToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.lasseToolStripMenuItem.Text = "Lasse";
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(113, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // unitTypeToolStripMenuItem
             // 
             this.unitTypeToolStripMenuItem.Name = "unitTypeToolStripMenuItem";
             this.unitTypeToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.unitTypeToolStripMenuItem.Text = "Edit";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.helpToolStripMenuItem1,
+            this.toolStripMenuItem1,
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // helpToolStripMenuItem1
+            // 
+            this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(110, 22);
+            this.helpToolStripMenuItem1.Text = "Help";
+            this.helpToolStripMenuItem1.Click += new System.EventHandler(this.helpToolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(107, 6);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.aboutToolStripMenuItem.Text = "About ";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -150,6 +192,16 @@ namespace FlightAdmin {
             this.tabAdministrator.Text = "Administrator";
             this.tabAdministrator.UseVisualStyleBackColor = true;
             // 
+            // administratorTab1
+            // 
+            this.administratorTab1.BackColor = System.Drawing.SystemColors.Control;
+            this.administratorTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.administratorTab1.Location = new System.Drawing.Point(0, 0);
+            this.administratorTab1.Margin = new System.Windows.Forms.Padding(0);
+            this.administratorTab1.Name = "administratorTab1";
+            this.administratorTab1.Size = new System.Drawing.Size(833, 417);
+            this.administratorTab1.TabIndex = 0;
+            // 
             // tabReservation
             // 
             this.tabReservation.Controls.Add(this.reservationTab1);
@@ -160,6 +212,14 @@ namespace FlightAdmin {
             this.tabReservation.TabIndex = 5;
             this.tabReservation.Text = "Reservation";
             this.tabReservation.UseVisualStyleBackColor = true;
+            // 
+            // reservationTab1
+            // 
+            this.reservationTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reservationTab1.Location = new System.Drawing.Point(3, 3);
+            this.reservationTab1.Name = "reservationTab1";
+            this.reservationTab1.Size = new System.Drawing.Size(827, 411);
+            this.reservationTab1.TabIndex = 0;
             // 
             // tabFlight
             // 
@@ -172,6 +232,14 @@ namespace FlightAdmin {
             this.tabFlight.Text = "Flight";
             this.tabFlight.UseVisualStyleBackColor = true;
             // 
+            // flightTab1
+            // 
+            this.flightTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flightTab1.Location = new System.Drawing.Point(3, 3);
+            this.flightTab1.Name = "flightTab1";
+            this.flightTab1.Size = new System.Drawing.Size(827, 411);
+            this.flightTab1.TabIndex = 0;
+            // 
             // tabAirPort
             // 
             this.tabAirPort.Controls.Add(this.airPortTab1);
@@ -182,6 +250,14 @@ namespace FlightAdmin {
             this.tabAirPort.TabIndex = 3;
             this.tabAirPort.Text = "AirPort";
             this.tabAirPort.UseVisualStyleBackColor = true;
+            // 
+            // airPortTab1
+            // 
+            this.airPortTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.airPortTab1.Location = new System.Drawing.Point(3, 3);
+            this.airPortTab1.Name = "airPortTab1";
+            this.airPortTab1.Size = new System.Drawing.Size(827, 411);
+            this.airPortTab1.TabIndex = 0;
             // 
             // tabRoute
             // 
@@ -194,6 +270,14 @@ namespace FlightAdmin {
             this.tabRoute.Text = "Route";
             this.tabRoute.UseVisualStyleBackColor = true;
             // 
+            // routeTab1
+            // 
+            this.routeTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.routeTab1.Location = new System.Drawing.Point(3, 3);
+            this.routeTab1.Name = "routeTab1";
+            this.routeTab1.Size = new System.Drawing.Size(827, 411);
+            this.routeTab1.TabIndex = 0;
+            // 
             // tabCustomer
             // 
             this.tabCustomer.Controls.Add(this.customerTab1);
@@ -204,6 +288,14 @@ namespace FlightAdmin {
             this.tabCustomer.TabIndex = 1;
             this.tabCustomer.Text = "Customer";
             this.tabCustomer.UseVisualStyleBackColor = true;
+            // 
+            // customerTab1
+            // 
+            this.customerTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customerTab1.Location = new System.Drawing.Point(3, 3);
+            this.customerTab1.Name = "customerTab1";
+            this.customerTab1.Size = new System.Drawing.Size(827, 411);
+            this.customerTab1.TabIndex = 0;
             // 
             // tabPlane
             // 
@@ -216,6 +308,14 @@ namespace FlightAdmin {
             this.tabPlane.TabIndex = 0;
             this.tabPlane.Text = "Plane";
             this.tabPlane.UseVisualStyleBackColor = true;
+            // 
+            // planeTab1
+            // 
+            this.planeTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.planeTab1.Location = new System.Drawing.Point(3, 3);
+            this.planeTab1.Name = "planeTab1";
+            this.planeTab1.Size = new System.Drawing.Size(827, 411);
+            this.planeTab1.TabIndex = 0;
             // 
             // tabControl1
             // 
@@ -234,105 +334,6 @@ namespace FlightAdmin {
             this.tabControl1.Size = new System.Drawing.Size(841, 443);
             this.tabControl1.TabIndex = 2;
             // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.helpToolStripMenuItem1,
-            this.toolStripMenuItem1,
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // helpToolStripMenuItem1
-            // 
-            this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.helpToolStripMenuItem1.Text = "Help";
-            this.helpToolStripMenuItem1.Click += new System.EventHandler(this.helpToolStripMenuItem1_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aboutToolStripMenuItem.Text = "About ";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(113, 6);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // planeTab1
-            // 
-            this.planeTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.planeTab1.Location = new System.Drawing.Point(3, 3);
-            this.planeTab1.Name = "planeTab1";
-            this.planeTab1.Size = new System.Drawing.Size(827, 411);
-            this.planeTab1.TabIndex = 0;
-            // 
-            // customerTab1
-            // 
-            this.customerTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customerTab1.Location = new System.Drawing.Point(3, 3);
-            this.customerTab1.Name = "customerTab1";
-            this.customerTab1.Size = new System.Drawing.Size(827, 411);
-            this.customerTab1.TabIndex = 0;
-            // 
-            // routeTab1
-            // 
-            this.routeTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.routeTab1.Location = new System.Drawing.Point(3, 3);
-            this.routeTab1.Name = "routeTab1";
-            this.routeTab1.Size = new System.Drawing.Size(827, 411);
-            this.routeTab1.TabIndex = 0;
-            // 
-            // airPortTab1
-            // 
-            this.airPortTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.airPortTab1.Location = new System.Drawing.Point(3, 3);
-            this.airPortTab1.Name = "airPortTab1";
-            this.airPortTab1.Size = new System.Drawing.Size(827, 411);
-            this.airPortTab1.TabIndex = 0;
-            // 
-            // flightTab1
-            // 
-            this.flightTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flightTab1.Location = new System.Drawing.Point(3, 3);
-            this.flightTab1.Name = "flightTab1";
-            this.flightTab1.Size = new System.Drawing.Size(827, 411);
-            this.flightTab1.TabIndex = 0;
-            // 
-            // reservationTab1
-            // 
-            this.reservationTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reservationTab1.Location = new System.Drawing.Point(3, 3);
-            this.reservationTab1.Name = "reservationTab1";
-            this.reservationTab1.Size = new System.Drawing.Size(827, 411);
-            this.reservationTab1.TabIndex = 0;
-            // 
-            // administratorTab1
-            // 
-            this.administratorTab1.BackColor = System.Drawing.SystemColors.Control;
-            this.administratorTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.administratorTab1.Location = new System.Drawing.Point(0, 0);
-            this.administratorTab1.Margin = new System.Windows.Forms.Padding(0);
-            this.administratorTab1.Name = "administratorTab1";
-            this.administratorTab1.Size = new System.Drawing.Size(833, 417);
-            this.administratorTab1.TabIndex = 0;
-            // 
             // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -341,6 +342,7 @@ namespace FlightAdmin {
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(850, 500);
             this.Name = "MainUI";
             this.Text = "Flight Administration";
