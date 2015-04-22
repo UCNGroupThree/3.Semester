@@ -13,41 +13,41 @@
     <asp:Wizard ID="Wizard1" runat="server" ActiveStepIndex="0" BackColor="#EFF3FB" BorderColor="#B5C7DE" BorderWidth="1px" Height="100%" Width="100%">
         <WizardSteps>
             <asp:WizardStep runat="server" Title="Flight Search">
-                <div style="padding: 10px">
+                <div style="padding: 20px">
                         <div class="form-group">
                             <asp:Label class="control-label col-sm-2" ID="lblCountryFrom" runat="server">From Country:</asp:Label>
-                            <div class="col-sm-10">
-                                <asp:DropDownList ID="ddlCountryFrom" class="form-control" runat="server" OnSelectedIndexChanged="ddlCountryFrom_SelectedIndexChanged"></asp:DropDownList>
+                            <div class="col-sm-10 form">
+                                <asp:DropDownList ID="ddlCountryFrom" class="form-control" runat="server"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-group">
                             <asp:Label class="control-label col-sm-2" ID="lblFrom" runat="server">From:</asp:Label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-10 form">
                                 <asp:DropDownList ID="ddlFrom" class="form-control" runat="server"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-group">
                             <asp:Label class="control-label col-sm-2" ID="lblCountryTo" runat="server">To Country:</asp:Label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-10 form">
                                 <asp:DropDownList ID="ddlCountryTo" class="form-control" runat="server"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-group">
                             <asp:Label class="control-label col-sm-2" ID="lblTo" runat="server">To:</asp:Label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-10 form">
                                 <asp:DropDownList ID="ddlTo" class="form-control" runat="server"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-group">
                             <asp:Label class="control-label col-sm-2" ID="lblDepart" runat="server">Depart:</asp:Label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-10 form">
                                 <asp:TextBox class="form-control" ID="txtDepart" runat="server"></asp:TextBox>
                                 <cc1:CalendarExtender ID="calDepart" TargetControlID="txtDepart" Format="dd-MM-yyyy HH:mm" runat="server" />
                             </div>
                         </div>
                         <div class="form-group">
                             <asp:Label class="control-label col-sm-2" ID="lblPersons" runat="server">Persons:</asp:Label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-10 form">
                                 <asp:DropDownList ID="ddlPersons" class="form-control" runat="server"></asp:DropDownList>
                             </div>
                         </div>
