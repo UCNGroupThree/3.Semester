@@ -16,6 +16,9 @@ namespace WCFService.Model {
         }
 
         [DataMember]
+        public Route Route { get; set; }
+
+        [DataMember]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 

@@ -31,13 +31,13 @@ namespace FlightWeb {
         protected global::System.Web.UI.WebControls.Wizard Wizard1;
         
         /// <summary>
-        /// UpdatePanel101 control.
+        /// UpdatePanelFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel101;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelFrom;
         
         /// <summary>
         /// lblCountryFrom control.
@@ -74,6 +74,15 @@ namespace FlightWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFrom;
+        
+        /// <summary>
+        /// UpdatePanelTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelTo;
         
         /// <summary>
         /// lblCountryTo control.

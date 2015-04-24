@@ -20,7 +20,7 @@
                 <WizardSteps>
                     <asp:WizardStep runat="server" Title="Flight Search">
                         <div style="padding: 20px">
-                            <asp:UpdatePanel ID="UpdatePanel101" runat="server" UpdateMode="Conditional">
+                            <asp:UpdatePanel ID="UpdatePanelFrom" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
                                     <div class="form-group">
                                         <asp:Label class="control-label col-sm-2" ID="lblCountryFrom" runat="server">From Country:</asp:Label>
@@ -38,20 +38,25 @@
                                     </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
-                            <div class="form-group">
-                                <asp:Label class="control-label col-sm-2" ID="lblCountryTo" runat="server">To Country:</asp:Label>
-                                <div class="col-sm-10 form">
-                                    <asp:DropDownList ID="ddlCountryTo" class="form-control" runat="server"></asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <asp:Label class="control-label col-sm-2" ID="lblTo" runat="server">To:</asp:Label>
-                                <div class="col-sm-10 form">
-                                    <asp:DropDownList ID="ddlTo" Enabled="False" CssClass="form-control" runat="server">
-                                        <asp:ListItem Value="-1" Text="--- Select Country first ---"></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
+
+                            <asp:UpdatePanel ID="UpdatePanelTo" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                    <div class="form-group">
+                                        <asp:Label class="control-label col-sm-2" ID="lblCountryTo" runat="server">To Country:</asp:Label>
+                                        <div class="col-sm-10 form">
+                                            <asp:DropDownList ID="ddlCountryTo" class="form-control" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlCountryTo_SelectedIndexChanged"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <asp:Label class="control-label col-sm-2" ID="lblTo" runat="server">To:</asp:Label>
+                                        <div class="col-sm-10 form">
+                                            <asp:DropDownList ID="ddlTo" Enabled="False" CssClass="form-control" runat="server">
+                                                <asp:ListItem Value="-1" Text="--- Select Country first ---"></asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
                             <div class="form-group">
                                 <asp:Label class="control-label col-sm-2" ID="lblDepart" runat="server">Depart:</asp:Label>
                                 <div class="col-sm-10 form">

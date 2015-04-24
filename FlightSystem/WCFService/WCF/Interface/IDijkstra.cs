@@ -9,7 +9,7 @@ namespace WCFService.WCF.Interface {
     public interface IDijkstra {
 
         [OperationContract]
-        List<Route> DijkstraStuff(Airport from, Airport to, DateTime startTime);
+        List<Flight> DijkstraStuff(Airport from, Airport to, DateTime startTime);
 
     }
 }

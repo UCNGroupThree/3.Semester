@@ -11,19 +11,19 @@ namespace Dijkstra {
         static void Main(string[] args) {
 
             while (true) {
-                try {
+                //try {
                     Console.Write("ID1: ");
                     int id1 = int.Parse(Console.ReadLine());
                     Console.Write("ID2: ");
                     int id2 = int.Parse(Console.ReadLine());
 
                     Console.WriteLine("---------------------------");
-                    DateTime dateTime = DateTime.Now.AddHours(-2);
+                    DateTime dateTime = DateTime.Now.AddHours(-5);
 
                     PrintStuff(id1, id2, dateTime);
 
                     Console.ReadKey();
-                }catch(Exception){}
+                //}catch(Exception){}
 
             }
         }
@@ -38,17 +38,17 @@ namespace Dijkstra {
                 a1 = client.GetAirport(id1);
                 a2 = client.GetAirport(id2);
             }
-            
-            List<Route> aps;
+
+            List<Flight> aps;
 
             using (DijkstraClient client = new DijkstraClient()) {
                 aps = client.DijkstraStuff(a1, a2, startTime);
             }
 
             if (aps != null && aps.Count > 0) {
-                foreach (var route in aps) {
-                    Console.WriteLine(route.From.ID + ":" + route.From.Name + " -> " + route.To.Name + ":" + route.To.ID + " - Price: " + route.Price);
-                    dm += route.Price;
+                foreach (var flight in aps) {
+                    Console.WriteLine(flight.Route.From.ID + ":" + flight.Route.From.Name + " -> " + flight.Route.To.Name + ":" + flight.Route.To.ID + " - Price: " + flight.Route.Price);
+                    dm += flight.Route.Price;
                 }
 
                 Console.WriteLine("Total Price: " + dm);
@@ -58,33 +58,6 @@ namespace Dijkstra {
 
             watch.Stop();
             Console.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
-        }
-
-        static void PrintStuff2(int id1, int id2, DateTime startTime) {
-            decimal dm = 0;
-            Airport a1;
-            Airport a2;
-            using (AirportServiceClient client = new AirportServiceClient()) {
-                a1 = client.GetAirport(id1);
-                a2 = client.GetAirport(id2);
-            }
-
-            List<Route> aps;
-
-            using (DijkstraClient client = new DijkstraClient()) {
-                aps = client.DijkstraStuff(a1, a2, startTime);
-            }
-
-            if (aps != null && aps.Count > 0) {
-                foreach (var route in aps) {
-                    Console.WriteLine(route.From.ID + ":" + route.From.Name + " -> " + route.To.Name + ":" + route.To.ID + " - Price: " + route.Price);
-                    dm += route.Price;
-                }
-
-                Console.WriteLine("Total Price: " + dm);
-            } else {
-                Console.WriteLine("Empty Result");
-            }
         }
     }
 }

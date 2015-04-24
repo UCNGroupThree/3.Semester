@@ -46,7 +46,7 @@ namespace WCFService.Dijkstra {
 
         }
 
-        public List<Route> GetShortestPath(Airport from, Airport to, DateTime startTime) {
+        public List<Flight> GetShortestPath(Airport from, Airport to, DateTime startTime) {
             //var time = startTime;
             var times = new Dictionary<Airport, DateTime>();
             times[from] = startTime;
@@ -57,9 +57,10 @@ namespace WCFService.Dijkstra {
 
             int id = from.ID;
             from = _db.Airports.Where(a => a.ID == id).Include(a => a.Routes).SingleOrDefault();
-            var path = new List<Route>();
+            var path = new List<Flight>();
             var distance = new Dictionary<Airport, decimal>();
             var previous = new Dictionary<Airport, Airport>();
+            var routedFlights = new Dictionary<Route, Flight>();
             var nodes = new List<Airport>();
 
             foreach (var edge in edges) {
@@ -71,23 +72,25 @@ namespace WCFService.Dijkstra {
 
                 nodes.Add(edge.Data);
             }
-
             while (nodes.Count != 0) {
                 nodes.Sort((x, y) => (int)Math.Round(distance[x]) - (int)Math.Round(distance[y]));
 
                 var smallest = nodes[0];
                 nodes.Remove(smallest);
-
+                //LasseGO
                 if (smallest.ID == to.ID) {
                     if (previous.Count > 0) {
                         while (previous.ContainsKey(smallest)) {
                             Route route = previous[smallest].GetRouteTo(smallest);
-                            path.Add(route);
+                            
+                            path.Add(routedFlights[route]);
                             smallest = previous[smallest];
                         }
                     } else {
                         Route route = from.GetRouteTo(smallest);
-                        path.Add(route);
+                        if (route != null) {
+                            path.Add(routedFlights[route]);
+                        }
                     }
 
                     break;
@@ -106,11 +109,11 @@ namespace WCFService.Dijkstra {
 
                         var time = times[smallest];
                         Debug.WriteLine(smallest.ID + " -> " + neighbor.Data.ID);
-                        if (smallest.ID == 5) {
-                            Console.Write("hi");
-                        }
-
-                        List<Flight> flights = smallest.GetRouteTo(neighbor.Data).Flights;
+                        //if (smallest.ID == 5) {
+                        //    Console.Write("hi");
+                        //}
+                        Route route = smallest.GetRouteTo(neighbor.Data);
+                        List<Flight> flights = route.Flights;
                         flights.Sort(new Comparison<Flight>((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
                         flight = flights.FirstOrDefault(dep => dep.DepartureTime.TimeOfDay > time.TimeOfDay);
 
@@ -125,6 +128,7 @@ namespace WCFService.Dijkstra {
                             times[neighbor.Data] = flight.ArrivalTime;
                             distance[neighbor.Data] = alt;
                             previous[neighbor.Data] = smallest;
+                            routedFlights[route] = flight;
                         }
 
                         //}

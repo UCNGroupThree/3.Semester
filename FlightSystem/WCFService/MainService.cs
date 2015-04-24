@@ -239,7 +239,7 @@ namespace WCFService {
 
         #region Dijktra
 
-        public List<Route> DijkstraStuff(Airport from, Airport to, DateTime startTime) {
+        public List<Flight> DijkstraStuff(Airport from, Airport to, DateTime startTime) {
             return _dijkstraService.DijkstraStuff(from, to, startTime);
         }
 
