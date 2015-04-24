@@ -64,6 +64,38 @@ namespace FlightWeb {
             }
         }
 
+        protected void Wizard1_NextButtonClick(object sender, WizardNavigationEventArgs e) {
+            Debug.WriteLine("######");
+            Debug.WriteLine(e.CurrentStepIndex);
+            Debug.WriteLine(e.NextStepIndex);
+            
+            if (e.CurrentStepIndex == 0) {
+                using (DijkstraClient client = new DijkstraClient()) {
+                    Airport from = new Airport() {ID = int.Parse(ddlFrom.SelectedValue)};
+                    Airport to = new Airport() {ID = int.Parse(ddlTo.SelectedValue)};
+                    DateTime date = DateTime.Parse(txtDepart.Text);
+                    Debug.WriteLine("from: {0} - to: {1}", from.ID, to.ID);
+                    Debug.WriteLine("date: {0}", date);
+                    var list = client.DijkstraStuff(from, to, date);
+                    Debug.Write("list: " + list);
+                    //if (list != null) {
+                        Debug.WriteLineIf(list != null, " , Count: " +  list.Count.ToString());
+                    //}
+                        GridViewFlights.DataSource = list;
+                        GridViewFlights.DataBind();
+                    var price = list.Sum(x => x.Price);
+                    var travelStart = list.Min(x => x.DepartureTime);
+                    var travelEnd = list.Max(x => x.ArrivalTime);
+                    var travelTime = travelEnd - travelStart;
+                    lblTotalPrice.Text = string.Format("{0:C}", price);
+                    lblTravelTime.Text = string.Format("{0}", travelTime);
+                }
+            }
+            Debug.WriteLine("######");
+            
+
+        }
+
 
 
     }

@@ -16,7 +16,7 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
 
-            <asp:Wizard ID="Wizard1" runat="server" ActiveStepIndex="0" BackColor="#EFF3FB" BorderColor="#B5C7DE" BorderWidth="1px" Height="100%" Width="100%">
+            <asp:Wizard ID="Wizard1" runat="server" ActiveStepIndex="0" BackColor="#EFF3FB" BorderColor="#B5C7DE" BorderWidth="1px" Height="100%" Width="100%" OnNextButtonClick="Wizard1_NextButtonClick">
                 <WizardSteps>
                     <asp:WizardStep runat="server" Title="Flight Search">
                         <div style="padding: 20px">
@@ -31,14 +31,14 @@
                                     <div class="form-group">
                                         <asp:Label class="control-label col-sm-2" ID="lblFrom" runat="server">From:</asp:Label>
                                         <div class="col-sm-10 form">
-                                            <asp:DropDownList ID="ddlFrom" Enabled="False" CssClass="form-control" runat="server">
+                                            <asp:DropDownList ID="ddlFrom" Enabled="False" CssClass="form-control" runat="server" DataTextField="City" DataValueField="ID">
                                                 <asp:ListItem Value="-1" Text="--- Select Country first ---"></asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
                                     </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
-
+                            
                             <asp:UpdatePanel ID="UpdatePanelTo" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
                                     <div class="form-group">
@@ -75,6 +75,19 @@
                     <asp:WizardStep runat="server" Title="Flight Selection">
                         <div style="padding: 10px">
 
+                            <asp:GridView ID="GridViewFlights" CssClass="table" runat="server" AutoGenerateColumns="False">
+                                <Columns>
+                                    <%--<asp:BoundField DataField="ID" HeaderText="ID" />--%>
+                                    <asp:BoundField DataField="From" HeaderText="From" />
+                                    <asp:BoundField DataField="To" HeaderText="To" />
+                                    <asp:BoundField DataField="Plane" HeaderText="Plane" />
+                                    <asp:BoundField DataField="DepartureTime" HeaderText="DepartureTime" />
+                                    <asp:BoundField DataField="ArrivalTime" HeaderText="ArrivalTime" />
+                                    <asp:BoundField DataField="TimeSpent" HeaderText="Time" />
+                                    <asp:BoundField DataField="Price" HeaderText="Price" />
+                                </Columns>
+                            </asp:GridView>
+                            <!--
                             <asp:Table ID="tblFoundFlights" CssClass="table" runat="server">
                                 <asp:TableHeaderRow>
                                     <asp:TableHeaderCell>From</asp:TableHeaderCell>
@@ -83,7 +96,7 @@
                                     <asp:TableHeaderCell>Arrival</asp:TableHeaderCell>
                                     <asp:TableHeaderCell>Price</asp:TableHeaderCell>
                                 </asp:TableHeaderRow>
-                            </asp:Table>
+                            </asp:Table>-->
                             <table class="table">
                                 <tr>
                                     <td>Total TravelTime:</td>
