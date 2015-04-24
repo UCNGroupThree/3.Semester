@@ -39,5 +39,20 @@ namespace FlightWeb {
             }
         }
 
+        protected void ddlCountryFrom_SelectedIndexChanged(object sender, EventArgs e) {
+            if (ddlCountryFrom.SelectedIndex != 0) {
+                var sel = ddlFrom.Items[0];
+                ddlFrom.Items.Clear();
+                ddlFrom.Items.Insert(0, sel);
+                ddlFrom.Items.AddRange(GetAirportsFromCountry(ddlCountryFrom.SelectedValue).ToArray());
+                ddlFrom.Enabled = true;
+            } else {
+                ddlFrom.SelectedIndex = 0;
+                ddlFrom.Enabled = false;
+            }
+
+            UpdatePanel101.Update();
+        }
+
     }
 }

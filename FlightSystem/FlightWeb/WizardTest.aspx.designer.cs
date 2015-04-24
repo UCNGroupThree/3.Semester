@@ -13,6 +13,15 @@ namespace FlightWeb {
     public partial class WizardTest {
         
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
         /// Wizard1 control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace FlightWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Wizard Wizard1;
+        
+        /// <summary>
+        /// UpdatePanel101 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel101;
         
         /// <summary>
         /// lblCountryFrom control.
