@@ -88,7 +88,7 @@ namespace FlightWeb {
                     var travelEnd = list.Max(x => x.ArrivalTime);
                     var travelTime = travelEnd - travelStart;
                     lblTotalPrice.Text = string.Format("{0:C}", price);
-                    lblTravelTime.Text = string.Format("{0}", travelTime);
+                    lblTravelTime.Text = string.Format("{0:t}", travelTime);
                 }
             }
             Debug.WriteLine("######");

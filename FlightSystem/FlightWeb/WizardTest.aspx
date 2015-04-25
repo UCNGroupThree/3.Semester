@@ -81,10 +81,10 @@
                                     <asp:BoundField DataField="From" HeaderText="From" />
                                     <asp:BoundField DataField="To" HeaderText="To" />
                                     <asp:BoundField DataField="Plane" HeaderText="Plane" />
-                                    <asp:BoundField DataField="DepartureTime" HeaderText="DepartureTime" />
-                                    <asp:BoundField DataField="ArrivalTime" HeaderText="ArrivalTime" />
-                                    <asp:BoundField DataField="TimeSpent" HeaderText="Time" />
-                                    <asp:BoundField DataField="Price" HeaderText="Price" />
+                                    <asp:BoundField DataField="DepartureTime" HeaderText="DepartureTime" DataFormatString="{0:g}" />
+                                    <asp:BoundField DataField="ArrivalTime" HeaderText="ArrivalTime" DataFormatString="{0:g}" />
+                                    <asp:BoundField DataField="TimeSpent" HeaderText="Time" DataFormatString="{0:mm\:ss}" />
+                                    <asp:BoundField DataField="Price" HeaderText="Price" DataFormatString="{0:C}" />
                                 </Columns>
                             </asp:GridView>
                             <!--

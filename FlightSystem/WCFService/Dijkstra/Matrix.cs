@@ -18,7 +18,7 @@ namespace WCFService.Dijkstra {
         private List<Edge<Airport>> edges = new List<Edge<Airport>>();
 
         public Matrix() {
-            List<Airport> nodes = _db.Airports.OrderBy(n => n.ID).Include(n => n.Routes.Select(a => a.Flights)).ToList();
+            List<Airport> nodes = _db.Airports.OrderBy(n => n.ID).Include(n => n.Routes.Select(a => a.Flights.Select(f => f.Plane))).ToList();
             //nodes = nodes.Where(n => n.Routes.Select(r => r.Flights).Any()).ToList();
 
             foreach (var airport in nodes) {
@@ -55,8 +55,8 @@ namespace WCFService.Dijkstra {
                 throw new FaultException<NullPointerFault>(new NullPointerFault() { Message = "Airports cant be null" });
             }
 
-            int id = from.ID;
-            from = _db.Airports.Where(a => a.ID == id).Include(a => a.Routes).SingleOrDefault();
+            //int id = from.ID;
+            //from = _db.Airports.Where(a => a.ID == id).Include(a => a.Routes).SingleOrDefault();
             var path = new List<Flight>();
             var distance = new Dictionary<Airport, decimal>();
             var previous = new Dictionary<Airport, Airport>();
