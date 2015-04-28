@@ -70,12 +70,17 @@ namespace FlightWeb {
             Debug.WriteLine(e.NextStepIndex);
             
             if (e.CurrentStepIndex == 0) {
+                
+                Airport from = new Airport() { ID = int.Parse(ddlFrom.SelectedValue) };
+                Airport to = new Airport() { ID = int.Parse(ddlTo.SelectedValue) };
+                DateTime date = DateTime.Parse(txtDepart.Text);
+
+                Debug.WriteLine("from: {0} - to: {1}", from.ID, to.ID);
+                Debug.WriteLine("date: {0}", date);
+
+
                 using (DijkstraClient client = new DijkstraClient()) {
-                    Airport from = new Airport() {ID = int.Parse(ddlFrom.SelectedValue)};
-                    Airport to = new Airport() {ID = int.Parse(ddlTo.SelectedValue)};
-                    DateTime date = DateTime.Parse(txtDepart.Text);
-                    Debug.WriteLine("from: {0} - to: {1}", from.ID, to.ID);
-                    Debug.WriteLine("date: {0}", date);
+                    
                     var list = client.DijkstraStuff(from, to, date);
                     Debug.Write("list: " + list);
                     //if (list != null) {
@@ -88,7 +93,7 @@ namespace FlightWeb {
                     var travelEnd = list.Max(x => x.ArrivalTime);
                     var travelTime = travelEnd - travelStart;
                     lblTotalPrice.Text = string.Format("{0:C}", price);
-                    lblTravelTime.Text = string.Format("{0:t}", travelTime);
+                    lblTravelTime.Text = string.Format("{0:g}", travelTime);
                 }
             }
             Debug.WriteLine("######");

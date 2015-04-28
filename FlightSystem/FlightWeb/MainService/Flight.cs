@@ -6,11 +6,21 @@ using System.Web;
 namespace FlightWeb.MainService {
     public partial class Flight {
         public Airport From {
-            get { return Route.From; }
+            get {
+                if (Route != null) {
+                    return Route.From;
+                }
+                return null;
+            }
         }
 
         public Airport To {
-            get { return Route.To; }
+            get {
+                if (Route != null) {
+                    return Route.To;
+                }
+                return null;
+            }
         }
 
         public TimeSpan TimeSpent {
@@ -18,7 +28,12 @@ namespace FlightWeb.MainService {
         }
 
         public decimal Price {
-            get { return Route.Price; }
+            get {
+                if (Route != null) {
+                    return Route.Price;
+                }
+                return -1;
+            }
         }
     }
 }
