@@ -5,6 +5,8 @@ using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Permissions;
+using System.Security.Principal;
 using System.ServiceModel;
 using Common.Exceptions;
 using WCFService.Helper;
@@ -19,12 +21,16 @@ namespace WCFService.WCF {
 
         #region Create / Update / Delete
 
+        //[PrincipalPermission(SecurityAction.Demand, Role = "None")]
         public Administrator AddAdministrator(Administrator administrator) {
+            //var i = System.Threading.Thread.CurrentPrincipal.Identity;
+            //Debug.WriteLine("HAHAHA: {0}", i);
             /*var pass = administrator.PasswordPlain;
             var passHahh = PasswordHelper.CreateHash(pass);
             var result = PasswordHelper.ValidatePassword(pass, passHahh);
             Debug.WriteLine("{0} - {1} - {2}", pass, passHahh, result);
             return null;*/
+            //Debug.WriteLine("hej: {0}", OperationContext.Current.ServiceSecurityContext.WindowsIdentity.Groups.Select(x => x.Translate(typeof(NTAccount)).Value).ToArray());
             if (administrator == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }            
