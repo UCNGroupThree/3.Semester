@@ -54,12 +54,9 @@ namespace FlightAdmin.GUI {
             }
             if (user != null)
             {
-               
                 e.Result = new List<User> { user };
-
             }
-
-   
+  
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -103,7 +100,7 @@ namespace FlightAdmin.GUI {
             {
                 user = current.DataBoundItem as User;
             }
-            MessageBox.Show(user.Name);
+            
             return user;
         }
 
