@@ -587,7 +587,7 @@
   <xs:element name="DijkstraStuffResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="DijkstraStuffResult" nillable="true" type="q58:ArrayOfRoute" />
+        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="DijkstraStuffResult" nillable="true" type="q58:ArrayOfFlight" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
