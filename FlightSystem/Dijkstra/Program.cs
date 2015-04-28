@@ -20,7 +20,7 @@ namespace Dijkstra {
                     Console.WriteLine("---------------------------");
                     DateTime dateTime = DateTime.Now.AddHours(-5);
 
-                    PrintStuff(id1, id2, dateTime);
+                    PrintStuff(id1, id2, 1, dateTime);
 
                     Console.ReadKey();
                 //}catch(Exception){}
@@ -29,20 +29,20 @@ namespace Dijkstra {
         }
 
 
-        static void PrintStuff(int id1, int id2, DateTime startTime) {
+        static void PrintStuff(int id1, int id2, int seats, DateTime startTime) {
             decimal dm = 0;
             var watch = Stopwatch.StartNew();
-            Airport a1;
-            Airport a2;
-            using (AirportServiceClient client = new AirportServiceClient()) {
-                a1 = client.GetAirport(id1);
-                a2 = client.GetAirport(id2);
-            }
+            //Airport a1;
+            //Airport a2;
+            //using (AirportServiceClient client = new AirportServiceClient()) {
+            //    a1 = client.GetAirport(id1);
+            //    a2 = client.GetAirport(id2);
+            //}
 
             List<Flight> aps;
 
             using (DijkstraClient client = new DijkstraClient()) {
-                aps = client.DijkstraStuff(a1, a2, startTime);
+                aps = client.DijkstraStuff(id1, id2, seats, startTime);
             }
 
             if (aps != null && aps.Count > 0) {

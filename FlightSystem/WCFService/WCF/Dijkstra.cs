@@ -10,10 +10,10 @@ namespace WCFService.WCF {
 
         private static Matrix matrix = new Matrix();
 
-        public List<Flight> DijkstraStuff(Airport from, Airport to, DateTime startTime) {
+        public List<Flight> DijkstraStuff(int fromId, int toId, int seats, DateTime startTime) {
            // matrix = new Matrix();
 
-            List<Flight> ret = matrix.GetShortestPath(from, to, startTime);
+            List<Flight> ret = matrix.GetShortestPath(fromId, toId, seats, startTime);
 
 
             return ret;

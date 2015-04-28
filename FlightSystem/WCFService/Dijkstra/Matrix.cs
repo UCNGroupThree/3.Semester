@@ -17,6 +17,7 @@ namespace WCFService.Dijkstra {
         private readonly FlightDB _db = new FlightDB();
         private readonly RouteService rs = new RouteService();
         private List<Edge<Airport>> edges = new List<Edge<Airport>>();
+        private List<Airport> airports;
 
         public Matrix() {
             IQueryable<Airport> query = _db.Airports
@@ -24,13 +25,13 @@ namespace WCFService.Dijkstra {
                 .Include(a => a.Routes.Select(r => r.To))
                 .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
                 .Where(a => a.Routes.Any(r => r.Flights.Any(f => f.SeatReservations.Count < f.Plane.Seats.Count)));
-            List<Airport> nodes = query.ToList();
-
+            airports = query.ToList();
+            Debug.WriteLine("airports: " + airports.ToArray());
             //IQueryable<Route> query = db.Routes..Where(route => route.Flights);
 
             //List<Airport> nodes = _db.Airports.OrderBy(n => n.ID).Include(n => n.Routes.Select(a => a.Flights.Select(f => f.Plane).Select(s => s.Seats))).ToList();
             //nodes = nodes.Where(n => n.Routes.Select(r => r.Flights).Any()).ToList();
-            foreach (var airport in nodes) {
+            foreach (var airport in airports) {
                 var edge = new Edge<Airport>(airport);
 
                 List<Route> routes = new List<Route>();
@@ -55,14 +56,17 @@ namespace WCFService.Dijkstra {
 
         }
 
-        public List<Flight> GetShortestPath(Airport from, Airport to, DateTime startTime) {
+        public List<Flight> GetShortestPath(int fromId, int toId, int seats, DateTime startTime) {
             //var time = startTime;
-            var times = new Dictionary<Airport, DateTime>();
-            times[from] = startTime;
-
-            if (from == null || to == null) {
+            Airport from = airports.FirstOrDefault(a => a.ID == fromId);
+            Debug.WriteLine("from: "+from);
+            Debug.WriteLine("airports: " + airports.ToArray());
+            if (from == null || toId < 0) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault() { Message = "Airports cant be null" });
             }
+
+            var times = new Dictionary<Airport, DateTime>();
+            times[from] = startTime;
 
             //int id = from.ID;
             //from = _db.Airports.Where(a => a.ID == id).Include(a => a.Routes).SingleOrDefault();
@@ -87,7 +91,7 @@ namespace WCFService.Dijkstra {
                 var smallest = nodes[0];
                 nodes.Remove(smallest);
                 //LasseGO
-                if (smallest.ID == to.ID) {
+                if (smallest.ID == toId) {
                     if (previous.Count > 0) {
                         while (previous.ContainsKey(smallest)) {
                             Route route = previous[smallest].GetRouteTo(smallest);
@@ -97,7 +101,7 @@ namespace WCFService.Dijkstra {
                         }
                     } else {
                         Route route = from.GetRouteTo(smallest);
-                        if (route != null) {
+                        if (route != null) { // && routedFlights.Count > 0
                             path.Add(routedFlights[route]);
                         }
                     }
