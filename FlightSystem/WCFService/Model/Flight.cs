@@ -14,6 +14,7 @@ namespace WCFService.Model {
         }
 
         public Flight() {
+            SeatReservations = new List<SeatReservation>();
         }
 
         [DataMember]

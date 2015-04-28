@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
 using System.Resources;
+using System.Runtime.InteropServices;
 using System.ServiceModel;
 using WCFService.Model;
 using WCFService.WCF;
@@ -18,9 +19,8 @@ namespace WCFService.Dijkstra {
         private List<Edge<Airport>> edges = new List<Edge<Airport>>();
 
         public Matrix() {
-            List<Airport> nodes = _db.Airports.OrderBy(n => n.ID).Include(n => n.Routes.Select(a => a.Flights.Select(f => f.Plane))).ToList();
+            List<Airport> nodes = _db.Airports.OrderBy(n => n.ID).Include(n => n.Routes.Select(a => a.Flights.Select(f => f.Plane).Select(s => s.Seats))).ToList();
             //nodes = nodes.Where(n => n.Routes.Select(r => r.Flights).Any()).ToList();
-
             foreach (var airport in nodes) {
                 var edge = new Edge<Airport>(airport);
 
@@ -142,9 +142,26 @@ namespace WCFService.Dijkstra {
 
             path.Reverse();
 
+            InsertSeatReservation(path);
+
             return path;
         }
 
+        private void InsertSeatReservation(List<Flight> path) {
+
+            path.ForEach(t => Debug.WriteLine("#{0} PlaneID: {1}, seatCount: {2}", t.ID, t.Plane.ID, t.Plane.Seats.Count));
+        //    try {
+        //        Seat seat = path.First().Plane.Seats.First();
+        //        Debug.WriteLine("Seat: #" + seat.ID);
+        //        SeatReservation sr = new SeatReservation(SeatState.Taken, "Hans", seat, path.First());
+        //        path.First().SeatReservations.Add(sr);
+        //        //_db.SeatReservations.Attach(sr);
+        //        _db.SaveChanges();
+        //    } catch (Exception e) {
+        //        Debug.WriteLine(e);
+        //    }
+        //    Debug.WriteLine("### DONE ####");
+        }
     }
 
     /*

@@ -13,5 +13,8 @@ namespace WCFService.Model {
 
         [DataMember]
         public int PosY { get; set; }
+
+        [DataMember]
+        public Plane Plane { get; set; }
     }
 }

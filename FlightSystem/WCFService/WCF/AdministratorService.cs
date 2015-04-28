@@ -23,6 +23,18 @@ namespace WCFService.WCF {
 
         //[PrincipalPermission(SecurityAction.Demand, Role = "None")]
         public Administrator AddAdministrator(Administrator administrator) {
+            //.Where(f => f.ID == 228)
+            //!db.SeatReservations.Any(sr => sr.Seat.ID == s.ID)
+            //IQueryable<Flight> i = db.Flights.Include(f => f.Plane.Seats.Select(s => s.Plane.Seats.Distinct(x => !db.SeatReservations.Any(sr => sr.Seat.ID == x.ID))));//.Where(f => !db.SeatReservations.Any(sr => sr.Seat.ID == f.ID));
+            //List<Flight> i = db.Flights.Include(f => f.Plane).Include(f=>f).Where(x=> x)
+            //.Seats.Where(s => !db.SeatReservations.Any(sr => sr.Seat.ID == s.ID))
+            //var j = db.Seats.Where(f => f.Plane.ID == 27 && !db.SeatReservations.Any(sr => sr.Seat.ID == f.ID));
+            //var i =
+            //    db.Airports.OrderBy(n => n.ID)
+            //        .Include(n => n.Routes.Select(a => a.Flights.Select(f => f.Plane).Select(s => s.Seats)));
+            //var result = i.ToList();
+            //Debug.WriteLine("hej {0}", result.ToString());
+            //return null;
             //var i = System.Threading.Thread.CurrentPrincipal.Identity;
             //Debug.WriteLine("HAHAHA: {0}", i);
             /*var pass = administrator.PasswordPlain;

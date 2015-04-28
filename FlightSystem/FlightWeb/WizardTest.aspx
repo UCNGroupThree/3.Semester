@@ -8,11 +8,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-
-    <!--<script type="text/javascript" src="Scripts/wizardJS.js"></script>-->
-
-
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
 
@@ -38,7 +33,7 @@
                                     </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
-                            
+
                             <asp:UpdatePanel ID="UpdatePanelTo" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
                                     <div class="form-group">
@@ -87,26 +82,16 @@
                                     <asp:BoundField DataField="Price" HeaderText="Price" DataFormatString="{0:C}" />
                                 </Columns>
                             </asp:GridView>
-                            <!--
-                            <asp:Table ID="tblFoundFlights" CssClass="table" runat="server">
-                                <asp:TableHeaderRow>
-                                    <asp:TableHeaderCell>From</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell>To</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell>Depart</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell>Arrival</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell>Price</asp:TableHeaderCell>
-                                </asp:TableHeaderRow>
-                            </asp:Table>-->
                             <table class="table">
                                 <tr>
                                     <td>Total TravelTime:</td>
-                                    <td>
-                                        <asp:Label runat="server" ID="lblTravelTime">000</asp:Label></td>
+                                    <td><asp:Label runat="server" ID="lblTravelTime">000</asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td>Total Price:</td>
                                     <td>
-                                        <asp:Label runat="server" ID="lblTotalPrice">000</asp:Label></td>
+                                        <asp:Label runat="server" ID="lblTotalPrice">000</asp:Label>
+                                    </td>
                                 </tr>
                             </table>
 

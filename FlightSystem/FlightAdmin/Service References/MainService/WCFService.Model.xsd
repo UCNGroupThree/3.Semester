@@ -68,6 +68,7 @@
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Plane" nillable="true" type="tns:Plane" />
       <xs:element minOccurs="0" name="Route" nillable="true" type="tns:Route" />
+      <xs:element minOccurs="0" name="SeatReservations" nillable="true" type="tns:ArrayOfSeatReservation" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -92,6 +93,7 @@
   <xs:complexType name="Seat">
     <xs:sequence>
       <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Plane" nillable="true" type="tns:Plane" />
       <xs:element minOccurs="0" name="PosX" type="xs:int" />
       <xs:element minOccurs="0" name="PosY" type="xs:int" />
     </xs:sequence>
@@ -99,6 +101,32 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Seat" nillable="true" type="tns:Seat" />
+  <xs:complexType name="ArrayOfSeatReservation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SeatReservation" nillable="true" type="tns:SeatReservation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSeatReservation" nillable="true" type="tns:ArrayOfSeatReservation" />
+  <xs:complexType name="SeatReservation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Flight" nillable="true" type="tns:Flight" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Seat" nillable="true" type="tns:Seat" />
+      <xs:element minOccurs="0" name="State" type="tns:SeatState" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="SeatReservation" nillable="true" type="tns:SeatReservation" />
+  <xs:simpleType name="SeatState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Free" />
+      <xs:enumeration value="Taken" />
+      <xs:enumeration value="Occupied" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SeatState" nillable="true" type="tns:SeatState" />
   <xs:complexType name="ArrayOfAirport">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Airport" nillable="true" type="tns:Airport" />
@@ -155,28 +183,6 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Ticket" nillable="true" type="tns:Ticket" />
-  <xs:complexType name="ArrayOfSeatReservation">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="SeatReservation" nillable="true" type="tns:SeatReservation" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfSeatReservation" nillable="true" type="tns:ArrayOfSeatReservation" />
-  <xs:complexType name="SeatReservation">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Flight" nillable="true" type="tns:Flight" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Seat" nillable="true" type="tns:Seat" />
-      <xs:element minOccurs="0" name="State" type="tns:SeatState" />
-    </xs:sequence>
-    <xs:attribute ref="ser:Id" />
-    <xs:attribute ref="ser:Ref" />
-  </xs:complexType>
-  <xs:element name="SeatReservation" nillable="true" type="tns:SeatReservation" />
-  <xs:simpleType name="SeatState">
-    <xs:restriction base="xs:string" />
-  </xs:simpleType>
-  <xs:element name="SeatState" nillable="true" type="tns:SeatState" />
   <xs:complexType name="ArrayOfUser">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
