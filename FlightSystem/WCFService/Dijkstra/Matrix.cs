@@ -19,7 +19,16 @@ namespace WCFService.Dijkstra {
         private List<Edge<Airport>> edges = new List<Edge<Airport>>();
 
         public Matrix() {
-            List<Airport> nodes = _db.Airports.OrderBy(n => n.ID).Include(n => n.Routes.Select(a => a.Flights.Select(f => f.Plane).Select(s => s.Seats))).ToList();
+            IQueryable<Airport> query = _db.Airports
+                .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats)))
+                .Include(a => a.Routes.Select(r => r.To))
+                .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
+                .Where(a => a.Routes.Any(r => r.Flights.Any(f => f.SeatReservations.Count < f.Plane.Seats.Count)));
+            List<Airport> nodes = query.ToList();
+
+            //IQueryable<Route> query = db.Routes..Where(route => route.Flights);
+
+            //List<Airport> nodes = _db.Airports.OrderBy(n => n.ID).Include(n => n.Routes.Select(a => a.Flights.Select(f => f.Plane).Select(s => s.Seats))).ToList();
             //nodes = nodes.Where(n => n.Routes.Select(r => r.Flights).Any()).ToList();
             foreach (var airport in nodes) {
                 var edge = new Edge<Airport>(airport);
