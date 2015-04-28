@@ -152,7 +152,7 @@
             this.lblIDSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblIDSearch.Location = new System.Drawing.Point(3, 0);
             this.lblIDSearch.Name = "lblIDSearch";
-            this.lblIDSearch.Size = new System.Drawing.Size(102, 26);
+            this.lblIDSearch.Size = new System.Drawing.Size(117, 26);
             this.lblIDSearch.TabIndex = 0;
             this.lblIDSearch.Text = "ID";
             this.lblIDSearch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -163,7 +163,7 @@
             this.lblNameSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNameSearch.Location = new System.Drawing.Point(3, 26);
             this.lblNameSearch.Name = "lblNameSearch";
-            this.lblNameSearch.Size = new System.Drawing.Size(102, 26);
+            this.lblNameSearch.Size = new System.Drawing.Size(117, 26);
             this.lblNameSearch.TabIndex = 1;
             this.lblNameSearch.Text = "Name";
             this.lblNameSearch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -171,9 +171,9 @@
             // txtName
             // 
             this.txtName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtName.Location = new System.Drawing.Point(111, 29);
+            this.txtName.Location = new System.Drawing.Point(126, 29);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(93, 20);
+            this.txtName.Size = new System.Drawing.Size(78, 20);
             this.txtName.TabIndex = 3;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
@@ -184,7 +184,7 @@
             this.lblPlanePassengers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPlanePassengers.Location = new System.Drawing.Point(3, 52);
             this.lblPlanePassengers.Name = "lblPlanePassengers";
-            this.lblPlanePassengers.Size = new System.Drawing.Size(201, 13);
+            this.lblPlanePassengers.Size = new System.Drawing.Size(201, 15);
             this.lblPlanePassengers.TabIndex = 4;
             this.lblPlanePassengers.Text = "Passengers";
             this.lblPlanePassengers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -193,9 +193,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 65);
+            this.label1.Location = new System.Drawing.Point(3, 67);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 27);
+            this.label1.Size = new System.Drawing.Size(117, 27);
             this.label1.TabIndex = 5;
             this.label1.Text = "Equal to";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -203,9 +203,9 @@
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 92);
+            this.label2.Location = new System.Drawing.Point(3, 94);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(102, 31);
+            this.label2.Size = new System.Drawing.Size(117, 31);
             this.label2.TabIndex = 6;
             this.label2.Text = "as";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -215,7 +215,7 @@
             this.spinnerPassengerCount.AutoSize = true;
             this.spinnerPassengerCount.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spinnerPassengerCount.Enabled = false;
-            this.spinnerPassengerCount.Location = new System.Drawing.Point(111, 95);
+            this.spinnerPassengerCount.Location = new System.Drawing.Point(126, 97);
             this.spinnerPassengerCount.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -227,7 +227,7 @@
             0,
             0});
             this.spinnerPassengerCount.Name = "spinnerPassengerCount";
-            this.spinnerPassengerCount.Size = new System.Drawing.Size(93, 20);
+            this.spinnerPassengerCount.Size = new System.Drawing.Size(78, 20);
             this.spinnerPassengerCount.TabIndex = 7;
             this.spinnerPassengerCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.spinnerPassengerCount.Value = new decimal(new int[] {
@@ -245,9 +245,9 @@
             "same ",
             "less and same",
             "more and same"});
-            this.comboPassengerCountChoice.Location = new System.Drawing.Point(111, 68);
+            this.comboPassengerCountChoice.Location = new System.Drawing.Point(126, 70);
             this.comboPassengerCountChoice.Name = "comboPassengerCountChoice";
-            this.comboPassengerCountChoice.Size = new System.Drawing.Size(93, 21);
+            this.comboPassengerCountChoice.Size = new System.Drawing.Size(78, 21);
             this.comboPassengerCountChoice.TabIndex = 1;
             this.comboPassengerCountChoice.SelectedIndexChanged += new System.EventHandler(this.comboPassengerCountChoice_SelectedIndexChanged);
             // 
@@ -255,20 +255,20 @@
             // 
             this.txtID.AllowSpace = false;
             this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtID.Location = new System.Drawing.Point(111, 3);
+            this.txtID.Location = new System.Drawing.Point(126, 3);
             this.txtID.Name = "txtID";
             this.txtID.OnlyInt = false;
-            this.txtID.Size = new System.Drawing.Size(93, 20);
+            this.txtID.Size = new System.Drawing.Size(78, 20);
             this.txtID.TabIndex = 12;
             this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
             // 
             // chkShowAllPlanes
             // 
             this.chkShowAllPlanes.AutoSize = true;
-            this.chkShowAllPlanes.Location = new System.Drawing.Point(3, 126);
+            this.chkShowAllPlanes.Location = new System.Drawing.Point(3, 128);
             this.chkShowAllPlanes.Name = "chkShowAllPlanes";
             this.chkShowAllPlanes.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkShowAllPlanes.Size = new System.Drawing.Size(102, 17);
+            this.chkShowAllPlanes.Size = new System.Drawing.Size(117, 19);
             this.chkShowAllPlanes.TabIndex = 18;
             this.chkShowAllPlanes.Text = "Show All Planes";
             this.chkShowAllPlanes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -278,9 +278,9 @@
             // loadingImage
             // 
             this.loadingImage.Image = global::FlightAdmin.Properties.Resources.loading;
-            this.loadingImage.Location = new System.Drawing.Point(111, 126);
+            this.loadingImage.Location = new System.Drawing.Point(126, 128);
             this.loadingImage.Name = "loadingImage";
-            this.loadingImage.Size = new System.Drawing.Size(93, 25);
+            this.loadingImage.Size = new System.Drawing.Size(78, 25);
             this.loadingImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.loadingImage.TabIndex = 19;
             this.loadingImage.TabStop = false;
@@ -290,9 +290,9 @@
             // 
             this.btnPlaneSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPlaneSearch.Enabled = false;
-            this.btnPlaneSearch.Location = new System.Drawing.Point(111, 157);
+            this.btnPlaneSearch.Location = new System.Drawing.Point(126, 159);
             this.btnPlaneSearch.Name = "btnPlaneSearch";
-            this.btnPlaneSearch.Size = new System.Drawing.Size(93, 25);
+            this.btnPlaneSearch.Size = new System.Drawing.Size(78, 25);
             this.btnPlaneSearch.TabIndex = 9;
             this.btnPlaneSearch.Text = "Search";
             this.btnPlaneSearch.UseVisualStyleBackColor = true;
@@ -302,7 +302,7 @@
             // 
             this.btnClearPlaneSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClearPlaneSearch.Enabled = false;
-            this.btnClearPlaneSearch.Location = new System.Drawing.Point(30, 157);
+            this.btnClearPlaneSearch.Location = new System.Drawing.Point(45, 159);
             this.btnClearPlaneSearch.Name = "btnClearPlaneSearch";
             this.btnClearPlaneSearch.Size = new System.Drawing.Size(75, 25);
             this.btnClearPlaneSearch.TabIndex = 10;
@@ -419,19 +419,19 @@
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.planeTableMenu.Name = "planeTableMenu";
-            this.planeTableMenu.Size = new System.Drawing.Size(108, 48);
+            this.planeTableMenu.Size = new System.Drawing.Size(123, 52);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -449,6 +449,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
+           // this.Name = "PlaneTab";
             this.Size = new System.Drawing.Size(839, 353);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);

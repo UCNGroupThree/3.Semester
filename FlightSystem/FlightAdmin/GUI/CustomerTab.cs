@@ -54,13 +54,7 @@ namespace FlightAdmin.GUI {
             }
             if (user != null)
             {
-                txtName.Text = user.Name;
-                txtAddress.Text = user.Address;
-                txtCity.Text = user.Postal.City;
-                txtZip.Text = Convert.ToString(user.Postal.PostCode);
-                txtPhone.Text = user.PhoneNumber;
-                txtEmail.Text = user.Email;
-                txtID.Text = Convert.ToString(user.ID);
+               
                 e.Result = new List<User> { user };
 
             }
@@ -80,6 +74,16 @@ namespace FlightAdmin.GUI {
                 List<User> userList = e.Result as List<User>;
                 if (userList != null && userList.Count > 0)
                 {
+                    foreach (User user in userList) {
+                        txtName.Text = user.Name;
+                        txtAddress.Text = user.Address;
+                        txtCity.Text = user.Postal.City;
+                        txtZip.Text = Convert.ToString(user.Postal.PostCode);
+                        txtPhone.Text = user.PhoneNumber;
+                        txtEmail.Text = user.Email;
+                        txtID.Text = Convert.ToString(user.ID);
+                    }
+                
                     UpdateDataGrid(userList);
                     errProvider.Clear();
                 }

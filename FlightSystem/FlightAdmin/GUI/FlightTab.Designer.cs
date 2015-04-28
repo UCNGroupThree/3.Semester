@@ -70,7 +70,7 @@
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.removeToolStripMenuItem.Text = "Remove";
             // 
             // contextDataGridMenu
@@ -79,12 +79,12 @@
             this.removeToolStripMenuItem,
             this.editToolStripMenuItem});
             this.contextDataGridMenu.Name = "contextDataGridMenu";
-            this.contextDataGridMenu.Size = new System.Drawing.Size(118, 48);
+            this.contextDataGridMenu.Size = new System.Drawing.Size(133, 52);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // dataRoute
@@ -267,17 +267,17 @@
             // 
             this.lblTo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(3, 25);
+            this.lblTo.Location = new System.Drawing.Point(3, 24);
             this.lblTo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(23, 13);
+            this.lblTo.Size = new System.Drawing.Size(24, 15);
             this.lblTo.TabIndex = 2;
             this.lblTo.Text = "To:";
             // 
             // txtTo
             // 
             this.txtTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTo.Location = new System.Drawing.Point(39, 23);
+            this.txtTo.Location = new System.Drawing.Point(45, 23);
             this.txtTo.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.txtTo.Name = "txtTo";
             this.txtTo.Size = new System.Drawing.Size(174, 20);
@@ -287,16 +287,16 @@
             // 
             this.lblFrom.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblFrom.AutoSize = true;
-            this.lblFrom.Location = new System.Drawing.Point(3, 3);
+            this.lblFrom.Location = new System.Drawing.Point(3, 2);
             this.lblFrom.Name = "lblFrom";
-            this.lblFrom.Size = new System.Drawing.Size(33, 13);
+            this.lblFrom.Size = new System.Drawing.Size(39, 15);
             this.lblFrom.TabIndex = 0;
             this.lblFrom.Text = "From:";
             // 
             // txtFrom
             // 
             this.txtFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFrom.Location = new System.Drawing.Point(39, 0);
+            this.txtFrom.Location = new System.Drawing.Point(45, 0);
             this.txtFrom.Margin = new System.Windows.Forms.Padding(0);
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.Size = new System.Drawing.Size(174, 20);
@@ -306,7 +306,7 @@
             // 
             this.txtID.AllowSpace = false;
             this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtID.Location = new System.Drawing.Point(39, 46);
+            this.txtID.Location = new System.Drawing.Point(45, 46);
             this.txtID.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
             this.txtID.Name = "txtID";
             this.txtID.OnlyInt = false;
@@ -320,7 +320,7 @@
             this.lblID.Location = new System.Drawing.Point(3, 46);
             this.lblID.Margin = new System.Windows.Forms.Padding(3, 6, 0, 0);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(36, 23);
+            this.lblID.Size = new System.Drawing.Size(42, 23);
             this.lblID.TabIndex = 5;
             this.lblID.Text = "ID:";
             // 
