@@ -26,12 +26,15 @@ namespace WCFService.Dijkstra {
                 .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
                 .Where(a => a.Routes.Any(r => r.Flights.Any(f => f.SeatReservations.Count < f.Plane.Seats.Count)));
 
-            Debug.WriteLine("airports: " + fromAirports.ToArray());
             //var toAirports = airports.Select(r => r.Routes.Select(a => a.To));
-            IQueryable<Airport> toAirports = fromAirports.SelectMany(r => r.Routes.Select(a => a.To));
-            IQueryable<Airport> query = fromAirports.Union(toAirports);
-            airports = query.ToList();
-            Debug.WriteLine("toAirports: " + toAirports.ToArray());
+            airports = fromAirports.ToList();
+            var toAirports = airports.SelectMany(r => r.Routes.Select(a => a.To)).Where(a => !airports.Contains(a)).ToList();
+            airports.AddRange(toAirports);
+            //IQueryable<Airport> query = fromAirports.Union(toAirports);
+            //airports = query.ToList();
+
+            Debug.WriteLine("airports: " + airports.ToArray());
+            Debug.WriteLine("toAirports: " + toAirports);
             Debug.WriteLine("toAirports Count: " + toAirports.Count());
             //airports.AddRange();
             //IQueryable<Route> query = db.Routes..Where(route => route.Flights);
