@@ -71,17 +71,19 @@ namespace FlightWeb {
             
             if (e.CurrentStepIndex == 0) {
                 
-                Airport from = new Airport() { ID = int.Parse(ddlFrom.SelectedValue) };
-                Airport to = new Airport() { ID = int.Parse(ddlTo.SelectedValue) };
+                int fromId = int.Parse(ddlFrom.SelectedValue);
+                int toId = int.Parse(ddlTo.SelectedValue);
+                int seats = int.Parse(ddlPersons.SelectedValue);
                 DateTime date = DateTime.Parse(txtDepart.Text);
 
-                Debug.WriteLine("from: {0} - to: {1}", from.ID, to.ID);
+
+                Debug.WriteLine("from: {0} - to: {1}", fromId, toId);
                 Debug.WriteLine("date: {0}", date);
 
 
                 using (DijkstraClient client = new DijkstraClient()) {
-                    
-                    var list = client.DijkstraStuff(from, to, date);
+
+                    var list = client.DijkstraStuff(fromId, toId, seats, date);
                     Debug.Write("list: " + list);
                     //if (list != null) {
                         Debug.WriteLineIf(list != null, " , Count: " +  list.Count.ToString());

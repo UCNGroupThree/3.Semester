@@ -20,13 +20,20 @@ namespace WCFService.Dijkstra {
         private List<Airport> airports;
 
         public Matrix() {
-            IQueryable<Airport> query = _db.Airports
+            IQueryable<Airport> fromAirports = _db.Airports
                 .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats)))
                 .Include(a => a.Routes.Select(r => r.To))
                 .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
                 .Where(a => a.Routes.Any(r => r.Flights.Any(f => f.SeatReservations.Count < f.Plane.Seats.Count)));
+
+            Debug.WriteLine("airports: " + fromAirports.ToArray());
+            //var toAirports = airports.Select(r => r.Routes.Select(a => a.To));
+            IQueryable<Airport> toAirports = fromAirports.SelectMany(r => r.Routes.Select(a => a.To));
+            IQueryable<Airport> query = fromAirports.Union(toAirports);
             airports = query.ToList();
-            Debug.WriteLine("airports: " + airports.ToArray());
+            Debug.WriteLine("toAirports: " + toAirports.ToArray());
+            Debug.WriteLine("toAirports Count: " + toAirports.Count());
+            //airports.AddRange();
             //IQueryable<Route> query = db.Routes..Where(route => route.Flights);
 
             //List<Airport> nodes = _db.Airports.OrderBy(n => n.ID).Include(n => n.Routes.Select(a => a.Flights.Select(f => f.Plane).Select(s => s.Seats))).ToList();
@@ -60,7 +67,8 @@ namespace WCFService.Dijkstra {
             //var time = startTime;
             Airport from = airports.FirstOrDefault(a => a.ID == fromId);
             Debug.WriteLine("from: "+from);
-            Debug.WriteLine("airports: " + airports.ToArray());
+            Debug.WriteLine("airports: " + airports.ToArray().ToString());
+            Debug.WriteLine("airports count: " + airports.Count);
             if (from == null || toId < 0) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault() { Message = "Airports cant be null" });
             }
@@ -89,6 +97,7 @@ namespace WCFService.Dijkstra {
                 nodes.Sort((x, y) => (int)Math.Round(distance[x]) - (int)Math.Round(distance[y]));
 
                 var smallest = nodes[0];
+                Debug.WriteLine("smallest: {0}, toID: {1}", smallest.ID, toId);
                 nodes.Remove(smallest);
                 //LasseGO
                 if (smallest.ID == toId) {
@@ -129,7 +138,7 @@ namespace WCFService.Dijkstra {
                         List<Flight> flights = route.Flights;
                         flights.Sort(new Comparison<Flight>((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
                         flight = flights.FirstOrDefault(dep => dep.DepartureTime.TimeOfDay > time.TimeOfDay);
-
+                        Debug.WriteLine("Flight: not null? = " + flight);
                         Debug.WriteLine("Current Time: " + time.TimeOfDay);
                         Debug.WriteLine("Departure Time: " + flight.DepartureTime.TimeOfDay);
                         Debug.WriteLine("Arrival Time: " + flight.ArrivalTime.TimeOfDay);
@@ -152,6 +161,8 @@ namespace WCFService.Dijkstra {
 
                 }
             }
+            Debug.WriteLine("path: " + path.ToArray().ToString());
+            Debug.WriteLine("path count: " + path.Count);
 
             path.Reverse();
 
