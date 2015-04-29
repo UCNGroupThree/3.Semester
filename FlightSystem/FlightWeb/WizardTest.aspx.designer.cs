@@ -166,6 +166,51 @@ namespace FlightWeb {
         protected global::System.Web.UI.WebControls.DropDownList ddlPersons;
         
         /// <summary>
+        /// lblStep2From control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStep2From;
+        
+        /// <summary>
+        /// lblStep2To control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStep2To;
+        
+        /// <summary>
+        /// lblStep2Stops control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStep2Stops;
+        
+        /// <summary>
+        /// lblStep2Time control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStep2Time;
+        
+        /// <summary>
+        /// lblStep2Price control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStep2Price;
+        
+        /// <summary>
         /// GridViewFlights control.
         /// </summary>
         /// <remarks>

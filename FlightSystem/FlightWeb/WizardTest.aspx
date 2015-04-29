@@ -69,7 +69,28 @@
                     </asp:WizardStep>
                     <asp:WizardStep runat="server" Title="Flight Selection">
                         <div style="padding: 10px">
+                            
+                            <table class="table">
+                                <tr>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Stops</th>
+                                    <th>TravelTime</th>
+                                    <th>Price</th>
+                                </tr>
+                                <tr>
+                                    <td><asp:Label runat="server" ID="lblStep2From"/></td>
+                                    <td><asp:Label runat="server" ID="lblStep2To"/></td>
+                                    <td><asp:Label runat="server" ID="lblStep2Stops"/></td>
+                                    <td><asp:Label runat="server" ID="lblStep2Time"/></td>
+                                    <td><asp:Label runat="server" ID="lblStep2Price"/></td>
+                                </tr>
+                            </table>
 
+                        </div>
+                    </asp:WizardStep>
+                    <asp:WizardStep runat="server" Title="Seat Selection">
+                        <div style="padding: 10px;">
                             <asp:GridView ID="GridViewFlights" CssClass="table" runat="server" AutoGenerateColumns="False">
                                 <Columns>
                                     <%--<asp:BoundField DataField="ID" HeaderText="ID" />--%>
@@ -94,12 +115,6 @@
                                     </td>
                                 </tr>
                             </table>
-
-                        </div>
-                    </asp:WizardStep>
-                    <asp:WizardStep runat="server" Title="Seat Selection">
-                        <div style="padding: 10px;">
-                            SeatSelection
                         </div>
                     </asp:WizardStep>
                     <asp:WizardStep runat="server" Title="Billing">
