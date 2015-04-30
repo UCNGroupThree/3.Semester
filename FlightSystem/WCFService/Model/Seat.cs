@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
 namespace WCFService.Model {
@@ -16,5 +17,8 @@ namespace WCFService.Model {
 
         [DataMember]
         public Plane Plane { get; set; }
+
+        [DataMember]
+        public ICollection<SeatReservation> SeatReservations { get; set; }
     }
 }

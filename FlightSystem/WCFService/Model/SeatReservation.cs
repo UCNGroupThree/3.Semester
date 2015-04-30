@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
 namespace WCFService.Model {
@@ -18,13 +19,25 @@ namespace WCFService.Model {
         }
 
         [DataMember]
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        [DataMember]
-        public Flight Flight { get; set; }
+        [Index("Index_FlightSeat", 2, IsUnique = true)]
+        //[DataMember]
+        public int Seat_ID { get; set; }
+        //[DataMember]
+        [Index("Index_FlightSeat", 1, IsUnique = true)]
+        public int Flight_ID { get; set; }
 
         [DataMember]
+        [Required]
+        [ForeignKey("Flight_ID")]
+        public Flight Flight { get; set; }
+        
+        [DataMember]
+        [Required]
+        [ForeignKey("Seat_ID")]
         public Seat Seat { get; set; }
 
         [DataMember]

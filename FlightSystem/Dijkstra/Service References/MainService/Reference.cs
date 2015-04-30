@@ -108,83 +108,6 @@ namespace Dijkstra.MainService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-    [System.SerializableAttribute()]
-    public partial class DatabaseInsertFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MessageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool ResultField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Message {
-            get {
-                return this.MessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
-                    this.MessageField = value;
-                    this.RaisePropertyChanged("Message");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Result {
-            get {
-                return this.ResultField;
-            }
-            set {
-                if ((this.ResultField.Equals(value) != true)) {
-                    this.ResultField = value;
-                    this.RaisePropertyChanged("Result");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
     [System.SerializableAttribute()]
     public partial class NullPointerFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -265,6 +188,83 @@ namespace Dijkstra.MainService {
     [System.Runtime.Serialization.DataContractAttribute(Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
     [System.SerializableAttribute()]
     public partial class AlreadyExistFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ResultField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Result {
+            get {
+                return this.ResultField;
+            }
+            set {
+                if ((this.ResultField.Equals(value) != true)) {
+                    this.ResultField = value;
+                    this.RaisePropertyChanged("Result");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+    [System.SerializableAttribute()]
+    public partial class DatabaseInsertFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -1230,6 +1230,9 @@ namespace Dijkstra.MainService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int PosYField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<Dijkstra.MainService.SeatReservation> SeatReservationsField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -1288,6 +1291,19 @@ namespace Dijkstra.MainService {
                 if ((this.PosYField.Equals(value) != true)) {
                     this.PosYField = value;
                     this.RaisePropertyChanged("PosY");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<Dijkstra.MainService.SeatReservation> SeatReservations {
+            get {
+                return this.SeatReservationsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SeatReservationsField, value) != true)) {
+                    this.SeatReservationsField = value;
+                    this.RaisePropertyChanged("SeatReservations");
                 }
             }
         }
@@ -1834,10 +1850,10 @@ namespace Dijkstra.MainService {
     public interface IAdministratorService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/AddAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/AddAdministratorResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseInsertFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorDatabaseInsertFaultFault" +
-            "", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.AlreadyExistFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseInsertFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorDatabaseInsertFaultFault" +
+            "", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.PasswordFormatFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorPasswordFormatFaultFault" +
             "", Name="PasswordFormatFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         Dijkstra.MainService.Administrator AddAdministrator(Dijkstra.MainService.Administrator administrator);
@@ -1846,24 +1862,24 @@ namespace Dijkstra.MainService {
         System.Threading.Tasks.Task<Dijkstra.MainService.Administrator> AddAdministratorAsync(Dijkstra.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/UpdateAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/UpdateAdministratorResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorDatabaseUpdateFaultFa" +
-            "ult", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.AlreadyExistFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorAlreadyExistFaultFaul" +
             "t", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.PasswordFormatFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorPasswordFormatFaultFa" +
-            "ult", Name="PasswordFormatFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorNullPointerFaultFault" +
             "", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.PasswordFormatFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorPasswordFormatFaultFa" +
+            "ult", Name="PasswordFormatFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorDatabaseUpdateFaultFa" +
+            "ult", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         Dijkstra.MainService.Administrator UpdateAdministrator(Dijkstra.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/UpdateAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/UpdateAdministratorResponse")]
         System.Threading.Tasks.Task<Dijkstra.MainService.Administrator> UpdateAdministratorAsync(Dijkstra.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/DeleteAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/DeleteAdministratorResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IAdministratorService/DeleteAdministratorNullPointerFaultFault" +
-            "", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IAdministratorService/DeleteAdministratorDatabaseDeleteFaultFa" +
             "ult", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IAdministratorService/DeleteAdministratorNullPointerFaultFault" +
+            "", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         void DeleteAdministrator(Dijkstra.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/DeleteAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/DeleteAdministratorResponse")]
@@ -1983,10 +1999,10 @@ namespace Dijkstra.MainService {
     public interface IAirportService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/AddAirport", ReplyAction="http://tempuri.org/IAirportService/AddAirportResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IAirportService/AddAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.TimeZoneFault), Action="http://tempuri.org/IAirportService/AddAirportTimeZoneFaultFault", Name="TimeZoneFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseInsertFault), Action="http://tempuri.org/IAirportService/AddAirportDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.AlreadyExistFault), Action="http://tempuri.org/IAirportService/AddAirportAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.TimeZoneFault), Action="http://tempuri.org/IAirportService/AddAirportTimeZoneFaultFault", Name="TimeZoneFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IAirportService/AddAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         Dijkstra.MainService.Airport AddAirport(Dijkstra.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/AddAirport", ReplyAction="http://tempuri.org/IAirportService/AddAirportResponse")]
@@ -1994,9 +2010,9 @@ namespace Dijkstra.MainService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/UpdateAirport", ReplyAction="http://tempuri.org/IAirportService/UpdateAirportResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IAirportService/UpdateAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IAirportService/UpdateAirportDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.TimeZoneFault), Action="http://tempuri.org/IAirportService/UpdateAirportTimeZoneFaultFault", Name="TimeZoneFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.AlreadyExistFault), Action="http://tempuri.org/IAirportService/UpdateAirportAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IAirportService/UpdateAirportDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         Dijkstra.MainService.Airport UpdateAirport(Dijkstra.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/UpdateAirport", ReplyAction="http://tempuri.org/IAirportService/UpdateAirportResponse")]
@@ -2160,17 +2176,17 @@ namespace Dijkstra.MainService {
         System.Threading.Tasks.Task<int> AddFlightAsync(Dijkstra.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/UpdateFlight", ReplyAction="http://tempuri.org/IFlightService/UpdateFlightResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.OptimisticConcurrencyFault), Action="http://tempuri.org/IFlightService/UpdateFlightOptimisticConcurrencyFaultFault", Name="OptimisticConcurrencyFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/UpdateFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IFlightService/UpdateFlightDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/UpdateFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.OptimisticConcurrencyFault), Action="http://tempuri.org/IFlightService/UpdateFlightOptimisticConcurrencyFaultFault", Name="OptimisticConcurrencyFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         Dijkstra.MainService.Flight UpdateFlight(Dijkstra.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/UpdateFlight", ReplyAction="http://tempuri.org/IFlightService/UpdateFlightResponse")]
         System.Threading.Tasks.Task<Dijkstra.MainService.Flight> UpdateFlightAsync(Dijkstra.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/DeleteFlight", ReplyAction="http://tempuri.org/IFlightService/DeleteFlightResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IFlightService/DeleteFlightDatabaseDeleteFaultFault", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/DeleteFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Dijkstra.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IFlightService/DeleteFlightDatabaseDeleteFaultFault", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         void DeleteFlight(Dijkstra.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/DeleteFlight", ReplyAction="http://tempuri.org/IFlightService/DeleteFlightResponse")]

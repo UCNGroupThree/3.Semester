@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
@@ -34,6 +35,7 @@ namespace WCFService.Model {
         public DateTime DepartureTime { get; set; }
 
         [DataMember]
+        [Required]
         public List<SeatReservation> SeatReservations { get; set; }
     }
 }

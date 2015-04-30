@@ -111,6 +111,14 @@
     <Compile Include="Migrations\201504160717250_AirportRouteFixOnDelete.Designer.cs">
       <DependentUpon>201504160717250_AirportRouteFixOnDelete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504300659508_SeatReservation.cs" />
+    <Compile Include="Migrations\201504300659508_SeatReservation.Designer.cs">
+      <DependentUpon>201504300659508_SeatReservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504300959261_SeatReservationIndexFix.cs" />
+    <Compile Include="Migrations\201504300959261_SeatReservationIndexFix.Designer.cs">
+      <DependentUpon>201504300959261_SeatReservationIndexFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\FlightDB.cs" />
@@ -192,6 +200,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504160717250_AirportRouteFixOnDelete.resx">
       <DependentUpon>201504160717250_AirportRouteFixOnDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504300659508_SeatReservation.resx">
+      <DependentUpon>201504300659508_SeatReservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504300959261_SeatReservationIndexFix.resx">
+      <DependentUpon>201504300959261_SeatReservationIndexFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
