@@ -14,7 +14,7 @@ namespace WCFService.WCF.Interface {
         List<Flight> GetFlights(int fromId, int toId, int seats, DateTime dateTime);
 
         [OperationContract]
-        List<SeatReservation> MakeSeatsOccupiedRandom(List<Flight> flights, int seats);
+        List<SeatReservation> MakeSeatsOccupiedRandom(List<Flight> flights, int seatsCount);
 
         [OperationContract]
         void Complete();
