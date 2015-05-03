@@ -14,7 +14,7 @@
            <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="txtName" CssClass="col-md-2 control-label">Name</asp:Label>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="txtName" CssClass="form-control" TextMode="Email" />
+                <asp:TextBox runat="server" ID="txtName" CssClass="form-control" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtName"
                     CssClass="text-danger" ErrorMessage="The name field is required." />
             </div>
@@ -22,7 +22,7 @@
            <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="txtAddress" CssClass="col-md-2 control-label">Address</asp:Label>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="txtAddress" CssClass="form-control" TextMode="Email" />
+                <asp:TextBox runat="server" ID="txtAddress" CssClass="form-control" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtAddress"
                     CssClass="text-danger" ErrorMessage="The address field is required." />
             </div>
@@ -30,7 +30,7 @@
            <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="txtCity" CssClass="col-md-2 control-label">City</asp:Label>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="txtCity" CssClass="form-control" TextMode="Email" />
+                <asp:TextBox runat="server" ID="txtCity" CssClass="form-control" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCity"
                     CssClass="text-danger" ErrorMessage="The city field is required." />
             </div>
@@ -38,7 +38,7 @@
            <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="txtPostal" CssClass="col-md-2 control-label">Postal</asp:Label>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="txtPostal" CssClass="form-control" TextMode="Email" />
+                <asp:TextBox runat="server" ID="txtPostal" CssClass="form-control" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtPostal"
                     CssClass="text-danger" ErrorMessage="The postal field is required." />
             </div>
