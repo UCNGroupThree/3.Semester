@@ -17,6 +17,9 @@ namespace WCFService.WCF
         public int AddUser(User user) {
             _db.Users.Add(user);
 
+            if (_db.Users.Any(x => x.Email == user.Email)) {
+                return -1;
+            }
             if (!_db.Postals.Any(p => p.PostCode == user.Postal.PostCode)) {
                 _db.Postals.Add(user.Postal);
             } else {

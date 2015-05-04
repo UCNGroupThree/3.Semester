@@ -27,7 +27,7 @@ namespace FlightWeb.Account
                     
                     Postal postal = new Postal() {
                         PostCode = Convert.ToInt32(txtPostal.Text.Trim()),
-                        City = txtCity.Text
+                        City = txtCity.Text.Trim()
                     };
                     string EncryptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(txtPassword.Text.Trim(), "SHA1");
                     User user = new User() {
@@ -40,8 +40,13 @@ namespace FlightWeb.Account
                         
 
                     };
-                    client.AddUser(user);
-                    
+                    int returnCode = client.AddUser(user);
+                    if (returnCode == -1) {
+
+                        lblMessage.Text = "The Email you provide is already in use, please suply another";
+                    } else {
+                        Response.Redirect("~/Default.aspx");
+                    }
                 }
 
             }

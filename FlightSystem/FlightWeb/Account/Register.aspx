@@ -79,6 +79,8 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <asp:Button runat="server" OnClick="CreateUser_Click" Text="Register" CssClass="btn btn-default" />
+                <br />
+                <asp:Label ID="lblMessage" runat="server" Font-Size="Small" ForeColor="#FF3300" Text="Message"></asp:Label>
             </div>
         </div>
     </div>
