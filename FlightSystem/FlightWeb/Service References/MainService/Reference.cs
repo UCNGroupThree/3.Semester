@@ -108,86 +108,9 @@ namespace FlightWeb.MainService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PasswordFormatFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
     [System.SerializableAttribute()]
-    public partial class NullPointerFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MessageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool ResultField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Message {
-            get {
-                return this.MessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
-                    this.MessageField = value;
-                    this.RaisePropertyChanged("Message");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Result {
-            get {
-                return this.ResultField;
-            }
-            set {
-                if ((this.ResultField.Equals(value) != true)) {
-                    this.ResultField = value;
-                    this.RaisePropertyChanged("Result");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-    [System.SerializableAttribute()]
-    public partial class AlreadyExistFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class PasswordFormatFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -339,9 +262,86 @@ namespace FlightWeb.MainService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PasswordFormatFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
     [System.SerializableAttribute()]
-    public partial class PasswordFormatFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class NullPointerFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ResultField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Result {
+            get {
+                return this.ResultField;
+            }
+            set {
+                if ((this.ResultField.Equals(value) != true)) {
+                    this.ResultField = value;
+                    this.RaisePropertyChanged("Result");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+    [System.SerializableAttribute()]
+    public partial class AlreadyExistFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -1033,6 +1033,9 @@ namespace FlightWeb.MainService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<FlightWeb.MainService.Flight> FlightsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1048,6 +1051,19 @@ namespace FlightWeb.MainService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<FlightWeb.MainService.Flight> Flights {
+            get {
+                return this.FlightsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FlightsField, value) != true)) {
+                    this.FlightsField = value;
+                    this.RaisePropertyChanged("Flights");
+                }
             }
         }
         
@@ -1113,6 +1129,9 @@ namespace FlightWeb.MainService {
         private FlightWeb.MainService.Flight FlightField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Flight_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1122,7 +1141,13 @@ namespace FlightWeb.MainService {
         private FlightWeb.MainService.Seat SeatField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Seat_IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private FlightWeb.MainService.SeatState StateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private FlightWeb.MainService.Ticket TicketField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1143,6 +1168,19 @@ namespace FlightWeb.MainService {
                 if ((object.ReferenceEquals(this.FlightField, value) != true)) {
                     this.FlightField = value;
                     this.RaisePropertyChanged("Flight");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Flight_ID {
+            get {
+                return this.Flight_IDField;
+            }
+            set {
+                if ((this.Flight_IDField.Equals(value) != true)) {
+                    this.Flight_IDField = value;
+                    this.RaisePropertyChanged("Flight_ID");
                 }
             }
         }
@@ -1187,6 +1225,19 @@ namespace FlightWeb.MainService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Seat_ID {
+            get {
+                return this.Seat_IDField;
+            }
+            set {
+                if ((this.Seat_IDField.Equals(value) != true)) {
+                    this.Seat_IDField = value;
+                    this.RaisePropertyChanged("Seat_ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public FlightWeb.MainService.SeatState State {
             get {
                 return this.StateField;
@@ -1195,6 +1246,19 @@ namespace FlightWeb.MainService {
                 if ((this.StateField.Equals(value) != true)) {
                     this.StateField = value;
                     this.RaisePropertyChanged("State");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public FlightWeb.MainService.Ticket Ticket {
+            get {
+                return this.TicketField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TicketField, value) != true)) {
+                    this.TicketField = value;
+                    this.RaisePropertyChanged("Ticket");
                 }
             }
         }
@@ -1318,6 +1382,115 @@ namespace FlightWeb.MainService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Ticket", Namespace="http://schemas.datacontract.org/2004/07/WCFService.Model", IsReference=true)]
+    [System.SerializableAttribute()]
+    public partial class Ticket : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] ConcurrencyField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime OrderDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private FlightWeb.MainService.TicketState OrderStateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<FlightWeb.MainService.SeatReservation> SeatReservationsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Concurrency {
+            get {
+                return this.ConcurrencyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ConcurrencyField, value) != true)) {
+                    this.ConcurrencyField = value;
+                    this.RaisePropertyChanged("Concurrency");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime OrderDate {
+            get {
+                return this.OrderDateField;
+            }
+            set {
+                if ((this.OrderDateField.Equals(value) != true)) {
+                    this.OrderDateField = value;
+                    this.RaisePropertyChanged("OrderDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public FlightWeb.MainService.TicketState OrderState {
+            get {
+                return this.OrderStateField;
+            }
+            set {
+                if ((this.OrderStateField.Equals(value) != true)) {
+                    this.OrderStateField = value;
+                    this.RaisePropertyChanged("OrderState");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<FlightWeb.MainService.SeatReservation> SeatReservations {
+            get {
+                return this.SeatReservationsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SeatReservationsField, value) != true)) {
+                    this.SeatReservationsField = value;
+                    this.RaisePropertyChanged("SeatReservations");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SeatState", Namespace="http://schemas.datacontract.org/2004/07/WCFService.Model")]
     public enum SeatState : int {
@@ -1330,6 +1503,20 @@ namespace FlightWeb.MainService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Occupied = 2,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TicketState", Namespace="http://schemas.datacontract.org/2004/07/WCFService.Model")]
+    public enum TicketState : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Pending = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Ordered = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Payed = 2,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1736,126 +1923,17 @@ namespace FlightWeb.MainService {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Ticket", Namespace="http://schemas.datacontract.org/2004/07/WCFService.Model", IsReference=true)]
-    [System.SerializableAttribute()]
-    public partial class Ticket : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] ConcurrencyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime OrderDateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string OrderStateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<FlightWeb.MainService.SeatReservation> SeatReservationsField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] Concurrency {
-            get {
-                return this.ConcurrencyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ConcurrencyField, value) != true)) {
-                    this.ConcurrencyField = value;
-                    this.RaisePropertyChanged("Concurrency");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime OrderDate {
-            get {
-                return this.OrderDateField;
-            }
-            set {
-                if ((this.OrderDateField.Equals(value) != true)) {
-                    this.OrderDateField = value;
-                    this.RaisePropertyChanged("OrderDate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string OrderState {
-            get {
-                return this.OrderStateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.OrderStateField, value) != true)) {
-                    this.OrderStateField = value;
-                    this.RaisePropertyChanged("OrderState");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<FlightWeb.MainService.SeatReservation> SeatReservations {
-            get {
-                return this.SeatReservationsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SeatReservationsField, value) != true)) {
-                    this.SeatReservationsField = value;
-                    this.RaisePropertyChanged("SeatReservations");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MainService.IAdministratorService")]
     public interface IAdministratorService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/AddAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/AddAdministratorResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.AlreadyExistFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseInsertFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorDatabaseInsertFaultFault" +
-            "", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.PasswordFormatFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorPasswordFormatFaultFault" +
             "", Name="PasswordFormatFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseInsertFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorDatabaseInsertFaultFault" +
+            "", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.AlreadyExistFault), Action="http://tempuri.org/IAdministratorService/AddAdministratorAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         FlightWeb.MainService.Administrator AddAdministrator(FlightWeb.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/AddAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/AddAdministratorResponse")]
@@ -1866,20 +1944,20 @@ namespace FlightWeb.MainService {
             "t", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorNullPointerFaultFault" +
             "", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.PasswordFormatFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorPasswordFormatFaultFa" +
-            "ult", Name="PasswordFormatFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorDatabaseUpdateFaultFa" +
             "ult", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.PasswordFormatFault), Action="http://tempuri.org/IAdministratorService/UpdateAdministratorPasswordFormatFaultFa" +
+            "ult", Name="PasswordFormatFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         FlightWeb.MainService.Administrator UpdateAdministrator(FlightWeb.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/UpdateAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/UpdateAdministratorResponse")]
         System.Threading.Tasks.Task<FlightWeb.MainService.Administrator> UpdateAdministratorAsync(FlightWeb.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/DeleteAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/DeleteAdministratorResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IAdministratorService/DeleteAdministratorDatabaseDeleteFaultFa" +
-            "ult", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IAdministratorService/DeleteAdministratorNullPointerFaultFault" +
             "", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IAdministratorService/DeleteAdministratorDatabaseDeleteFaultFa" +
+            "ult", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         void DeleteAdministrator(FlightWeb.MainService.Administrator administrator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministratorService/DeleteAdministrator", ReplyAction="http://tempuri.org/IAdministratorService/DeleteAdministratorResponse")]
@@ -1999,20 +2077,20 @@ namespace FlightWeb.MainService {
     public interface IAirportService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/AddAirport", ReplyAction="http://tempuri.org/IAirportService/AddAirportResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.TimeZoneFault), Action="http://tempuri.org/IAirportService/AddAirportTimeZoneFaultFault", Name="TimeZoneFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseInsertFault), Action="http://tempuri.org/IAirportService/AddAirportDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.AlreadyExistFault), Action="http://tempuri.org/IAirportService/AddAirportAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IAirportService/AddAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.TimeZoneFault), Action="http://tempuri.org/IAirportService/AddAirportTimeZoneFaultFault", Name="TimeZoneFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         FlightWeb.MainService.Airport AddAirport(FlightWeb.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/AddAirport", ReplyAction="http://tempuri.org/IAirportService/AddAirportResponse")]
         System.Threading.Tasks.Task<FlightWeb.MainService.Airport> AddAirportAsync(FlightWeb.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/UpdateAirport", ReplyAction="http://tempuri.org/IAirportService/UpdateAirportResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IAirportService/UpdateAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.TimeZoneFault), Action="http://tempuri.org/IAirportService/UpdateAirportTimeZoneFaultFault", Name="TimeZoneFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.AlreadyExistFault), Action="http://tempuri.org/IAirportService/UpdateAirportAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IAirportService/UpdateAirportDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.TimeZoneFault), Action="http://tempuri.org/IAirportService/UpdateAirportTimeZoneFaultFault", Name="TimeZoneFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IAirportService/UpdateAirportNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         FlightWeb.MainService.Airport UpdateAirport(FlightWeb.MainService.Airport airport);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAirportService/UpdateAirport", ReplyAction="http://tempuri.org/IAirportService/UpdateAirportResponse")]
@@ -2176,17 +2254,17 @@ namespace FlightWeb.MainService {
         System.Threading.Tasks.Task<int> AddFlightAsync(FlightWeb.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/UpdateFlight", ReplyAction="http://tempuri.org/IFlightService/UpdateFlightResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IFlightService/UpdateFlightDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/UpdateFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.OptimisticConcurrencyFault), Action="http://tempuri.org/IFlightService/UpdateFlightOptimisticConcurrencyFaultFault", Name="OptimisticConcurrencyFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IFlightService/UpdateFlightDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         FlightWeb.MainService.Flight UpdateFlight(FlightWeb.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/UpdateFlight", ReplyAction="http://tempuri.org/IFlightService/UpdateFlightResponse")]
         System.Threading.Tasks.Task<FlightWeb.MainService.Flight> UpdateFlightAsync(FlightWeb.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/DeleteFlight", ReplyAction="http://tempuri.org/IFlightService/DeleteFlightResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/DeleteFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IFlightService/DeleteFlightDatabaseDeleteFaultFault", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IFlightService/DeleteFlightNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         void DeleteFlight(FlightWeb.MainService.Flight flight);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlightService/DeleteFlight", ReplyAction="http://tempuri.org/IFlightService/DeleteFlightResponse")]
@@ -2439,26 +2517,26 @@ namespace FlightWeb.MainService {
     public interface IRouteService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/AddRoute", ReplyAction="http://tempuri.org/IRouteService/AddRouteResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseInsertFault), Action="http://tempuri.org/IRouteService/AddRouteDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.AlreadyExistFault), Action="http://tempuri.org/IRouteService/AddRouteAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/AddRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseInsertFault), Action="http://tempuri.org/IRouteService/AddRouteDatabaseInsertFaultFault", Name="DatabaseInsertFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         FlightWeb.MainService.Route AddRoute(FlightWeb.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/AddRoute", ReplyAction="http://tempuri.org/IRouteService/AddRouteResponse")]
         System.Threading.Tasks.Task<FlightWeb.MainService.Route> AddRouteAsync(FlightWeb.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/UpdateRoute", ReplyAction="http://tempuri.org/IRouteService/UpdateRouteResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/UpdateRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseUpdateFault), Action="http://tempuri.org/IRouteService/UpdateRouteDatabaseUpdateFaultFault", Name="DatabaseUpdateFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.OptimisticConcurrencyFault), Action="http://tempuri.org/IRouteService/UpdateRouteOptimisticConcurrencyFaultFault", Name="OptimisticConcurrencyFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/UpdateRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         FlightWeb.MainService.Route UpdateRoute(FlightWeb.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/UpdateRoute", ReplyAction="http://tempuri.org/IRouteService/UpdateRouteResponse")]
         System.Threading.Tasks.Task<FlightWeb.MainService.Route> UpdateRouteAsync(FlightWeb.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/DeleteRoute", ReplyAction="http://tempuri.org/IRouteService/DeleteRouteResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IRouteService/DeleteRouteDatabaseDeleteFaultFault", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IRouteService/DeleteRouteNullPointerFaultFault", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseDeleteFault), Action="http://tempuri.org/IRouteService/DeleteRouteDatabaseDeleteFaultFault", Name="DatabaseDeleteFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         void DeleteRoute(FlightWeb.MainService.Route route);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRouteService/DeleteRoute", ReplyAction="http://tempuri.org/IRouteService/DeleteRouteResponse")]

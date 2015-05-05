@@ -76,6 +76,7 @@
   <xs:element name="Flight" nillable="true" type="tns:Flight" />
   <xs:complexType name="Plane">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Flights" nillable="true" type="tns:ArrayOfFlight" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Seats" nillable="true" type="tns:ArrayOfSeat" />
@@ -111,10 +112,13 @@
   <xs:complexType name="SeatReservation">
     <xs:sequence>
       <xs:element minOccurs="0" name="Flight" nillable="true" type="tns:Flight" />
+      <xs:element minOccurs="0" name="Flight_ID" type="xs:int" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Seat" nillable="true" type="tns:Seat" />
+      <xs:element minOccurs="0" name="Seat_ID" type="xs:int" />
       <xs:element minOccurs="0" name="State" type="tns:SeatState" />
+      <xs:element minOccurs="0" name="Ticket" nillable="true" type="tns:Ticket" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -128,18 +132,26 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="SeatState" nillable="true" type="tns:SeatState" />
-  <xs:complexType name="ArrayOfAirport">
+  <xs:complexType name="Ticket">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Airport" nillable="true" type="tns:Airport" />
+      <xs:element minOccurs="0" name="Concurrency" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="OrderDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OrderState" type="tns:TicketState" />
+      <xs:element minOccurs="0" name="SeatReservations" nillable="true" type="tns:ArrayOfSeatReservation" />
     </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
   </xs:complexType>
-  <xs:element name="ArrayOfAirport" nillable="true" type="tns:ArrayOfAirport" />
-  <xs:complexType name="ArrayOfPlane">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Plane" nillable="true" type="tns:Plane" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfPlane" nillable="true" type="tns:ArrayOfPlane" />
+  <xs:element name="Ticket" nillable="true" type="tns:Ticket" />
+  <xs:simpleType name="TicketState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Pending" />
+      <xs:enumeration value="Ordered" />
+      <xs:enumeration value="Payed" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TicketState" nillable="true" type="tns:TicketState" />
   <xs:complexType name="User">
     <xs:sequence>
       <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
@@ -172,18 +184,18 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfTicket" nillable="true" type="tns:ArrayOfTicket" />
-  <xs:complexType name="Ticket">
+  <xs:complexType name="ArrayOfAirport">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Concurrency" nillable="true" type="xs:base64Binary" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="OrderDate" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="OrderState" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SeatReservations" nillable="true" type="tns:ArrayOfSeatReservation" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Airport" nillable="true" type="tns:Airport" />
     </xs:sequence>
-    <xs:attribute ref="ser:Id" />
-    <xs:attribute ref="ser:Ref" />
   </xs:complexType>
-  <xs:element name="Ticket" nillable="true" type="tns:Ticket" />
+  <xs:element name="ArrayOfAirport" nillable="true" type="tns:ArrayOfAirport" />
+  <xs:complexType name="ArrayOfPlane">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Plane" nillable="true" type="tns:Plane" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlane" nillable="true" type="tns:ArrayOfPlane" />
   <xs:complexType name="ArrayOfUser">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />

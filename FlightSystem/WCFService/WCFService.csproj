@@ -119,10 +119,19 @@
     <Compile Include="Migrations\201504300959261_SeatReservationIndexFix.Designer.cs">
       <DependentUpon>201504300959261_SeatReservationIndexFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505050952297_seatTicket.cs" />
+    <Compile Include="Migrations\201505050952297_seatTicket.Designer.cs">
+      <DependentUpon>201505050952297_seatTicket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505051230054_requiredFix.cs" />
+    <Compile Include="Migrations\201505051230054_requiredFix.Designer.cs">
+      <DependentUpon>201505051230054_requiredFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\FlightDB.cs" />
     <Compile Include="Model\Flight.cs" />
+    <Compile Include="Model\TicketState.cs" />
     <Compile Include="Model\Plane.cs" />
     <Compile Include="Model\Seat.cs" />
     <Compile Include="Model\Airport.cs" />
@@ -206,6 +215,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504300959261_SeatReservationIndexFix.resx">
       <DependentUpon>201504300959261_SeatReservationIndexFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505050952297_seatTicket.resx">
+      <DependentUpon>201505050952297_seatTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505051230054_requiredFix.resx">
+      <DependentUpon>201505051230054_requiredFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

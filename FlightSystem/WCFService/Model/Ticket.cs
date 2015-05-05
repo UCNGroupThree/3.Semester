@@ -9,6 +9,7 @@ namespace WCFService.Model {
     [DataContract(IsReference = true)]
     [KnownType(typeof (User))]
     [KnownType(typeof (List<SeatReservation>))]
+    [KnownType(typeof(TicketState))]
     public class Ticket {
 
         public Ticket() {
@@ -23,7 +24,7 @@ namespace WCFService.Model {
         public DateTime OrderDate { get; set; }
 
         [DataMember]
-        public string OrderState { get; set; } //TODO string/int/enum?
+        public TicketState OrderState { get; set; }
 
         [DataMember]
         public List<SeatReservation> SeatReservations { get; set; }
@@ -31,5 +32,6 @@ namespace WCFService.Model {
         [DataMember]
         [Timestamp]
         public byte[] Concurrency { get; set; }
+
     }
 }

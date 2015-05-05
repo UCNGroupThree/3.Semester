@@ -7,10 +7,10 @@ namespace WCFService.Model {
     [KnownType(typeof (SeatState))]
     [KnownType(typeof (Seat))]
     [KnownType(typeof (Flight))]
+    [KnownType(typeof(Ticket))]
     public class SeatReservation {
-        public SeatReservation(SeatState state, string name, Seat seat, Flight flight) {
+        public SeatReservation(Ticket ticket, SeatState state, Seat seat, Flight flight) {
             this.State = state;
-            this.Name = name;
             this.Seat = seat;
             this.Flight = flight;
         }
@@ -24,9 +24,9 @@ namespace WCFService.Model {
         public int ID { get; set; }
 
         [Index("Index_FlightSeat", 2, IsUnique = true)]
-        //[DataMember]
+        [DataMember]
         public int Seat_ID { get; set; }
-        //[DataMember]
+        [DataMember]
         [Index("Index_FlightSeat", 1, IsUnique = true)]
         public int Flight_ID { get; set; }
 
@@ -34,7 +34,7 @@ namespace WCFService.Model {
         [Required]
         [ForeignKey("Flight_ID")]
         public Flight Flight { get; set; }
-        
+
         [DataMember]
         [Required]
         [ForeignKey("Seat_ID")]
@@ -45,5 +45,9 @@ namespace WCFService.Model {
 
         [DataMember]
         public SeatState State { get; set; }
+
+        [DataMember]
+        [Required]
+        public Ticket Ticket { get; set; }
     }
 }

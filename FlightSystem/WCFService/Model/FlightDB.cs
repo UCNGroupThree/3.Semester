@@ -25,6 +25,11 @@ namespace WCFService.Model {
             //Fix ForeignKey Between Route And Airport;
             modelBuilder.Entity<Route>().HasRequired(r => r.From).WithMany(a => a.Routes);//.WillCascadeOnDelete(false);
 
+            //Delete seatReservations if delete ticket object
+            modelBuilder.Entity<SeatReservation>().HasRequired(s => s.Ticket).WithMany(t => t.SeatReservations).WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<Seat>().HasRequired(s => s.Plane).WithMany(s => s.Seats).WillCascadeOnDelete(true);
+
             //modelBuilder.Entity<SeatReservation>().HasRequired(s => s.Flight).WithMany(s => s.SeatReservations).WillCascadeOnDelete(false);
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();

@@ -19,6 +19,7 @@ namespace WCFService.Model {
         }
 
         [DataMember]
+        [Required]
         public Route Route { get; set; }
 
         [DataMember]
@@ -26,6 +27,7 @@ namespace WCFService.Model {
         public int ID { get; set; }
 
         [DataMember]
+        [Required]
         public Plane Plane { get; set; }
 
         [DataMember]

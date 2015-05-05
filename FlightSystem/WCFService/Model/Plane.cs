@@ -20,5 +20,8 @@ namespace WCFService.Model {
 
         [DataMember]
         public List<Seat> Seats { get; set; }
+
+        [DataMember]
+        public List<Flight> Flights { get; set; }
     }
 }
