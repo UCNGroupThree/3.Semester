@@ -21,6 +21,7 @@
                                         <asp:Label class="control-label col-sm-2" ID="lblCountryFrom" runat="server">From Country:</asp:Label>
                                         <div class="col-sm-10 form">
                                             <asp:DropDownList ID="ddlCountryFrom" class="form-control" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlCountryFrom_SelectedIndexChanged"></asp:DropDownList>
+                                            <asp:CompareValidator ID="CompareValidatorCountryFrom" ValidationGroup="FindFligtValidator" Display="Dynamic" ControlToValidate="ddlCountryFrom" runat="server" Operator="NotEqual" ValueToCompare="-1" ErrorMessage="Please Select a country"></asp:CompareValidator>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -29,6 +30,7 @@
                                             <asp:DropDownList ID="ddlFrom" Enabled="False" CssClass="form-control" runat="server" DataTextField="City" DataValueField="ID">
                                                 <asp:ListItem Value="-1" Text="--- Select Country first ---"></asp:ListItem>
                                             </asp:DropDownList>
+                                            <asp:CompareValidator ID="CompareValidatorFrom" ValidationGroup="FindFligtValidator" Display="Dynamic" ControlToValidate="ddlFrom" runat="server" Operator="NotEqual" ValueToCompare="-1" ErrorMessage="Please Select an airport"></asp:CompareValidator>
                                         </div>
                                     </div>
                                 </ContentTemplate>
@@ -40,6 +42,7 @@
                                         <asp:Label class="control-label col-sm-2" ID="lblCountryTo" runat="server">To Country:</asp:Label>
                                         <div class="col-sm-10 form">
                                             <asp:DropDownList ID="ddlCountryTo" class="form-control" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlCountryTo_SelectedIndexChanged"></asp:DropDownList>
+                                            <asp:CompareValidator ID="CompareValidatorCountryTo" ValidationGroup="FindFligtValidator" Display="Dynamic" ControlToValidate="ddlCountryTo" runat="server" Operator="NotEqual" ValueToCompare="-1" ErrorMessage="Please Select a country"></asp:CompareValidator>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -48,14 +51,16 @@
                                             <asp:DropDownList ID="ddlTo" Enabled="False" CssClass="form-control" runat="server">
                                                 <asp:ListItem Value="-1" Text="--- Select Country first ---"></asp:ListItem>
                                             </asp:DropDownList>
+                                            <asp:CompareValidator ID="CompareValidatorTo" ValidationGroup="FindFligtValidator" Display="Dynamic" ControlToValidate="ddlTo" runat="server" Operator="NotEqual" ValueToCompare="-1" ErrorMessage="Please Select an airport"></asp:CompareValidator>
                                         </div>
                                     </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                             <div class="form-group">
-                                <asp:Label class="control-label col-sm-2" ID="lblDepart" runat="server">Depart:</asp:Label>
+                                <asp:Label class="control-label col-sm-2" ID="lblDepart" runat="server">Departure time:</asp:Label>
                                 <div class="col-sm-10 form">
                                     <asp:TextBox class="form-control" ID="txtDepart" runat="server"></asp:TextBox>
+                                    <asp:CompareValidator ID="CompareValidatorDepart" runat="server" Display="Dynamic" Operator="DataTypeCheck" Type="Date" ErrorMessage="Please Select a valid date" ControlToValidate="txtDepart" ></asp:CompareValidator>
                                     <cc1:CalendarExtender ID="calDepart" TargetControlID="txtDepart" Format="dd-MM-yyyy HH:mm" runat="server" />
                                 </div>
                             </div>

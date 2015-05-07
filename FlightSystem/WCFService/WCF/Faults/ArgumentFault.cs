@@ -1,24 +1,24 @@
-﻿using System.Runtime.Serialization;
-using Common.Exceptions;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace WCFService.WCF.Faults {
 
     [DataContract]
-    public class AlreadyExistFault {
+    public class ArgumentFault {
 
-        public AlreadyExistFault() {
+        public ArgumentFault() {
             Result = false;
-            Description = "The entry already exists";
+            Description = "A Argument Fault!";
             Message = Description;
         }
 
-        public AlreadyExistFault(string message) {
+        public ArgumentFault(string message) {
             Result = false;
             Description = message;
             Message = Description;
         }
 
-        public AlreadyExistFault(AlreadyExistException ex) : this(ex.Message) {
+        public ArgumentFault(ArgumentException argumentException) : this (argumentException.Message) {
             
         }
 

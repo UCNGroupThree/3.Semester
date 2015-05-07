@@ -10,6 +10,7 @@ namespace WCFService.Model {
     [KnownType(typeof(Ticket))]
     public class SeatReservation {
         public SeatReservation(Ticket ticket, SeatState state, Seat seat, Flight flight) {
+            this.Ticket = ticket;
             this.State = state;
             this.Seat = seat;
             this.Flight = flight;
@@ -48,6 +49,6 @@ namespace WCFService.Model {
 
         [DataMember]
         [Required]
-        public Ticket Ticket { get; set; }
+        public virtual Ticket Ticket { get; set; }
     }
 }

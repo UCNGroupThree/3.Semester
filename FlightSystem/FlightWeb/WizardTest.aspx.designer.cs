@@ -58,6 +58,15 @@ namespace FlightWeb {
         protected global::System.Web.UI.WebControls.DropDownList ddlCountryFrom;
         
         /// <summary>
+        /// CompareValidatorCountryFrom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CompareValidatorCountryFrom;
+        
+        /// <summary>
         /// lblFrom control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,15 @@ namespace FlightWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFrom;
+        
+        /// <summary>
+        /// CompareValidatorFrom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CompareValidatorFrom;
         
         /// <summary>
         /// UpdatePanelTo control.
@@ -103,6 +121,15 @@ namespace FlightWeb {
         protected global::System.Web.UI.WebControls.DropDownList ddlCountryTo;
         
         /// <summary>
+        /// CompareValidatorCountryTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CompareValidatorCountryTo;
+        
+        /// <summary>
         /// lblTo control.
         /// </summary>
         /// <remarks>
@@ -121,6 +148,15 @@ namespace FlightWeb {
         protected global::System.Web.UI.WebControls.DropDownList ddlTo;
         
         /// <summary>
+        /// CompareValidatorTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CompareValidatorTo;
+        
+        /// <summary>
         /// lblDepart control.
         /// </summary>
         /// <remarks>
@@ -137,6 +173,15 @@ namespace FlightWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDepart;
+        
+        /// <summary>
+        /// CompareValidatorDepart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CompareValidatorDepart;
         
         /// <summary>
         /// calDepart control.

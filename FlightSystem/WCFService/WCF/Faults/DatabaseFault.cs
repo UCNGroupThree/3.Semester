@@ -2,24 +2,19 @@
 using Common.Exceptions;
 
 namespace WCFService.WCF.Faults {
-
     [DataContract]
-    public class AlreadyExistFault {
+    public class DatabaseFault {
 
-        public AlreadyExistFault() {
+        public DatabaseFault() {
             Result = false;
-            Description = "The entry already exists";
+            Description = "The database was unable to handle the request";
             Message = Description;
         }
 
-        public AlreadyExistFault(string message) {
+        public DatabaseFault(string message) {
             Result = false;
             Description = message;
-            Message = Description;
-        }
-
-        public AlreadyExistFault(AlreadyExistException ex) : this(ex.Message) {
-            
+            Message = message;
         }
 
         [DataMember]
