@@ -211,7 +211,12 @@ namespace WCFService {
 
         public List<User> GetAllUsers() {
             return _userService.GetAllUsers();
-        } 
+        }
+
+        public bool AuthenticateUser(string email, string password)
+        {
+            return _userService.AuthenticateUser(email, password);
+        }
 
         #endregion
 
@@ -245,5 +250,8 @@ namespace WCFService {
 
         #endregion
 
+
+
+    
     }
 }

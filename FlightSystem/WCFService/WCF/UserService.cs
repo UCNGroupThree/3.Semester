@@ -80,5 +80,20 @@ namespace WCFService.WCF
             return list;
         }
 
+
+
+        public bool AuthenticateUser(string email, string password)
+        {
+            bool val = false;
+
+            try {
+                if (_db.Users.Any(x => x.Email == email && x.PasswordHash == password)) {
+                    val = true;
+                }
+            } catch (Exception ) {
+                              
+            }
+            return val;
+        }
     }
 }

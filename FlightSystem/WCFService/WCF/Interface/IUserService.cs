@@ -25,6 +25,9 @@ namespace WCFService.WCF.Interface {
 
         [OperationContract]
         List<User> GetAllUsers();
+
+        [OperationContract]
+        bool AuthenticateUser(string email, string password);
     } 
 
 }
