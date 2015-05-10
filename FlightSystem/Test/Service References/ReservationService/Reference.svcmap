@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b4786051-cade-40f4-87f4-bba81761b36b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/ReservationService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="278b5a2a-5831-4bdd-8cdc-e0cb1a2bbcdf" SourceId="1" SourceUrl="http://localhost:8733/ReservationService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="76362836-fff6-4278-a53d-504ee7798597" SourceId="1" SourceUrl="http://localhost:8733/ReservationService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="5b1d901e-a91a-4355-8c9c-182e7ebea49b" SourceId="1" SourceUrl="http://localhost:8733/ReservationService/mex" />
+    <MetadataFile FileName="WCFService.Model.xsd" MetadataType="Schema" ID="6e5f9b09-29e5-402f-aad1-e5386547fc9a" SourceId="1" SourceUrl="http://localhost:8733/ReservationService/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="7bb20bb9-273f-42a3-af59-3ffb7da6a413" SourceId="1" SourceUrl="http://localhost:8733/ReservationService/mex" />
+    <MetadataFile FileName="WCFService.WCF.Faults.xsd" MetadataType="Schema" ID="737141c0-b66e-4b9b-9c2a-5cf9adca35f4" SourceId="1" SourceUrl="http://localhost:8733/ReservationService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

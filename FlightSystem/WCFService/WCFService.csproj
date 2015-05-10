@@ -144,6 +144,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WCF\AdministratorService.cs" />
     <Compile Include="WCF\AirportService.cs" />
+    <Compile Include="WCF\Interface\IReservationServiceCopy.cs" />
+    <Compile Include="WCF\ReservationServiceCopy.cs" />
     <Compile Include="WCF\ReservationService.cs" />
     <Compile Include="WCF\Dijkstra.cs" />
     <Compile Include="WCF\Faults\NotEnouthFault.cs" />

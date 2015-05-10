@@ -38,7 +38,7 @@ namespace FlightWeb {
                     resClient.Abort();
                     Debug.WriteLine("Handled Exception:");
                     Debug.WriteLine(ex);
-                    Debug.WriteLine(ex.Message);
+                    //Debug.WriteLine(ex.Message);
                     Debug.WriteLine("#####");
                     //Timeout
                 }
