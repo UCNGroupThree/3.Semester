@@ -18,6 +18,7 @@ namespace Dijkstra {
                     int id2 = int.Parse(Console.ReadLine());
 
                     Console.WriteLine("---------------------------");
+
                     DateTime dateTime = DateTime.Now.AddHours(-10);
 
                     PrintStuff(id1, id2, 1, dateTime);

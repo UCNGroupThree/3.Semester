@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightAdmin", "FlightAdmin\FlightAdmin.csproj", "{70F35D2E-0CED-49BB-96EB-198960FCE8C8}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -18,6 +18,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{AAAD32A8-0483-4CD1-AC4B-94456BC4EEC2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightWeb", "FlightWeb\FlightWeb.csproj", "{FF441F49-0F23-4FF7-B4B8-6B25A78DE2FA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{32E1689C-C8F3-4161-94ED-8492F485395E} = {32E1689C-C8F3-4161-94ED-8492F485395E}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{FC74B960-056C-4ECD-B01D-E0766DEDBC5B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{32E1689C-C8F3-4161-94ED-8492F485395E} = {32E1689C-C8F3-4161-94ED-8492F485395E}
 	EndProjectSection
@@ -48,6 +53,10 @@ Global
 		{FF441F49-0F23-4FF7-B4B8-6B25A78DE2FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF441F49-0F23-4FF7-B4B8-6B25A78DE2FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF441F49-0F23-4FF7-B4B8-6B25A78DE2FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC74B960-056C-4ECD-B01D-E0766DEDBC5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC74B960-056C-4ECD-B01D-E0766DEDBC5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC74B960-056C-4ECD-B01D-E0766DEDBC5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC74B960-056C-4ECD-B01D-E0766DEDBC5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

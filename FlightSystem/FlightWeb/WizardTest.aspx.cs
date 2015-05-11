@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Caching;
 using System.Web.Services;
 using System.Web.UI.WebControls;
+using AjaxControlToolkit;
 using FlightWeb.MainService;
 using FlightWeb.ReservationService;
 
@@ -20,6 +21,8 @@ namespace FlightWeb {
 
         public ReservationServiceClient ResServiceClient {
             get {
+                return (ReservationServiceClient) Session["resClient"];
+                /*
                 var temp = Session["resClient"] as ReservationServiceClient;
                 if (temp != null) {
                     return temp;
@@ -27,13 +30,27 @@ namespace FlightWeb {
                 var ret = new ReservationServiceClient();
                 Session["resClient"] = ret;
                 return ret;
+                 * */
             }
+            set { Session["resClient"] = value; }
         }
 
         protected void Page_Load(object sender, EventArgs e) {
             if (!Page.IsPostBack) {
                 FirstLoad();
+
+                Demo();
             }
+
+        }
+
+        //TODO Remove this before deploy!
+        private void Demo() {
+            ddlCountryFrom.SelectedValue = ddlCountryFrom.Items.FindByText("Denmark").Value;
+            ddlCountryFrom_SelectedIndexChanged(null, null);
+            ddlFrom.SelectedValue = ddlFrom.Items.FindByValue("1").Value;
+            ddlCountryTo_SelectedIndexChanged(null, null);
+            ddlTo.SelectedValue = ddlFrom.Items.FindByValue("3").Value;
 
         }
 
@@ -50,6 +67,8 @@ namespace FlightWeb {
             for (int i = 1; i <= 10; i++) {
                 ddlPersons.Items.Add(new ListItem(i.ToString()));
             }
+            var today = DateTime.Now;
+            txtDepart.Text = new DateTime(today.Year, today.Month, today.Day, 0,1,0).ToString("g");
         }
 
 
@@ -90,50 +109,36 @@ namespace FlightWeb {
         protected void Wizard1_NextButtonClick(object sender, WizardNavigationEventArgs e) {
             switch (e.CurrentStepIndex) {
                 case 0:
-                    Page.Validate("FindFligtValidator");
-                    if (!Page.IsValid) {
-                        e.Cancel = true;
-                        return;
-                    }
-                    ChangeFromFlightSearch();
+                    ChangeFromFlightSearch(e);
                     break;
                 case 1:
-                    ChangeFromFlightSelect();
+                    ChangeFromFlightSelect(e);
                     break;
             }
         }
-
-        private void ChangeFromFlightSelect() {
-            //Session["wcfClient"] = new ReservationServiceClient();
-            
-            Debug.Write("list: " + flights);
-            //if (list != null) {
-            Debug.WriteLineIf(flights != null, " , Count: " + flights.Count.ToString());
-            //}
-            GridViewFlights.DataSource = flights;
-            GridViewFlights.DataBind();
-            var price = flights.Sum(x => x.Route.Price);
-            var travelStart = flights.Min(x => x.DepartureTime);
-            var travelEnd = flights.Max(x => x.ArrivalTime);
-            var travelTime = travelEnd - travelStart;
-            lblTotalPrice.Text = string.Format("{0:C}", price);
-            lblTravelTime.Text = string.Format("{0:g}", travelTime);
-        }
-
-        private void ChangeFromFlightSearch() {
+        
+        private void ChangeFromFlightSearch(WizardNavigationEventArgs e) {
+            Page.Validate("FindFligtValidator");
+            if (!Page.IsValid) {
+                e.Cancel = true;
+                return;
+            }
             int fromId = int.Parse(ddlFrom.SelectedValue);
             int toId = int.Parse(ddlTo.SelectedValue);
             int seats = int.Parse(ddlPersons.SelectedValue);
             DateTime date = DateTime.Parse(txtDepart.Text);
-
-            Debug.WriteLine("from: {0} - to: {1}", fromId, toId);
-            Debug.WriteLine("date: {0}", date);
+            
+            
+            //Debug.WriteLine("from: {0} - to: {1}", fromId, toId);
+            //Debug.WriteLine("date: {0}", date);
 
             try {
-                var client = ResServiceClient;
+                //TODO skal erstattes med et andet endpoint
+
+                ClearSession();
+                using (var client = new ReservationServiceClient()) {
                     var list = client.GetFlights(fromId, toId, seats, date);
                     if (list != null && list.Count > 0) {
-
                         flights = list;
                         var first = flights[0];
                         var stops = flights.Count - 1;
@@ -151,10 +156,17 @@ namespace FlightWeb {
                         }
                         lblStep2Price.Text = string.Format("{0:C}", price);
                         lblStep2Time.Text = string.Format("{0:g}", travelTime);
-
+                    } else {
+                        ShowWarning("No Flight", "We are sorry, but we coundn't find any available flights :(");
+                        e.Cancel = true;
                     }
-
+                }
             } catch (Exception ex) {
+                //TODO bedre håndtering af fejl
+                ShowWarning("Validation Error!", "Body");
+                
+                e.Cancel = true;
+
                 Debug.WriteLine("ERROR!");
                 Debug.WriteLine("ERROR!");
                 Debug.WriteLine("ERROR!");
@@ -164,5 +176,55 @@ namespace FlightWeb {
             }
         }
 
+        private void ClearSession() {
+            flights = null;
+            if (ResServiceClient != null) {
+                try {
+                    ResServiceClient.Close();
+                } catch (Exception) {
+                    ResServiceClient.Abort();
+                    ResServiceClient = null;
+                }
+            }
+        }
+
+        private void ShowWarning(string title, string body) {
+            lblModalTitle.Text = title;
+            lblModalBody.Text = body;
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, Page.GetType(), "divModal", "$('#divModal').modal();", true);
+            upModal.Update();
+        }
+
+        private void ChangeFromFlightSelect(WizardNavigationEventArgs wizardNavigationEventArgs) {
+            //Session["wcfClient"] = new ReservationServiceClient();
+            Debug.Write("list: " + flights);
+            //if (list != null) {
+            Debug.WriteLineIf(flights != null, " , Count: " + flights.Count.ToString());
+            //}
+            GridViewFlights.DataSource = flights;
+            GridViewFlights.DataBind();
+            var price = flights.Sum(x => x.Route.Price);
+            var travelStart = flights.Min(x => x.DepartureTime);
+            var travelEnd = flights.Max(x => x.ArrivalTime);
+            var travelTime = travelEnd - travelStart;
+            lblTotalPrice.Text = string.Format("{0:C}", price);
+            lblTravelTime.Text = string.Format("{0:g}", travelTime);
+        }
+
+        protected void IntValidator_OnServerValidate(object source, ServerValidateEventArgs args) {
+            int i;
+            bool valid = int.TryParse(args.Value, out i);
+            args.IsValid = valid && i > 0;
+        }
+
+        protected void ValidatorDepart_OnServerValidate(object source, ServerValidateEventArgs args) {
+            try {
+                // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
+                DateTime.Parse(args.Value);
+                args.IsValid = true;
+            } catch (Exception) {
+                args.IsValid = false;
+            }
+        }
     }
 }
