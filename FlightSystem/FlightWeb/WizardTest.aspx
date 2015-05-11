@@ -137,29 +137,6 @@
                 </WizardSteps>
             </asp:Wizard>
 
-            <!-- Bootstrap Modal Dialog -->
-            <div class="modal fade" id="divModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <asp:UpdatePanel ID="upModal" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
-                        <ContentTemplate>
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title">
-                                        <asp:Label ID="lblModalTitle" runat="server" Text=""></asp:Label></h4>
-                                </div>
-                                <div class="modal-body">
-                                    <asp:Label ID="lblModalBody" runat="server" Text=""></asp:Label>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
-                                </div>
-                            </div>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </div>
-            </div>
-
         </ContentTemplate>
         <%--<Triggers>
             <asp:AsyncPostBackTrigger ControlID="Wizard1$ddlFrom" EventName="SelectedIndexChanged"/>
@@ -220,4 +197,28 @@
         });
         
     </script>--%>
+    
+            <!-- Bootstrap Modal Dialog -->
+            <div class="modal fade" id="divModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <asp:UpdatePanel ID="upModal" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
+                        <ContentTemplate>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">
+                                        <asp:Label ID="lblModalTitle" runat="server" Text=""></asp:Label></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <asp:Label ID="lblModalBody" runat="server" Text=""></asp:Label>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                                </div>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+            </div>
+
 </asp:Content>

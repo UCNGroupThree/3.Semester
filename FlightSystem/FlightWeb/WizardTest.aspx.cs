@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Caching;
 using System.Web.Services;
 using System.Web.UI.WebControls;
+using AjaxControlToolkit;
 using FlightWeb.MainService;
 using FlightWeb.ReservationService;
 
@@ -20,6 +21,8 @@ namespace FlightWeb {
 
         public ReservationServiceClient ResServiceClient {
             get {
+                return (ReservationServiceClient) Session["resClient"];
+                /*
                 var temp = Session["resClient"] as ReservationServiceClient;
                 if (temp != null) {
                     return temp;
@@ -27,7 +30,9 @@ namespace FlightWeb {
                 var ret = new ReservationServiceClient();
                 Session["resClient"] = ret;
                 return ret;
+                 * */
             }
+            set { Session["resClient"] = value; }
         }
 
         protected void Page_Load(object sender, EventArgs e) {
@@ -122,25 +127,18 @@ namespace FlightWeb {
             int toId = int.Parse(ddlTo.SelectedValue);
             int seats = int.Parse(ddlPersons.SelectedValue);
             DateTime date = DateTime.Parse(txtDepart.Text);
-
-            lblModalTitle.Text = "Validation Errors List for HP7 Citation";
-            lblModalBody.Text = "This is modal body";
-            System.Web.UI.ScriptManager.RegisterStartupScript(Page, Page.GetType(), "divModal", "$('#divModal').modal();", true);
-            upModal.Update();
-
-            e.Cancel = true;
-
-            return;
             
-            Debug.WriteLine("from: {0} - to: {1}", fromId, toId);
-            Debug.WriteLine("date: {0}", date);
+            
+            //Debug.WriteLine("from: {0} - to: {1}", fromId, toId);
+            //Debug.WriteLine("date: {0}", date);
 
             try {
-                //TODO skal erstattes med anden endpoint
+                //TODO skal erstattes med et andet endpoint
+
+                ClearSession();
                 using (var client = new ReservationServiceClient()) {
                     var list = client.GetFlights(fromId, toId, seats, date);
                     if (list != null && list.Count > 0) {
-
                         flights = list;
                         var first = flights[0];
                         var stops = flights.Count - 1;
@@ -158,10 +156,17 @@ namespace FlightWeb {
                         }
                         lblStep2Price.Text = string.Format("{0:C}", price);
                         lblStep2Time.Text = string.Format("{0:g}", travelTime);
-
+                    } else {
+                        ShowWarning("No Flight", "We are sorry, but we coundn't find any available flights :(");
+                        e.Cancel = true;
                     }
                 }
             } catch (Exception ex) {
+                //TODO bedre håndtering af fejl
+                ShowWarning("Validation Error!", "Body");
+                
+                e.Cancel = true;
+
                 Debug.WriteLine("ERROR!");
                 Debug.WriteLine("ERROR!");
                 Debug.WriteLine("ERROR!");
@@ -170,7 +175,26 @@ namespace FlightWeb {
                 Debug.WriteLine(ex.Source);
             }
         }
-        
+
+        private void ClearSession() {
+            flights = null;
+            if (ResServiceClient != null) {
+                try {
+                    ResServiceClient.Close();
+                } catch (Exception) {
+                    ResServiceClient.Abort();
+                    ResServiceClient = null;
+                }
+            }
+        }
+
+        private void ShowWarning(string title, string body) {
+            lblModalTitle.Text = title;
+            lblModalBody.Text = body;
+            System.Web.UI.ScriptManager.RegisterStartupScript(Page, Page.GetType(), "divModal", "$('#divModal').modal();", true);
+            upModal.Update();
+        }
+
         private void ChangeFromFlightSelect(WizardNavigationEventArgs wizardNavigationEventArgs) {
             //Session["wcfClient"] = new ReservationServiceClient();
             Debug.Write("list: " + flights);

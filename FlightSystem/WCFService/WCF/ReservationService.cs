@@ -98,22 +98,23 @@ namespace WCFService.WCF {
 
 
         public List<Flight> GetFlights(int fromId, int toId, int seats, DateTime dateTime) {
-            //try {
+            try {
                 //TODO måske tjek på om flights er tom?
                 //CreateTicket();
             DeleteTicket(false);
                 //TODO måske byttes om, men vær opmærksom på flight = null i CreateTicket
-                //flights = new Dijkstra().DijkstraStuff(fromId, toId, seats, dateTime);
+                flights = new Dijkstra().DijkstraStuff(fromId, toId, seats, dateTime);
 
-            List<Flight> flights1;
-                using (var tempDb = new FlightDB()) {
-                    tempDb.Database.Log = m => Debug.WriteLine(m);
-                    flights = tempDb.Flights.Where(x => x.ID == 228 || x.ID == 229)
-                        .Include(x => x.Route.From)
-                        .Include(x => x.Route.To)
-                        .Include(x=> x.Plane)
-                        .ToList();
-                }
+            
+            //List<Flight> flights1;
+            //    using (var tempDb = new FlightDB()) {
+            //        tempDb.Database.Log = m => Debug.WriteLine(m);
+            //        flights = tempDb.Flights.Where(x => x.ID == 228 || x.ID == 229)
+            //            .Include(x => x.Route.From)
+            //            .Include(x => x.Route.To)
+            //            .Include(x=> x.Plane)
+            //            .ToList();
+            //    }
                 //flights = new List<Flight>();
                 
                 //flights = flights1;
@@ -122,12 +123,12 @@ namespace WCFService.WCF {
                 noOfSeats = seats;
 
                 return flights;
-            //} catch (Exception ex) {
+            } catch (Exception ex) {
                 //TODO FejlHåndtering
-            //    throw new DatabaseException("GetFlights Error", ex);
+                throw new FaultException<DatabaseFault>(new DatabaseFault("GetFlights Error"));
                 //throw;
-            //}
-            //return null;
+            }
+            return null;
         }
 
         private void CreateTicket() {
