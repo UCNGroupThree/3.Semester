@@ -5,11 +5,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
+using System.Threading.Tasks;
 using WCFService.Model;
 using WCFService.WCF.Faults;
 using WCFService.WCF.Interface;
 
 namespace WCFService.WCF {
+
     public class AirportService : IAirportService {
 
         private readonly FlightDB db = new FlightDB();
@@ -62,11 +64,16 @@ namespace WCFService.WCF {
                 db.Airports.Attach(airport);
                 db.Entry(airport).State = EntityState.Modified;
                 db.SaveChanges();
+
+
+                // Running Async Update on Dijkstra Matrix
+                new Task(() => Dijkstra.Updated(airport)).Start();
                 //Debug.WriteLine("######");
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault("airport"));
             }
+
             return airport;
         }
 
