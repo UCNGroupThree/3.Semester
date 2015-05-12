@@ -7,14 +7,13 @@ using System.Web.Services;
 using System.Web.UI.WebControls;
 using AjaxControlToolkit;
 using FlightWeb.MainService;
-using FlightWeb.ReservationService;
 
 namespace FlightWeb {
     public partial class WizardTest : System.Web.UI.Page {
 
-        public List<ReservationService.Flight> flights {
+        public List<Flight> flights {
             get {
-                return (List<ReservationService.Flight>)Session["flights"];
+                return (List<Flight>)Session["flights"];
             }
             set { Session["flights"] = value; }
         }
@@ -137,7 +136,7 @@ namespace FlightWeb {
 
                 ClearSession();
                 using (var client = new ReservationServiceClient()) {
-                    var list = client.GetFlights(fromId, toId, seats, date);
+                    var list = client.GetFlightsAsd(fromId, toId, seats, date);
                     if (list != null && list.Count > 0) {
                         flights = list;
                         var first = flights[0];

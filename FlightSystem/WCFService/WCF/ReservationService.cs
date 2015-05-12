@@ -97,7 +97,7 @@ namespace WCFService.WCF {
 
 
 
-        public List<Flight> GetFlights(int fromId, int toId, int seats, DateTime dateTime) {
+        public List<Flight> GetFlightsAsd(int fromId, int toId, int seats, DateTime dateTime) {
             try {
                 //TODO måske tjek på om flights er tom?
                 //CreateTicket();
@@ -125,7 +125,7 @@ namespace WCFService.WCF {
                 return flights;
             } catch (Exception ex) {
                 //TODO FejlHåndtering
-                throw new FaultException<DatabaseFault>(new DatabaseFault("GetFlights Error"));
+                throw new FaultException<DatabaseFault>(new DatabaseFault("GetFlightsAsd Error"));
                 //throw;
             }
             return null;
@@ -149,7 +149,7 @@ namespace WCFService.WCF {
                 //flights = new List<Flight>();
 
                 if (ticket == null) {
-                    throw new FaultException<NullPointerFault>(new NullPointerFault("Run GetFlights first", "ticket"));
+                    throw new FaultException<NullPointerFault>(new NullPointerFault("Run GetFlightsAsd first", "ticket"));
                 }
                 // ReSharper disable once PossibleNullReferenceException
                 if (flights == null && flights.Count == 0) {

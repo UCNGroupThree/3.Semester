@@ -11,7 +11,7 @@ namespace WCFService.WCF.Interface {
         //TODO Sætte IsInitiating og IsTermination på de manglende Operationer
         [OperationContract]
         [FaultContract(typeof(DatabaseFault))]
-        List<Flight> GetFlights(int fromId, int toId, int seats, DateTime dateTime);
+        List<Flight> GetFlightsAsd(int fromId, int toId, int seats, DateTime dateTime);
 
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]

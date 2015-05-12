@@ -18,7 +18,7 @@
 </head>
 <body>
     <form runat="server">
-        <asp:ScriptManager runat="server">
+        <asp:ScriptManager EnableHistory="True" runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
@@ -38,7 +38,9 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-
+        <%-- //TODO BEDRE MÅDE AT LINKE TIL FIL --%>
+                <link rel="stylesheet" href="/Content/bootstrap-dialog.css"/>
+                <script src="/Scripts/bootstrap-dialog.js"></script>
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">

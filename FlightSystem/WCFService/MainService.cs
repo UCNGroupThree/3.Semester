@@ -8,7 +8,7 @@ using WCFService.WCF;
 using WCFService.WCF.Interface;
 
 namespace WCFService {
-    public class MainService : IAdministratorService, IAirportService, IFlightService, IPlaneService, IRouteService, IUserService, IPostalService, IDijkstra {
+    public class MainService : IAdministratorService, IAirportService, IFlightService, IPlaneService, IRouteService, IUserService, IPostalService, IDijkstra, IReservationService {
 
         #region Initial
 
@@ -20,6 +20,7 @@ namespace WCFService {
         private readonly IUserService _userService = new UserService();
         private readonly IPostalService _postalService = new PostalService();
         private readonly IDijkstra _dijkstraService = new WCF.Dijkstra();
+        private readonly IReservationService _resService = new WCF.ReservationService();
 
         #endregion
         
@@ -250,8 +251,24 @@ namespace WCFService {
 
         #endregion
 
+        #region Reservation Service
 
+        public List<Flight> GetFlightsAsd(int fromId, int toId, int seats, DateTime dateTime) {
+            return _resService.GetFlightsAsd(fromId, toId, seats, dateTime);
+        }
 
-    
+        public List<SeatReservation> MakeSeatsOccupiedRandom() {
+            return _resService.MakeSeatsOccupiedRandom();
+        }
+
+        public void Cancel() {
+            _resService.Cancel();
+        }
+
+        public void Complete() {
+            _resService.Complete();
+        }
+
+        #endregion
     }
 }

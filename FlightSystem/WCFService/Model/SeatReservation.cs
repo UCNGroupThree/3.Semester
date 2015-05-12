@@ -49,6 +49,6 @@ namespace WCFService.Model {
 
         [DataMember]
         [Required]
-        public virtual Ticket Ticket { get; set; }
+        public Ticket Ticket { get; set; }
     }
 }
