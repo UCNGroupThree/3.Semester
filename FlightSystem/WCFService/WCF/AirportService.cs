@@ -85,6 +85,9 @@ namespace WCFService.WCF {
                 db.Airports.Attach(airport);
                 db.Entry(airport).State = EntityState.Deleted;
                 db.SaveChanges();
+
+                // Running Async Remove on Dijkstra Matrix
+                new Task(() => Dijkstra.Removed(airport)).Start();
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
                 throw new FaultException<DatabaseDeleteFault>(new DatabaseDeleteFault("airport"));

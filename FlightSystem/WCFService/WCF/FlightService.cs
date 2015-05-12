@@ -8,6 +8,7 @@ using WCFService.WCF.Interface;
 using WCFService.Model;
 using System.ServiceModel;
 using WCFService.WCF.Faults;
+using System.Threading.Tasks;
 
 namespace WCFService.WCF {
     public class FlightService : IFlightService {
@@ -22,6 +23,9 @@ namespace WCFService.WCF {
             try {
                 db.Flights.Add(flight);
                 db.SaveChanges();
+
+                // Running Async Added on Dijkstra Matrix
+                new Task(() => Dijkstra.Added(flight)).Start();
             }
             catch (Exception ex) {
 
@@ -42,6 +46,9 @@ namespace WCFService.WCF {
             try {
                 db.Flights.AddOrUpdate(flight);
                 db.SaveChanges();
+
+                // Running Async Update on Dijkstra Matrix
+                new Task(() => Dijkstra.Updated(flight)).Start();
             } catch (OptimisticConcurrencyException e) {
                 throw new FaultException<OptimisticConcurrencyFault>(new OptimisticConcurrencyFault(){Message = e.Message});
             }catch (Exception ex) {
@@ -60,6 +67,9 @@ namespace WCFService.WCF {
             try {
                 db.Flights.Remove(flight);
                 db.SaveChanges();
+
+                // Running Async Update on Dijkstra Matrix
+                new Task(() => Dijkstra.Removed(flight)).Start();
             }
             catch (Exception ex) {
 

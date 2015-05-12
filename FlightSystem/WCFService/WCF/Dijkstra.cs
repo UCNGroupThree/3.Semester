@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.AccessControl;
+using System.ServiceModel;
+using Common.Exceptions;
 using WCFService.Dijkstra;
 using WCFService.Model;
+using WCFService.WCF.Faults;
 using WCFService.WCF.Interface;
 
 namespace WCFService.WCF {
@@ -11,6 +14,22 @@ namespace WCFService.WCF {
 
         public static void Updated(object updatedObj) {
             Matrix.GetInstance().Updated(updatedObj);
+
+            //####### Test #######
+            Test();
+            //####### Test End #######
+        }
+
+        public static void Added(object addedObj) {
+            Matrix.GetInstance().Added(addedObj);
+
+            //####### Test #######
+            Test();
+            //####### Test End #######
+        }
+
+        public static void Removed(object removedObj) {
+            Matrix.GetInstance().Removed(removedObj);
 
             //####### Test #######
             Test();
@@ -47,12 +66,13 @@ namespace WCFService.WCF {
         //####### Test End #######
 
         public List<Flight> DijkstraStuff(int fromId, int toId, int seats, DateTime startTime) {
-            var matrix = Matrix.GetInstance();
-
-            List<Flight> ret = matrix.GetShortestPath(fromId, toId, seats, startTime);
-
-
-            return ret;
+            try {
+                var matrix = Matrix.GetInstance();
+                List<Flight> ret = matrix.GetShortestPath(fromId, toId, seats, startTime);
+                return ret;
+            } catch (LockedException e) {
+                throw new FaultException<LockedFault>(new LockedFault(){Description = e.Message, Message = e.Message});
+            }
         }
     }
 }

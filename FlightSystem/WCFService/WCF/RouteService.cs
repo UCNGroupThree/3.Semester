@@ -8,6 +8,7 @@ using System.Data.Entity.Migrations;
 using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
+using System.Threading.Tasks;
 using WCFService.Model;
 using WCFService.WCF.Faults;
 using WCFService.WCF.Interface;
@@ -29,6 +30,9 @@ namespace WCFService.WCF {
                     db.Airports.Attach(route.From);
                     db.Airports.Attach(route.To);
                     db.SaveChanges();
+
+                    // Running Async Added on Dijkstra Matrix
+                    new Task(() => Dijkstra.Added(route)).Start();
                 } catch (Exception e) {
                     Console.WriteLine(e.Message); //TODO DEBUG MODE?
                     throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault() {Message = e.Message});
@@ -77,6 +81,10 @@ namespace WCFService.WCF {
                 //db.Entry(route.Flights).State = EntityState.Added;
 
                 db.SaveChanges();
+
+
+                // Running Async Update on Dijkstra Matrix
+                new Task(() => Dijkstra.Updated(route)).Start();
             } catch (OptimisticConcurrencyException e) {
                 throw new FaultException<OptimisticConcurrencyFault>(new OptimisticConcurrencyFault() {
                     Message = e.Message
@@ -85,6 +93,9 @@ namespace WCFService.WCF {
                 var ctx = ((IObjectContextAdapter)db).ObjectContext;
                 ctx.Refresh(RefreshMode.ClientWins, db.Flights);
                 db.SaveChanges();
+
+                // Running Async Update on Dijkstra Matrix
+                new Task(() => Dijkstra.Updated(route)).Start();
             } catch (Exception ex) {
                 Console.WriteLine(ex.InnerException);
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
@@ -103,6 +114,9 @@ namespace WCFService.WCF {
                 db.Routes.Attach(route);
                 db.Entry(route).State = EntityState.Deleted;
                 db.SaveChanges();
+
+                // Running Async Remove on Dijkstra Matrix
+                new Task(() => Dijkstra.Updated(route)).Start();
             } catch (Exception ex) {
                 Debug.WriteLine(ex.Message); //TODO DEBUG MODE?
                 
