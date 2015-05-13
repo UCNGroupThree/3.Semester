@@ -37,7 +37,6 @@ namespace WCFService.Model {
         public DateTime DepartureTime { get; set; }
 
         [DataMember]
-        [Required]
         public List<SeatReservation> SeatReservations { get; set; }
     }
 }

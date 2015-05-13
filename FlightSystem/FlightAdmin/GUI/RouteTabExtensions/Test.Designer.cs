@@ -23,7 +23,6 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.createRoute1 = new FlightAdmin.GUI.RouteTabExtensions.CreateRoute();
             this.SuspendLayout();
             // 
             // createRoute1

@@ -5,9 +5,12 @@ using System.Data.Entity.Core;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
+using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.ServiceModel;
+using System.Threading;
 using System.Threading.Tasks;
 using WCFService.Model;
 using WCFService.WCF.Faults;
@@ -17,6 +20,13 @@ namespace WCFService.WCF {
     public class RouteService : IRouteService {
 
         private readonly FlightDB db = new FlightDB();
+
+        public RouteService() {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
+            db.Database.Log = m => Debug.WriteLine(m);
+        }
 
         public Route AddRoute(Route route) {
             if (route == null) {
@@ -53,19 +63,22 @@ namespace WCFService.WCF {
             }
 
             try {
+                Debug.WriteLine(route.From.Name + " " + route.To.Name);
+               // var oldRoute = db.Routes.Find(route.ID);
+            //var s = db.ChangeTracker.Entries<Route>().First(x => x.Entity.ID == route.ID);
 
-                Route oldRoute = db.Routes.Find(route.ID);
+               // db.Entry(oldRoute).CurrentValues.SetValues(route);
+            //oldRoute.From = route.From;
+            //oldRoute.To = route.To;
+               // oldRoute.Flights = route.Flights;
+                db.Entry(route).State = EntityState.Modified;
 
-                db.Entry(oldRoute).CurrentValues.SetValues(route);
-                oldRoute.Flights = route.Flights;
-                db.Entry(oldRoute).State = EntityState.Modified;
-
-                foreach (var flight in oldRoute.Flights) {
+                foreach (var flight in route.Flights) {
                     System.Diagnostics.Debug.WriteLine(flight.ID + "flight"); //TODO Remove after test
                     if (flight.ID > 0) {
                         //db.Flights.Attach(flight);
                         System.Diagnostics.Debug.WriteLine(flight.ID + "Set to modified"); //TODO Remove after test
-                        db.Entry(flight).State = EntityState.Unchanged;
+                        db.Entry(flight).State = EntityState.Modified;
                     } else {
                         System.Diagnostics.Debug.WriteLine(flight.ID + "Set to added"); //TODO Remove after test
                         db.Flights.Add(flight);
@@ -74,6 +87,7 @@ namespace WCFService.WCF {
                     if (flight.Plane.ID > 0) {
                         db.Planes.Attach(flight.Plane);
                     }
+
                 }
 
 
@@ -81,10 +95,12 @@ namespace WCFService.WCF {
                 //db.Entry(route.Flights).State = EntityState.Added;
 
                 db.SaveChanges();
-
+                //DebugSaveChanges();
 
                 // Running Async Update on Dijkstra Matrix
                 new Task(() => Dijkstra.Updated(route)).Start();
+
+                
             } catch (OptimisticConcurrencyException e) {
                 throw new FaultException<OptimisticConcurrencyFault>(new OptimisticConcurrencyFault() {
                     Message = e.Message
@@ -92,8 +108,8 @@ namespace WCFService.WCF {
             } catch (DbUpdateException) {
                 var ctx = ((IObjectContextAdapter)db).ObjectContext;
                 ctx.Refresh(RefreshMode.ClientWins, db.Flights);
-                db.SaveChanges();
-
+                //db.SaveChanges();
+                DebugSaveChanges();
                 // Running Async Update on Dijkstra Matrix
                 new Task(() => Dijkstra.Updated(route)).Start();
             } catch (Exception ex) {
@@ -103,6 +119,25 @@ namespace WCFService.WCF {
             }
 
             return retRoute;
+        }
+
+        private void DebugSaveChanges() {
+            try {
+                // Your code...
+                // Could also be before try if you know the exception occurs in SaveChanges
+
+                db.SaveChanges();
+            } catch (DbEntityValidationException e) {
+                foreach (var eve in e.EntityValidationErrors) {
+                    Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors) {
+                        Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
         }
 
         public void DeleteRoute(Route route) {

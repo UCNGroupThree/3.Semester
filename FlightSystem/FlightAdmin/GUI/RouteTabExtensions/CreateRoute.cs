@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -30,10 +31,26 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
 
         public bool Working { get; private set; }
 
+        private bool _isEdit;
+        private Route edRoute;
+
         #endregion
 
         public CreateRoute() {
             InitializeComponent();
+            _isEdit = false;
+            Debug.WriteLine("CreateRoute: Create");
+        }
+
+        public CreateRoute(Route route) {
+            InitializeComponent();
+            _isEdit = true;
+            edRoute = route;
+            txtPrice.Text = edRoute.Price.ToString();
+            btnCreate.Text = "Save";
+            btnCreate.Click -= btnCreate_Click;
+            btnCreate.Click += btnCreateUpdate_Click;
+            Debug.WriteLine("CreateRoute: Edit");
         }
 
         #region BackgroundWorker
@@ -60,6 +77,10 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             BeginInvoke((MethodInvoker) delegate {
                 cmbFromCountry.DataSource = countriesFrom;
                 cmbToCountry.DataSource = countriesTo;
+                if (edRoute != null) {
+                    cmbToCountry.SelectedItem = edRoute.To.Country;
+                    cmbFromCountry.SelectedItem = edRoute.From.Country;
+                }
                 loadFromCountry.Visible = false;
                 loadToCountry.Visible = false;
             });
@@ -81,6 +102,15 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
                 cmb.DataSource = airports;
                 cmb.DisplayMember = "Name";
                 cmb.ValueMember = "ID";
+
+                if (edRoute != null) {
+
+                    cmbFromAirport.SelectedValue = edRoute.From.ID;
+                    cmbToAirport.SelectedValue = edRoute.To.ID;
+                    //cmbFromAirport.SelectedItem = edRoute.From;
+                    //cmbToAirport.SelectedItem = edRoute.To;
+                }
+
                 helper.Loader.Visible = false;
                 cmb.Enabled = true;
             });
@@ -140,7 +170,7 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
 
         #endregion
 
-        #region Create
+        #region Create / Updated
 
         private void btnCreate_Click(object sender, EventArgs e) {
             if (ValidateRoute()) {
@@ -150,6 +180,28 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
                         decimal.Parse(txtPrice.Text));
 
                     MessageBox.Show(String.Format("The Route:\n {0} -> {1} \n has been created!", route.From.Name, route
+                        .To.Name), "Route Created", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+                    if (AddRouteEvent != null)
+                        AddRouteEvent(route);
+                    if (CloseEvent != null)
+                        CloseEvent();
+
+                } catch (ValidationException exception) {
+                    //TODO Something here
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void btnCreateUpdate_Click(object sender, EventArgs e) {
+            if (ValidateRoute()) {
+                try {
+                    RouteCtr rCtr = new RouteCtr();
+                    Route route = rCtr.UpdateRoute(edRoute, (Airport)cmbFromAirport.SelectedItem, (Airport)cmbToAirport.SelectedItem, edRoute.Flights, decimal.Parse(txtPrice.Text));
+
+                    MessageBox.Show(String.Format("The Route:\n {0} -> {1} \n has been Updated!", route.From.Name, route
                         .To.Name), "Route Created", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
                     if (AddRouteEvent != null)

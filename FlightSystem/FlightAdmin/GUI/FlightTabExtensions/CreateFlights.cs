@@ -231,7 +231,7 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
                 ArrivalTime = flightHelper.ArrivalTime.Value, DepartureTime = flightHelper.DepartureTime.Value, Plane = (Plane) flightHelper.Plane.SelectedItem
             }).ToList();
 
-            Route = rCtr.UpdateRoute(Route, Route.From, Route.To, flights);
+            Route = rCtr.UpdateRoute(Route, Route.From, Route.To, flights, Route.Price);
 
             TestCrap(Route.Flights); //TODO Remove after test
 
@@ -241,6 +241,8 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
 
         private void btnSaveForEdit_Click(object sender, EventArgs e) {
             RouteCtr rCtr = new RouteCtr();
+            FlightCtr fCtr = new FlightCtr();
+            
 
             List<Flight> flights = _flights.Select(flightHelper => new Flight {
                 ArrivalTime = flightHelper.ArrivalTime.Value,
@@ -251,7 +253,7 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
 
 
 
-            Route = rCtr.UpdateRoute(Route, Route.From, Route.To, flights);
+            Route = rCtr.UpdateRoute(Route, Route.From, Route.To, flights, Route.Price);
 
             TestCrap(Route.Flights); //TODO Remove after test
 

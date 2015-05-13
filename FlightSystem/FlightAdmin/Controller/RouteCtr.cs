@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Security.Cryptography;
 using System.ServiceModel;
 using Common.Exceptions;
@@ -40,7 +42,7 @@ namespace FlightAdmin.Controller {
 
         #region Update
 
-        public Route UpdateRoute(Route route, Airport from, Airport to, List<Flight> flights) { //TODO Better Exception
+        public Route UpdateRoute(Route route, Airport from, Airport to, List<Flight> flights, decimal price) { //TODO Better Exception
             Route retRoute;
             if (RouteValidation(from, to, flights)) {
                 using (var client = new RouteServiceClient()) {
@@ -48,6 +50,7 @@ namespace FlightAdmin.Controller {
                         route.From = from;
                         route.To = to;
                         route.Flights = flights;
+                        route.Price = price;
 
                         retRoute = client.UpdateRoute(route);
                     } catch (FaultException<OptimisticConcurrencyFault> concurrencyException) {

@@ -156,7 +156,12 @@ namespace FlightAdmin.GUI {
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e) {
-
+            var route = (Route)dataRoute.Rows[_mouseLocation.RowIndex].DataBoundItem;
+            if (route != null) {
+                Test t = new Test(route);
+                t.AddRouteEvent += AddRoute;
+                t.ShowDialog();
+            }
         }
 
         private void createFlightsToolStripMenuItem_Click(object sender, EventArgs e) {

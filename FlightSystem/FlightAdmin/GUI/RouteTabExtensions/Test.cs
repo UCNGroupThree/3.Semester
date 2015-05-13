@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FlightAdmin.MainService;
 
 namespace FlightAdmin.GUI.RouteTabExtensions {
     public partial class Test : Form {
@@ -21,6 +22,13 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
         #endregion
 
         public Test() {
+            createRoute1 = new CreateRoute();
+            InitializeComponent();
+            createRoute1.CloseEvent += Close;
+        }
+
+        public Test(Route route) {
+            createRoute1 = new CreateRoute(route);
             InitializeComponent();
             createRoute1.CloseEvent += Close;
         }

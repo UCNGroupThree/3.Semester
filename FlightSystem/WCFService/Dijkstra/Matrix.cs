@@ -583,7 +583,7 @@ namespace WCFService.Dijkstra {
             //var time = startTime;
 
             if (_locked) {
-                throw new LockedException("Matrix is being updated");
+                throw new LockedException("The Matrix is being updated");
             }
 
             Airport from = airports.FirstOrDefault(a => a.ID == fromId);
