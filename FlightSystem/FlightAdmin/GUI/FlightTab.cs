@@ -16,6 +16,7 @@ namespace FlightAdmin.GUI {
     public partial class FlightTab : UserControl {
 
         private FlightCtr _fCtr = new FlightCtr();
+        private DataGridViewCellEventArgs _mouseLocation;
         public FlightTab() { //Todo Nick D PEdersen
             InitializeComponent();
             SetEvents();
@@ -160,6 +161,27 @@ namespace FlightAdmin.GUI {
             txtFrom.Text = "";
             txtTo.Text = "";
             txtID.Text = "";
+        }
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e) {
+            var flight = (Flight)dataFlight.Rows[_mouseLocation.RowIndex].DataBoundItem;
+            if (flight != null) {
+                DeleteFlight(flight);
+            }
+        }
+
+        private void DeleteFlight(Flight flight) {
+            try {
+                _fCtr.DeleteFlight(flight);
+
+                MessageBox.Show(String.Format("Flight: {0} \n has been deleted!", flight.ID));
+            } catch (Exception e) {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        private void dataRoute_CellMouseEnter(object sender, DataGridViewCellEventArgs location) {
+            _mouseLocation = location;
         }
 
     }

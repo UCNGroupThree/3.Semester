@@ -71,6 +71,7 @@
       <xs:element minOccurs="0" name="Plane" nillable="true" type="tns:Plane" />
       <xs:element minOccurs="0" name="PlaneID" type="xs:int" />
       <xs:element minOccurs="0" name="Route" nillable="true" type="tns:Route" />
+      <xs:element minOccurs="0" name="RouteID" type="xs:int" />
       <xs:element minOccurs="0" name="SeatReservations" nillable="true" type="tns:ArrayOfSeatReservation" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />

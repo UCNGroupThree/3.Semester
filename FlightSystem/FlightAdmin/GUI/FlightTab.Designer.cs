@@ -26,8 +26,7 @@
             this.components = new System.ComponentModel.Container();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextDataGridMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataRoute = new System.Windows.Forms.DataGridView();
+            this.dataFlight = new System.Windows.Forms.DataGridView();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.arrivalTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.departureTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,7 +53,7 @@
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextDataGridMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataRoute)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataFlight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flightBindingSource)).BeginInit();
             this.loadingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -70,44 +69,39 @@
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
             // contextDataGridMenu
             // 
             this.contextDataGridMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.removeToolStripMenuItem,
-            this.editToolStripMenuItem});
+            this.removeToolStripMenuItem});
             this.contextDataGridMenu.Name = "contextDataGridMenu";
-            this.contextDataGridMenu.Size = new System.Drawing.Size(133, 52);
+            this.contextDataGridMenu.Size = new System.Drawing.Size(118, 26);
             // 
-            // editToolStripMenuItem
+            // dataFlight
             // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
-            this.editToolStripMenuItem.Text = "Edit";
-            // 
-            // dataRoute
-            // 
-            this.dataRoute.AllowUserToAddRows = false;
-            this.dataRoute.AllowUserToDeleteRows = false;
-            this.dataRoute.AutoGenerateColumns = false;
-            this.dataRoute.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataRoute.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
-            this.dataRoute.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataRoute.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataFlight.AllowUserToAddRows = false;
+            this.dataFlight.AllowUserToDeleteRows = false;
+            this.dataFlight.AutoGenerateColumns = false;
+            this.dataFlight.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataFlight.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
+            this.dataFlight.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataFlight.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
             this.arrivalTimeDataGridViewTextBoxColumn,
             this.departureTimeDataGridViewTextBoxColumn,
             this.planeDataGridViewTextBoxColumn});
-            this.dataRoute.ContextMenuStrip = this.contextDataGridMenu;
-            this.dataRoute.DataSource = this.flightBindingSource;
-            this.dataRoute.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataRoute.Location = new System.Drawing.Point(0, 0);
-            this.dataRoute.Name = "dataRoute";
-            this.dataRoute.ReadOnly = true;
-            this.dataRoute.Size = new System.Drawing.Size(902, 797);
-            this.dataRoute.TabIndex = 1;
+            this.dataFlight.ContextMenuStrip = this.contextDataGridMenu;
+            this.dataFlight.DataSource = this.flightBindingSource;
+            this.dataFlight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataFlight.Location = new System.Drawing.Point(0, 0);
+            this.dataFlight.Name = "dataFlight";
+            this.dataFlight.ReadOnly = true;
+            this.dataFlight.Size = new System.Drawing.Size(902, 797);
+            this.dataFlight.TabIndex = 1;
+            this.dataFlight.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataRoute_CellMouseEnter);
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -172,7 +166,7 @@
             // 
             // GridPanel
             // 
-            this.GridPanel.Controls.Add(this.dataRoute);
+            this.GridPanel.Controls.Add(this.dataFlight);
             this.GridPanel.Controls.Add(this.loadingPanel);
             this.GridPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridPanel.Location = new System.Drawing.Point(228, 3);
@@ -267,17 +261,17 @@
             // 
             this.lblTo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(3, 24);
+            this.lblTo.Location = new System.Drawing.Point(3, 25);
             this.lblTo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(24, 15);
+            this.lblTo.Size = new System.Drawing.Size(23, 13);
             this.lblTo.TabIndex = 2;
             this.lblTo.Text = "To:";
             // 
             // txtTo
             // 
             this.txtTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTo.Location = new System.Drawing.Point(45, 23);
+            this.txtTo.Location = new System.Drawing.Point(39, 23);
             this.txtTo.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.txtTo.Name = "txtTo";
             this.txtTo.Size = new System.Drawing.Size(174, 20);
@@ -287,16 +281,16 @@
             // 
             this.lblFrom.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblFrom.AutoSize = true;
-            this.lblFrom.Location = new System.Drawing.Point(3, 2);
+            this.lblFrom.Location = new System.Drawing.Point(3, 3);
             this.lblFrom.Name = "lblFrom";
-            this.lblFrom.Size = new System.Drawing.Size(39, 15);
+            this.lblFrom.Size = new System.Drawing.Size(33, 13);
             this.lblFrom.TabIndex = 0;
             this.lblFrom.Text = "From:";
             // 
             // txtFrom
             // 
             this.txtFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFrom.Location = new System.Drawing.Point(45, 0);
+            this.txtFrom.Location = new System.Drawing.Point(39, 0);
             this.txtFrom.Margin = new System.Windows.Forms.Padding(0);
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.Size = new System.Drawing.Size(174, 20);
@@ -306,7 +300,7 @@
             // 
             this.txtID.AllowSpace = false;
             this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtID.Location = new System.Drawing.Point(45, 46);
+            this.txtID.Location = new System.Drawing.Point(39, 46);
             this.txtID.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
             this.txtID.Name = "txtID";
             this.txtID.OnlyInt = false;
@@ -320,7 +314,7 @@
             this.lblID.Location = new System.Drawing.Point(3, 46);
             this.lblID.Margin = new System.Windows.Forms.Padding(3, 6, 0, 0);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(42, 23);
+            this.lblID.Size = new System.Drawing.Size(36, 23);
             this.lblID.TabIndex = 5;
             this.lblID.Text = "ID:";
             // 
@@ -387,7 +381,7 @@
             this.Name = "FlightTab";
             this.Size = new System.Drawing.Size(1133, 803);
             this.contextDataGridMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataRoute)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataFlight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.flightBindingSource)).EndInit();
             this.loadingPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -407,8 +401,7 @@
 
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextDataGridMenu;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dataRoute;
+        private System.Windows.Forms.DataGridView dataFlight;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn arrivalTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn departureTimeDataGridViewTextBoxColumn;

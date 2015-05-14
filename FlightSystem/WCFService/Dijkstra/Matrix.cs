@@ -132,7 +132,7 @@ namespace WCFService.Dijkstra {
         #region Remove (Events)
 
         private void RemoveFlight(Flight flight) {
-            try {
+           // try {
 
                 // ####### Timing #######
 
@@ -141,16 +141,16 @@ namespace WCFService.Dijkstra {
 
                 // ####### Timing End #######
 
-
+                try {
                 var airport = airports.First(a => a.Routes.First(r => r.Flights.Any(f => f.ID == flight.ID)) != null);
                 var route = airport.Routes.First(r => r.Flights.Any(f => f.ID == flight.ID));
                 route.Flights.RemoveAll(f => f.ID == flight.ID);
-
+            
                 var edge = edges.First(a => a.Data.Routes.First(r => r.Flights.Any(f => f.ID == flight.ID)) != null);
                 var edgeRoute = edge.Data.Routes.First(r => r.Flights.Any(f => f.ID == flight.ID));
                 edgeRoute.Flights.RemoveAll(f => f.ID == flight.ID);
-
-                // ####### Timing #######
+            } catch(InvalidOperationException){}
+            // ####### Timing #######
 
                 watch.Stop();
                 Debug.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
@@ -158,9 +158,9 @@ namespace WCFService.Dijkstra {
 
                 // ####### Timing End #######
 
-            } catch (Exception) {
-                HardReset();
-            }
+            //} catch (Exception) {
+            //    HardReset();
+            //}
         }
 
         private void RemoveAirport(Airport airport) {
@@ -168,7 +168,7 @@ namespace WCFService.Dijkstra {
 
                 // ####### Timing #######
 
-                Debug.WriteLine("----------- Remove Airport -----------");
+                Debug.WriteLine("----------- RemoveAirport -----------");
                 var watch = Stopwatch.StartNew();
 
                 // ####### Timing End #######
@@ -192,7 +192,7 @@ namespace WCFService.Dijkstra {
         }
 
         private void RemoveRoute(Route route) {
-            try {
+            //try {
 
                 // ####### Timing #######
 
@@ -214,7 +214,7 @@ namespace WCFService.Dijkstra {
                     edges.Add(newEdge);
                 }
 
-                edges.ForEach(e => e.Neighbors.RemoveAll(n => n.Data.ID == route.To.ID));
+                edges.ForEach(e => e.Neighbors.RemoveAll(n => n.Data.ID == route.ToID));
 
                 // ####### Timing #######
 
@@ -224,9 +224,9 @@ namespace WCFService.Dijkstra {
 
                 // ####### Timing End #######
 
-            } catch (Exception) {
-                HardReset();
-            }
+            //} catch (Exception) {
+              //  HardReset();
+            //}
         }
 
         #endregion
@@ -288,7 +288,7 @@ namespace WCFService.Dijkstra {
 
                 watch.Stop();
                 Debug.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
-                Debug.WriteLine("-------- UpdateRoute Ended ---------");
+                Debug.WriteLine("-------- AddRoute Ended ---------");
 
                 // ####### Timing End #######
 
@@ -345,7 +345,7 @@ namespace WCFService.Dijkstra {
 
                 watch.Stop();
                 Debug.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
-                Debug.WriteLine("-------- UpdateFlight Ended ---------");
+                Debug.WriteLine("-------- AddFlight Ended ---------");
 
                 // ####### Timing End #######
 

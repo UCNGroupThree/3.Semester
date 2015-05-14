@@ -117,9 +117,9 @@ namespace FlightAdmin.Controller {
                 try {
                     client.DeleteFlight(flight);
                 } catch (FaultException<NullPointerFault> nullException) {
-                    throw new Exception(nullException.Message);
+                    throw new Exception(nullException.Detail.Message);
                 } catch (FaultException<DatabaseDeleteFault> dbException) {
-                    throw new Exception(dbException.Message);
+                    throw new Exception(dbException.Detail.Message);
                 } catch (Exception e) {
                     throw new ConnectionException("WCF Service Exception", e);
                 }

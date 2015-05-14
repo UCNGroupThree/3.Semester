@@ -138,6 +138,8 @@ namespace FlightAdmin.GUI {
                     routeBindingSource.Remove(route);
                 } catch (NullException) {
                     MessageBox.Show("The Route has already been deleted");
+                } catch (DeleteException ex) {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 } catch (Exception exception) {
                     MessageBox.Show(exception.Message);
                 }

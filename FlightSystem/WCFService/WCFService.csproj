@@ -143,6 +143,14 @@
     <Compile Include="Migrations\201505131910203_Change PlaneID.Designer.cs">
       <DependentUpon>201505131910203_Change PlaneID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505142106439_OnCascadeDelete Flight And Route.cs" />
+    <Compile Include="Migrations\201505142106439_OnCascadeDelete Flight And Route.Designer.cs">
+      <DependentUpon>201505142106439_OnCascadeDelete Flight And Route.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505142156224_Added Route ID to Flight.cs" />
+    <Compile Include="Migrations\201505142156224_Added Route ID to Flight.Designer.cs">
+      <DependentUpon>201505142156224_Added Route ID to Flight.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\FlightDB.cs" />
@@ -160,6 +168,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WCF\AdministratorService.cs" />
     <Compile Include="WCF\AirportService.cs" />
+    <Compile Include="WCF\Faults\DeleteFault.cs" />
     <Compile Include="WCF\Faults\LockedFault.cs" />
     <Compile Include="WCF\Interface\IReservationServiceCopy.cs" />
     <Compile Include="WCF\ReservationServiceCopy.cs" />
@@ -255,6 +264,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505131910203_Change PlaneID.resx">
       <DependentUpon>201505131910203_Change PlaneID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505142106439_OnCascadeDelete Flight And Route.resx">
+      <DependentUpon>201505142106439_OnCascadeDelete Flight And Route.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505142156224_Added Route ID to Flight.resx">
+      <DependentUpon>201505142156224_Added Route ID to Flight.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

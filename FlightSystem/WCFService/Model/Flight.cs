@@ -20,6 +20,10 @@ namespace WCFService.Model {
 
         [DataMember]
         [Required]
+        public int RouteID { get; set; }
+
+        [DataMember]
+        [Required]
         public Route Route { get; set; }
 
         [DataMember]

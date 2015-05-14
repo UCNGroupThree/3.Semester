@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Data.Entity.Migrations;
+using System.Diagnostics;
 using System.Linq;
 using WCFService.WCF.Interface;
 using WCFService.Model;
@@ -65,6 +66,7 @@ namespace WCFService.WCF {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
             try {
+                db.Flights.Attach(flight);
                 db.Flights.Remove(flight);
                 db.SaveChanges();
 
@@ -73,7 +75,7 @@ namespace WCFService.WCF {
             }
             catch (Exception ex) {
 
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Debug.WriteLine(ex.Message); //TODO DEBUG MODE?
                 throw new FaultException<DatabaseDeleteFault>(new DatabaseDeleteFault(){Message = ex.Message});
             }
         }

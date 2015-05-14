@@ -22,6 +22,7 @@ namespace WCFService.WCF.Interface {
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]
         [FaultContract(typeof(DatabaseDeleteFault))]
+        [FaultContract(typeof(DeleteFault))]
         void DeleteRoute(Route route);
 
         [OperationContract]

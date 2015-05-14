@@ -49,13 +49,14 @@ namespace FlightAdmin.Controller {
                     try {
                         route.From = from;
                         route.FromID = from.ID;
-                        
+
                         route.To = to;
                         route.ToID = to.ID;
-                        
+
                         route.Flights = flights;
 
                         foreach (var flight in flights) {
+                            flight.RouteID = route.ID;
                             flight.PlaneID = flight.Plane.ID;
                         }
 
@@ -66,6 +67,8 @@ namespace FlightAdmin.Controller {
                         throw new Exception(concurrencyException.Detail.Message);
                     } catch (FaultException<DatabaseUpdateFault> updateException) {
                         throw new Exception(updateException.Detail.Message);
+                    } catch (FaultException<DeleteFault> deleteFault) {
+                        throw new DeleteException(deleteFault.Detail.Message);
                     } catch (Exception e) {
                         throw new ConnectionException("WCF Service Exception", e);
                     }
@@ -82,7 +85,7 @@ namespace FlightAdmin.Controller {
         #region Delete
 
         public void DeleteRoute(Route route) { //TODO Better Exception
-            using (var client = new RouteServiceClient()) { 
+            using (var client = new RouteServiceClient()) {
                 try {
                     client.DeleteRoute(route);
                 } catch (FaultException<NullPointerFault> nullException) {

@@ -153,12 +153,20 @@ namespace WCFService.WCF {
             }
 
             try {
-                db.Routes.Attach(route);
-                db.Entry(route).State = EntityState.Deleted;
+
+                route = db.Routes.Include(r => r.To).Include(r => r.Flights.Select(f => f.SeatReservations)).First(r => r.ID == route.ID);
+
+                if (route.Flights.Any(f => f.SeatReservations.Any(s => s.State == SeatState.Taken || s.State == SeatState.Occupied))) {
+                    throw new FaultException<DeleteFault>(new DeleteFault("The Route can't be deleted, Flights are in use."));
+                }
+                
+                //db.Routes.Attach(route);
+                db.Routes.Remove(route);
+                //db.Entry(route).State = EntityState.Deleted;
                 db.SaveChanges();
 
                 // Running Async Remove on Dijkstra Matrix
-                new Task(() => Dijkstra.Updated(route)).Start();
+                new Task(() => Dijkstra.Removed(route)).Start();
             } catch (Exception ex) {
                 Debug.WriteLine(ex.Message); //TODO DEBUG MODE?
                 
