@@ -13,23 +13,23 @@ namespace WCFService.WCF {
     public class Dijkstra : IDijkstra {
 
         public static void Updated(object updatedObj) {
-            Matrix.GetInstance().Updated(updatedObj);
+            //Matrix.GetInstance().Updated(updatedObj);
 
             //####### Test #######
-            Test();
+            //Test();
             //####### Test End #######
         }
 
         public static void Added(object addedObj) {
-            Matrix.GetInstance().Added(addedObj);
+            ///////Matrix.GetInstance().Added(addedObj);
 
             //####### Test #######
-            Test();
+            //Test();
             //####### Test End #######
         }
 
         public static void Removed(object removedObj) {
-            Matrix.GetInstance().Removed(removedObj);
+            //Matrix.GetInstance().Removed(removedObj);
 
             //####### Test #######
             Test();

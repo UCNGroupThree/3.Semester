@@ -36,6 +36,8 @@ namespace WCFService.WCF {
             if (db.Routes.Count(f => f.From.ID == route.From.ID && f.To.ID == route.To.ID) == 0) {
 
                 try {
+                    route.FromID = route.From.ID;
+                    route.ToID = route.To.ID;
                     db.Routes.Add(route);
                     db.Airports.Attach(route.From);
                     db.Airports.Attach(route.To);
@@ -71,16 +73,19 @@ namespace WCFService.WCF {
             //oldRoute.From = route.From;
             //oldRoute.To = route.To;
                // oldRoute.Flights = route.Flights;
-                db.Entry(route).State = EntityState.Modified;
-
+                route.ToID = route.To.ID;
+                route.FromID = route.From.ID;
+                
                 foreach (var flight in route.Flights) {
                     System.Diagnostics.Debug.WriteLine(flight.ID + "flight"); //TODO Remove after test
                     if (flight.ID > 0) {
                         //db.Flights.Attach(flight);
                         System.Diagnostics.Debug.WriteLine(flight.ID + "Set to modified"); //TODO Remove after test
+                        flight.PlaneID = flight.Plane.ID;
                         db.Entry(flight).State = EntityState.Modified;
                     } else {
                         System.Diagnostics.Debug.WriteLine(flight.ID + "Set to added"); //TODO Remove after test
+                        flight.PlaneID = flight.Plane.ID;
                         db.Flights.Add(flight);
                     }
 
@@ -90,12 +95,14 @@ namespace WCFService.WCF {
 
                 }
 
+                db.Entry(route).State = EntityState.Modified;
+
 
 
                 //db.Entry(route.Flights).State = EntityState.Added;
 
-                db.SaveChanges();
-                //DebugSaveChanges();
+                //db.SaveChanges();
+                DebugSaveChanges();
 
                 // Running Async Update on Dijkstra Matrix
                 new Task(() => Dijkstra.Updated(route)).Start();
@@ -105,13 +112,13 @@ namespace WCFService.WCF {
                 throw new FaultException<OptimisticConcurrencyFault>(new OptimisticConcurrencyFault() {
                     Message = e.Message
                 });
-            } catch (DbUpdateException) {
-                var ctx = ((IObjectContextAdapter)db).ObjectContext;
-                ctx.Refresh(RefreshMode.ClientWins, db.Flights);
+            //} catch (DbUpdateException) {
+                //var ctx = ((IObjectContextAdapter)db).ObjectContext;
+                //ctx.Refresh(RefreshMode.ClientWins, db.Flights);
                 //db.SaveChanges();
-                DebugSaveChanges();
+                
                 // Running Async Update on Dijkstra Matrix
-                new Task(() => Dijkstra.Updated(route)).Start();
+               // new Task(() => Dijkstra.Updated(route)).Start();
             } catch (Exception ex) {
                 Console.WriteLine(ex.InnerException);
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?

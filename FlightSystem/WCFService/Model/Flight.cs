@@ -28,6 +28,10 @@ namespace WCFService.Model {
 
         [DataMember]
         [Required]
+        public int PlaneID { get; set; }
+
+        [DataMember]
+        [Required]
         public Plane Plane { get; set; }
 
         [DataMember]

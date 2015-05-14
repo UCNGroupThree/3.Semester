@@ -8,14 +8,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="PasswordFormatFault" nillable="true" type="tns:PasswordFormatFault" />
-  <xs:complexType name="AlreadyExistFault">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="AlreadyExistFault" nillable="true" type="tns:AlreadyExistFault" />
   <xs:complexType name="NullPointerFault">
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
@@ -25,6 +17,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="NullPointerFault" nillable="true" type="tns:NullPointerFault" />
+  <xs:complexType name="AlreadyExistFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AlreadyExistFault" nillable="true" type="tns:AlreadyExistFault" />
   <xs:complexType name="DatabaseInsertFault">
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
@@ -65,4 +65,28 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="OptimisticConcurrencyFault" nillable="true" type="tns:OptimisticConcurrencyFault" />
+  <xs:complexType name="DatabaseFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DatabaseFault" nillable="true" type="tns:DatabaseFault" />
+  <xs:complexType name="ArgumentFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArgumentFault" nillable="true" type="tns:ArgumentFault" />
+  <xs:complexType name="NotEnouthFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NotEnouthFault" nillable="true" type="tns:NotEnouthFault" />
 </xs:schema>

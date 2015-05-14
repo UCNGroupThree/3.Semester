@@ -48,8 +48,17 @@ namespace FlightAdmin.Controller {
                 using (var client = new RouteServiceClient()) {
                     try {
                         route.From = from;
+                        route.FromID = from.ID;
+                        
                         route.To = to;
+                        route.ToID = to.ID;
+                        
                         route.Flights = flights;
+
+                        foreach (var flight in flights) {
+                            flight.PlaneID = flight.Plane.ID;
+                        }
+
                         route.Price = price;
 
                         retRoute = client.UpdateRoute(route);

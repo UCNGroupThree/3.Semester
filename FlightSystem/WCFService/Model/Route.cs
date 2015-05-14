@@ -16,7 +16,13 @@ namespace WCFService.Model {
         public int ID { get; set; }
 
         [DataMember]
+        public int FromID { get; set; }
+
+        [DataMember]
         public Airport From { get; set; } // A
+
+        [DataMember]
+        public int ToID { get; set; }
 
         [DataMember]
         public Airport To { get; set; } // B

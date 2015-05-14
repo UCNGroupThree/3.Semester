@@ -127,6 +127,22 @@
     <Compile Include="Migrations\201505051230054_requiredFix.Designer.cs">
       <DependentUpon>201505051230054_requiredFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505131805278_Airport IDs on Route.cs" />
+    <Compile Include="Migrations\201505131805278_Airport IDs on Route.Designer.cs">
+      <DependentUpon>201505131805278_Airport IDs on Route.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505131821541_Added PlaneID on Flight.cs" />
+    <Compile Include="Migrations\201505131821541_Added PlaneID on Flight.Designer.cs">
+      <DependentUpon>201505131821541_Added PlaneID on Flight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505131900523_Change ID names.cs" />
+    <Compile Include="Migrations\201505131900523_Change ID names.Designer.cs">
+      <DependentUpon>201505131900523_Change ID names.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505131910203_Change PlaneID.cs" />
+    <Compile Include="Migrations\201505131910203_Change PlaneID.Designer.cs">
+      <DependentUpon>201505131910203_Change PlaneID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\FlightDB.cs" />
@@ -228,12 +244,27 @@
     <EmbeddedResource Include="Migrations\201505051230054_requiredFix.resx">
       <DependentUpon>201505051230054_requiredFix.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505131805278_Airport IDs on Route.resx">
+      <DependentUpon>201505131805278_Airport IDs on Route.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505131821541_Added PlaneID on Flight.resx">
+      <DependentUpon>201505131821541_Added PlaneID on Flight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505131900523_Change ID names.resx">
+      <DependentUpon>201505131900523_Change ID names.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505131910203_Change PlaneID.resx">
+      <DependentUpon>201505131910203_Change PlaneID.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{aaad32a8-0483-4cd1-ac4b-94456bc4eec2}</Project>
       <Name>Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FancyFeatures.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

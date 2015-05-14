@@ -575,6 +575,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AuthenticateUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AuthenticateUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AuthenticateUserResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="DijkstraStuff">
     <xs:complexType>
       <xs:sequence>
@@ -590,6 +605,55 @@
       <xs:sequence>
         <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="DijkstraStuffResult" nillable="true" type="q56:ArrayOfFlight" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFlightsAsd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fromId" type="xs:int" />
+        <xs:element minOccurs="0" name="toId" type="xs:int" />
+        <xs:element minOccurs="0" name="seats" type="xs:int" />
+        <xs:element minOccurs="0" name="dateTime" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFlightsAsdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetFlightsAsdResult" nillable="true" type="q57:ArrayOfFlight" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MakeSeatsOccupiedRandom">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MakeSeatsOccupiedRandomResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="MakeSeatsOccupiedRandomResult" nillable="true" type="q58:ArrayOfSeatReservation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Cancel">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Complete">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CompleteResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
 </xs:schema>

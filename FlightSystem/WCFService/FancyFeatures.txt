@@ -1,0 +1,8 @@
+﻿Make a check, on Update/Delete on Flights and Routes. Giving the "Admin" a choice to commit
+the changes or not if any seat reservations are present
+
+Seat reservation på admin.
+Booking / ticket på admin.
+Attibutter på admin klassen
+Fiks farver på tabben (ændre baggroundsfarve, mv)
+Vores egen tab-controller
