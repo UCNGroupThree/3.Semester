@@ -26,9 +26,11 @@ namespace WCFService.Model {
             modelBuilder.Entity<Route>().HasRequired(r => r.From).WithMany(a => a.Routes);//.WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Flight>().HasRequired(f => f.Route).WithMany(r => r.Flights).WillCascadeOnDelete(true);
-
+            
             //Delete seatReservations if delete ticket object
-            modelBuilder.Entity<SeatReservation>().HasRequired(s => s.Ticket).WithMany(t => t.SeatReservations).WillCascadeOnDelete(true);
+            modelBuilder.Entity<Ticket>().HasMany(t => t.SeatReservations).WithRequired(s => s.Ticket).WillCascadeOnDelete(true);
+           
+            //modelBuilder.Entity<SeatReservation>().HasRequired(s => s.Ticket).WithMany(t => t.SeatReservations).WillCascadeOnDelete(true);
 
             modelBuilder.Entity<Seat>().HasRequired(s => s.Plane).WithMany(s => s.Seats).WillCascadeOnDelete(true);
 
