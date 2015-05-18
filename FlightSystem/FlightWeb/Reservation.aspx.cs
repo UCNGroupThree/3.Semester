@@ -10,9 +10,10 @@ using FlightWeb.MainService;
 
 namespace FlightWeb {
     public partial class Reservation : System.Web.UI.Page {
-        private MySession ses = MySession.Current;
+        private ResSession ses;
 
         protected void Page_Load(object sender, EventArgs e) {
+            ses = ResSession.Current(Session);
 
             Debug.WriteLine("#### Reservation ####");
             Debug.WriteLine("UrlReferrer: " + Request.UrlReferrer);
@@ -22,7 +23,7 @@ namespace FlightWeb {
                 Demo();
                 if (Request.UrlReferrer != null) ViewState["RefUrl"] = Request.UrlReferrer.ToString();
 
-                gvFlights.DataSource = MySession.Current.Flights;
+                gvFlights.DataSource = ses.Flights;
                 gvFlights.DataBind();
             }
         }
@@ -34,7 +35,7 @@ namespace FlightWeb {
                 .GetFlightsAsd(1, 3, 2, new DateTime(today.Year, today.Month, today.Day, 0, 1, 0));
             ses.Ticket = ses.ResClient.MakeSeatsOccupiedRandom();
             
-            //MySession.ResServiceClient.Complete();
+            //ResSession.ResServiceClient.Complete();
 
         }
 

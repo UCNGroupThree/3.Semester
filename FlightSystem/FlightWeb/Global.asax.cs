@@ -30,7 +30,7 @@ namespace FlightWeb {
             Debug.WriteLine("END SESSION");
             Debug.WriteLine("END SESSION");
             Debug.WriteLine("END SESSION");
-            MySession.Current.CloseResClient();
+            ResSession.Current(Session).CloseResClient();
         }
 
         

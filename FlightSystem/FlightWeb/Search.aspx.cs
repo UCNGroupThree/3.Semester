@@ -8,6 +8,7 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Common.Exceptions;
 using FlightWeb.Helper;
 using FlightWeb.MainService;
 using Microsoft.Ajax.Utilities;
@@ -15,11 +16,12 @@ using Microsoft.Ajax.Utilities;
 namespace FlightWeb {
     public partial class Search : System.Web.UI.Page {
 
-        private MySession ses = MySession.Current;
+        private ResSession ses;
 
         protected void Page_Load(object sender, EventArgs e) {
+            ses = ResSession.Current(Session);
             if (!Page.IsPostBack) {
-                FirstLoad();
+               FirstLoad();
                 
                 Demo();
             }
@@ -84,28 +86,34 @@ namespace FlightWeb {
                 airport.Enabled = false;
             }
         }
-        /*
-        [WebMethod]
-        public static SearchHelper SearchAsync(string from, string to, string depart, string persons) {
-            var helper = new SearchHelper {
-                ErrorText = "fejlTekst",
-                Flight =
-                    new List<Flight> {new Flight {DepartureTime = DateTime.Now, ArrivalTime = DateTime.Now, ID = 2}},
-                Title = "title?"
-            };
-            return helper;
-        }
-        */
+        
         protected void IntValidator_OnServerValidate(object source, ServerValidateEventArgs args) {
-            throw new NotImplementedException();
+            int i;
+            bool valid = int.TryParse(args.Value, out i);
+            args.IsValid = valid && i > 0;
         }
 
         protected void ValidatorDepart_OnServerValidate(object source, ServerValidateEventArgs args) {
-            throw new NotImplementedException();
+            try {
+                // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
+                DateTime.Parse(args.Value);
+                args.IsValid = true;
+            } catch (Exception) {
+                args.IsValid = false;
+            }
         }
 
         protected void btnSearch_OnClick(object sender, EventArgs e) {
-
+            Debug.WriteLine("Onclick event: " + e);
+            Page.Validate("FindFligtValidator");
+            if (!Page.IsValid) {
+                modalHeaderText.InnerHtml = "Error";
+                lblModalError.Text = "Some of the input fields are not valid! :(";
+                lblModalError.Visible = true;
+                modalFlightsPanel.Visible = false;
+                btnBook.Visible = false;
+                return;
+            }
             int fromId = int.Parse(ddlFrom.SelectedValue);
             int toId = int.Parse(ddlTo.SelectedValue);
             int seats = int.Parse(ddlPersons.SelectedValue);
@@ -142,21 +150,18 @@ namespace FlightWeb {
                         lblModalError.Visible = false;
                         modalFlightsPanel.Visible = true;
                     } else {
-                        modalHeaderText.InnerHtml = "No flights found";
-                        //lblModelError.Text = "We are sorry, but we coundn't find any available flights :(";
-                        
-                        lblModalError.Text = "We are sorry, but we coundn't find any available flights :(";
-                        lblModalError.Visible = true;
-                        modalFlightsPanel.Visible = false;
-                        btnBook.Visible = false;
-
-                        //modalErrorPanel.Enabled = true;
-                        //modalFlightsPanel.Enabled = false;
+                        throw new SubmitException("We are sorry, but we coundn't find any available flights :(");
                     }
                 
             } catch (Exception ex) {
                 //TODO bedre håndtering af fejl
-                lblModalError.Text = "We are sorry, but we coundn't find any available flights :(";
+                if (ex is SubmitException) {
+                    modalHeaderText.InnerHtml = "No flights found";
+                    lblModalError.Text = ex.Message;
+                } else {
+                    modalHeaderText.InnerHtml = "Error";
+                    lblModalError.Text = "We are sorry, but an error happen :(";
+                }
                 lblModalError.Visible = true;
                 modalFlightsPanel.Visible = false;
                 btnBook.Visible = false;

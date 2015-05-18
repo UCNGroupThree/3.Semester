@@ -1,7 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WizardTest.aspx.cs" Inherits="FlightWeb.WizardTest" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
 <asp:Content ContentPlaceHolderID="StyleSection" runat="server">
     <link href="Content/wizard-theme.css" rel="stylesheet" />
 </asp:Content>
@@ -61,8 +59,6 @@
                                 <div class="col-sm-10 form">
                                     <asp:TextBox class="form-control" ID="txtDepart" runat="server"></asp:TextBox>
                                     <asp:CustomValidator ID="ValidatorDepart" runat="server" ValidationGroup="FindFligtValidator" Display="Dynamic" SetFocusOnError="True" OnServerValidate="ValidatorDepart_OnServerValidate" ControlToValidate="txtDepart" ErrorMessage="Please make a valid dateformat, like: dd-MM-yyyy HH:mm"></asp:CustomValidator>
-
-                                    <cc1:CalendarExtender ID="calDepart" TargetControlID="txtDepart" Format="dd-MM-yyyy HH:mm" runat="server" />
                                 </div>
                             </div>
                             <div class="form-group">
