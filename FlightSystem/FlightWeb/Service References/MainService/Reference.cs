@@ -1229,6 +1229,9 @@ namespace FlightWeb.MainService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private FlightWeb.MainService.Ticket TicketField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int Ticket_IDField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -1339,6 +1342,19 @@ namespace FlightWeb.MainService {
                 if ((object.ReferenceEquals(this.TicketField, value) != true)) {
                     this.TicketField = value;
                     this.RaisePropertyChanged("Ticket");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Ticket_ID {
+            get {
+                return this.Ticket_IDField;
+            }
+            set {
+                if ((this.Ticket_IDField.Equals(value) != true)) {
+                    this.Ticket_IDField = value;
+                    this.RaisePropertyChanged("Ticket_ID");
                 }
             }
         }
@@ -3313,6 +3329,7 @@ namespace FlightWeb.MainService {
         System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.Flight>> GetFlightsAsdAsync(int fromId, int toId, int seats, System.DateTime dateTime);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReservationService/MakeSeatsOccupiedRandom", ReplyAction="http://tempuri.org/IReservationService/MakeSeatsOccupiedRandomResponse")]
+<<<<<<< HEAD
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseFault), Action="http://tempuri.org/IReservationService/MakeSeatsOccupiedRandomDatabaseFaultFault", Name="DatabaseFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NotEnouthFault), Action="http://tempuri.org/IReservationService/MakeSeatsOccupiedRandomNotEnouthFaultFault" +
             "", Name="NotEnouthFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
@@ -3320,9 +3337,18 @@ namespace FlightWeb.MainService {
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IReservationService/MakeSeatsOccupiedRandomNullPointerFaultFau" +
             "lt", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         System.Collections.Generic.List<FlightWeb.MainService.SeatReservation> MakeSeatsOccupiedRandom();
+=======
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NullPointerFault), Action="http://tempuri.org/IReservationService/MakeSeatsOccupiedRandomNullPointerFaultFau" +
+            "lt", Name="NullPointerFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.NotEnouthFault), Action="http://tempuri.org/IReservationService/MakeSeatsOccupiedRandomNotEnouthFaultFault" +
+            "", Name="NotEnouthFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.ArgumentFault), Action="http://tempuri.org/IReservationService/MakeSeatsOccupiedRandomArgumentFaultFault", Name="ArgumentFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseFault), Action="http://tempuri.org/IReservationService/MakeSeatsOccupiedRandomDatabaseFaultFault", Name="DatabaseFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+        FlightWeb.MainService.Ticket MakeSeatsOccupiedRandom();
+>>>>>>> origin/master
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReservationService/MakeSeatsOccupiedRandom", ReplyAction="http://tempuri.org/IReservationService/MakeSeatsOccupiedRandomResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.SeatReservation>> MakeSeatsOccupiedRandomAsync();
+        System.Threading.Tasks.Task<FlightWeb.MainService.Ticket> MakeSeatsOccupiedRandomAsync();
         
         [System.ServiceModel.OperationContractAttribute(IsTerminating=true, IsInitiating=false, Action="http://tempuri.org/IReservationService/Cancel", ReplyAction="http://tempuri.org/IReservationService/CancelResponse")]
         void Cancel();
@@ -3331,6 +3357,10 @@ namespace FlightWeb.MainService {
         System.Threading.Tasks.Task CancelAsync();
         
         [System.ServiceModel.OperationContractAttribute(IsTerminating=true, IsInitiating=false, Action="http://tempuri.org/IReservationService/Complete", ReplyAction="http://tempuri.org/IReservationService/CompleteResponse")]
+<<<<<<< HEAD
+=======
+        [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.AlreadyExistFault), Action="http://tempuri.org/IReservationService/CompleteAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
+>>>>>>> origin/master
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.ArgumentFault), Action="http://tempuri.org/IReservationService/CompleteArgumentFaultFault", Name="ArgumentFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.DatabaseFault), Action="http://tempuri.org/IReservationService/CompleteDatabaseFaultFault", Name="DatabaseFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(FlightWeb.MainService.AlreadyExistFault), Action="http://tempuri.org/IReservationService/CompleteAlreadyExistFaultFault", Name="AlreadyExistFault", Namespace="http://schemas.datacontract.org/2004/07/WCFService.WCF.Faults")]
@@ -3375,11 +3405,11 @@ namespace FlightWeb.MainService {
             return base.Channel.GetFlightsAsdAsync(fromId, toId, seats, dateTime);
         }
         
-        public System.Collections.Generic.List<FlightWeb.MainService.SeatReservation> MakeSeatsOccupiedRandom() {
+        public FlightWeb.MainService.Ticket MakeSeatsOccupiedRandom() {
             return base.Channel.MakeSeatsOccupiedRandom();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<FlightWeb.MainService.SeatReservation>> MakeSeatsOccupiedRandomAsync() {
+        public System.Threading.Tasks.Task<FlightWeb.MainService.Ticket> MakeSeatsOccupiedRandomAsync() {
             return base.Channel.MakeSeatsOccupiedRandomAsync();
         }
         

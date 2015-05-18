@@ -18,7 +18,7 @@ namespace WCFService.WCF.Interface {
         [FaultContract(typeof(ArgumentFault))]
         [FaultContract(typeof(NotEnouthFault))]
         [FaultContract(typeof(DatabaseFault))]
-        List<SeatReservation> MakeSeatsOccupiedRandom();
+        Ticket MakeSeatsOccupiedRandom();
 
         [OperationContract (IsInitiating = false, IsTerminating = true)]
         //TODO Måske fejl, hvis det ikke lykkes.

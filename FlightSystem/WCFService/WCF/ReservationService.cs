@@ -20,16 +20,16 @@ namespace WCFService.WCF {
     public class ReservationService : IReservationService {
 
         private List<Flight> flights;
-        private int noOfSeats = -1; 
-        private readonly FlightDB db = new FlightDB();
+        private int noOfSeats = -1;
+        //private readonly FlightDB db = new FlightDB();
         private Ticket ticket;
 
         public ReservationService() {
-            OperationContext.Current.InstanceContext.Closed += InstanceContext_Closed;
+            
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
-            db.Database.Log = m => Debug.WriteLine(m);
+            //db.Database.Log = m => Debug.WriteLine(m);
         }
         /*
         static ReservationService() {
@@ -53,45 +53,27 @@ namespace WCFService.WCF {
 
         private void DeleteTicket(bool throwException) {
             try {
-                //using (var db = new FlightDB()) {
-                    //db.Tickets.Remove(ticket);
-                    db.Database.Log = m => Debug.WriteLine(m);
-                    
-            if (ticket != null && ticket.ID != 0) {
-                db.Tickets.Remove(ticket);
-                //db.Tickets.Attach(ticket);
-                //db.Entry(ticket).State = EntityState.Deleted;
-                //db.SaveChanges();
-                DebugSaveChanges();
-                
-                noOfSeats = -1;
-                flights = null;
-                ticket = null;
-            }
-
-            Debug.WriteLine("Deleted");
-                //}
-                /*
-                //1. Get student from DB
-                List<SeatReservation> tempSeatResList = new List<SeatReservation>();
                 using (var db = new FlightDB()) {
-                    var SeatIds = seatReservations.Select(x => x.ID);
-                    tempSeatResList = db.SeatReservations.Where(x => SeatIds.Contains(x.ID)).ToList();
+                    db.Database.Log = m => Debug.WriteLine(m);
+
+                    if (ticket != null && ticket.ID != 0) {
+                        db.Tickets.Attach(ticket);
+                        db.Tickets.Remove(ticket);
+                        //DetectChanges(db);
+                        db.SaveChanges();
+                        //DebugSaveChanges();
+
+                        noOfSeats = -1;
+                        flights = null;
+                        ticket = null;
+                    }
                 }
-
-                //Create new context for disconnected scenario
-                using (var newContext = new FlightDB()) {
-                    seatReservations.ForEach(reservation => {
-                        newContext.SeatReservations.Attach(reservation);
-                        newContext.Entry(reservation).State = EntityState.Deleted;
-                    });
-
-                    newContext.SaveChanges();
-                } */ 
-            } catch (Exception) {
+                Debug.WriteLine("Deleted");
+            } catch (Exception ex) {
                 if (throwException) {
                     throw;
                 }
+                Debug.WriteLine("DeleteTicket: ignored exception of type: " + ex);
             }
         }
 
@@ -100,26 +82,26 @@ namespace WCFService.WCF {
         public List<Flight> GetFlightsAsd(int fromId, int toId, int seats, DateTime dateTime) {
             try {
                 //TODO måske tjek på om flights er tom?
-                //CreateTicket();
-            DeleteTicket(false);
+                CreateTicket();
+                //DeleteTicket(false);
                 //TODO måske byttes om, men vær opmærksom på flight = null i CreateTicket
                 flights = new Dijkstra().DijkstraStuff(fromId, toId, seats, dateTime);
 
-            
-            //List<Flight> flights1;
-            //    using (var tempDb = new FlightDB()) {
-            //        tempDb.Database.Log = m => Debug.WriteLine(m);
-            //        flights = tempDb.Flights.Where(x => x.ID == 228 || x.ID == 229)
-            //            .Include(x => x.Route.From)
-            //            .Include(x => x.Route.To)
-            //            .Include(x=> x.Plane)
-            //            .ToList();
-            //    }
+
+                //List<Flight> flights1;
+                //    using (var tempDb = new FlightDB()) {
+                //        tempDb.Database.Log = m => Debug.WriteLine(m);
+                //        flights = tempDb.Flights.Where(x => x.ID == 228 || x.ID == 229)
+                //            .Include(x => x.Route.From)
+                //            .Include(x => x.Route.To)
+                //            .Include(x=> x.Plane)
+                //            .ToList();
+                //    }
                 //flights = new List<Flight>();
-                
+
                 //flights = flights1;
-                
-                
+
+
                 noOfSeats = seats;
 
                 return flights;
@@ -128,7 +110,7 @@ namespace WCFService.WCF {
                 throw new FaultException<DatabaseFault>(new DatabaseFault("GetFlightsAsd Error"));
                 //throw;
             }
-            return null;
+            //return null;
         }
 
         private void CreateTicket() {
@@ -138,164 +120,65 @@ namespace WCFService.WCF {
             ticket = new Ticket { OrderDate = DateTime.UtcNow, OrderState = TicketState.Pending };
         }
 
-        public List<SeatReservation> MakeSeatsOccupiedRandom() {
+        public Ticket MakeSeatsOccupiedRandom() {
+            /*if (ticket == null) {
+                CreateTicket(); //TODO fjernes!
+            }*/
+            //noOfSeats = 1;
+            //flights = new List<Flight>();
 
+            if (ticket == null) {
+                throw new FaultException<NullPointerFault>(new NullPointerFault("Run GetFlightsAsd first", "ticket"));
+            }
+            // ReSharper disable once PossibleNullReferenceException
+            if (flights == null && flights.Count == 0) {
+                throw new FaultException<NullPointerFault>(new NullPointerFault("flights is not valid", "flights"));
+            }
+            if (noOfSeats < 1) {
+                throw new FaultException<NullPointerFault>(new NullPointerFault("noOfSeats is not valid",
+                    "noOfSeats"));
+            }
+            OperationContext.Current.InstanceContext.Closed -= InstanceContext_Closed;
+            OperationContext.Current.InstanceContext.Closed += InstanceContext_Closed;
+
+            List<SeatReservation> oldSeatReservations = ticket.SeatReservations;
             try {
+                using (var db = new FlightDB()) {
+                    db.Database.Log = m => Debug.WriteLine(m);
 
-                if (ticket == null) {
-                    CreateTicket(); //TODO Fjernes!
-                }
-                //noOfSeats = 1;
-                //flights = new List<Flight>();
+                    ticket.SeatReservations = GetRandomSeatReservations(flights, noOfSeats);
 
-                if (ticket == null) {
-                    throw new FaultException<NullPointerFault>(new NullPointerFault("Run GetFlightsAsd first", "ticket"));
-                }
-                // ReSharper disable once PossibleNullReferenceException
-                if (flights == null && flights.Count == 0) {
-                    throw new FaultException<NullPointerFault>(new NullPointerFault("flights is not valid", "flights"));
-                }
-                if (noOfSeats < 1) {
-                    throw new FaultException<NullPointerFault>(new NullPointerFault("noOfSeats is not valid",
-                        "noOfSeats"));
-                }
-
-                //flights = new Dijkstra().DijkstraStuff(1, 3, noOfSeats, DateTime.Now);
-                //List<Seat> seatList = new List<Seat>();
-                //List<SeatReservation> seatResList = null;
-
-                List<SeatReservation> oldSeatReservations = ticket.SeatReservations;
-                try {
-                    //using (var db = new FlightDB()) {
-                    /*List<Flight> flights1 = new List<Flight> {new Flight {ID = 228}, new Flight {ID = 229}};
-                        //TODO ændre dette
-                    flights1.ForEach(x => flights.Add(db.Flights.Single(f => f.ID == x.ID)));
-                */
-                    List<SeatReservation> seatReservations = GetRandomSeatReservations(flights, noOfSeats);
-
-                    /*ticket.SeatReservations.ForEach(reservation => {
-                        db.SeatReservations.re
-                        //db.SeatReservations.Attach(reservation);
-                        //db.Entry(reservation).State = EntityState.Deleted;
-                    });
-                    */
-                    foreach (var seat in seatReservations.Select(x => x.Seat)) {
-                        //db.Seats.Attach(sr.Seat);
-                        //if (db.Seats.Local.All(e => e.ID != seat.ID)) {
-                        //db.Entry(seat).State = EntityState.Unchanged;
-                        //} else {
-                        //    var existSeat = db.Seats.Local.SingleOrDefault(e => e.ID == seat.ID);
-                        //    if (existSeat != null) {
-                        //        
-                        //    }
-                        //}
-                        //seatReservations.re
-                        //db.Entry(seat).State = EntityState.Unchanged;
-                    }
-
-                    //db.SeatReservations.AddRange(seatReservations);
-                    //db.Tickets.Attach(ticket);
-                    ticket.SeatReservations = seatReservations;
                     if (ticket.ID == 0) {
-                        /*
-                        foreach (var sr in ticket.SeatReservations) {
-                            db.SeatReservations.Attach(sr);
-                            db.Entry(sr).State = EntityState.Added;
-                        }
-                        
-                        db.Tickets.Attach(ticket);
-                        db.Entry(ticket).State = EntityState.Added;
-                        */
                         db.Tickets.Add(ticket);
                     } else {
-                        //db.SeatReservations
-                        //Delete existing seatreservations
-                        //db.Tickets.Attach(ticket);
-
-                        //db.Entry(ticket).Property(e => e.SeatReservations).IsModified = true;
-                        //
-                        //db.Entry(ticket).State = EntityState.Modified;
-
                         var existingSeatRes = db.SeatReservations.Where(x => x.Ticket.ID == ticket.ID).ToList();
                         db.SeatReservations.RemoveRange(existingSeatRes);
-                        /*if (existingSeatRes.Any()) {
-                            foreach (var sr in existingSeatRes) {
-                                
-                                db.Entry(sr).State = EntityState.Deleted;
-                            }
-                        }*/
-
 
                         foreach (var sr in ticket.SeatReservations) {
-                            //db.SeatReservations.Attach(sr);
                             db.Entry(sr).State = EntityState.Added;
                         }
                         db.Tickets.Attach(ticket);
                         db.Entry(ticket).State = EntityState.Unchanged;
-
-
-                        //db.Entry(ticket).State = EntityState.Modified;
-
-                        //mark teacher based on StandardId
-                        //foreach (SeatReservation tchr in ticket.SeatReservations)
-                        //    db.Entry(tchr).State = tchr.ID == 0 ? EntityState.Added : EntityState.Modified;
-
-
-                        /*
-                        db.SeatReservations.RemoveRange(existingSeatRes);
-                        foreach (var sr in existingSeatRes) {
-                            if (seatReservations.Any(x => x.Flight_ID == sr.Flight_ID && x.Seat_ID == sr.Seat_ID)) {
-                                db.Entry(sr).State = EntityState.Unchanged;
-                            }
-                        }*/
                     }
 
-                    flights.ForEach(r => {
-                        //flights.Add(db.Flights.Find(r));
-                        // ReSharper disable once SimplifyLinqExpression
-                        if (!db.Flights.Local.Any(e => e.ID == r.ID)) {
-                            db.Entry(r).State = EntityState.Unchanged;
-                        } else {
-                            var entity = db.ChangeTracker.Entries<Flight>().SingleOrDefault(x => x.Entity.ID == r.ID);
-                            if (entity != null) {
-                                entity.State = EntityState.Unchanged;
-                                Debug.WriteLine("#####");
-                                Debug.WriteLine("#####");
-                                Debug.WriteLine(entity);
-                                Debug.WriteLine("#####");
-                                Debug.WriteLine("#####");
-                            }
-                        }
-                    });
-
-                    //Says to EntityFramework that Seats are not new.
-
-                    DebugSaveChanges();
-
-                    //db.SaveChanges();
-                    //}
-                } catch (Exception ex) {
-                    ticket.SeatReservations = oldSeatReservations;
-                    var detail = ex as ArgumentException;
-                    if (detail != null) {
-                        throw new FaultException<ArgumentFault>(new ArgumentFault(detail));
-                    }
-                    var detail2 = ex as NotEnouthException;
-                    if (detail2 != null) {
-                        throw new FaultException<NotEnouthFault>(new NotEnouthFault(detail2));
-                    }
-                    throw new FaultException<DatabaseFault>(new DatabaseFault("MakeSeatOccupiedRandom Error"));
+                    db.SaveChanges();
                 }
             } catch (Exception ex) {
-                Debug.WriteLine("FEJL");
-                var t = ex as FaultException<NullPointerFault>;
-                if (t != null) {
-                    Debug.WriteLine(t);
-                Debug.WriteLine(t.Detail.Message);
-                Debug.WriteLine(t.Detail.ParamenterName);
+                ticket.SeatReservations = oldSeatReservations;
+                Debug.WriteLine(ex);
+                Debug.WriteLine(ex.Message);
+                var detail = ex as ArgumentException;
+                if (detail != null) {
+                    throw new FaultException<ArgumentFault>(new ArgumentFault(detail));
                 }
+                var detail2 = ex as NotEnouthException;
+                if (detail2 != null) {
+                    throw new FaultException<NotEnouthFault>(new NotEnouthFault(detail2));
+                }
+                throw new FaultException<DatabaseFault>(new DatabaseFault("MakeSeatOccupiedRandom Error"));
             }
-            return ticket.SeatReservations;
+
+            return ticket;
         }
 
         public void Cancel() {
@@ -305,17 +188,17 @@ namespace WCFService.WCF {
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="NotEnouthException"></exception>
         private List<SeatReservation> GetRandomSeatReservations(List<Flight> flights2, int noOfSeats) {
-            
+
             List<SeatReservation> ret = new List<SeatReservation>();
-            
+
             foreach (var f in flights2) {
-                //using (var db = new FlightDB()) {
+                using (var db = new FlightDB()) {
                     db.Configuration.LazyLoadingEnabled = false;
                     IQueryable<Seat> freeSeats =
                         db.Seats.Where(x =>
                             x.Plane.Flights.Any(y => y.ID == f.ID) &&
                             !x.SeatReservations.Any(sr => sr.Seat.ID == x.ID && sr.Flight.ID == f.ID));
-                            //.Include(x => x.Plane);
+                    //.Include(x => x.Plane);
 
                     List<Seat> seatsToRes = freeSeats.OrderBy(s => Guid.NewGuid()).Take(noOfSeats).ToList();
                     if (seatsToRes.Count() < noOfSeats) {
@@ -325,13 +208,15 @@ namespace WCFService.WCF {
 
                     foreach (var s in seatsToRes) {
                         //Debug.WriteLine("inside seat loop"); //(ticket, SeatState.Occupied, s, f)
-                        SeatReservation seatRes = new SeatReservation(ticket, SeatState.Occupied, s, f) {Seat_ID = s.ID, Flight_ID = f.ID };
-                            //TODO Ticket..
+                        //SeatReservation seatRes = new SeatReservation(ticket, SeatState.Occupied, s, f) {Seat_ID = s.ID, Flight_ID = f.ID };
+                        //SeatReservation seatRes = new SeatReservation { Flight = f, Flight_ID = f.ID, Seat = s, Seat_ID = s.ID, State = SeatState.Occupied };
+                        SeatReservation seatRes = new SeatReservation { Ticket = ticket, Flight_ID = f.ID, Seat_ID = s.ID, State = SeatState.Occupied };
+                        //TODO Ticket..
                         Debug.WriteLine("seatRes: flight: {0} Seat: {1} State: {2}", seatRes.Flight_ID, seatRes.Seat_ID,
                             seatRes.State);
                         ret.Add(seatRes);
                     }
-                //}
+                }
             }
             return ret;
         }
@@ -353,24 +238,30 @@ namespace WCFService.WCF {
                 throw new FaultException<ArgumentFault>(new ArgumentFault("Complete is not ready to be executed!"));
             }
             try {
-                //using (var db = new FlightDB()) {
+                using (var db = new FlightDB()) {
+                    db.Database.Log = s => Debug.WriteLine(s);
                     ticket.SeatReservations.ForEach(reservation => {
                         reservation.State = SeatState.Taken;
                         //db.SeatReservations.Attach(reservation);
                     });
                     ticket.OrderState = TicketState.Ordered;
-                    //db.Entry(ticket).State = EntityState.Modified;
+                    db.Tickets.Attach(ticket);
+                    
+                    db.Entry(ticket).State = EntityState.Modified;
+                    ticket.SeatReservations.ForEach(s => db.Entry(s).State = EntityState.Modified);
+                    
                     db.SaveChanges();
+                    
                     OperationContext.Current.InstanceContext.Closed -= InstanceContext_Closed;
-                //}
+                }
             } catch (Exception ex) {
-                throw new DatabaseException("Complete Error", ex);
+                throw new FaultException<DatabaseFault>(new DatabaseFault("Complete Error: " + ex.Message));
             }
-            
+
             Debug.WriteLine("Completed ended!");
         }
 
-        private void DebugSaveChanges() {
+        private void DebugSaveChanges(FlightDB db) {
             try {
                 // Your code...
                 // Could also be before try if you know the exception occurs in SaveChanges
@@ -387,6 +278,17 @@ namespace WCFService.WCF {
                 }
                 throw;
             }
+        }
+
+        private void DetectChanges(FlightDB db) {
+            db.ChangeTracker.DetectChanges();
+            var list = db.ChangeTracker.Entries().ToList();
+            Debug.WriteLine("Start of DetectChanges");
+            foreach (var v in list) {
+                Debug.WriteLine("c: #" + list.IndexOf(v) + " - " + v.Entity + " state: " + v.State);
+            }
+            Debug.WriteLine("End of DetectChanges");
+
         }
     }
 }

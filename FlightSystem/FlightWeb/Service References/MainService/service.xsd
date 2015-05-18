@@ -632,7 +632,7 @@
   <xs:element name="MakeSeatsOccupiedRandomResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="MakeSeatsOccupiedRandomResult" nillable="true" type="q58:ArrayOfSeatReservation" />
+        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="MakeSeatsOccupiedRandomResult" nillable="true" type="q58:Ticket" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

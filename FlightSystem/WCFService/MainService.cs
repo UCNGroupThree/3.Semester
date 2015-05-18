@@ -257,7 +257,7 @@ namespace WCFService {
             return _resService.GetFlightsAsd(fromId, toId, seats, dateTime);
         }
 
-        public List<SeatReservation> MakeSeatsOccupiedRandom() {
+        public Ticket MakeSeatsOccupiedRandom() {
             return _resService.MakeSeatsOccupiedRandom();
         }
 

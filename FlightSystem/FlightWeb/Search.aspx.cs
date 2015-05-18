@@ -8,10 +8,14 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using FlightWeb.Helper;
 using FlightWeb.MainService;
+using Microsoft.Ajax.Utilities;
 
 namespace FlightWeb {
     public partial class Search : System.Web.UI.Page {
+
+        private MySession ses = MySession.Current;
 
         protected void Page_Load(object sender, EventArgs e) {
             if (!Page.IsPostBack) {
@@ -108,13 +112,14 @@ namespace FlightWeb {
             DateTime date = DateTime.Parse(txtDepart.Text);
             
             try {
-                //TODO skal erstattes med et andet endpoint
-                Session["flights"] = null;
-                //ClearSession();
-                using (var client = new ReservationServiceClient()) {
+                ses.Flights = null;
+                ses.Ticket = null;
+
+                var client = ses.GetNewResClient();
+                    
                     var list = client.GetFlightsAsd(fromId, toId, seats, date);
                     if (list != null && list.Count > 0) {
-                        Session["flights"] = list;
+                        ses.Flights = list;
                         var first = list[0];
                         var stops = list.Count - 1;
                         var last = list[stops];
@@ -148,7 +153,7 @@ namespace FlightWeb {
                         //modalErrorPanel.Enabled = true;
                         //modalFlightsPanel.Enabled = false;
                     }
-                }
+                
             } catch (Exception ex) {
                 //TODO bedre håndtering af fejl
                 lblModalError.Text = "We are sorry, but we coundn't find any available flights :(";
@@ -168,7 +173,7 @@ namespace FlightWeb {
             
             UpdatePanelAnswer.Update();
         }
-
+        
         protected void btnBook_OnClick(object sender, EventArgs e) {
             
         }

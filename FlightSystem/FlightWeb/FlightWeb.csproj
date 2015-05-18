@@ -181,7 +181,7 @@
     <Content Include="Service References\MainService\FlightWeb.MainService.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\MainService\FlightWeb.MainService.SeatReservation.datasource">
+    <Content Include="Service References\MainService\FlightWeb.MainService.Ticket.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\MainService\Reference.svcmap">
@@ -313,6 +313,7 @@
     <Compile Include="Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Helper\MySession.cs" />
     <Compile Include="MainService\Airport.cs" />
     <Compile Include="MainService\Flight.cs" />
     <Compile Include="MainService\Plane.cs" />

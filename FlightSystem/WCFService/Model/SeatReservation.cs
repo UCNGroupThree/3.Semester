@@ -26,18 +26,22 @@ namespace WCFService.Model {
 
         [Index("Index_FlightSeat", 2, IsUnique = true)]
         [DataMember]
+        [Required]
         public int Seat_ID { get; set; }
         [DataMember]
+        [Required]
         [Index("Index_FlightSeat", 1, IsUnique = true)]
         public int Flight_ID { get; set; }
 
         [DataMember]
         [Required]
-        [ForeignKey("Flight_ID")]
-        public Flight Flight { get; set; }
+        public int Ticket_ID { get; set; }
 
         [DataMember]
-        [Required]
+        [ForeignKey("Flight_ID")]
+        public Flight Flight { get; set; }
+        
+        [DataMember]
         [ForeignKey("Seat_ID")]
         public Seat Seat { get; set; }
 
@@ -48,7 +52,7 @@ namespace WCFService.Model {
         public SeatState State { get; set; }
 
         [DataMember]
-        [Required]
+        [ForeignKey("Ticket_ID")]
         public Ticket Ticket { get; set; }
     }
 }
