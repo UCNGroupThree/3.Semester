@@ -26,7 +26,7 @@ namespace FlightWeb
                 //    Response.Redirect("~/Account/Login.aspx");
                 //}
 
-                if (client.AuthenticateUser(Email.Text.Trim(), Password.Text.Trim()))
+                if (client.AuthenticateUser(Email.Text.Trim(), Password.Text))
                 {
                     FormsAuthentication.RedirectFromLoginPage(Email.Text, true);
                     Response.Redirect("~/Default.aspx");

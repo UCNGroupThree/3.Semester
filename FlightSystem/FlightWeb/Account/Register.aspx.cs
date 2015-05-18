@@ -36,7 +36,7 @@ namespace FlightWeb.Account
                         Postal = postal,
                         PhoneNumber = txtPhone.Text.Trim(),
                         Email = txtEmail.Text.Trim(),
-                        PasswordPlain = txtPassword.Text.Trim()
+                        PasswordPlain = txtPassword.Text
                                                
 
                     };
