@@ -17,13 +17,29 @@ namespace FlightWeb
         protected void LogIn(object sender, EventArgs e) {
             using (var client = new UserServiceClient()) {
 
-                string EncryptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(Password.Text.Trim(),
-                    "SHA1");
-                if (client.AuthenticateUser(Email.Text.Trim(), EncryptedPassword)) {
+                //string EncryptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(Password.Text.Trim(),
+                //    "SHA1");
+                //if (client.AuthenticateUser(Email.Text.Trim(), EncryptedPassword)) {
+                //    FormsAuthentication.RedirectFromLoginPage(Email.Text, true);
+                  
+                //} else {
+                //    Response.Redirect("~/Account/Login.aspx");
+                //}
+
+                if (client.AuthenticateUser(Email.Text.Trim(), Password.Text.Trim()))
+                {
+                    FormsAuthentication.RedirectFromLoginPage(Email.Text, true);
                     Response.Redirect("~/Default.aspx");
+                } else {
+                    Response.Redirect("~/Account/Login.aspx");
                 }
+                
             }
         }
+
+      
+
+        
 
     }
 }

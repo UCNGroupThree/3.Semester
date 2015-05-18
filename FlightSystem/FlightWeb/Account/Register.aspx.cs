@@ -29,22 +29,24 @@ namespace FlightWeb.Account
                         PostCode = Convert.ToInt32(txtPostal.Text.Trim()),
                         City = txtCity.Text.Trim()
                     };
-                    string EncryptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(txtPassword.Text.Trim(), "SHA1");
+               //     string EncryptedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(txtPassword.Text.Trim(), "SHA1");
                     User user = new User() {
                         Name = txtName.Text.Trim(),
                         Address = txtAddress.Text.Trim(),
                         Postal = postal,
                         PhoneNumber = txtPhone.Text.Trim(),
                         Email = txtEmail.Text.Trim(),
-                        PasswordHash = EncryptedPassword
-                        
+                        PasswordPlain = txtPassword.Text.Trim()
+                                               
 
                     };
                     int returnCode = client.AddUser(user);
                     if (returnCode == -1) {
-
                         lblMessage.Text = "The Email you provide is already in use, please suply another";
-                    } else {
+                    }else if (returnCode == -2) {
+                        lblMessage.Text = "The Password you provide is not in the right format";
+                    }
+                    else {
                         Response.Redirect("~/Default.aspx");
                     }
                 }

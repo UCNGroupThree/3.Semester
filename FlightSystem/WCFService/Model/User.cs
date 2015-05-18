@@ -31,6 +31,10 @@ namespace WCFService.Model {
         [DataMember]
         public string PasswordHash { get; set; }
 
+        [NotMapped]
+        [DataMember]
+        public string PasswordPlain { get; set; }
+
         [DataMember]
         [Timestamp]
         public byte[] Concurrency { get; set; }
