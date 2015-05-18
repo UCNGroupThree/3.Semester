@@ -7,6 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using FlightWeb.Helper;
 using FlightWeb.MainService;
 
 namespace FlightWeb {
@@ -29,20 +30,9 @@ namespace FlightWeb {
             Debug.WriteLine("END SESSION");
             Debug.WriteLine("END SESSION");
             Debug.WriteLine("END SESSION");
-            var resClient = Session["resClient"] as ReservationServiceClient;
-            if (resClient != null) {
-                Debug.WriteLine("CLOSED CLIENT!");
-                try {
-                    resClient.Close();
-                } catch (Exception ex) {
-                    resClient.Abort();
-                    Debug.WriteLine("Handled Exception:");
-                    Debug.WriteLine(ex);
-                    //Debug.WriteLine(ex.Message);
-                    Debug.WriteLine("#####");
-                    //Timeout
-                }
-            }
+            MySession.Current.CloseResClient();
         }
+
+        
     }
 }
