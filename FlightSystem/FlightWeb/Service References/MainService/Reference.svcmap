@@ -24,9 +24,9 @@
     <MetadataSource Address="http://localhost:8733/MainService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="5c3111c2-7bdd-4a0f-91aa-b328b20f8232" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="6884a6ec-5dfc-4d86-a1eb-c17682108f42" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="ebe40e2c-bb32-4d3c-b0c8-816e897b89c2" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="34fc1855-ba5a-4be2-b0b6-4f456a33ad4f" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="d53e26f6-c46e-4b6b-a2b1-8f6d41585ed4" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="eff07191-8a3b-45eb-b9af-a43319b760e4" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
     <MetadataFile FileName="WCFService.Model.xsd" MetadataType="Schema" ID="449add49-cb0d-4aaf-a2c1-d529802f50bb" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
     <MetadataFile FileName="WCFService.WCF.Faults.xsd" MetadataType="Schema" ID="92bcd3a5-19f0-46af-8408-e50494ad0a88" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
     <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="3505403b-a6f0-44f3-9c0c-d28103eb9d95" SourceId="1" SourceUrl="http://localhost:8733/MainService/mex" />
