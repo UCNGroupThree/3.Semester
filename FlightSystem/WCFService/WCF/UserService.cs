@@ -5,7 +5,10 @@ using System.Data.Entity.Core;
 using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
 using System.ServiceModel;
+using Common.Exceptions;
+using WCFService.Helper;
 using WCFService.Model;
+using WCFService.WCF.Faults;
 using WCFService.WCF.Interface;
 
 namespace WCFService.WCF
@@ -15,19 +18,38 @@ namespace WCFService.WCF
         readonly FlightDB _db = new FlightDB();
 
         public int AddUser(User user) {
-            _db.Users.Add(user);
+         //   _db.Users.Add(user);
 
             if (_db.Users.Any(x => x.Email == user.Email)) {
                 return -1;
             }
-            if (!_db.Postals.Any(p => p.PostCode == user.Postal.PostCode)) {
-                _db.Postals.Add(user.Postal);
-            } else {
-                _db.Postals.Attach(user.Postal);
+            if (user.PasswordPlain != null) {
+
+                try {
+                    user.PasswordHash = PasswordHelper.CreateHash(user.PasswordPlain);                  
+                    user.PasswordPlain = null;
+                } catch (Exception ex) {
+                    return -2;                                 
+                }
             }
+            try {
+                _db.Users.Add(user);
 
-            _db.SaveChanges();
+                if (!_db.Postals.Any(p => p.PostCode == user.Postal.PostCode))
+                {
+                    _db.Postals.Add(user.Postal);
+                }
+                else
+                {
+                    _db.Postals.Attach(user.Postal);
+                }
+                _db.SaveChanges();
 
+            } catch (Exception ex) {
+
+                throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault("user"));
+            }
+         
             return user.ID;
         }
 
@@ -84,16 +106,32 @@ namespace WCFService.WCF
 
         public bool AuthenticateUser(string email, string password)
         {
+            //bool val = false;
+
+            //try {
+            //    if (_db.Users.Any(x => x.Email == email && x.PasswordHash == password)) {
+            //        val = true;
+            //    }
+            //} catch (Exception ) {
+                              
+            //}
+            //return val;
+
             bool val = false;
 
             try {
-                if (_db.Users.Any(x => x.Email == email && x.PasswordHash == password)) {
-                    val = true;
-                }
-            } catch (Exception ) {
-                              
+                var hash =
+                    _db.Users.SingleOrDefault(x => x.Email.Equals(email, StringComparison.OrdinalIgnoreCase))
+                        .PasswordHash;
+                
+                val = PasswordHelper.ValidatePassword(password, hash);
+
+            } catch (Exception e) {
+                Console.WriteLine(e.Message);
             }
             return val;
         }
+
+
     }
 }
