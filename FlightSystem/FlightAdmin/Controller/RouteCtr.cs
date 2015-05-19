@@ -42,6 +42,33 @@ namespace FlightAdmin.Controller {
 
         #region Update
 
+        public Route AddOrUpdateFlights(Route route, List<Flight> flights) { //TODO Better Exception
+            Route retRoute;
+                using (var client = new RouteServiceClient()) {
+                    try {
+                        route.Flights = flights;
+
+                        foreach (var flight in flights) {
+                            flight.RouteID = route.ID;
+                            flight.PlaneID = flight.Plane.ID;
+                        }
+
+                        retRoute = client.AddOrUpdateFlights(route);
+                    } catch (FaultException<OptimisticConcurrencyFault> concurrencyException) {
+                        throw new Exception(concurrencyException.Detail.Message);
+                    } catch (FaultException<DatabaseUpdateFault> updateException) {
+                        throw new Exception(updateException.Detail.Message);
+                    } catch (FaultException<DeleteFault> deleteFault) {
+                        throw new DeleteException(deleteFault.Detail.Message);
+                    } catch (Exception e) {
+                        throw new ConnectionException("WCF Service Exception", e);
+                    }
+                }
+
+            return retRoute;
+        }
+
+
         public Route UpdateRoute(Route route, Airport from, Airport to, List<Flight> flights, decimal price) { //TODO Better Exception
             Route retRoute;
             if (RouteValidation(from, to, flights)) {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WCFService.Dijkstra;
 using WCFService.Model;
 using WCFService.WCF;
 using WCFService.WCF.Interface;
@@ -23,7 +24,11 @@ namespace WCFService {
         private readonly IReservationService _resService = new WCF.ReservationService();
 
         #endregion
-        
+
+        public MainService() {
+            Matrix.GetInstance();
+        }
+
         #region Administrator Service
 
         public Administrator AddAdministrator(Administrator administrator) {
@@ -167,6 +172,10 @@ namespace WCFService {
 
         public Route UpdateRoute(Route route) {
             return _routeService.UpdateRoute(route);
+        }
+
+        public Route AddOrUpdateFlights(Route route) {
+            return _routeService.AddOrUpdateFlights(route);
         }
 
         public void DeleteRoute(Route route) {

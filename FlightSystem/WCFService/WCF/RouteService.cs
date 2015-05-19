@@ -12,6 +12,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Threading;
 using System.Threading.Tasks;
+using WCFService.Helper;
 using WCFService.Model;
 using WCFService.WCF.Faults;
 using WCFService.WCF.Interface;
@@ -25,7 +26,7 @@ namespace WCFService.WCF {
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
-            db.Database.Log = m => Debug.WriteLine(m);
+            //db.Database.Log = m => Debug.WriteLine(m);
         }
 
         public Route AddRoute(Route route) {
@@ -57,68 +58,115 @@ namespace WCFService.WCF {
             return route;
         }
 
+
         public Route UpdateRoute(Route route) {
-            Route retRoute = route;
+            Route retRoute = route.Clone();
 
             if (route == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
 
             try {
+                Debug.WriteLine("UpdateRoute");
                 Debug.WriteLine(route.From.Name + " " + route.To.Name);
-               // var oldRoute = db.Routes.Find(route.ID);
-            //var s = db.ChangeTracker.Entries<Route>().First(x => x.Entity.ID == route.ID);
 
-               // db.Entry(oldRoute).CurrentValues.SetValues(route);
-            //oldRoute.From = route.From;
-            //oldRoute.To = route.To;
-               // oldRoute.Flights = route.Flights;
-                route.ToID = route.To.ID;
-                route.FromID = route.From.ID;
-                
-                foreach (var flight in route.Flights) {
-                    System.Diagnostics.Debug.WriteLine(flight.ID + "flight"); //TODO Remove after test
-                    if (flight.ID > 0) {
-                        //db.Flights.Attach(flight);
-                        System.Diagnostics.Debug.WriteLine(flight.ID + "Set to modified"); //TODO Remove after test
-                        flight.PlaneID = flight.Plane.ID;
-                        db.Entry(flight).State = EntityState.Modified;
-                    } else {
-                        System.Diagnostics.Debug.WriteLine(flight.ID + "Set to added"); //TODO Remove after test
-                        flight.PlaneID = flight.Plane.ID;
-                        db.Flights.Add(flight);
-                    }
+                if (route.ToID == 0 && route.To != null) {
+                    route.ToID = route.To.ID;
+                    retRoute.ToID = route.To.ID;
+                    route.To = null;
+                } else if (route.ToID != 0) {
+                    route.To = null;
+                }
 
-                    if (flight.Plane.ID > 0) {
-                        db.Planes.Attach(flight.Plane);
-                    }
+                if (route.FromID == 0 && route.From != null) {
+                    route.FromID = route.From.ID;
+                    retRoute.FromID = route.From.ID;
+                    route.From = null;
+                } else if (route.FromID != 0) {
+                    route.From = null;
+                }
 
+                if (route.Flights.Count > 0) {
+                    route.Flights = null;
                 }
 
                 db.Entry(route).State = EntityState.Modified;
 
+                DetectChanges(db);
+
+                db.SaveChanges();
+                retRoute.Concurrency = route.Concurrency;
 
 
-                //db.Entry(route.Flights).State = EntityState.Added;
+                //DebugSaveChanges();
+
+                // Running Async Update on Dijkstra Matrix
+                new Task(() => Dijkstra.Updated(retRoute)).Start();
+            } catch (OptimisticConcurrencyException e) {
+                throw new FaultException<OptimisticConcurrencyFault>(new OptimisticConcurrencyFault() {
+                    Message = e.Message
+                });
+            } catch (DbUpdateException ex) {
+                Console.WriteLine(ex.InnerException);
+                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault() { Message = ex.Message });
+            } catch (Exception ex) {
+                Console.WriteLine(ex.InnerException);
+                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault() { Message = ex.Message });
+            }
+
+            return retRoute;
+        }
+
+
+
+        public Route AddOrUpdateFlights(Route route) {
+            Route retRoute = route.Clone();
+
+            if (route == null) {
+                throw new FaultException<NullPointerFault>(new NullPointerFault());
+            }
+
+            try {
+                Debug.WriteLine("AddOrUpdateFlights");
+                Debug.WriteLine(route.From.Name + " " + route.To.Name);
+
+
+                foreach (var flight in route.Flights) {
+                    System.Diagnostics.Debug.WriteLine(flight.ID + "flight"); //TODO Remove after test
+                    var planeId = flight.Plane.ID;
+                    flight.Plane = null;
+                    
+                    if (flight.ID > 0) {
+                        System.Diagnostics.Debug.WriteLine(flight.ID + "Set to modified"); //TODO Remove after test
+                        flight.PlaneID = planeId;
+                        db.Entry(flight).State = EntityState.Modified;
+                    } else {
+                        System.Diagnostics.Debug.WriteLine(flight.ID + "Set to added"); //TODO Remove after test
+                        flight.PlaneID = planeId;
+                        db.Flights.Add(flight);
+                    }
+                }
+
+                DetectChanges(db);
 
                 //db.SaveChanges();
+                retRoute.Concurrency = route.Concurrency;
                 DebugSaveChanges();
 
                 // Running Async Update on Dijkstra Matrix
-                new Task(() => Dijkstra.Updated(route)).Start();
+                new Task(() => Dijkstra.Updated(retRoute)).Start();
 
                 
             } catch (OptimisticConcurrencyException e) {
                 throw new FaultException<OptimisticConcurrencyFault>(new OptimisticConcurrencyFault() {
                     Message = e.Message
                 });
-            //} catch (DbUpdateException) {
-                //var ctx = ((IObjectContextAdapter)db).ObjectContext;
-                //ctx.Refresh(RefreshMode.ClientWins, db.Flights);
-                //db.SaveChanges();
-                
-                // Running Async Update on Dijkstra Matrix
-               // new Task(() => Dijkstra.Updated(route)).Start();
+            } catch (DbUpdateException ex) {
+                Console.WriteLine(ex.InnerException);
+                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault() { Message = ex.Message });
             } catch (Exception ex) {
                 Console.WriteLine(ex.InnerException);
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
@@ -197,11 +245,22 @@ namespace WCFService.WCF {
         public List<Route> GetRoutesByAirport(Airport from) {
             List<Route> routes = db.Routes.Where(r => r.From.ID == from.ID).Include(r => r.To).Include(r => r.From).Include(r => r.Flights.Select(s => s.Plane)).ToList();
 
-            if (!(routes.Count > 0)) {
-                throw new FaultException<NullPointerFault>(new NullPointerFault());
+            if (routes.Count == 0) {
+                throw new FaultException<NullPointerFault>(new NullPointerFault() {Message = "The Airport has no Routes"});
             }
 
             return routes;
+        }
+
+        private void DetectChanges(FlightDB db) {
+            db.ChangeTracker.DetectChanges();
+            var list = db.ChangeTracker.Entries().ToList();
+            Debug.WriteLine("Start of DetectChanges");
+            foreach (var v in list) {
+                Debug.WriteLine("c: #" + list.IndexOf(v) + " - " + v.Entity + " state: " + v.State);
+            }
+            Debug.WriteLine("End of DetectChanges");
+
         }
     }
 }

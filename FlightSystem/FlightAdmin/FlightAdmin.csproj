@@ -263,7 +263,7 @@
     <None Include="Service References\MainService\FlightAdmin.MainService.Route.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\MainService\FlightAdmin.MainService.SeatReservation.datasource">
+    <None Include="Service References\MainService\FlightAdmin.MainService.Ticket.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\MainService\FlightAdmin.MainService.User.datasource">

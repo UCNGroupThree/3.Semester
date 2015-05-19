@@ -37,9 +37,6 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
             InitializeComponent();
             _flights = new List<FlightHelper>();
             isEdit = true;
-            
-            btnSave.Click -= btnSaveForCreate_Click;
-            btnSave.Click += btnSaveForEdit_Click;
         }
 
         #region AddFlights
@@ -228,17 +225,18 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
             RouteCtr rCtr = new RouteCtr();
 
             List<Flight> flights = _flights.Select(flightHelper => new Flight {
-                ArrivalTime = flightHelper.ArrivalTime.Value, DepartureTime = flightHelper.DepartureTime.Value, Plane = (Plane) flightHelper.Plane.SelectedItem
+                ArrivalTime = flightHelper.ArrivalTime.Value, 
+                DepartureTime = flightHelper.DepartureTime.Value, 
+                Plane = (Plane) flightHelper.Plane.SelectedItem,
+                ID = flightHelper.Flight.ID
             }).ToList();
 
-            Route = rCtr.UpdateRoute(Route, Route.From, Route.To, flights, Route.Price);
-
-            TestCrap(Route.Flights); //TODO Remove after test
+            Route = rCtr.AddOrUpdateFlights(Route, flights);
 
             DialogResult = DialogResult.OK;
             this.Dispose();
         }
-
+        /*
         private void btnSaveForEdit_Click(object sender, EventArgs e) {
             RouteCtr rCtr = new RouteCtr();
             FlightCtr fCtr = new FlightCtr();
@@ -251,30 +249,18 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
                 ID = flightHelper.Flight.ID
             }).ToList();
 
-
-
             Route = rCtr.UpdateRoute(Route, Route.From, Route.To, flights, Route.Price);
-
-            TestCrap(Route.Flights); //TODO Remove after test
 
             DialogResult = DialogResult.OK;
             this.Dispose();
         }
+         * */
 
         private void btnCancel_Click(object sender, EventArgs e) {
             this.Dispose();
         }
 
         #endregion
-
-
-
-
-        private void TestCrap(List<Flight> fl) { //TODO Remove after test
-            foreach (var flight in fl) {
-                Debug.WriteLine(flight.ID + " Returned");
-            }
-        }
 
         private void Loading(bool loading) {
             if (!loading) {

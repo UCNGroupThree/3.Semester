@@ -20,6 +20,12 @@ namespace WCFService.WCF.Interface {
         Route UpdateRoute(Route route);
 
         [OperationContract]
+        [FaultContract(typeof(OptimisticConcurrencyFault))]
+        [FaultContract(typeof(NullPointerFault))]
+        [FaultContract(typeof(DatabaseUpdateFault))]
+        Route AddOrUpdateFlights(Route route);
+
+        [OperationContract]
         [FaultContract(typeof(NullPointerFault))]
         [FaultContract(typeof(DatabaseDeleteFault))]
         [FaultContract(typeof(DeleteFault))]
