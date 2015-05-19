@@ -12,6 +12,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Threading;
 using System.Threading.Tasks;
+using Common;
 using WCFService.Helper;
 using WCFService.Model;
 using WCFService.WCF.Faults;

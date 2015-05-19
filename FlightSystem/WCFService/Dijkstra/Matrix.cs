@@ -8,6 +8,7 @@ using System.Resources;
 using System.Runtime.InteropServices;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
+using Common;
 using Common.Exceptions;
 using WCFService.Model;
 using WCFService.WCF;
@@ -467,10 +468,11 @@ namespace WCFService.Dijkstra {
                 .Where(a => a.Routes.Any(r => r.Flights.Any(f => f.SeatReservations.Count < f.Plane.Seats.Count)));
 
             //var toAirports = airports.Select(r => r.Routes.Select(a => a.To));
+            HashSet<Airport> tmpAirports = fromAirports.ToHashSet();
+            var toAirports = tmpAirports.SelectMany(r => r.Routes.Select(a => a.To)).ToHashSet();
+            tmpAirports.UnionWith(toAirports);
 
-            airports = fromAirports.ToList();
-            var toAirports = airports.SelectMany(r => r.Routes.Select(a => a.To)).Where(a => !airports.Contains(a)).ToList();
-            airports.AddRange(toAirports);
+            airports = tmpAirports.ToList();
 
             //IQueryable<Airport> query = fromAirports.Union(toAirports);
             //airports = query.ToList();
