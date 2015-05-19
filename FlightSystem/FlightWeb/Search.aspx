@@ -8,8 +8,6 @@
         $(document).ready(function () {
             <%--var pageUrl = '<%=ResolveUrl("~/Search.aspx")%>';--%>
             $("#<%=btnSearch.ClientID%>").click(function () {
-                
-                    return;
                 $('#<%=modalHeaderText.ClientID%>').html("Searching");
                 $('#modalBody').html("");
                 $('#<%=modalFooter.ClientID%>').html("");
