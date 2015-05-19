@@ -20,6 +20,7 @@ namespace WCFService.Model {
         public FlightDB()
             : base("Server=kraka.ucn.dk;Database=dmaa0214_3Sem_3;User Id=dmaa0214_3Sem_3;Password=IsAllowed;") {
             base.Configuration.ProxyCreationEnabled = false;
+            
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {

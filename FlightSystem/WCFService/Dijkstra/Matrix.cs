@@ -8,6 +8,7 @@ using System.Resources;
 using System.Runtime.InteropServices;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
+using System.Threading;
 using Common;
 using Common.Exceptions;
 using WCFService.Model;
@@ -326,7 +327,7 @@ namespace WCFService.Dijkstra {
                         .Include(f => f.Route.From)
                         .First(f => f.ID == flight.ID);
 
-                var airport = airports.First(a => a.Routes.Select(r => r.ID == newFlight.Route.ID).Any());
+                var airport = airports.Single(a => a.Routes.Any(r => r.ID == newFlight.Route.ID));
                 var route = airport.Routes[airport.Routes.FindIndex(r => r.ID == newFlight.Route.ID)];
                 route.Flights[route.Flights.FindIndex(f => f.ID == newFlight.ID)] = newFlight;
                 
@@ -528,9 +529,14 @@ namespace WCFService.Dijkstra {
         public List<Flight> GetShortestPath(int fromId, int toId, int seats, DateTime startTime) {
             //var time = startTime;
 
+            while (_locked) {
+                Thread.Sleep(1000);
+            }
+            /*
             if (_locked) {
                 throw new LockedException("The Matrix is being updated");
             }
+             */
 
             Airport from = airports.FirstOrDefault(a => a.ID == fromId);
             Debug.WriteLine("from: "+from);

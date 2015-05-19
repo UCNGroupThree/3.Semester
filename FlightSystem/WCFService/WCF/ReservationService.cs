@@ -167,7 +167,12 @@ namespace WCFService.WCF {
 
                     HashSet<int> ids = ticket.SeatReservations.Select(s => s.Flight_ID).ToHashSet();
 
-                    Parallel.ForEach(ids, (a) => Dijkstra.Updated(new Flight() {ID = a}));
+                    Task updateTask = Task.Run(() => {
+                        foreach (var id in ids) {
+                            Dijkstra.Updated(new Flight() {ID = id});
+                        }
+                    });
+
                 }
             } catch (Exception ex) {
                 ticket.SeatReservations = oldSeatReservations;
