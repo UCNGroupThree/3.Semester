@@ -80,7 +80,7 @@ namespace WCFService.WCF {
 
 
         public List<Flight> GetFlightsAsd(int fromId, int toId, int seats, DateTime dateTime) {
-            try {
+            //try {
                 //TODO måske tjek på om flights er tom?
                 CreateTicket();
                 //DeleteTicket(false);
@@ -105,11 +105,11 @@ namespace WCFService.WCF {
                 noOfSeats = seats;
 
                 return flights;
-            } catch (Exception ex) {
+            //} catch (Exception ex) {
                 //TODO FejlHåndtering
-                throw new FaultException<DatabaseFault>(new DatabaseFault("GetFlightsAsd Error"));
+            //    throw new FaultException<DatabaseFault>(new DatabaseFault("GetFlightsAsd Error"));
                 //throw;
-            }
+            //}
             //return null;
         }
 

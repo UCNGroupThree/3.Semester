@@ -22,8 +22,24 @@ namespace FlightWeb {
             ses = ResSession.Current(Session);
             if (!Page.IsPostBack) {
                FirstLoad();
-                
+                if (Session["Error"] != null) {
+                    Debug.WriteLine("error? not null: {0}", Request.QueryString["error"]);
+                    DisplayError("Error", Session["Error"].ToString(), true);
+                    Session.Remove("Error");
+                }
                 Demo();
+            }
+        }
+
+        private void DisplayError(string header, string text, bool loadOnRequest) {
+
+            modalHeaderText.InnerHtml = header;
+            lblModalError.Text = text;
+            lblModalError.Visible = true;
+            modalFlightsPanel.Visible = false;
+            btnBook.Visible = false;
+            if (loadOnRequest) {
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "divModal", "$('#divModal').modal();", true);
             }
         }
 
@@ -155,16 +171,13 @@ namespace FlightWeb {
                 
             } catch (Exception ex) {
                 //TODO bedre håndtering af fejl
+                
                 if (ex is SubmitException) {
-                    modalHeaderText.InnerHtml = "No flights found";
-                    lblModalError.Text = ex.Message;
+                    DisplayError("No Flight Found", ex.Message, false);
                 } else {
-                    modalHeaderText.InnerHtml = "Error";
-                    lblModalError.Text = "We are sorry, but an error happen :(";
+                    DisplayError("Error", "We are sorry, but an error happen :(", false);
+                    
                 }
-                lblModalError.Visible = true;
-                modalFlightsPanel.Visible = false;
-                btnBook.Visible = false;
 
                 Debug.WriteLine("ERROR!");
                 Debug.WriteLine("ERROR!");
@@ -174,7 +187,6 @@ namespace FlightWeb {
                 Debug.WriteLine(ex.Source);
             }
             
-            //System.Web.UI.ScriptManager.RegisterStartupScript(Page, Page.GetType(), "divModal", "$('#divModal').modal();", true);
             
             UpdatePanelAnswer.Update();
         }

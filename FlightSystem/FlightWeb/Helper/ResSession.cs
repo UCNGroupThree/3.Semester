@@ -22,7 +22,7 @@ namespace FlightWeb.Helper {
             ResSession session = (ResSession)ses["ResSession"];
             if (session == null) {
                 session = new ResSession();
-                HttpContext.Current.Session["ResSession"] = session;
+                ses["ResSession"] = session;
             }
             return session;
         }
@@ -37,6 +37,7 @@ namespace FlightWeb.Helper {
             if (ResClient != null) {
                 Debug.WriteLine("ResSession.CloseResClient(): CLOSED CLIENT!");
                 try {
+                    ResClient.Cancel();
                     ResClient.Close();
                 } catch (Exception ex) {
                     ResClient.Abort();
