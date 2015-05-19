@@ -14,7 +14,13 @@ namespace Common {
                 return default(T);
             }
 
-            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source));
+            T ret = JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source));
+
+            return ret;
+        }
+
+        public static bool HasProperty(this object obj, string propertyName) {
+            return obj.GetType().GetProperty(propertyName) != null;
         }
     }
 }

@@ -27,7 +27,7 @@ namespace WCFService.WCF {
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
-            //db.Database.Log = m => Debug.WriteLine(m);
+            
         }
 
         public Route AddRoute(Route route) {
@@ -69,6 +69,7 @@ namespace WCFService.WCF {
 
             try {
                 Debug.WriteLine("UpdateRoute");
+                
                 Debug.WriteLine(route.From.Name + " " + route.To.Name);
 
                 if (route.ToID == 0 && route.To != null) {
@@ -93,11 +94,11 @@ namespace WCFService.WCF {
 
                 db.Entry(route).State = EntityState.Modified;
 
-                DetectChanges(db);
+                //DetectChanges(db);
 
                 db.SaveChanges();
-                retRoute.Concurrency = route.Concurrency;
 
+                retRoute.Concurrency = route.Concurrency;
 
                 //DebugSaveChanges();
 
@@ -150,12 +151,12 @@ namespace WCFService.WCF {
                     }
                 }
 
-                DetectChanges(db);
+                //db.DebugDetectChanges();
 
                 //db.SaveChanges();
                 retRoute.Concurrency = route.Concurrency;
-                DebugSaveChanges();
-
+                //db.DebugSaveChanges();
+                
                 // Running Async Update on Dijkstra Matrix
                 new Task(() => Dijkstra.Updated(retRoute)).Start();
 
@@ -177,24 +178,7 @@ namespace WCFService.WCF {
             return retRoute;
         }
 
-        private void DebugSaveChanges() {
-            try {
-                // Your code...
-                // Could also be before try if you know the exception occurs in SaveChanges
-
-                db.SaveChanges();
-            } catch (DbEntityValidationException e) {
-                foreach (var eve in e.EntityValidationErrors) {
-                    Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors) {
-                        Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-                throw;
-            }
-        }
+        
 
         public void DeleteRoute(Route route) {
             if (route == null) {
@@ -253,15 +237,6 @@ namespace WCFService.WCF {
             return routes;
         }
 
-        private void DetectChanges(FlightDB db) {
-            db.ChangeTracker.DetectChanges();
-            var list = db.ChangeTracker.Entries().ToList();
-            Debug.WriteLine("Start of DetectChanges");
-            foreach (var v in list) {
-                Debug.WriteLine("c: #" + list.IndexOf(v) + " - " + v.Entity + " state: " + v.State);
-            }
-            Debug.WriteLine("End of DetectChanges");
-
-        }
+        
     }
 }

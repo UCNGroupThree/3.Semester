@@ -5,6 +5,8 @@ using System.Configuration;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -64,5 +66,40 @@ namespace WCFService.Model {
 
         public virtual DbSet<Administrator> Administrators { get; set; }
 
+
+        public void DebugSaveChanges() {
+            try {
+                // Your code...
+                // Could also be before try if you know the exception occurs in SaveChanges
+
+                SaveChanges();
+            } catch (DbEntityValidationException e) {
+                foreach (var eve in e.EntityValidationErrors) {
+                    Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors) {
+                        Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+        }
+
+        public void DebugDetectChanges() {
+            ChangeTracker.DetectChanges();
+            var list = ChangeTracker.Entries().ToList();
+            Debug.WriteLine("Start of DetectChanges");
+            foreach (var v in list) {
+                Debug.WriteLine("c: #" + list.IndexOf(v) + " - " + v.Entity + " state: " + v.State);
+            }
+            Debug.WriteLine("End of DetectChanges");
+
+        }
+
+
+        public void DebugLog() {
+            Database.Log = m => Debug.WriteLine(m);
+        }
     }
 }

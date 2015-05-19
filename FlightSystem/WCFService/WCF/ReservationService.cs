@@ -10,6 +10,8 @@ using System.Globalization;
 using System.Linq;
 using System.ServiceModel;
 using System.Threading;
+using System.Threading.Tasks;
+using Common;
 using Common.Exceptions;
 using WCFService.Model;
 using WCFService.WCF.Faults;
@@ -162,6 +164,10 @@ namespace WCFService.WCF {
                     }
 
                     db.SaveChanges();
+
+                    HashSet<int> ids = ticket.SeatReservations.Select(s => s.Flight_ID).ToHashSet();
+
+                    Parallel.ForEach(ids, (a) => Dijkstra.Updated(new Flight() {ID = a}));
                 }
             } catch (Exception ex) {
                 ticket.SeatReservations = oldSeatReservations;
