@@ -526,12 +526,27 @@ namespace WCFService.Dijkstra {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="LockedException"> Thrown if the Matrix is locked over 15 seconds. </exception>
+        /// <param name="fromId"></param>
+        /// <param name="toId"></param>
+        /// <param name="seats"></param>
+        /// <param name="startTime"></param>
+        /// <returns></returns>
         public List<Flight> GetShortestPath(int fromId, int toId, int seats, DateTime startTime) {
             //var time = startTime;
-
+            int timer = 0;
             while (_locked) {
                 Thread.Sleep(1000);
+                timer += 1000;
+
+                if (timer > 15000) {
+                    throw new LockedException("The Matrix is being updated");
+                }
             }
+
             /*
             if (_locked) {
                 throw new LockedException("The Matrix is being updated");
@@ -604,9 +619,11 @@ namespace WCFService.Dijkstra {
 
                         var time = times[smallest];
                         Debug.WriteLine(smallest.ID + " -> " + neighbor.Data.ID);
+
                         //if (smallest.ID == 5) {
                         //    Console.Write("hi");
                         //}
+
                         Route route = smallest.GetRouteTo(neighbor.Data);
                         List<Flight> flights = route.Flights;
                         flights.Sort(new Comparison<Flight>((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
