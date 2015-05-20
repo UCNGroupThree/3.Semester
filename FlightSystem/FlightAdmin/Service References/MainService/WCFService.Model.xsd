@@ -123,7 +123,6 @@
       <xs:element minOccurs="0" name="State" type="tns:SeatState" />
       <xs:element minOccurs="0" name="Ticket" nillable="true" type="tns:Ticket" />
       <xs:element minOccurs="0" name="Ticket_ID" type="xs:int" />
-      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -144,6 +143,8 @@
       <xs:element minOccurs="0" name="OrderDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="OrderState" type="tns:TicketState" />
       <xs:element minOccurs="0" name="SeatReservations" nillable="true" type="tns:ArrayOfSeatReservation" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="User_ID" type="xs:int" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />

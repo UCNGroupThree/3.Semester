@@ -142,7 +142,7 @@ namespace FlightWeb {
 
                 var client = ses.GetNewResClient();
                     
-                    var list = client.GetFlightsAsd(fromId, toId, seats, date);
+                    var list = client.GetFlightsAsd(fromId, toId, seats, date, user: new User());
                     if (list != null && list.Count > 0) {
                         ses.Flights = list;
                         var first = list[0];

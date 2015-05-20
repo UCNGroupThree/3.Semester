@@ -10,6 +10,8 @@ namespace WCFService.WCF.Interface {
     public interface IReservationService {
         //TODO Sætte IsInitiating og IsTermination på de manglende Operationer
         [OperationContract]
+        [FaultContract(typeof(LockedFault))]
+        [FaultContract(typeof(NullPointerFault))]
         [FaultContract(typeof(DatabaseFault))]
         List<Flight> GetFlightsAsd(int fromId, int toId, int seats, DateTime dateTime, User user);
 

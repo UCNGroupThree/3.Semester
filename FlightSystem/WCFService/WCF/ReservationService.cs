@@ -85,6 +85,7 @@ namespace WCFService.WCF {
             try {
                 //TODO måske tjek på om flights er tom?
                 CreateTicket(user);
+
                 //DeleteTicket(false);
                 //TODO måske byttes om, men vær opmærksom på flight = null i CreateTicket
                 flights = new Dijkstra().DijkstraStuff(fromId, toId, seats, dateTime);
@@ -108,6 +109,9 @@ namespace WCFService.WCF {
 
                 return flights;
             } catch (Exception ex) {
+                if (ex is FaultException<LockedFault>) {
+                    throw;
+                }
                 //TODO FejlHåndtering
                 throw new FaultException<DatabaseFault>(new DatabaseFault("GetFlightsAsd Error"));
                 //throw;
@@ -118,6 +122,12 @@ namespace WCFService.WCF {
         private void CreateTicket(User user) {
             if (ticket != null) {
                 DeleteTicket(false);
+            }
+            using (var db = new FlightDB()) {
+                db.DebugLog();
+                if (db.Users.Any(x => x.ID != user.ID)) {
+                    throw new FaultException<NullPointerFault>(new NullPointerFault { Message = "User not valid!" });
+                }
             }
             ticket = new Ticket { OrderDate = DateTime.UtcNow, OrderState = TicketState.Pending };
         }

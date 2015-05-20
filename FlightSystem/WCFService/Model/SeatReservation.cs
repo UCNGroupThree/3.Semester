@@ -46,10 +46,6 @@ namespace WCFService.Model {
         public Seat Seat { get; set; }
 
         [DataMember]
-        [Required]
-        public User User { get; set; }
-
-        [DataMember]
         public SeatState State { get; set; }
 
         [DataMember]

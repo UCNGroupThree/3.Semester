@@ -58,7 +58,7 @@ namespace FlightWeb {
         private void Demo() {
             var today = DateTime.Now;
             ses.Flights = ses.GetNewResClient()
-                .GetFlightsAsd(1, 3, 2, new DateTime(today.Year, today.Month, today.Day, 0, 1, 0));
+                .GetFlightsAsd(1, 3, 2, new DateTime(today.Year, today.Month, today.Day, 0, 1, 0), user: new User());
             ses.Ticket = ses.ResClient.MakeSeatsOccupiedRandom();
             
             //ResSession.ResServiceClient.Complete();

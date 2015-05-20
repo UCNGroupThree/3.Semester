@@ -27,6 +27,14 @@ namespace WCFService.Model {
         public TicketState OrderState { get; set; }
 
         [DataMember]
+        [Required]
+        public int User_ID { get; set; }
+
+        [DataMember]
+        [ForeignKey("User_ID")]
+        public User User { get; set; }
+
+        [DataMember]
         public List<SeatReservation> SeatReservations { get; set; }
 
         [DataMember]
