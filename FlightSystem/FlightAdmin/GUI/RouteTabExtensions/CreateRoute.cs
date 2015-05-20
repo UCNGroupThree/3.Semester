@@ -223,6 +223,7 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
                         CloseEvent();
 
                 } catch (ValidationException ex) {
+                    
 #if (DEBUG)
                     ex.DebugGetLine();
 #endif
@@ -232,6 +233,8 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
                     ex.DebugGetLine();
 #endif
                     MessageBox.Show("This Route is not the same as the Route in the database,\n you must search for the Route again..");
+                    if (CloseEvent != null)
+                        CloseEvent();
                 } catch (Exception ex) {
 #if (DEBUG)
                     ex.DebugGetLine();

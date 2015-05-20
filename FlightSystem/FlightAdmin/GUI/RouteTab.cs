@@ -38,6 +38,7 @@ namespace FlightAdmin.GUI {
                route = _rCtr.GetRouteByAirports(fromAirport, toAirport);
             } catch (NullException e) {
                 MessageBox.Show(e.Message); //TODO Better error handeling?
+                UpdateDataGrid(new List<Route>());
                 return;
             }
 
@@ -45,7 +46,7 @@ namespace FlightAdmin.GUI {
         }
 
         private void SearchRoutes(string from) {
-            List<Route> routes;
+            List<Route> routes = new List<Route>();
 
             try {
                 AirportCtr aCtr = new AirportCtr();
@@ -81,11 +82,11 @@ namespace FlightAdmin.GUI {
             } else {
                 
                 if (string.IsNullOrEmpty(txtTo.Text) || string.IsNullOrWhiteSpace(txtTo.Text)) {
-                    loadingPanel.Visible = true;
+                    loadingIcon.Visible = true;
                     Thread worker = new Thread(new ThreadStart(() => SearchRoutes(txtFrom.Text))); 
                     worker.Start();
                 } else {
-                    loadingPanel.Visible = true;
+                    loadingIcon.Visible = true;
                     Thread worker = new Thread(new ThreadStart(() => SearchRoute(txtFrom.Text, txtTo.Text)));
                     worker.Start();
                 }
@@ -119,7 +120,7 @@ namespace FlightAdmin.GUI {
                     foreach (var r in routes) {
                         routeBindingSource.Add(r);
                     }
-                    loadingPanel.Visible = false;
+                    loadingIcon.Visible = false;
                 }
             });
         }

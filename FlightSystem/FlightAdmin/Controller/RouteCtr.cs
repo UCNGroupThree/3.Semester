@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
@@ -13,6 +14,10 @@ namespace FlightAdmin.Controller {
 
         #region Create
 
+        /// <exception cref="DatabaseException"/>
+        /// <exception cref="ConnectionException"/>
+        /// <exception cref="ValidationException"/>
+        /// <exception cref="AlreadyExistException"/>
         public Route CreateRoute(Airport from, Airport to, List<Flight> flights, decimal price) { //TODO Better Exception
             Route route;
 
@@ -42,6 +47,10 @@ namespace FlightAdmin.Controller {
 
         #region Update
 
+        /// <exception cref="DatabaseException"/>
+        /// <exception cref="DBConcurrencyException"/>
+        /// <exception cref="DeleteException"/>
+        /// <exception cref="ConnectionException"/>
         public Route AddOrUpdateFlights(Route route, List<Flight> flights) { //TODO Better Exception
             Route retRoute;
                 using (var client = new RouteServiceClient()) {
@@ -55,9 +64,9 @@ namespace FlightAdmin.Controller {
 
                         retRoute = client.AddOrUpdateFlights(route);
                     } catch (FaultException<OptimisticConcurrencyFault> concurrencyException) {
-                        throw new Exception(concurrencyException.Detail.Message);
+                        throw new DBConcurrencyException(concurrencyException.Detail.Message);
                     } catch (FaultException<DatabaseUpdateFault> updateException) {
-                        throw new Exception(updateException.Detail.Message);
+                        throw new DatabaseException(updateException.Detail.Message);
                     } catch (FaultException<DeleteFault> deleteFault) {
                         throw new DeleteException(deleteFault.Detail.Message);
                     } catch (Exception e) {
@@ -69,6 +78,11 @@ namespace FlightAdmin.Controller {
         }
 
 
+        /// <exception cref="DatabaseException"/>
+        /// <exception cref="DBConcurrencyException"/>
+        /// <exception cref="DeleteException"/>
+        /// <exception cref="ConnectionException"/>
+        /// <exception cref="ValidationException"/>
         public Route UpdateRoute(Route route, Airport from, Airport to, List<Flight> flights, decimal price) { //TODO Better Exception
             Route retRoute;
             if (RouteValidation(from, to, flights)) {
@@ -91,7 +105,7 @@ namespace FlightAdmin.Controller {
 
                         retRoute = client.UpdateRoute(route);
                     } catch (FaultException<OptimisticConcurrencyFault> concurrencyException) {
-                        throw new Exception(concurrencyException.Detail.Message);
+                        throw new DBConcurrencyException(concurrencyException.Detail.Message);
                     } catch (FaultException<DatabaseUpdateFault> updateException) {
                         throw new DatabaseException(updateException.Detail.Message);
                     } catch (FaultException<DeleteFault> deleteFault) {
@@ -101,7 +115,7 @@ namespace FlightAdmin.Controller {
                     }
                 }
             } else {
-                throw new Exception("RouteValidation Exception");
+                throw new ValidationException("Invalid Route!");
             }
 
             return retRoute;
@@ -111,6 +125,9 @@ namespace FlightAdmin.Controller {
 
         #region Delete
 
+        /// <exception cref="NullException"/>
+        /// <exception cref="DatabaseException"/>
+        /// <exception cref="ConnectionException"/>
         public void DeleteRoute(Route route) { //TODO Better Exception
             using (var client = new RouteServiceClient()) {
                 try {
@@ -129,6 +146,8 @@ namespace FlightAdmin.Controller {
 
         #region Read
 
+        /// <exception cref="NullException"/>
+        /// <exception cref="ConnectionException"/>
         public Route GetRoute(int id) { //TODO Better Exception
             Route route;
 
@@ -146,6 +165,8 @@ namespace FlightAdmin.Controller {
             return route;
         }
 
+        /// <exception cref="NullException"/>
+        /// <exception cref="ConnectionException"/>
         public Route GetRouteByAirports(Airport from, Airport to) {
             Route route;
 
@@ -164,6 +185,8 @@ namespace FlightAdmin.Controller {
             return route;
         }
 
+        /// <exception cref="NullException"/>
+        /// <exception cref="ConnectionException"/>
         public List<Route> GetRoutesByAirport(Airport from) {
             List<Route> routes;
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
+using System.Threading;
 using Newtonsoft.Json;
 
 namespace Common {
@@ -25,13 +27,23 @@ namespace Common {
         }
 
         public static void DebugGetLine(this Exception ex) {
+
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
+            Debug.WriteLine("\n\n\n ##### DEBUG EXCEPTION ##### \n");
             var st = new StackTrace(ex, true);
             // Get the top stack frame
             var frame = st.GetFrame(0);
             // Get the line number from the stack frame
-            foreach (var stackFrame in st.GetFrames()) {
-                Debug.WriteLine(String.Format("File: {0} Line: {1} Exception Cought", stackFrame.GetFileName(), stackFrame.GetFileLineNumber()));
-            }
+            Debug.WriteLine("Exception: {0}", ex);
+
+            var stackFrames = st.GetFrames();
+            if (stackFrames != null)
+                foreach (var stackFrame in stackFrames) {
+                    Debug.WriteLine("File: {0} Line: {1} Exception Cought", stackFrame.GetFileName(), stackFrame.GetFileLineNumber());
+                }
+            Debug.WriteLine("\n ########################### \n\n");
             //Debug.WriteLine(String.Format("File: {0} Line: {1} Exception Cought", frame.GetFileName(),frame.GetFileLineNumber()));
         }
     }

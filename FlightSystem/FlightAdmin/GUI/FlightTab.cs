@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Common;
 using Common.Exceptions;
 using FlightAdmin.Controller;
 using FlightAdmin.GUI.FlightTabExtensions;
@@ -19,6 +20,7 @@ namespace FlightAdmin.GUI {
         private DataGridViewCellEventArgs _mouseLocation;
         public FlightTab() { //Todo Nick D PEdersen
             InitializeComponent();
+            txtID.OnlyInt = true;
             SetEvents();
         }
 
@@ -96,16 +98,30 @@ namespace FlightAdmin.GUI {
                 }
             }
         }
-
+        /*
         private void SearchByID() {
             try {
                 int i = txtID.IntValue;
                 Flight f = _fCtr.GetFlight(i);
                 UpdateDataGrid(new List<Flight>() {f});
             } catch (FormatException e) {
+#if DEBUG
+                e.DebugGetLine();
+#endif
                 MessageBox.Show("Invalid ID");
+            } catch (NullException e) {
+#if DEBUG
+                e.DebugGetLine();
+#endif
+                MessageBox.Show("No Flights found!");
+            } catch (Exception ex) {
+#if DEBUG
+                ex.DebugGetLine();
+#endif
+                MessageBox.Show(ex.Message);
             }
         }
+        */
 
         private void SearchByFrom(string from, string to) {
             BackgroundWorker bgWorker = new BackgroundWorker();

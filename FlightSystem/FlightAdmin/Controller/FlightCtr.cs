@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.Windows.Forms;
+using Common;
 using Common.Exceptions;
 using FlightAdmin.MainService;
 
@@ -47,7 +48,7 @@ namespace FlightAdmin.Controller {
                 try {
                     flight = client.GetFlight(id);
                 } catch (FaultException<NullPointerFault> nullException) {
-                    throw new Exception(nullException.Detail.Message);
+                    throw new NullException("No Flights were found!");
                 } catch (Exception e) {
                     Console.WriteLine(e.Message);
                     throw new ConnectionException("WCF Service Exception", e);
@@ -57,6 +58,7 @@ namespace FlightAdmin.Controller {
             return flight;
         }
 
+        /// <exception cref="NullException">Condition.</exception>
         public List<Flight> GetFlights(Airport from, Airport to) {
             List<Flight> flights = null;
 
@@ -64,8 +66,10 @@ namespace FlightAdmin.Controller {
                 try {
                     flights = client.GetFlights(from, to);
                 } catch (FaultException<NullPointerFault> nullException) {
-                    throw new Exception(nullException.Detail.Message);
+                    nullException.DebugGetLine();
+                    throw new NullException("No Flights were found!");
                 } catch (Exception e) {
+                    e.DebugGetLine();
                     Console.WriteLine(e.Message);
                     throw new ConnectionException("WCF Service Exception", e);
                 }

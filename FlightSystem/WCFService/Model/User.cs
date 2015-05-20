@@ -26,6 +26,8 @@ namespace WCFService.Model {
         public string PhoneNumber { get; set; }
 
         [DataMember]
+        [Index(IsUnique = true)]
+        [StringLength(450)]
         public string Email { get; set; }
 
         [DataMember]

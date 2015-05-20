@@ -160,6 +160,10 @@
     <Compile Include="Migrations\201505200849583_ticketUserAdded.Designer.cs">
       <DependentUpon>201505200849583_ticketUserAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505200954562_Made email unique.cs" />
+    <Compile Include="Migrations\201505200954562_Made email unique.Designer.cs">
+      <DependentUpon>201505200954562_Made email unique.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\FlightDB.cs" />
@@ -280,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505200849583_ticketUserAdded.resx">
       <DependentUpon>201505200849583_ticketUserAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505200954562_Made email unique.resx">
+      <DependentUpon>201505200954562_Made email unique.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
