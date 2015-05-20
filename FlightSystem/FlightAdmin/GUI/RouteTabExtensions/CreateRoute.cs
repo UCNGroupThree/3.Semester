@@ -56,65 +56,58 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
 
         #region BackgroundWorker
 
-        private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+        private void bgWorker_RunWorkerCompleted_Countries(object sender, RunWorkerCompletedEventArgs e) {
+            var countriesFrom = e.Result as List<string>;
+            var countriesTo = countriesFrom.ToList();
+
+            cmbFromCountry.DataSource = countriesFrom;
+            cmbToCountry.DataSource = countriesTo;
+
+            if (edRoute != null) {
+                cmbToCountry.SelectedItem = edRoute.To.Country;
+                cmbFromCountry.SelectedItem = edRoute.From.Country;
+            }
+
             btnClose.Enabled = true;
+            loadFromCountry.Visible = false;
+            loadToCountry.Visible = false;
         }
 
         private void LoadCountries(object sender, DoWorkEventArgs e) {
-            BeginInvoke((MethodInvoker)delegate {
-                loadFromCountry.Visible = true;
-                loadToCountry.Visible = true;
-            });
-
-            List<string> countriesFrom;
-            List<string> countriesTo = new List<string>();
             using (AirportServiceClient client = new AirportServiceClient()) {
-                countriesFrom = client.GetCountries();
+                var countriesFrom = client.GetCountries();
+                countriesFrom.Insert(0, "-");
+
+                e.Result = countriesFrom;
             }
-
-            countriesFrom.Insert(0, "-");
-            countriesTo = countriesFrom.ToList();
-
-            BeginInvoke((MethodInvoker)delegate {
-                cmbFromCountry.DataSource = countriesFrom;
-                cmbToCountry.DataSource = countriesTo;
-                if (edRoute != null) {
-                    cmbToCountry.SelectedItem = edRoute.To.Country;
-                    cmbFromCountry.SelectedItem = edRoute.From.Country;
-                }
-                loadFromCountry.Visible = false;
-                loadToCountry.Visible = false;
-            });
         }
 
-        private void LoadAirports(BGHelper helper, string country) {
-            ComboBox cmb = helper.Item as ComboBox;
-            BeginInvoke((MethodInvoker)delegate {
-                helper.Loader.Visible = true;
-            });
+        private void bgWorker_RunWorkerCompleted_Airports(object sender, RunWorkerCompletedEventArgs e) {
+            var cmb = ((Tuple<ComboBox, Airport[]>)e.Result).Item1;
+            var airports = ((Tuple<ComboBox, Airport[]>)e.Result).Item2.ToList();
 
-            List<Airport> airports;
+            cmb.DataSource = airports;
+            cmb.DisplayMember = "Name";
+            cmb.ValueMember = "ID";
 
-            using (AirportServiceClient client = new AirportServiceClient()) {
-                airports = client.GetAirportsByCountry(country);
+            if (edRoute != null) {
+                cmbFromAirport.SelectedValue = edRoute.From.ID;
+                cmbToAirport.SelectedValue = edRoute.To.ID;
             }
 
-            BeginInvoke((MethodInvoker)delegate {
-                cmb.DataSource = airports;
-                cmb.DisplayMember = "Name";
-                cmb.ValueMember = "ID";
+            cmb.Enabled = true;
+            btnClose.Enabled = true;
+            loadFromAirport.Visible = false;
+            loadToAirport.Visible = false;
+        }
 
-                if (edRoute != null) {
+        private void LoadAirports(object sender, DoWorkEventArgs e) {
+            using (AirportServiceClient client = new AirportServiceClient()) {
+                var args = ((Tuple<string, ComboBox>) e.Argument);
+                var airports = client.GetAirportsByCountry(args.Item1);
 
-                    cmbFromAirport.SelectedValue = edRoute.From.ID;
-                    cmbToAirport.SelectedValue = edRoute.To.ID;
-                    //cmbFromAirport.SelectedItem = edRoute.From;
-                    //cmbToAirport.SelectedItem = edRoute.To;
-                }
-
-                helper.Loader.Visible = false;
-                cmb.Enabled = true;
-            });
+                e.Result = new Tuple<ComboBox, Airport[]>(args.Item2, airports.ToArray());
+            }
         }
 
         #endregion
@@ -125,8 +118,10 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             try {
                 BackgroundWorker bgWorker = new BackgroundWorker();
                 btnClose.Enabled = false;
-                bgWorker.RunWorkerCompleted += bgWorker_RunWorkerCompleted;
-                bgWorker.DoWork += new DoWorkEventHandler(LoadCountries);
+                loadFromCountry.Visible = true;
+                loadToCountry.Visible = true;
+                bgWorker.RunWorkerCompleted += bgWorker_RunWorkerCompleted_Countries;
+                bgWorker.DoWork += LoadCountries;
                 bgWorker.RunWorkerAsync();
             } catch (Exception ex) {
 #if (DEBUG)
@@ -136,7 +131,7 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
                     CloseEvent();
                 }
 
-                this.Dispose();
+                Dispose();
             }
         }
 
@@ -147,11 +142,11 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
         private void cmbFromCountry_SelectedIndexChanged(object sender, EventArgs e) {
             string country = cmbFromCountry.Text;
             if (!country.Equals("-")) {
+                loadFromAirport.Visible = true;
                 BackgroundWorker bgWorker = new BackgroundWorker();
-                bgWorker.RunWorkerCompleted += bgWorker_RunWorkerCompleted;
-                BGHelper helper = new BGHelper() { Item = cmbFromAirport, Loader = loadFromAirport };
-                bgWorker.DoWork += (obj, ex) => LoadAirports(helper, country);
-                bgWorker.RunWorkerAsync();
+                bgWorker.RunWorkerCompleted += bgWorker_RunWorkerCompleted_Airports;
+                bgWorker.DoWork += LoadAirports;
+                bgWorker.RunWorkerAsync(new Tuple<string, ComboBox>(country, cmbFromAirport));
             } else {
                 cmbFromAirport.DataSource = null;
                 cmbFromAirport.Enabled = false;
@@ -161,11 +156,11 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
         private void cmbToCountry_SelectedIndexChanged(object sender, EventArgs e) {
             string country = cmbToCountry.Text;
             if (!country.Equals("-")) {
+                loadToAirport.Visible = true;
                 BackgroundWorker bgWorker = new BackgroundWorker();
-                bgWorker.RunWorkerCompleted += bgWorker_RunWorkerCompleted;
-                BGHelper helper = new BGHelper() { Item = cmbToAirport, Loader = loadToAirport };
-                bgWorker.DoWork += (obj, ex) => LoadAirports(helper, country);
-                bgWorker.RunWorkerAsync();
+                bgWorker.RunWorkerCompleted += bgWorker_RunWorkerCompleted_Airports;
+                bgWorker.DoWork += LoadAirports;
+                bgWorker.RunWorkerAsync(new Tuple<string, ComboBox>(country, cmbToAirport));
             } else {
                 cmbToAirport.DataSource = null;
                 cmbToAirport.Enabled = false;
@@ -211,8 +206,8 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             if (ValidateRoute()) {
                 try {
                     RouteCtr rCtr = new RouteCtr();
-                    Route route = rCtr.UpdateRoute(edRoute, (Airport) cmbFromAirport.SelectedItem,
-                        (Airport) cmbToAirport.SelectedItem, edRoute.Flights, decimal.Parse(txtPrice.Text));
+                    Route route = rCtr.UpdateRoute(edRoute, (Airport)cmbFromAirport.SelectedItem,
+                        (Airport)cmbToAirport.SelectedItem, edRoute.Flights, decimal.Parse(txtPrice.Text));
 
                     MessageBox.Show(String.Format("The Route:\n {0} -> {1} \n has been Updated!", route.From.Name, route
                         .To.Name), "Route Created", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -223,7 +218,7 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
                         CloseEvent();
 
                 } catch (ValidationException ex) {
-                    
+
 #if (DEBUG)
                     ex.DebugGetLine();
 #endif
