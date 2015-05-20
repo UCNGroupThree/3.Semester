@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Threading;
 using System.Threading.Tasks;
 using Common;
@@ -80,7 +81,6 @@ namespace WCFService.WCF {
             }
         }
 
-
         public List<Flight> GetFlightsAsd(int fromId, int toId, int seats, DateTime dateTime, User user) {
             try {
                 //TODO måske tjek på om flights er tom?
@@ -109,6 +109,9 @@ namespace WCFService.WCF {
 
                 return flights;
             } catch (Exception ex) {
+                if (ex is NullException) {
+                    throw new FaultException<NullPointerFault>(new NullPointerFault((NullException)ex));
+                }
                 if (ex is FaultException<LockedFault>) {
                     throw;
                 }
@@ -119,17 +122,18 @@ namespace WCFService.WCF {
             //return null;
         }
 
+        /// <exception cref="NullException"></exception>
         private void CreateTicket(User user) {
             if (ticket != null) {
                 DeleteTicket(false);
             }
             using (var db = new FlightDB()) {
                 db.DebugLog();
-                if (db.Users.Any(x => x.ID != user.ID)) {
-                    throw new FaultException<NullPointerFault>(new NullPointerFault { Message = "User not valid!" });
+                if (user != null && db.Users.Any(x => x.ID != user.ID)) {
+                    throw new NullException("User not valid!" );
                 }
             }
-            ticket = new Ticket { OrderDate = DateTime.UtcNow, OrderState = TicketState.Pending };
+            ticket = new Ticket { OrderDate = DateTime.UtcNow, OrderState = TicketState.Pending, User_ID = user.ID};
         }
 
 
