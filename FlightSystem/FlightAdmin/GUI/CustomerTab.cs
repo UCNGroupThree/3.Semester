@@ -106,6 +106,7 @@ namespace FlightAdmin.GUI {
 
         private void btnSearchByName_Click(object sender, EventArgs e)
         {
+           
             backgroundWorker2.RunWorkerAsync();
         }
 
@@ -115,7 +116,12 @@ namespace FlightAdmin.GUI {
 
             try
             {
-                e.Result = customerCtr.GetUserByName(txtName.Text);
+                if (IsNameValid()) {
+                    e.Result = customerCtr.GetUserByName(txtName.Text);
+                } else {
+                    MessageBox.Show("Wrong input on Name");
+                }
+                
                 
             }
             catch (NullException ex) {
