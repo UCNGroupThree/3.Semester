@@ -27,39 +27,44 @@ namespace FlightAdmin.GUI {
 
         #region Search
 
-        private void SearchRoute(string from, string to) {
-            Route route;
+        private void bgWorker_DoWork_SearchFrom(object sender, DoWorkEventArgs e) {
+            var aCtr = new AirportCtr();
+            var fromAirport = GetAirport((string)e.Argument);
 
-            try {
-                AirportCtr aCtr = new AirportCtr();
-                Airport fromAirport = GetAirport(from);
-                Airport toAirport = GetAirport(to);
-
-               route = _rCtr.GetRouteByAirports(fromAirport, toAirport);
-            } catch (NullException e) {
-                MessageBox.Show(e.Message); //TODO Better error handeling?
-                UpdateDataGrid(new List<Route>());
-                return;
-            }
-
-            UpdateDataGrid(new List<Route>(){route});
+            e.Result = _rCtr.GetRoutesByAirport(fromAirport);
         }
 
-        private void SearchRoutes(string from) {
-            List<Route> routes = new List<Route>();
-
-            try {
-                AirportCtr aCtr = new AirportCtr();
-                Airport fromAirport = GetAirport(from);
-
-                routes = _rCtr.GetRoutesByAirport(fromAirport);
-            } catch (NullException e) {
-                MessageBox.Show(e.Message); //TODO Better error handeling?
-                UpdateDataGrid(new List<Route>());
-                return;
+        private void bgWorker_RunWorkerCompleted_SearchFrom(object sender, RunWorkerCompletedEventArgs e) {
+            if (e.Error != null) {
+                MessageBox.Show(this, e.Error.Message, @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } else {
+                var routes = e.Result as List<Route>;
+                UpdateDataGrid(routes);
             }
 
-            UpdateDataGrid(routes);
+            loadingIcon.Visible = false;
+        }
+
+        private void bgWorker_DoWork_SearchFromTo(object sender, DoWorkEventArgs e) {
+            var from = ((Tuple<string, string>) e.Argument).Item1;
+            var to = ((Tuple<string, string>)e.Argument).Item2;
+
+            var aCtr = new AirportCtr();
+            var fromAirport = GetAirport(from);
+            var toAirport = GetAirport(to);
+
+            e.Result = _rCtr.GetRouteByAirports(fromAirport, toAirport);
+        }
+
+        private void bgWorker_RunWorkerCompleted_SearchFromTo(object sender, RunWorkerCompletedEventArgs e) {
+            if (e.Error != null) {
+                MessageBox.Show(this, e.Error.Message, @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } else {
+                var route = e.Result as Route;
+                UpdateDataGrid(new List<Route>() { route });
+            }
+
+            loadingIcon.Visible = false;
         }
 
         private Airport GetAirport(string airport) {
@@ -80,21 +85,26 @@ namespace FlightAdmin.GUI {
             if (string.IsNullOrEmpty(txtFrom.Text) || string.IsNullOrWhiteSpace(txtFrom.Text)) {
                 MessageBox.Show("You must type in the 'From' Airport.");
             } else {
-                
                 if (string.IsNullOrEmpty(txtTo.Text) || string.IsNullOrWhiteSpace(txtTo.Text)) {
                     loadingIcon.Visible = true;
-                    Thread worker = new Thread(new ThreadStart(() => SearchRoutes(txtFrom.Text))); 
-                    worker.Start();
+                    BackgroundWorker bgWorker = new BackgroundWorker();
+                    bgWorker.DoWork += bgWorker_DoWork_SearchFrom;
+                    bgWorker.RunWorkerCompleted += bgWorker_RunWorkerCompleted_SearchFrom;
+                    bgWorker.RunWorkerAsync(txtFrom.Text);
                 } else {
                     loadingIcon.Visible = true;
-                    Thread worker = new Thread(new ThreadStart(() => SearchRoute(txtFrom.Text, txtTo.Text)));
-                    worker.Start();
+                    BackgroundWorker bgWorker = new BackgroundWorker();
+                    bgWorker.DoWork += bgWorker_DoWork_SearchFromTo;
+                    bgWorker.RunWorkerCompleted += bgWorker_RunWorkerCompleted_SearchFromTo;
+                    bgWorker.RunWorkerAsync(new Tuple<string, string>(txtFrom.Text, txtTo.Text));
                 }
             }
         }
 
+        
+
         private void btnCreate_Click(object sender, EventArgs e) {
-            Test t = new Test();
+            CreateRouteMain t = new CreateRouteMain();
             t.AddRouteEvent += AddRoute;
             t.ShowDialog();
         }
@@ -114,15 +124,12 @@ namespace FlightAdmin.GUI {
         }
 
         private void UpdateDataGrid(List<Route> routes) {
-            BeginInvoke((MethodInvoker)delegate {
-                if (routes != null) {
-                    routeBindingSource.Clear();
-                    foreach (var r in routes) {
-                        routeBindingSource.Add(r);
-                    }
-                    loadingIcon.Visible = false;
+            if (routes != null) {
+                routeBindingSource.Clear();
+                foreach (var r in routes) {
+                    routeBindingSource.Add(r);
                 }
-            });
+            }
         }
 
         #endregion
@@ -161,7 +168,7 @@ namespace FlightAdmin.GUI {
         private void editToolStripMenuItem_Click(object sender, EventArgs e) {
             var route = (Route)dataRoute.Rows[_mouseLocation.RowIndex].DataBoundItem;
             if (route != null) {
-                Test t = new Test(route);
+                CreateRouteMain t = new CreateRouteMain(route);
                 t.AddRouteEvent += AddRoute;
                 t.ShowDialog();
             }

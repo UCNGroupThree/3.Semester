@@ -159,11 +159,11 @@
     <Compile Include="GUI\RouteTabExtensions\CreateRoute.Designer.cs">
       <DependentUpon>CreateRoute.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\RouteTabExtensions\Test.cs">
+    <Compile Include="GUI\RouteTabExtensions\CreateRouteMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\RouteTabExtensions\Test.Designer.cs">
-      <DependentUpon>Test.cs</DependentUpon>
+    <Compile Include="GUI\RouteTabExtensions\CreateRouteMain.Designer.cs">
+      <DependentUpon>CreateRouteMain.cs</DependentUpon>
     </Compile>
     <Compile Include="MainService\Airport.cs" />
     <Compile Include="MainService\Route.cs" />
@@ -223,8 +223,8 @@
     <EmbeddedResource Include="GUI\RouteTabExtensions\CreateRoute.resx">
       <DependentUpon>CreateRoute.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\RouteTabExtensions\Test.resx">
-      <DependentUpon>Test.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\RouteTabExtensions\CreateRouteMain.resx">
+      <DependentUpon>CreateRouteMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

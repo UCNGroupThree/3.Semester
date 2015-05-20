@@ -1,5 +1,5 @@
 ﻿namespace FlightAdmin.GUI.RouteTabExtensions {
-    partial class Test {
+    partial class CreateRouteMain {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -33,14 +33,14 @@
             this.createRoute1.Size = new System.Drawing.Size(505, 131);
             this.createRoute1.TabIndex = 0;
             // 
-            // Test
+            // CreateRouteMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(505, 131);
             this.ControlBox = false;
             this.Controls.Add(this.createRoute1);
-            this.Name = "Test";
+            this.Name = "CreateRouteMain";
             this.Text = "Create Route";
             this.ResumeLayout(false);
 
