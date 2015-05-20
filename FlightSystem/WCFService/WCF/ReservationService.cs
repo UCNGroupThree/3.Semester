@@ -81,11 +81,10 @@ namespace WCFService.WCF {
         }
 
 
-
-        public List<Flight> GetFlightsAsd(int fromId, int toId, int seats, DateTime dateTime) {
+        public List<Flight> GetFlightsAsd(int fromId, int toId, int seats, DateTime dateTime, User user) {
             try {
                 //TODO måske tjek på om flights er tom?
-                CreateTicket();
+                CreateTicket(user);
                 //DeleteTicket(false);
                 //TODO måske byttes om, men vær opmærksom på flight = null i CreateTicket
                 flights = new Dijkstra().DijkstraStuff(fromId, toId, seats, dateTime);
@@ -116,7 +115,7 @@ namespace WCFService.WCF {
             //return null;
         }
 
-        private void CreateTicket() {
+        private void CreateTicket(User user) {
             if (ticket != null) {
                 DeleteTicket(false);
             }
@@ -126,9 +125,9 @@ namespace WCFService.WCF {
 
         
         public Ticket MakeSeatsOccupiedRandom() {
-            /*if (ticket == null) {
-                CreateTicket(); //TODO fjernes!
-            }*/
+            //if (ticket == null) {
+            //    CreateTicket(); //TODO fjernes!
+            //}
             //noOfSeats = 1;
             //flights = new List<Flight>();
 

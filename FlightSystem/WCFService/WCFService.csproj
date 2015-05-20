@@ -156,6 +156,10 @@
     <Compile Include="Migrations\201505142156224_Added Route ID to Flight.Designer.cs">
       <DependentUpon>201505142156224_Added Route ID to Flight.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505200806248_seatResAddedUser.cs" />
+    <Compile Include="Migrations\201505200806248_seatResAddedUser.Designer.cs">
+      <DependentUpon>201505200806248_seatResAddedUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\FlightDB.cs" />
@@ -273,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505142156224_Added Route ID to Flight.resx">
       <DependentUpon>201505142156224_Added Route ID to Flight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505200806248_seatResAddedUser.resx">
+      <DependentUpon>201505200806248_seatResAddedUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

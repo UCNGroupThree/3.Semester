@@ -262,8 +262,8 @@ namespace WCFService {
 
         #region Reservation Service
 
-        public List<Flight> GetFlightsAsd(int fromId, int toId, int seats, DateTime dateTime) {
-            return _resService.GetFlightsAsd(fromId, toId, seats, dateTime);
+        public List<Flight> GetFlightsAsd(int fromId, int toId, int seats, DateTime dateTime, User user) {
+            return _resService.GetFlightsAsd(fromId, toId, seats, dateTime, user);
         }
 
         public Ticket MakeSeatsOccupiedRandom() {

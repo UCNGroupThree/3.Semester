@@ -47,9 +47,11 @@
       <xs:element minOccurs="0" name="Concurrency" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="Flights" nillable="true" type="tns:ArrayOfFlight" />
       <xs:element minOccurs="0" name="From" nillable="true" type="tns:Airport" />
+      <xs:element minOccurs="0" name="FromID" type="xs:int" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Price" type="xs:decimal" />
       <xs:element minOccurs="0" name="To" nillable="true" type="tns:Airport" />
+      <xs:element minOccurs="0" name="ToID" type="xs:int" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -67,7 +69,9 @@
       <xs:element minOccurs="0" name="DepartureTime" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Plane" nillable="true" type="tns:Plane" />
+      <xs:element minOccurs="0" name="PlaneID" type="xs:int" />
       <xs:element minOccurs="0" name="Route" nillable="true" type="tns:Route" />
+      <xs:element minOccurs="0" name="RouteID" type="xs:int" />
       <xs:element minOccurs="0" name="SeatReservations" nillable="true" type="tns:ArrayOfSeatReservation" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
@@ -114,11 +118,12 @@
       <xs:element minOccurs="0" name="Flight" nillable="true" type="tns:Flight" />
       <xs:element minOccurs="0" name="Flight_ID" type="xs:int" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Seat" nillable="true" type="tns:Seat" />
       <xs:element minOccurs="0" name="Seat_ID" type="xs:int" />
       <xs:element minOccurs="0" name="State" type="tns:SeatState" />
       <xs:element minOccurs="0" name="Ticket" nillable="true" type="tns:Ticket" />
+      <xs:element minOccurs="0" name="Ticket_ID" type="xs:int" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -160,6 +165,7 @@
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PasswordHash" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PasswordPlain" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Postal" nillable="true" type="tns:Postal" />
       <xs:element minOccurs="0" name="Tickets" nillable="true" type="tns:ArrayOfTicket" />
