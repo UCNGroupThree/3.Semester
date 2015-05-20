@@ -44,7 +44,6 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.lblName = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
-            this.txtID = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.lblAddress = new System.Windows.Forms.Label();
@@ -66,6 +65,7 @@
             this.btnCreate = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.backgroundWorker3 = new System.ComponentModel.BackgroundWorker();
+            this.txtID = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
@@ -226,7 +226,6 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.Controls.Add(this.lblName, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.lblID, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.txtID, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.txtName, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.txtAddress, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.lblAddress, 0, 2);
@@ -242,6 +241,7 @@
             this.tableLayoutPanel3.Controls.Add(this.txtPhone, 1, 7);
             this.tableLayoutPanel3.Controls.Add(this.btnShowAll, 0, 9);
             this.tableLayoutPanel3.Controls.Add(this.btnSearchByName, 1, 9);
+            this.tableLayoutPanel3.Controls.Add(this.txtID, 1, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 37);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -263,7 +263,7 @@
             // 
             this.lblName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(4, 36);
+            this.lblName.Location = new System.Drawing.Point(4, 34);
             this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(45, 17);
@@ -275,7 +275,7 @@
             // 
             this.lblID.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(4, 6);
+            this.lblID.Location = new System.Drawing.Point(4, 5);
             this.lblID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(21, 17);
@@ -283,19 +283,10 @@
             this.lblID.Text = "ID";
             this.lblID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtID
-            // 
-            this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtID.Location = new System.Drawing.Point(112, 4);
-            this.txtID.Margin = new System.Windows.Forms.Padding(4);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(161, 22);
-            this.txtID.TabIndex = 1;
-            // 
             // txtName
             // 
             this.txtName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtName.Location = new System.Drawing.Point(112, 34);
+            this.txtName.Location = new System.Drawing.Point(112, 32);
             this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(161, 22);
@@ -305,7 +296,7 @@
             // txtAddress
             // 
             this.txtAddress.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtAddress.Location = new System.Drawing.Point(112, 64);
+            this.txtAddress.Location = new System.Drawing.Point(112, 62);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(4);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(161, 22);
@@ -316,7 +307,7 @@
             // 
             this.lblAddress.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(4, 66);
+            this.lblAddress.Location = new System.Drawing.Point(4, 64);
             this.lblAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(60, 17);
@@ -328,7 +319,7 @@
             // 
             this.lblCity.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCity.AutoSize = true;
-            this.lblCity.Location = new System.Drawing.Point(4, 96);
+            this.lblCity.Location = new System.Drawing.Point(4, 94);
             this.lblCity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCity.Name = "lblCity";
             this.lblCity.Size = new System.Drawing.Size(31, 17);
@@ -339,7 +330,7 @@
             // txtCity
             // 
             this.txtCity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCity.Location = new System.Drawing.Point(112, 94);
+            this.txtCity.Location = new System.Drawing.Point(112, 92);
             this.txtCity.Margin = new System.Windows.Forms.Padding(4);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(161, 22);
@@ -350,7 +341,7 @@
             // 
             this.lblZip.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblZip.AutoSize = true;
-            this.lblZip.Location = new System.Drawing.Point(4, 126);
+            this.lblZip.Location = new System.Drawing.Point(4, 124);
             this.lblZip.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblZip.Name = "lblZip";
             this.lblZip.Size = new System.Drawing.Size(28, 17);
@@ -360,7 +351,7 @@
             // txtZip
             // 
             this.txtZip.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtZip.Location = new System.Drawing.Point(112, 124);
+            this.txtZip.Location = new System.Drawing.Point(112, 122);
             this.txtZip.Margin = new System.Windows.Forms.Padding(4);
             this.txtZip.Name = "txtZip";
             this.txtZip.Size = new System.Drawing.Size(161, 22);
@@ -371,7 +362,7 @@
             // 
             this.lblEmail.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(4, 156);
+            this.lblEmail.Location = new System.Drawing.Point(4, 154);
             this.lblEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(42, 17);
@@ -381,7 +372,7 @@
             // txtEmail
             // 
             this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEmail.Location = new System.Drawing.Point(112, 154);
+            this.txtEmail.Location = new System.Drawing.Point(112, 152);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(161, 22);
@@ -392,7 +383,7 @@
             // 
             this.lblPhone.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(4, 186);
+            this.lblPhone.Location = new System.Drawing.Point(4, 184);
             this.lblPhone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(49, 17);
@@ -402,7 +393,7 @@
             // btnClear
             // 
             this.btnClear.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnClear.Location = new System.Drawing.Point(4, 214);
+            this.btnClear.Location = new System.Drawing.Point(4, 212);
             this.btnClear.Margin = new System.Windows.Forms.Padding(4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(100, 28);
@@ -414,7 +405,7 @@
             // btnSearch
             // 
             this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnSearch.Location = new System.Drawing.Point(112, 214);
+            this.btnSearch.Location = new System.Drawing.Point(112, 212);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(160, 28);
@@ -426,7 +417,7 @@
             // txtPhone
             // 
             this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhone.Location = new System.Drawing.Point(112, 184);
+            this.txtPhone.Location = new System.Drawing.Point(112, 182);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(161, 22);
@@ -436,7 +427,7 @@
             // btnShowAll
             // 
             this.btnShowAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShowAll.Location = new System.Drawing.Point(4, 264);
+            this.btnShowAll.Location = new System.Drawing.Point(4, 263);
             this.btnShowAll.Margin = new System.Windows.Forms.Padding(4);
             this.btnShowAll.Name = "btnShowAll";
             this.btnShowAll.Size = new System.Drawing.Size(100, 28);
@@ -448,7 +439,7 @@
             // btnSearchByName
             // 
             this.btnSearchByName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearchByName.Location = new System.Drawing.Point(112, 264);
+            this.btnSearchByName.Location = new System.Drawing.Point(112, 263);
             this.btnSearchByName.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearchByName.Name = "btnSearchByName";
             this.btnSearchByName.Size = new System.Drawing.Size(161, 28);
@@ -534,6 +525,16 @@
             this.backgroundWorker3.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker3_DoWork);
             this.backgroundWorker3.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker3_RunWorkerCompleted);
             // 
+            // txtID
+            // 
+            this.txtID.AllowSpace = false;
+            this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtID.Location = new System.Drawing.Point(111, 3);
+            this.txtID.Name = "txtID";
+            this.txtID.OnlyInt = false;
+            this.txtID.Size = new System.Drawing.Size(163, 22);
+            this.txtID.TabIndex = 10;
+            // 
             // CustomerTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -573,7 +574,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblID;
-        private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label lblAddress;
@@ -602,5 +602,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn postalDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.ComponentModel.BackgroundWorker backgroundWorker3;
+        private Helper.NumericTextBox txtID;
     }
 }

@@ -294,6 +294,10 @@ namespace FlightAdmin.GUI {
 
         #region Validation
 
+        private bool IsIdValid() {
+            return FancyFeatures.IsTextBoxValid(txtID, errProvider, lblID.Text, 1, 10);
+        }
+
         private bool IsNameValid()
         {
             return FancyFeatures.IsTextBoxValid(txtName, errProvider, lblName.Text, 3, 60);
@@ -328,6 +332,9 @@ namespace FlightAdmin.GUI {
         private bool IsFormValid()
         {
             bool valid = false;
+            if (!IsIdValid()) {
+                txtID.Focus();
+            }
             if (!IsNameValid())
             {
                 txtName.Focus();
