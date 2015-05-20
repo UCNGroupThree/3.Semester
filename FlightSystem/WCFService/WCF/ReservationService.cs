@@ -129,7 +129,8 @@ namespace WCFService.WCF {
             }
             using (var db = new FlightDB()) {
                 db.DebugLog();
-                if (user != null && db.Users.Any(x => x.ID != user.ID)) {
+
+                if (user == null || !db.Users.Any(x => x.ID == user.ID)) {
                     throw new NullException("User not valid!" );
                 }
             }

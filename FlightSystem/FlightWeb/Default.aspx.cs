@@ -9,6 +9,7 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Common;
 using Common.Exceptions;
 using FlightWeb.Helper;
 using FlightWeb.MainService;
@@ -123,7 +124,7 @@ namespace FlightWeb {
         }
 
         protected void btnSearch_OnClick(object sender, EventArgs e) {
-            Debug.WriteLine("Onclick event: " + e);
+            
             Page.Validate("FindFligtValidator");
             if (!Page.IsValid) {
                 modalHeaderText.InnerHtml = "Error";
@@ -141,17 +142,25 @@ namespace FlightWeb {
             try {
                 ses.Flights = null;
                 ses.Ticket = null;
+                User user;
                 try {
                     using (var userClient = new UserServiceClient()) {
-                        
+                        var email = HttpContext.Current.User.Identity.Name;
+                        if (string.IsNullOrEmpty(email)) {
+                            throw new NullException("Please login before searching :)");
+                        }
+                        user = userClient.GetUsersByEmail(email, true).First();
                     }
                 } catch (Exception ex) {
-                    
+                    if (ex is NullException) {
+                        throw;
+                    }
+                    throw new NullException("An Error happen in getting your user details.", ex);
                 }
 
                 var client = ses.GetNewResClient();
                     
-                    var list = client.GetFlightsAsd(fromId, toId, seats, date, user: new User());
+                    var list = client.GetFlightsAsd(fromId, toId, seats, date, user);
                     if (list != null && list.Count > 0) {
                         ses.Flights = list;
                         var first = list[0];
@@ -169,7 +178,7 @@ namespace FlightWeb {
                             lblModalStops.Text = "directly";
                         }
                         lblModalPrice.Text = string.Format("{0:C}", price);
-                        lblModalPrice.Text = string.Format("{0:g}", travelTime);
+                        lblModalTravelTime.Text = string.Format("{0}", travelTime.ToFineString());
 
                         modalHeaderText.InnerHtml = "Possible departure found";
                         btnBook.Visible = true;
@@ -181,8 +190,9 @@ namespace FlightWeb {
                 
             } catch (Exception ex) {
                 //TODO bedre håndtering af fejl
-                
-                if (ex is SubmitException) {
+                if (ex is NullException) {
+                    DisplayError("Error", ex.Message, false);
+                } else if (ex is SubmitException) {
                     DisplayError("No Flight Found", ex.Message, false);
                 } else if (ex is FaultException<NullPointerFault>) {
                     DisplayError("Error", "You have to be sign in, before you can search!", false);
