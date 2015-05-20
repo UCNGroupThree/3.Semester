@@ -40,11 +40,14 @@ namespace FlightAdmin.GUI {
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            User user;
+            User user = null;
 
             try
             {
-                user = customerCtr.GetUser(Int32.Parse(txtID.Text));
+                if (txtID.Text.Trim() != "") {
+                    user = customerCtr.GetUser(Int32.Parse(txtID.Text));
+                }
+                
             }
             catch (NullException ex)
             {
@@ -120,7 +123,7 @@ namespace FlightAdmin.GUI {
                     e.Result = customerCtr.GetUserByName(txtName.Text);
                 
                     } else {
-                   MessageBox.Show("Can't search on emty fields");
+                   MessageBox.Show("Sorry can't search on emty fields");
                }
                 
                 

@@ -59,13 +59,13 @@
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.btnShowAll = new System.Windows.Forms.Button();
             this.btnSearchByName = new System.Windows.Forms.Button();
+            this.txtID = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.grpCreate = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.backgroundWorker3 = new System.ComponentModel.BackgroundWorker();
-            this.txtID = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
@@ -147,6 +147,7 @@
             this.dataGrid.Location = new System.Drawing.Point(304, 4);
             this.dataGrid.Margin = new System.Windows.Forms.Padding(4);
             this.dataGrid.Name = "dataGrid";
+            this.dataGrid.ReadOnly = true;
             this.dataGrid.Size = new System.Drawing.Size(687, 495);
             this.dataGrid.TabIndex = 0;
             // 
@@ -155,36 +156,42 @@
             this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
             this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // emailDataGridViewTextBoxColumn
             // 
             this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
             this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // iDDataGridViewTextBoxColumn
             // 
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
             this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
             this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // phoneNumberDataGridViewTextBoxColumn
             // 
             this.phoneNumberDataGridViewTextBoxColumn.DataPropertyName = "PhoneNumber";
             this.phoneNumberDataGridViewTextBoxColumn.HeaderText = "PhoneNumber";
             this.phoneNumberDataGridViewTextBoxColumn.Name = "phoneNumberDataGridViewTextBoxColumn";
+            this.phoneNumberDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // postalDataGridViewTextBoxColumn
             // 
             this.postalDataGridViewTextBoxColumn.DataPropertyName = "Postal";
             this.postalDataGridViewTextBoxColumn.HeaderText = "Postal";
             this.postalDataGridViewTextBoxColumn.Name = "postalDataGridViewTextBoxColumn";
+            this.postalDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // userBindingSource
             // 
@@ -448,6 +455,16 @@
             this.btnSearchByName.UseVisualStyleBackColor = true;
             this.btnSearchByName.Click += new System.EventHandler(this.btnSearchByName_Click);
             // 
+            // txtID
+            // 
+            this.txtID.AllowSpace = false;
+            this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtID.Location = new System.Drawing.Point(111, 3);
+            this.txtID.Name = "txtID";
+            this.txtID.OnlyInt = false;
+            this.txtID.Size = new System.Drawing.Size(163, 22);
+            this.txtID.TabIndex = 10;
+            // 
             // grpCreate
             // 
             this.grpCreate.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -524,16 +541,6 @@
             this.backgroundWorker3.WorkerSupportsCancellation = true;
             this.backgroundWorker3.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker3_DoWork);
             this.backgroundWorker3.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker3_RunWorkerCompleted);
-            // 
-            // txtID
-            // 
-            this.txtID.AllowSpace = false;
-            this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtID.Location = new System.Drawing.Point(111, 3);
-            this.txtID.Name = "txtID";
-            this.txtID.OnlyInt = false;
-            this.txtID.Size = new System.Drawing.Size(163, 22);
-            this.txtID.TabIndex = 10;
             // 
             // CustomerTab
             // 
