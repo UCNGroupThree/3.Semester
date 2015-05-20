@@ -81,7 +81,8 @@ namespace WCFService.WCF
         public List<User> GetUserByName(string name) {
             List<User> list = new List<User>();
             try {
-                list = _db.Users.Where(x => x.Name.Contains(name)).ToList();
+               list = _db.Users.Where(x => x.Name.Contains(name)).ToList();
+                
             } catch (Exception ex) {
 
                 Console.WriteLine(ex.Message);

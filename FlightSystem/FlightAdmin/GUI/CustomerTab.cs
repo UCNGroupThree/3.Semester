@@ -116,11 +116,12 @@ namespace FlightAdmin.GUI {
 
             try
             {
-                if (IsNameValid()) {
+                if (txtName.Text.Trim() != "") {
                     e.Result = customerCtr.GetUserByName(txtName.Text);
-                } else {
-                    MessageBox.Show("Wrong input on Name");
-                }
+                
+                    } else {
+                   MessageBox.Show("Can't search on emty fields");
+               }
                 
                 
             }
