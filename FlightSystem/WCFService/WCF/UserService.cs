@@ -11,36 +11,32 @@ using WCFService.Model;
 using WCFService.WCF.Faults;
 using WCFService.WCF.Interface;
 
-namespace WCFService.WCF
-{
+namespace WCFService.WCF {
     public class UserService : IUserService {
 
         readonly FlightDB _db = new FlightDB();
 
         public int AddUser(User user) {
-         //   _db.Users.Add(user);
+            //   _db.Users.Add(user);
 
-            if (_db.Users.Any(x => x.Email == user.Email)) {
+            if (_db.Users.Any(x => String.Equals(x.Email, user.Email, StringComparison.CurrentCultureIgnoreCase))) {
                 return -1;
             }
             if (user.PasswordPlain != null) {
 
                 try {
-                    user.PasswordHash = PasswordHelper.CreateHash(user.PasswordPlain);                  
+                    user.PasswordHash = PasswordHelper.CreateHash(user.PasswordPlain);
                     user.PasswordPlain = null;
                 } catch (Exception ex) {
-                    return -2;                                 
+                    return -2;
                 }
             }
             try {
                 _db.Users.Add(user);
 
-                if (!_db.Postals.Any(p => p.PostCode == user.Postal.PostCode))
-                {
+                if (!_db.Postals.Any(p => p.PostCode == user.Postal.PostCode)) {
                     _db.Postals.Add(user.Postal);
-                }
-                else
-                {
+                } else {
                     _db.Postals.Attach(user.Postal);
                 }
                 _db.SaveChanges();
@@ -49,12 +45,13 @@ namespace WCFService.WCF
 
                 throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault("user"));
             }
-         
+
             return user.ID;
         }
 
         public User UpdateUser(User user) {
             try {
+                user.Email = user.Email.ToLower();
                 _db.Entry(user).State = EntityState.Modified;
                 _db.Entry(user.Postal).State = EntityState.Modified;
                 _db.SaveChanges();
@@ -69,8 +66,8 @@ namespace WCFService.WCF
 
         public void DeleteUser(User user) {
             _db.Users.Attach(user);
-            _db.Users.Remove(user);             
-            _db.SaveChanges(); 
+            _db.Users.Remove(user);
+            _db.SaveChanges();
         }
 
         public User GetUser(int id) {
@@ -93,19 +90,18 @@ namespace WCFService.WCF
 
         public List<User> GetAllUsers() {
             List<User> list = new List<User>();
-          
+
             foreach (User user in _db.Users.ToList()) {
                 int id = user.ID;
                 list.Add(GetUser(id));
-                                  
+
             }
             return list;
         }
 
 
 
-        public bool AuthenticateUser(string email, string password)
-        {
+        public bool AuthenticateUser(string email, string password) {
             //bool val = false;
 
             //try {
@@ -113,7 +109,7 @@ namespace WCFService.WCF
             //        val = true;
             //    }
             //} catch (Exception ) {
-                              
+
             //}
             //return val;
 
@@ -123,7 +119,7 @@ namespace WCFService.WCF
                 var hash =
                     _db.Users.SingleOrDefault(x => x.Email.Equals(email, StringComparison.OrdinalIgnoreCase))
                         .PasswordHash;
-                
+
                 val = PasswordHelper.ValidatePassword(password, hash);
 
             } catch (Exception e) {
