@@ -116,7 +116,7 @@ namespace FlightAdmin.GUI {
             try
             {
                 e.Result = customerCtr.GetUserByName(txtName.Text);
-                UpdateDataGrid(e.Result as List<User>);
+                
             }
             catch (NullException ex) {
                
@@ -149,9 +149,47 @@ namespace FlightAdmin.GUI {
         }
 
         private void btnShowAll_Click(object sender, EventArgs e) {
-            List<User> users = customerCtr.GetAllUsers();
-            UpdateDataGrid(users);
+                backgroundWorker3.RunWorkerAsync();
         }
+
+        private void backgroundWorker3_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                e.Result = customerCtr.GetAllUsers();
+
+            }
+            catch (NullException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void backgroundWorker3_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+            if (e.Error != null)
+            {
+                MessageBox.Show(this, e.Error.Message, @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+
+                List<User> userList = e.Result as List<User>;
+                if (userList != null && userList.Count > 0)
+                {
+                    UpdateDataGrid(userList);
+                    errProvider.Clear();
+                }
+                else
+                {
+                    MessageBox.Show(this, @"No Users found", @"Sorry", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+        }
+
       
 
         #endregion
@@ -402,6 +440,7 @@ namespace FlightAdmin.GUI {
             });
         }
 
+      
        
 
        
