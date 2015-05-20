@@ -143,7 +143,7 @@ namespace FlightWeb {
                 ses.Ticket = null;
                 try {
                     using (var userClient = new UserServiceClient()) {
-                        userClient
+                        
                     }
                 } catch (Exception ex) {
                     
