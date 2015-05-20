@@ -219,6 +219,10 @@ namespace WCFService {
             return _userService.GetUserByName(name);
         }
 
+        public List<User> GetUsersByEmail(string email, bool equalsTo) {
+            return _userService.GetUsersByEmail(email, equalsTo);
+        }
+
         public List<User> GetAllUsers() {
             return _userService.GetAllUsers();
         }

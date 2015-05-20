@@ -19,7 +19,7 @@ namespace FlightWeb {
             //Demo();
             if (!IsAllowed()) {
                 Session["Dialog"] = new DialogHelper("Error", "You need to find a flight first, or maybe your session has timeout! :(");
-                Response.Redirect("Search.aspx", true);
+                Response.Redirect("Default.aspx", true);
             }
 
             if (!IsPostBack) {
@@ -34,13 +34,13 @@ namespace FlightWeb {
                 ses.Ticket = ses.ResClient.MakeSeatsOccupiedRandom();
             } catch (FaultException<NotEnouthFault> ex) {
                 Session["Dialog"] = new DialogHelper("Error", "There are not enouth free seats to make the booking. :(");
-                Response.Redirect("Search.aspx", true);
+                Response.Redirect("Default.aspx", true);
             } catch (FaultException<DatabaseFault> ex) {
                 Session["Dialog"] = new DialogHelper("Error", "An Database error has happen. Try again.");
-                Response.Redirect("Search.aspx", true);
+                Response.Redirect("Default.aspx", true);
             } catch (Exception ex) {
                 Session["Dialog"] = new DialogHelper("Error", "An error have happen, maybe because of a timeout. Try again");
-                Response.Redirect("Search.aspx", true);
+                Response.Redirect("Default.aspx", true);
             }
         }
 
@@ -80,7 +80,7 @@ namespace FlightWeb {
         }
 
         protected void btnCancel_OnClick(object sender, EventArgs e) {
-            Response.Redirect("Search.aspx", true);
+            Response.Redirect("Default.aspx", true);
         }
 
         protected void btnConfirm_OnClick(object sender, EventArgs e) {
@@ -99,7 +99,7 @@ namespace FlightWeb {
             }
             Session["Dialog"] = new DialogHelper(header, text);
 
-            Response.Redirect("Search.aspx", true);
+            Response.Redirect("Default.aspx", true);
         }
     }
 }

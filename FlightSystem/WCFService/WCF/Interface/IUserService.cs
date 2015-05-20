@@ -24,6 +24,9 @@ namespace WCFService.WCF.Interface {
         List<User> GetUserByName(string name);
 
         [OperationContract]
+        List<User> GetUsersByEmail(string email, bool equalsTo);
+
+        [OperationContract]
         List<User> GetAllUsers();
 
         [OperationContract]
