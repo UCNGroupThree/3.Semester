@@ -45,13 +45,14 @@
             this.txtTo = new System.Windows.Forms.TextBox();
             this.lblFrom = new System.Windows.Forms.Label();
             this.txtFrom = new System.Windows.Forms.TextBox();
-            this.txtID = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtID = new FlightAdmin.GUI.Helper.NumericTextBox();
+            this.loadingIcon = new System.Windows.Forms.PictureBox();
             this.contextDataGridMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataFlight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flightBindingSource)).BeginInit();
@@ -64,6 +65,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loadingIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // removeToolStripMenuItem
@@ -276,6 +278,7 @@
             this.txtTo.Name = "txtTo";
             this.txtTo.Size = new System.Drawing.Size(174, 20);
             this.txtTo.TabIndex = 3;
+            this.txtTo.Enter += new System.EventHandler(this.ChangeButtonFocut_Enter);
             // 
             // lblFrom
             // 
@@ -295,17 +298,7 @@
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.Size = new System.Drawing.Size(174, 20);
             this.txtFrom.TabIndex = 1;
-            // 
-            // txtID
-            // 
-            this.txtID.AllowSpace = false;
-            this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtID.Location = new System.Drawing.Point(39, 46);
-            this.txtID.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
-            this.txtID.Name = "txtID";
-            this.txtID.OnlyInt = false;
-            this.txtID.Size = new System.Drawing.Size(174, 20);
-            this.txtID.TabIndex = 4;
+            this.txtFrom.Enter += new System.EventHandler(this.ChangeButtonFocut_Enter);
             // 
             // lblID
             // 
@@ -322,11 +315,13 @@
             // 
             this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnCount = 3;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel5.Controls.Add(this.loadingIcon, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.btnClear, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.btnSearch, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnSearch, 2, 0);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 70);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -373,6 +368,30 @@
             this.toDataGridViewTextBoxColumn.Name = "toDataGridViewTextBoxColumn";
             this.toDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // txtID
+            // 
+            this.txtID.AllowSpace = false;
+            this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtID.Location = new System.Drawing.Point(39, 46);
+            this.txtID.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.txtID.Name = "txtID";
+            this.txtID.OnlyInt = false;
+            this.txtID.Size = new System.Drawing.Size(174, 20);
+            this.txtID.TabIndex = 4;
+            this.txtID.Enter += new System.EventHandler(this.ChangeButtonFocut_Enter);
+            // 
+            // loadingIcon
+            // 
+            this.loadingIcon.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.loadingIcon.Image = global::FlightAdmin.Properties.Resources.loading;
+            this.loadingIcon.Location = new System.Drawing.Point(118, 2);
+            this.loadingIcon.Margin = new System.Windows.Forms.Padding(0);
+            this.loadingIcon.Name = "loadingIcon";
+            this.loadingIcon.Size = new System.Drawing.Size(20, 20);
+            this.loadingIcon.TabIndex = 3;
+            this.loadingIcon.TabStop = false;
+            this.loadingIcon.Visible = false;
+            // 
             // FlightTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -393,6 +412,7 @@
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.loadingIcon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -427,6 +447,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn toDataGridViewTextBoxColumn;
         private Helper.NumericTextBox txtID;
         private System.Windows.Forms.Label lblID;
+        private System.Windows.Forms.PictureBox loadingIcon;
 
 
     }

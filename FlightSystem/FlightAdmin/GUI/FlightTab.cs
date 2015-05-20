@@ -98,32 +98,9 @@ namespace FlightAdmin.GUI {
                 }
             }
         }
-        /*
-        private void SearchByID() {
-            try {
-                int i = txtID.IntValue;
-                Flight f = _fCtr.GetFlight(i);
-                UpdateDataGrid(new List<Flight>() {f});
-            } catch (FormatException e) {
-#if DEBUG
-                e.DebugGetLine();
-#endif
-                MessageBox.Show("Invalid ID");
-            } catch (NullException e) {
-#if DEBUG
-                e.DebugGetLine();
-#endif
-                MessageBox.Show("No Flights found!");
-            } catch (Exception ex) {
-#if DEBUG
-                ex.DebugGetLine();
-#endif
-                MessageBox.Show(ex.Message);
-            }
-        }
-        */
 
         private void SearchByFrom(string from, string to) {
+            loadingIcon.Visible = true;
             BackgroundWorker bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (sender, args) => bgWorker_SearchByFrom_DoWork(args, from, to);
             bgWorker.RunWorkerCompleted += bgWorker_RunWorkerCompleted;
@@ -131,6 +108,7 @@ namespace FlightAdmin.GUI {
         }
 
         private void SearchByID(int id) {
+            loadingIcon.Visible = true;
             BackgroundWorker bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (sender, args) => bgWorker_SearchByID_DoWork(args, id);
             bgWorker.RunWorkerCompleted += bgWorker_RunWorkerCompleted;
@@ -145,6 +123,8 @@ namespace FlightAdmin.GUI {
                 List<Flight> flights = e.Result as List<Flight>;
                 UpdateDataGrid(flights);
             }
+
+            loadingIcon.Visible = false;
         }
 
         private void bgWorker_SearchByFrom_DoWork(DoWorkEventArgs e, string from, string to) {
@@ -198,6 +178,18 @@ namespace FlightAdmin.GUI {
 
         private void dataRoute_CellMouseEnter(object sender, DataGridViewCellEventArgs location) {
             _mouseLocation = location;
+        }
+
+        private void ChangeButtonFocut_Enter(object sender, EventArgs e) {
+            ChangeButton(btnSearch, btnClear);
+        }
+
+        private void ChangeButton(IButtonControl btnAccept, IButtonControl btnCancel) {
+            var f = FindForm();
+            if (f != null) {
+                f.AcceptButton = btnAccept;
+                f.CancelButton = btnCancel;
+            }
         }
 
     }

@@ -109,6 +109,7 @@ namespace FlightAdmin.GUI {
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.Size = new System.Drawing.Size(174, 20);
             this.txtFrom.TabIndex = 1;
+            this.txtFrom.Enter += new System.EventHandler(this.ChangeButtonFocut_Enter);
             // 
             // tableLayoutPanel6
             // 
@@ -149,6 +150,7 @@ namespace FlightAdmin.GUI {
             this.txtTo.Name = "txtTo";
             this.txtTo.Size = new System.Drawing.Size(174, 20);
             this.txtTo.TabIndex = 3;
+            this.txtTo.Enter += new System.EventHandler(this.ChangeButtonFocut_Enter);
             // 
             // btnClear
             // 

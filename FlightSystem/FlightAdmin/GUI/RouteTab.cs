@@ -25,6 +25,8 @@ namespace FlightAdmin.GUI {
             InitializeComponent();
         }
 
+
+
         #region Search
 
         private void bgWorker_DoWork_SearchFrom(object sender, DoWorkEventArgs e) {
@@ -192,6 +194,13 @@ namespace FlightAdmin.GUI {
 
         #region Misc
 
+        private void ChangeButton(IButtonControl btnAccept, IButtonControl btnCancel) {
+            var f = FindForm();
+            if (f != null) {
+                f.AcceptButton = btnAccept;
+                f.CancelButton = btnCancel;
+            }
+        }
         private void ChangeSelection(Route from, Route to) {
             int i = routeBindingSource.IndexOf(from);
             routeBindingSource.Remove(from);
@@ -207,6 +216,10 @@ namespace FlightAdmin.GUI {
         }
 
         #endregion
+
+        private void ChangeButtonFocut_Enter(object sender, EventArgs e) {
+            ChangeButton(btnSearch, btnClear);
+        }
 
     }
 }

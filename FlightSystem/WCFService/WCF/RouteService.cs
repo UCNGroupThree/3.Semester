@@ -153,7 +153,7 @@ namespace WCFService.WCF {
 
                 //db.DebugDetectChanges();
 
-                //db.SaveChanges();
+                db.SaveChanges();
                 retRoute.Concurrency = route.Concurrency;
                 //db.DebugSaveChanges();
                 

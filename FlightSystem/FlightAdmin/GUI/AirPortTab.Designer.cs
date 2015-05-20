@@ -47,18 +47,18 @@ namespace FlightAdmin.GUI {
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dataGrid = new System.Windows.Forms.DataGridView();
-            this.dataGridMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.airportBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.loadingImg = new System.Windows.Forms.PictureBox();
-            this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.shortNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.countryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timeZoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.airportBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.loadingImg = new System.Windows.Forms.PictureBox();
+            this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.grpCreate.SuspendLayout();
@@ -338,49 +338,6 @@ namespace FlightAdmin.GUI {
             this.dataGrid.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGrid_CellMouseDown);
             this.dataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGrid_KeyDown);
             // 
-            // dataGridMenu
-            // 
-            this.dataGridMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editMenuItem,
-            this.deleteMenuItem});
-            this.dataGridMenu.Name = "dataGridMenu";
-            this.dataGridMenu.Size = new System.Drawing.Size(108, 48);
-            this.dataGridMenu.Opening += new System.ComponentModel.CancelEventHandler(this.dataGridMenu_Opening);
-            // 
-            // editMenuItem
-            // 
-            this.editMenuItem.Name = "editMenuItem";
-            this.editMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.editMenuItem.Text = "Edit";
-            this.editMenuItem.Click += new System.EventHandler(this.editMenuItem_Click);
-            // 
-            // deleteMenuItem
-            // 
-            this.deleteMenuItem.Name = "deleteMenuItem";
-            this.deleteMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.deleteMenuItem.Text = "Delete";
-            this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
-            // 
-            // airportBindingSource
-            // 
-            this.airportBindingSource.AllowNew = false;
-            this.airportBindingSource.DataSource = typeof(FlightAdmin.MainService.Airport);
-            // 
-            // loadingImg
-            // 
-            this.loadingImg.Image = global::FlightAdmin.Properties.Resources.loading1;
-            this.loadingImg.Location = new System.Drawing.Point(118, 162);
-            this.loadingImg.Name = "loadingImg";
-            this.loadingImg.Size = new System.Drawing.Size(20, 20);
-            this.loadingImg.TabIndex = 5;
-            this.loadingImg.TabStop = false;
-            this.loadingImg.Visible = false;
-            // 
-            // bgWorker
-            // 
-            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
-            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
-            // 
             // iDDataGridViewTextBoxColumn
             // 
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
@@ -421,6 +378,49 @@ namespace FlightAdmin.GUI {
             this.timeZoneDataGridViewTextBoxColumn.HeaderText = "TimeZone";
             this.timeZoneDataGridViewTextBoxColumn.Name = "timeZoneDataGridViewTextBoxColumn";
             this.timeZoneDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataGridMenu
+            // 
+            this.dataGridMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editMenuItem,
+            this.deleteMenuItem});
+            this.dataGridMenu.Name = "dataGridMenu";
+            this.dataGridMenu.Size = new System.Drawing.Size(108, 48);
+            this.dataGridMenu.Opening += new System.ComponentModel.CancelEventHandler(this.dataGridMenu_Opening);
+            // 
+            // editMenuItem
+            // 
+            this.editMenuItem.Name = "editMenuItem";
+            this.editMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.editMenuItem.Text = "Edit";
+            this.editMenuItem.Click += new System.EventHandler(this.editMenuItem_Click);
+            // 
+            // deleteMenuItem
+            // 
+            this.deleteMenuItem.Name = "deleteMenuItem";
+            this.deleteMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.deleteMenuItem.Text = "Delete";
+            this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
+            // 
+            // airportBindingSource
+            // 
+            this.airportBindingSource.AllowNew = false;
+            this.airportBindingSource.DataSource = typeof(FlightAdmin.MainService.Airport);
+            // 
+            // loadingImg
+            // 
+            this.loadingImg.Image = global::FlightAdmin.Properties.Resources.loading;
+            this.loadingImg.Location = new System.Drawing.Point(118, 162);
+            this.loadingImg.Name = "loadingImg";
+            this.loadingImg.Size = new System.Drawing.Size(20, 20);
+            this.loadingImg.TabIndex = 5;
+            this.loadingImg.TabStop = false;
+            this.loadingImg.Visible = false;
+            // 
+            // bgWorker
+            // 
+            this.bgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_DoWork);
+            this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
             // 
             // AirPortTab
             // 
