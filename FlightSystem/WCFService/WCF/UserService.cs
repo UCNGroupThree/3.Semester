@@ -20,7 +20,6 @@ namespace WCFService.WCF
 
         public int AddUser(User user)
         {
-            //   _db.Users.Add(user);
 
             if (_db.Users.Any(x => String.Equals(x.Email, user.Email, StringComparison.CurrentCultureIgnoreCase)))
             {
@@ -153,16 +152,6 @@ namespace WCFService.WCF
 
         public bool AuthenticateUser(string email, string password)
         {
-            //bool val = false;
-
-            //try {
-            //    if (_db.Users.Any(x => x.Email == email && x.PasswordHash == password)) {
-            //        val = true;
-            //    }
-            //} catch (Exception ) {
-
-            //}
-            //return val;
 
             bool val = false;
 
