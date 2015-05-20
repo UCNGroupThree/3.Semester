@@ -18,7 +18,7 @@ namespace FlightWeb {
             ses = ResSession.Current(Session);
             //Demo();
             if (!IsAllowed()) {
-                Session["Error"] = "You need to find a flight first, or maybe your session has timeout! :(";
+                Session["Dialog"] = new DialogHelper("Error", "You need to find a flight first, or maybe your session has timeout! :(");
                 Response.Redirect("Search.aspx", true);
             }
 
@@ -33,13 +33,13 @@ namespace FlightWeb {
             try {
                 ses.Ticket = ses.ResClient.MakeSeatsOccupiedRandom();
             } catch (FaultException<NotEnouthFault> ex) {
-                Session["Error"] = "There are not enouth free seats to make the booking. :(";
+                Session["Dialog"] = new DialogHelper("Error", "There are not enouth free seats to make the booking. :(");
                 Response.Redirect("Search.aspx", true);
             } catch (FaultException<DatabaseFault> ex) {
-                Session["Error"] = "An Database error has happen. Try again.";
+                Session["Dialog"] = new DialogHelper("Error", "An Database error has happen. Try again.");
                 Response.Redirect("Search.aspx", true);
             } catch (Exception ex) {
-                Session["Error"] = "An error have happen, maybe because of a timeout. Try again";
+                Session["Dialog"] = new DialogHelper("Error", "An error have happen, maybe because of a timeout. Try again");
                 Response.Redirect("Search.aspx", true);
             }
         }
@@ -64,22 +64,7 @@ namespace FlightWeb {
             //ResSession.ResServiceClient.Complete();
 
         }
-
-        protected void Button1_OnClick(object sender, EventArgs e) {
-            object refUrl = ViewState["RefUrl"];
-            if (refUrl != null)
-                Response.Redirect((string)refUrl);
-        }
-        /*
-        protected void OnRowDataBound(object sender, GridViewRowEventArgs e) {
-            if (e.Row.RowType == DataControlRowType.DataRow) {
-                string customerId = gvCustomers.DataKeys[e.Row.RowIndex].Value.ToString();
-                GridView gvOrders = e.Row.FindControl("gvOrders") as GridView;
-                gvOrders.DataSource = GetData(string.Format("select top 3 * from Orders where CustomerId='{0}'", customerId));
-                gvOrders.DataBind();
-            }
-        }*/
-
+        
         protected void gvFlights_OnRowDataBound(object sender, GridViewRowEventArgs e) {
             if (e.Row.RowType == DataControlRowType.DataRow) {
                 int flightID = ((Flight) e.Row.DataItem).ID;
@@ -92,6 +77,29 @@ namespace FlightWeb {
                 gvSeatReservations.DataBind();
 
             }
+        }
+
+        protected void btnCancel_OnClick(object sender, EventArgs e) {
+            Response.Redirect("Search.aspx", true);
+        }
+
+        protected void btnConfirm_OnClick(object sender, EventArgs e) {
+            string header;
+            string text;
+            try {
+                ses.ResClient.Complete();
+                ses.CloseResClient();
+                ses.Ticket = null;
+                ses.Flights = null;
+                header = "Ticket is Saved";
+                text = "Your Ticket has been saved! Have a nice travel :)";
+            } catch (Exception) {
+                header = "Error";
+                text = "There happen an error, maybe because you are too slow.. Try again";
+            }
+            Session["Dialog"] = new DialogHelper(header, text);
+
+            Response.Redirect("Search.aspx", true);
         }
     }
 }

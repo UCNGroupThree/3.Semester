@@ -22,10 +22,11 @@ namespace FlightWeb {
             ses = ResSession.Current(Session);
             if (!Page.IsPostBack) {
                FirstLoad();
-                if (Session["Error"] != null) {
-                    Debug.WriteLine("error? not null: {0}", Request.QueryString["error"]);
-                    DisplayError("Error", Session["Error"].ToString(), true);
-                    Session.Remove("Error");
+
+                var diaHelper = Session["Dialog"] as DialogHelper;
+                if (diaHelper != null) {
+                    DisplayError(diaHelper.Header, diaHelper.Text, true);
+                    Session.Remove("Dialog");
                 }
                 Demo();
             }

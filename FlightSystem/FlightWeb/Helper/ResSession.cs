@@ -47,6 +47,7 @@ namespace FlightWeb.Helper {
                     Debug.WriteLine("#####");
                     //Timeout
                 }
+                ResClient = null;
             }
         }
     }

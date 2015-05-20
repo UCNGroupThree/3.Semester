@@ -43,7 +43,9 @@
                 <asp:BoundField DataField="Price" HeaderText="Price" DataFormatString="{0:C}" />
             </Columns>
         </asp:GridView>
+        
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_OnClick" CssClass="btn btn-default"/>
+        <asp:Button ID="btnConfirm" runat="server" Text="Confirm booking" OnClick="btnConfirm_OnClick" CssClass="btn btn-primary"/>
     </div>
-
-    <asp:Button ID="Button1" OnClick="Button1_OnClick" runat="server" Text="Button" />
+    
 </asp:Content>

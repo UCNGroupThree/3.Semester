@@ -353,6 +353,7 @@
     <Compile Include="Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Helper\DialogHelper.cs" />
     <Compile Include="Helper\ResSession.cs" />
     <Compile Include="MainService\Airport.cs" />
     <Compile Include="MainService\Flight.cs" />
