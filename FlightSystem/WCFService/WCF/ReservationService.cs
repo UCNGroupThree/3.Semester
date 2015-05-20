@@ -122,6 +122,8 @@ namespace WCFService.WCF {
             ticket = new Ticket { OrderDate = DateTime.UtcNow, OrderState = TicketState.Pending };
         }
 
+
+        
         public Ticket MakeSeatsOccupiedRandom() {
             /*if (ticket == null) {
                 CreateTicket(); //TODO fjernes!
@@ -138,7 +140,7 @@ namespace WCFService.WCF {
             }
             if (noOfSeats < 1) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault("noOfSeats is not valid",
-                    "noOfSeats"));
+                    "noOfSeats"), new FaultReason("noOfSeats is not valid"));
             }
             OperationContext.Current.InstanceContext.Closed -= InstanceContext_Closed;
             OperationContext.Current.InstanceContext.Closed += InstanceContext_Closed;

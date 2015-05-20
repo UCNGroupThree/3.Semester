@@ -15,6 +15,8 @@ namespace WCFService.WCF {
         public static void Updated(object updatedObj) {
             Matrix.GetInstance().Updated(updatedObj);
 
+            
+
             //####### Test #######
             //Test();
             //####### Test End #######
@@ -65,6 +67,8 @@ namespace WCFService.WCF {
         }
         //####### Test End #######
 
+
+        /// <exception cref="LockedFault">Thrown when Dijkstra has updated for more than 15 seconds</exception>
         public List<Flight> DijkstraStuff(int fromId, int toId, int seats, DateTime startTime) {
             try {
                 var matrix = Matrix.GetInstance();
