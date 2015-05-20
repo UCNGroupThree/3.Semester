@@ -93,7 +93,7 @@ namespace FlightAdmin.Controller {
                     } catch (FaultException<OptimisticConcurrencyFault> concurrencyException) {
                         throw new Exception(concurrencyException.Detail.Message);
                     } catch (FaultException<DatabaseUpdateFault> updateException) {
-                        throw new Exception(updateException.Detail.Message);
+                        throw new DatabaseException(updateException.Detail.Message);
                     } catch (FaultException<DeleteFault> deleteFault) {
                         throw new DeleteException(deleteFault.Detail.Message);
                     } catch (Exception e) {

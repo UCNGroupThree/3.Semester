@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
-using System.Resources;
-using System.Runtime.InteropServices;
 using System.ServiceModel;
-using System.ServiceModel.Channels;
 using System.Threading;
 using Common;
 using Common.Exceptions;
@@ -20,9 +16,9 @@ namespace WCFService.Dijkstra {
     public class Matrix {
 
         private readonly FlightDB _db = new FlightDB();
-        private readonly RouteService rs = new RouteService();
-        private List<Edge<Airport>> edges = new List<Edge<Airport>>();
-        private List<Airport> airports;
+        private readonly RouteService _rs = new RouteService();
+        private readonly List<Edge<Airport>> _edges = new List<Edge<Airport>>();
+        private readonly List<Airport> _airports;
 
         private static Matrix _instance;
         private bool _locked = false;
@@ -85,10 +81,10 @@ namespace WCFService.Dijkstra {
                 // ####### Timing End #######
 
                 //try {
-                var airport = airports.First(a => a.Routes.First(r => r.Flights.Any(f => f.ID == flight.ID)) != null);
+                var airport = _airports.First(a => a.Routes.First(r => r.Flights.Any(f => f.ID == flight.ID)) != null);
                 var route = airport.Routes.First(r => r.Flights.Any(f => f.ID == flight.ID));
 
-                var edge = edges.First(a => a.Data.Routes.First(r => r.Flights.Any(f => f.ID == flight.ID)) != null);
+                var edge = _edges.First(a => a.Data.Routes.First(r => r.Flights.Any(f => f.ID == flight.ID)) != null);
                 var edgeRoute = edge.Data.Routes.First(r => r.Flights.Any(f => f.ID == flight.ID));
                 edgeRoute.Flights.RemoveAll(f => f.ID == flight.ID);
 
@@ -120,10 +116,10 @@ namespace WCFService.Dijkstra {
 
                 // ####### Timing End #######
 
-                airports.RemoveAll(a => a.ID == airport.ID);
-                edges.RemoveAll(e => e.Data.ID == airport.ID);
+                _airports.RemoveAll(a => a.ID == airport.ID);
+                _edges.RemoveAll(e => e.Data.ID == airport.ID);
 
-                var edg = edges.Where(e => e.Neighbors.Any(n => n.Data.ID == airport.ID)).ToList();
+                var edg = _edges.Where(e => e.Neighbors.Any(n => n.Data.ID == airport.ID)).ToList();
                 edg.ForEach(e => e.Neighbors.RemoveAll(n => n.Data.ID == airport.ID));
 
                 // ####### Timing #######
@@ -148,20 +144,20 @@ namespace WCFService.Dijkstra {
 
                 // ####### Timing End #######
 
-                var airport = airports.First(a => a.Routes.Any(r => r.ID == route.ID));
+                var airport = _airports.First(a => a.Routes.Any(r => r.ID == route.ID));
                 airport.Routes.RemoveAll(r => r.ID == route.ID);
 
-                edges.RemoveAll(e => e.Data.ID == airport.ID);
+                _edges.RemoveAll(e => e.Data.ID == airport.ID);
 
                 if (!airport.Routes.Any()) {
-                    airports.Remove(airport);
+                    _airports.Remove(airport);
                 } else {
                     var newEdge = GenerateEdge(airport);
 
-                    edges.Add(newEdge);
+                    _edges.Add(newEdge);
                 }
 
-                edges.ForEach(e => e.Neighbors.RemoveAll(n => n.Data.ID == route.ToID));
+                _edges.ForEach(e => e.Neighbors.RemoveAll(n => n.Data.ID == route.ToID));
 
                 // ####### Timing #######
 
@@ -196,7 +192,7 @@ namespace WCFService.Dijkstra {
                         .Include(r => r.Flights.Select(f => f.SeatReservations)).First(r => r.ID == route.ID);
                     
                 var airport = route.From;
-                var edge = edges.First(ed => ed.Data.ID == route.FromID);
+                var edge = _edges.First(ed => ed.Data.ID == route.FromID);
 
             if (route.To == null) {
                 route.To = _db.Airports.Single(a => a.ID == route.ToID);
@@ -217,7 +213,7 @@ namespace WCFService.Dijkstra {
 
                 // ##### Add / Edit Airport List ####
                     
-                var ap = airports.First(a => a.ID == airport.ID);
+                var ap = _airports.First(a => a.ID == airport.ID);
 
                 if (ap == null) {
                     ap = _db.Airports.Include(
@@ -226,7 +222,7 @@ namespace WCFService.Dijkstra {
                     .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
                     .First(a => a.ID == airport.ID);
 
-                    airports[airports.FindIndex(a => a.ID == ap.ID)] = ap;
+                    _airports[_airports.FindIndex(a => a.ID == ap.ID)] = ap;
                 } else if (ap.Routes.Any(r => r.ID == route.ID)) {
                     ap.Routes[ap.Routes.FindIndex(r => r.ID == route.ID)] = route;
                 } else {
@@ -268,7 +264,7 @@ namespace WCFService.Dijkstra {
                         .Include(f => f.Route.From)
                         .First(f => f.ID == flight.ID);
 
-                var airport = airports.First(a => a.Routes.Select(r => r.ID == newFlight.Route.ID).Any());
+                var airport = _airports.First(a => a.Routes.Select(r => r.ID == newFlight.Route.ID).Any());
                 var route = airport.Routes[airport.Routes.FindIndex(r => r.ID == newFlight.Route.ID)];
 
                 if (route.Flights.Any(f => f.ID == newFlight.ID)) {
@@ -281,13 +277,13 @@ namespace WCFService.Dijkstra {
 
                 // ###### Add / Edit Matrix #####
 
-                var edgeIndex = edges.FindIndex(e => e.Data.ID == airport.ID);
+                var edgeIndex = _edges.FindIndex(e => e.Data.ID == airport.ID);
                 var edge = GenerateEdge(airport);
 
                 if (edgeIndex == -1) {
-                    edges.Add(edge);
+                    _edges.Add(edge);
                 } else {
-                    edges[edgeIndex] = edge;
+                    _edges[edgeIndex] = edge;
                 }
                 
                 
@@ -327,13 +323,13 @@ namespace WCFService.Dijkstra {
                         .Include(f => f.Route.From)
                         .First(f => f.ID == flight.ID);
 
-                var airport = airports.Single(a => a.Routes.Any(r => r.ID == newFlight.Route.ID));
+                var airport = _airports.Single(a => a.Routes.Any(r => r.ID == newFlight.Route.ID));
                 var route = airport.Routes[airport.Routes.FindIndex(r => r.ID == newFlight.Route.ID)];
                 route.Flights[route.Flights.FindIndex(f => f.ID == newFlight.ID)] = newFlight;
                 
-                var edgeIndex = edges.FindIndex(e => e.Data.ID == airport.ID);
+                var edgeIndex = _edges.FindIndex(e => e.Data.ID == airport.ID);
                 var edge = GenerateEdge(airport);
-                edges[edgeIndex] = edge;
+                _edges[edgeIndex] = edge;
 
                 // ####### Timing #######
 
@@ -358,7 +354,7 @@ namespace WCFService.Dijkstra {
                 // ####### Timing End #######
 
                 //var airport = route.From;
-                var edge = edges.First(ed => ed.Data.ID == route.FromID);
+                var edge = _edges.First(ed => ed.Data.ID == route.FromID);
 
                 if(edge != null){
 
@@ -369,7 +365,7 @@ namespace WCFService.Dijkstra {
                         .Include(r => r.To)
                         .Include(r => r.Flights.Select(f => f.SeatReservations)).First(r => r.ID == route.ID);
 
-                    var ap = airports.First(a => a.ID == route.FromID);
+                    var ap = _airports.First(a => a.ID == route.FromID);
                     ap.Routes[ap.Routes.FindIndex(r => r.ID == route.ID)] = route;
 
                 }
@@ -398,7 +394,7 @@ namespace WCFService.Dijkstra {
 
                 // ####### Timing End #######
 
-                var index = airports.FindIndex(a => a.ID == airport.ID);
+                var index = _airports.FindIndex(a => a.ID == airport.ID);
 
                 
 
@@ -409,14 +405,14 @@ namespace WCFService.Dijkstra {
                     .First(a => a.ID == airport.ID);
 
             if (index == -1) {
-                airports.Add(newAirport);
+                _airports.Add(newAirport);
             } else {
-                airports[index] = newAirport;
+                _airports[index] = newAirport;
             }
                 
                 Debug.WriteLine("----------- Testing Done -----------");
 
-                foreach (var ap in airports) {
+                foreach (var ap in _airports) {
                     var toRoutes = ap.Routes.Where(r => r.To.ID == newAirport.ID).ToList();
                     if (toRoutes.Any()) {
                         foreach (var toRoute in toRoutes) {
@@ -435,7 +431,7 @@ namespace WCFService.Dijkstra {
                 var edge = GenerateEdge(newAirport);
 
                 if (edge != null) {
-                    edges[edges.FindIndex(e => e.Data.ID == newAirport.ID)] = edge;
+                    _edges[_edges.FindIndex(e => e.Data.ID == newAirport.ID)] = edge;
                 }
 
                 // ####### Timing #######
@@ -473,12 +469,12 @@ namespace WCFService.Dijkstra {
             var toAirports = tmpAirports.SelectMany(r => r.Routes.Select(a => a.To)).ToHashSet();
             tmpAirports.UnionWith(toAirports);
 
-            airports = tmpAirports.ToList();
+            _airports = tmpAirports.ToList();
 
             //IQueryable<Airport> query = fromAirports.Union(toAirports);
             //airports = query.ToList();
 
-            Debug.WriteLine("airports: " + airports.ToArray());
+            Debug.WriteLine("airports: " + _airports.ToArray());
             Debug.WriteLine("toAirports: " + toAirports);
             Debug.WriteLine("toAirports Count: " + toAirports.Count());
             //airports.AddRange();
@@ -499,7 +495,7 @@ namespace WCFService.Dijkstra {
             List<Route> routes = new List<Route>();
 
             try {
-                routes = rs.GetRoutesByAirport(airport);
+                routes = _rs.GetRoutesByAirport(airport);
             } catch (Exception) { }
 
             if (routes.Count > 0) {
@@ -511,17 +507,17 @@ namespace WCFService.Dijkstra {
         }
 
         private void GenerateEdges() {
-            foreach (var airport in airports) {
+            foreach (var airport in _airports) {
                 var edge = new Edge<Airport>(airport);
                 List<Route> routes = new List<Route>();
 
                 try {
-                    routes = rs.GetRoutesByAirport(airport);
+                    routes = _rs.GetRoutesByAirport(airport);
                 } catch (Exception) { }
 
                 if (routes.Count > 0) {
                     edge.Neighbors = routes.Select(route => new Vertex<Airport>(route.To, route.Price)).ToList();
-                    edges.Add(edge);
+                    _edges.Add(edge);
                 }
             }
         }
@@ -553,10 +549,10 @@ namespace WCFService.Dijkstra {
             }
              */
 
-            Airport from = airports.FirstOrDefault(a => a.ID == fromId);
+            Airport from = _airports.FirstOrDefault(a => a.ID == fromId);
             Debug.WriteLine("from: "+from);
-            Debug.WriteLine("airports: " + airports.ToArray().ToString());
-            Debug.WriteLine("airports count: " + airports.Count);
+            Debug.WriteLine("airports: " + _airports.ToArray().ToString());
+            Debug.WriteLine("airports count: " + _airports.Count);
             if (from == null || toId < 0) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault() { Message = "Airports cant be null" });
             }
@@ -572,7 +568,7 @@ namespace WCFService.Dijkstra {
             var routedFlights = new Dictionary<Route, Flight>();
             var nodes = new List<Airport>();
 
-            foreach (var edge in edges) {
+            foreach (var edge in _edges) {
                 if (edge.Data.ID == from.ID) {
                     distance[edge.Data] = 1;
                 } else {
@@ -610,7 +606,7 @@ namespace WCFService.Dijkstra {
                     break;
                 }
 
-                foreach (var neighbor in edges.Single(e => e.Data.ID == smallest.ID).Neighbors) {
+                foreach (var neighbor in _edges.Single(e => e.Data.ID == smallest.ID).Neighbors) {
                     var alt = distance[smallest] + neighbor.Price;
                     Flight flight = null;
 

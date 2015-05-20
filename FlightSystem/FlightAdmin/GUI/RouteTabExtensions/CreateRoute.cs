@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Common;
 using Common.Exceptions;
 using FlightAdmin.Controller;
 using FlightAdmin.GUI.Helper;
@@ -60,7 +61,7 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
         }
 
         private void LoadCountries(object sender, DoWorkEventArgs e) {
-            BeginInvoke((MethodInvoker) delegate {
+            BeginInvoke((MethodInvoker)delegate {
                 loadFromCountry.Visible = true;
                 loadToCountry.Visible = true;
             });
@@ -74,7 +75,7 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             countriesFrom.Insert(0, "-");
             countriesTo = countriesFrom.ToList();
 
-            BeginInvoke((MethodInvoker) delegate {
+            BeginInvoke((MethodInvoker)delegate {
                 cmbFromCountry.DataSource = countriesFrom;
                 cmbToCountry.DataSource = countriesTo;
                 if (edRoute != null) {
@@ -124,10 +125,13 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             try {
                 BackgroundWorker bgWorker = new BackgroundWorker();
                 btnClose.Enabled = false;
-                bgWorker.RunWorkerCompleted += bgWorker_RunWorkerCompleted;    
+                bgWorker.RunWorkerCompleted += bgWorker_RunWorkerCompleted;
                 bgWorker.DoWork += new DoWorkEventHandler(LoadCountries);
                 bgWorker.RunWorkerAsync();
-            } catch (Exception) {
+            } catch (Exception ex) {
+#if (DEBUG)
+                ex.DebugGetLine();
+#endif
                 if (CloseEvent != null) {
                     CloseEvent();
                 }
@@ -145,7 +149,7 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             if (!country.Equals("-")) {
                 BackgroundWorker bgWorker = new BackgroundWorker();
                 bgWorker.RunWorkerCompleted += bgWorker_RunWorkerCompleted;
-                BGHelper helper = new BGHelper() { Item = cmbFromAirport , Loader = loadFromAirport};
+                BGHelper helper = new BGHelper() { Item = cmbFromAirport, Loader = loadFromAirport };
                 bgWorker.DoWork += (obj, ex) => LoadAirports(helper, country);
                 bgWorker.RunWorkerAsync();
             } else {
@@ -176,7 +180,7 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             if (ValidateRoute()) {
                 try {
                     RouteCtr rCtr = new RouteCtr();
-                    Route route = rCtr.CreateRoute((Airport) cmbFromAirport.SelectedItem, (Airport) cmbToAirport.SelectedItem, null,
+                    Route route = rCtr.CreateRoute((Airport)cmbFromAirport.SelectedItem, (Airport)cmbToAirport.SelectedItem, null,
                         decimal.Parse(txtPrice.Text));
 
                     MessageBox.Show(String.Format("The Route:\n {0} -> {1} \n has been created!", route.From.Name, route
@@ -187,9 +191,17 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
                     if (CloseEvent != null)
                         CloseEvent();
 
-                } catch (ValidationException exception) {
+                } catch (ValidationException ex) {
+#if (DEBUG)
+                    ex.DebugGetLine();
+#endif
                     //TODO Something here
                 } catch (Exception ex) {
+#if (DEBUG)
+                    ex.DebugGetLine();
+#endif
+
+
                     MessageBox.Show(ex.Message);
                 }
             }
@@ -199,7 +211,8 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
             if (ValidateRoute()) {
                 try {
                     RouteCtr rCtr = new RouteCtr();
-                    Route route = rCtr.UpdateRoute(edRoute, (Airport)cmbFromAirport.SelectedItem, (Airport)cmbToAirport.SelectedItem, edRoute.Flights, decimal.Parse(txtPrice.Text));
+                    Route route = rCtr.UpdateRoute(edRoute, (Airport) cmbFromAirport.SelectedItem,
+                        (Airport) cmbToAirport.SelectedItem, edRoute.Flights, decimal.Parse(txtPrice.Text));
 
                     MessageBox.Show(String.Format("The Route:\n {0} -> {1} \n has been Updated!", route.From.Name, route
                         .To.Name), "Route Created", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -209,9 +222,20 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
                     if (CloseEvent != null)
                         CloseEvent();
 
-                } catch (ValidationException exception) {
+                } catch (ValidationException ex) {
+#if (DEBUG)
+                    ex.DebugGetLine();
+#endif
                     //TODO Something here
+                } catch (DatabaseException ex) {
+#if (DEBUG)
+                    ex.DebugGetLine();
+#endif
+                    MessageBox.Show("This Route is not the same as the Route in the database,\n you must search for the Route again..");
                 } catch (Exception ex) {
+#if (DEBUG)
+                    ex.DebugGetLine();
+#endif
                     MessageBox.Show(ex.Message);
                 }
             }
@@ -228,11 +252,18 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
                     epRoute.SetError(cmbToAirport, "The 'From' and 'To' Airports can't be the same");
                     return false;
                 }
-            } catch (NullReferenceException) {
+            } catch (NullReferenceException ex) {
+#if (DEBUG)
+                ex.DebugGetLine();
+#endif
                 epRoute.SetError(cmbFromAirport, "Airports must be selected");
                 epRoute.SetError(cmbToAirport, "Airports must be selected");
+
                 return false;
-            } catch (Exception) {
+            } catch (Exception ex) {
+#if (DEBUG)
+                ex.DebugGetLine();
+#endif
                 epRoute.SetError(txtPrice, "Invalid Price");
                 return false;
             }
