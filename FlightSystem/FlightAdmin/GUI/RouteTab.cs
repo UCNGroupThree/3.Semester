@@ -190,7 +190,7 @@ namespace FlightAdmin.GUI {
             if (rs == DialogResult.OK) {
                 ChangeSelection(route, f.Route);
             } else if (rs == DialogResult.Retry) {
-                UpdateDataGrid(null);
+                routeBindingSource.Clear();
             }
         }
 

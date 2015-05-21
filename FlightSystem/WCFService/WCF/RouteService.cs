@@ -104,7 +104,7 @@ namespace WCFService.WCF {
 
                 // Running Async Update on Dijkstra Matrix
                 new Task(() => Dijkstra.Updated(retRoute)).Start();
-            } catch (OptimisticConcurrencyException e) {
+            } catch (DbUpdateConcurrencyException e) {
                 throw new FaultException<OptimisticConcurrencyFault>(new OptimisticConcurrencyFault() {
                     Message = e.Message
                 });
@@ -160,8 +160,8 @@ namespace WCFService.WCF {
                 // Running Async Update on Dijkstra Matrix
                 new Task(() => Dijkstra.Updated(retRoute)).Start();
 
-                
-            } catch (OptimisticConcurrencyException e) {
+
+            } catch (DbUpdateConcurrencyException e) {
                 throw new FaultException<OptimisticConcurrencyFault>(new OptimisticConcurrencyFault() {
                     Message = e.Message
                 });
