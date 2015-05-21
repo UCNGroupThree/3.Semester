@@ -64,7 +64,7 @@ namespace WCFService.WCF {
                         db.Tickets.Remove(ticket);
                         //DetectChanges(db);
                         db.SaveChanges();
-                        RemoveInDijkstra();
+                        UpdateDijkstra();
                         //DebugSaveChanges();
 
                         noOfSeats = -1;
@@ -283,24 +283,16 @@ namespace WCFService.WCF {
 
             Debug.WriteLine("Completed ended!");
         }
-        
-        private void RemoveInDijkstra() {
-            HashSet<int> ids = ticket.SeatReservations.Select(s => s.Flight_ID).ToHashSet();
-
-            Task updateTask = Task.Run(() => {
-                foreach (var id in ids) {
-                    Dijkstra.Removed(new Flight() { ID = id });
-                }
-            });
-        }
+       
 
         private void UpdateDijkstra() {
             HashSet<int> ids = ticket.SeatReservations.Select(s => s.Flight_ID).ToHashSet();
 
             Task updateTask = Task.Run(() => {
-                foreach (var id in ids) {
-                    Dijkstra.Updated(new Flight() { ID = id });
-                }
+                Parallel.ForEach(ids, (i) => Dijkstra.Updated(new Flight() {ID = i}));
+                //foreach (var id in ids) {
+                //    Dijkstra.Updated(new Flight() { ID = id });
+                //}
             });
         }
     }

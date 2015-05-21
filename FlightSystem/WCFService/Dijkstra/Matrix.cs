@@ -74,7 +74,7 @@ namespace WCFService.Dijkstra {
             _locked = true;
 
             while (running.Count > 0) {
-                Thread.Sleep(1000);
+                Thread.Sleep(100);
             }
 
             if (updatedObj is Airport) {
@@ -159,7 +159,7 @@ namespace WCFService.Dijkstra {
         }
 
         private void RemoveRoute(Route route) {
-            //try {
+            try {
 
             // ####### Timing #######
 
@@ -191,9 +191,10 @@ namespace WCFService.Dijkstra {
 
             // ####### Timing End #######
 
-            //} catch (Exception) {
-            //  HardReset();
-            //}
+            } catch (Exception) {
+              HardReset();
+            }
+
         }
 
         #endregion
@@ -201,76 +202,78 @@ namespace WCFService.Dijkstra {
         #region Add (Events)
 
         private void AddRoute(Route route) {
-            //try {
-            // ####### Timing #######
+            using (var db = new FlightDB()) {
+                try {
+                // ####### Timing #######
 
-            Debug.WriteLine("----------- AddRoute -----------");
-            var watch = Stopwatch.StartNew();
+                Debug.WriteLine("----------- AddRoute -----------");
+                var watch = Stopwatch.StartNew();
 
-            // ####### Timing End #######
+                // ####### Timing End #######
 
-            // ####### Add / Edit Matrix ######
+                // ####### Add / Edit Matrix ######
 
-            route = _db.Routes.Include(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats))
+                route = db.Routes.Include(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats))
                     .Include(r => r.To)
                     .Include(r => r.Flights.Select(f => f.SeatReservations)).First(r => r.ID == route.ID);
 
-            var airport = route.From;
-            var edge = _edges.First(ed => ed.Data.ID == route.FromID);
+                var airport = route.From;
+                var edge = _edges.First(ed => ed.Data.ID == route.FromID);
 
-            if (route.To == null) {
-                route.To = _db.Airports.Single(a => a.ID == route.ToID);
+                if (route.To == null) {
+                    route.To = _db.Airports.Single(a => a.ID == route.ToID);
+                }
+
+                Vertex<Airport> vertex = new Vertex<Airport>(route.To, route.Price);
+
+                if (edge == null) {
+                    edge = new Edge<Airport>(airport);
+                    edge.Neighbors.Add(vertex);
+                } else if (edge.Neighbors.Any(v => v.Data.ID == vertex.Data.ID)) {
+                    edge.Neighbors[edge.Neighbors.FindIndex(e => e.Data.ID == route.To.ID)] = vertex;
+                } else {
+                    edge.Neighbors.Add(vertex);
+                }
+
+                // ####### Add / Edit Matrix End ######
+
+                // ##### Add / Edit Airport List ####
+
+                var ap = _airports.First(a => a.ID == airport.ID);
+
+                if (ap == null) {
+                    ap = db.Airports.Include(
+                        a => a.Routes.Select(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats)))
+                        .Include(a => a.Routes.Select(r => r.To))
+                        .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
+                        .First(a => a.ID == airport.ID);
+
+                    _airports[_airports.FindIndex(a => a.ID == ap.ID)] = ap;
+                } else if (ap.Routes.Any(r => r.ID == route.ID)) {
+                    ap.Routes[ap.Routes.FindIndex(r => r.ID == route.ID)] = route;
+                } else {
+                    ap.Routes.Add(route);
+                }
+
+                // ##### Add / Edit Airport List End ####
+
+
+                // ####### Timing #######
+
+                watch.Stop();
+                Debug.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
+                Debug.WriteLine("-------- AddRoute Ended ---------");
+
+                // ####### Timing End #######
+
+                } catch (Exception) {
+                    HardReset();
+                }
             }
-
-            Vertex<Airport> vertex = new Vertex<Airport>(route.To, route.Price);
-
-            if (edge == null) {
-                edge = new Edge<Airport>(airport);
-                edge.Neighbors.Add(vertex);
-            } else if (edge.Neighbors.Any(v => v.Data.ID == vertex.Data.ID)) {
-                edge.Neighbors[edge.Neighbors.FindIndex(e => e.Data.ID == route.To.ID)] = vertex;
-            } else {
-                edge.Neighbors.Add(vertex);
-            }
-
-            // ####### Add / Edit Matrix End ######
-
-            // ##### Add / Edit Airport List ####
-
-            var ap = _airports.First(a => a.ID == airport.ID);
-
-            if (ap == null) {
-                ap = _db.Airports.Include(
-                a => a.Routes.Select(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats)))
-                .Include(a => a.Routes.Select(r => r.To))
-                .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
-                .First(a => a.ID == airport.ID);
-
-                _airports[_airports.FindIndex(a => a.ID == ap.ID)] = ap;
-            } else if (ap.Routes.Any(r => r.ID == route.ID)) {
-                ap.Routes[ap.Routes.FindIndex(r => r.ID == route.ID)] = route;
-            } else {
-                ap.Routes.Add(route);
-            }
-
-            // ##### Add / Edit Airport List End ####
-
-
-            // ####### Timing #######
-
-            watch.Stop();
-            Debug.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
-            Debug.WriteLine("-------- AddRoute Ended ---------");
-
-            // ####### Timing End #######
-
-            //} catch (Exception) {
-            //    HardReset();
-            //}
         }
 
         private void AddFlight(Flight flight) {
-            //try {
+            try {
             // ####### Timing #######
 
             Debug.WriteLine("----------- AddFlight -----------");
@@ -321,9 +324,9 @@ namespace WCFService.Dijkstra {
 
             // ####### Timing End #######
 
-            //} catch (Exception) {
-            //    HardReset();
-            //}
+            } catch (Exception) {
+                HardReset();
+            }
         }
 
         #endregion
@@ -331,145 +334,150 @@ namespace WCFService.Dijkstra {
         #region Update (Events)
 
         private void UpdateFlight(Flight flight) {
-            //try {
-            // ####### Timing #######
-
-            Debug.WriteLine("----------- UpdateFlight -----------");
-            var watch = Stopwatch.StartNew();
-
-            // ####### Timing End #######
-
-            var newFlight =
-                _db.Flights.Include(f => f.Plane)
-                    .Include(f => f.Plane.Seats)
-                    .Include(f => f.SeatReservations)
-                    .Include(f => f.Route)
-                    .Include(f => f.Route.From)
-                    .First(f => f.ID == flight.ID);
-
-            var airport = _airports.Single(a => a.Routes.Any(r => r.ID == newFlight.Route.ID));
-            var route = airport.Routes[airport.Routes.FindIndex(r => r.ID == newFlight.Route.ID)];
-            route.Flights[route.Flights.FindIndex(f => f.ID == newFlight.ID)] = newFlight;
-
-            var edgeIndex = _edges.FindIndex(e => e.Data.ID == airport.ID);
-            var edge = GenerateEdge(airport);
-            _edges[edgeIndex] = edge;
-
-            // ####### Timing #######
-
-            watch.Stop();
-            Debug.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
-            Debug.WriteLine("-------- UpdateFlight Ended ---------");
-
-            // ####### Timing End #######
-
-            //} catch (Exception) {
-            //    HardReset();
-            //}
-        }
-
-        private void UpdateRoute(Route route) {
-            //try {
-            // ####### Timing #######
-
-            Debug.WriteLine("----------- UpdateRoute -----------");
-            var watch = Stopwatch.StartNew();
-
-            // ####### Timing End #######
-
-            //var airport = route.From;
-            var edge = _edges.First(ed => ed.Data.ID == route.FromID);
-
-            if (edge != null) {
-
-                Vertex<Airport> vertex = new Vertex<Airport>(route.To, route.Price);
-                edge.Neighbors[edge.Neighbors.FindIndex(e => e.Data.ID == route.To.ID)] = vertex;
-
-                route = _db.Routes.Include(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats))
-                    .Include(r => r.To)
-                    .Include(r => r.Flights.Select(f => f.SeatReservations)).First(r => r.ID == route.ID);
-
-                var ap = _airports.First(a => a.ID == route.FromID);
-                ap.Routes[ap.Routes.FindIndex(r => r.ID == route.ID)] = route;
-
-            }
-            // ####### Timing #######
-
-            watch.Stop();
-            Debug.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
-            Debug.WriteLine("-------- UpdateRoute Ended ---------");
-
-            // ####### Timing End #######
-
-
-            //} catch (Exception) {
-            //    HardReset();
-            //}
-        }
-
-        private void UpdateAirport(Airport airport) {
-
-            try {
-
+            using (var db = new FlightDB()) {
+                try {
                 // ####### Timing #######
 
-                Debug.WriteLine("----------- UpdateAirport -----------");
+                Debug.WriteLine("----------- UpdateFlight -----------");
                 var watch = Stopwatch.StartNew();
 
                 // ####### Timing End #######
 
-                var index = _airports.FindIndex(a => a.ID == airport.ID);
+                var newFlight =
+                    db.Flights.Include(f => f.Plane)
+                        .Include(f => f.Plane.Seats)
+                        .Include(f => f.SeatReservations)
+                        .Include(f => f.Route)
+                        .Include(f => f.Route.From)
+                        .First(f => f.ID == flight.ID);
 
+                var airport = _airports.Single(a => a.Routes.Any(r => r.ID == newFlight.Route.ID));
+                var route = airport.Routes[airport.Routes.FindIndex(r => r.ID == newFlight.Route.ID)];
+                route.Flights[route.Flights.FindIndex(f => f.ID == newFlight.ID)] = newFlight;
 
+                var edgeIndex = _edges.FindIndex(e => e.Data.ID == airport.ID);
+                var edge = GenerateEdge(airport);
+                _edges[edgeIndex] = edge;
 
-                var newAirport = _db.Airports.Include(
-                    a => a.Routes.Select(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats)))
-                    .Include(a => a.Routes.Select(r => r.To))
-                    .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
-                    .First(a => a.ID == airport.ID);
-
-                if (index == -1) {
-                    _airports.Add(newAirport);
-                } else {
-                    _airports[index] = newAirport;
-                }
-
-                Debug.WriteLine("----------- Testing Done -----------");
-
-                foreach (var ap in _airports) {
-                    var toRoutes = ap.Routes.Where(r => r.To.ID == newAirport.ID).ToList();
-                    if (toRoutes.Any()) {
-                        foreach (var toRoute in toRoutes) {
-                            toRoute.To = newAirport;
-                        }
-                    }
-
-                    var fromRoutes = ap.Routes.Where(r => r.From.ID == newAirport.ID).ToList();
-                    if (fromRoutes.Any()) {
-                        foreach (var fromRoute in fromRoutes) {
-                            fromRoute.From = newAirport;
-                        }
-                    }
-                }
-
-                var edge = GenerateEdge(newAirport);
-
-                if (edge != null) {
-                    _edges[_edges.FindIndex(e => e.Data.ID == newAirport.ID)] = edge;
-                }
-
-#if DEBUG
                 // ####### Timing #######
 
                 watch.Stop();
                 Debug.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
-                Debug.WriteLine("-------- UpdateAirport Ended ---------");
+                Debug.WriteLine("-------- UpdateFlight Ended ---------");
 
                 // ####### Timing End #######
+
+                } catch (Exception) {
+                    HardReset();
+                }
+            }
+        }
+
+        private void UpdateRoute(Route route) {
+            using (var db = new FlightDB()) {
+                try {
+                // ####### Timing #######
+
+                Debug.WriteLine("----------- UpdateRoute -----------");
+                var watch = Stopwatch.StartNew();
+
+                // ####### Timing End #######
+
+                //var airport = route.From;
+                var edge = _edges.First(ed => ed.Data.ID == route.FromID);
+
+                if (edge != null) {
+
+                    Vertex<Airport> vertex = new Vertex<Airport>(route.To, route.Price);
+                    edge.Neighbors[edge.Neighbors.FindIndex(e => e.Data.ID == route.To.ID)] = vertex;
+
+                    route = db.Routes.Include(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats))
+                        .Include(r => r.To)
+                        .Include(r => r.Flights.Select(f => f.SeatReservations)).First(r => r.ID == route.ID);
+
+                    var ap = _airports.First(a => a.ID == route.FromID);
+                    ap.Routes[ap.Routes.FindIndex(r => r.ID == route.ID)] = route;
+
+                }
+                // ####### Timing #######
+
+                watch.Stop();
+                Debug.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
+                Debug.WriteLine("-------- UpdateRoute Ended ---------");
+
+                // ####### Timing End #######
+
+
+                } catch (Exception) {
+                    HardReset();
+                }
+            }
+        }
+
+        private void UpdateAirport(Airport airport) {
+            using (var db = new FlightDB()) {
+                try {
+
+                    // ####### Timing #######
+
+                    Debug.WriteLine("----------- UpdateAirport -----------");
+                    var watch = Stopwatch.StartNew();
+
+                    // ####### Timing End #######
+
+                    var index = _airports.FindIndex(a => a.ID == airport.ID);
+
+
+
+                    var newAirport = db.Airports.Include(
+                        a => a.Routes.Select(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats)))
+                        .Include(a => a.Routes.Select(r => r.To))
+                        .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
+                        .First(a => a.ID == airport.ID);
+
+                    if (index == -1) {
+                        _airports.Add(newAirport);
+                    } else {
+                        _airports[index] = newAirport;
+                    }
+
+                    Debug.WriteLine("----------- Testing Done -----------");
+
+                    foreach (var ap in _airports) {
+                        var toRoutes = ap.Routes.Where(r => r.To.ID == newAirport.ID).ToList();
+                        if (toRoutes.Any()) {
+                            foreach (var toRoute in toRoutes) {
+                                toRoute.To = newAirport;
+                            }
+                        }
+
+                        var fromRoutes = ap.Routes.Where(r => r.From.ID == newAirport.ID).ToList();
+                        if (fromRoutes.Any()) {
+                            foreach (var fromRoute in fromRoutes) {
+                                fromRoute.From = newAirport;
+                            }
+                        }
+                    }
+
+                    var edge = GenerateEdge(newAirport);
+
+                    if (edge != null) {
+                        _edges[_edges.FindIndex(e => e.Data.ID == newAirport.ID)] = edge;
+                    }
+
+#if DEBUG
+                    // ####### Timing #######
+
+                    watch.Stop();
+                    Debug.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
+                    Debug.WriteLine("-------- UpdateAirport Ended ---------");
+
+                    // ####### Timing End #######
 #endif
 
-            } catch (Exception) {
-                HardReset();
+                } catch (Exception) {
+                    HardReset();
+                }
             }
         }
 
