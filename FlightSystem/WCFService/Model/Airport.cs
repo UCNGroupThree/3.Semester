@@ -105,5 +105,14 @@ namespace WCFService.Model {
             }
             set { TimeZoneId = value.Id; }
         }
+
+
+        public override string ToString() {
+            var str = Name;
+            if (!string.IsNullOrWhiteSpace(ShortName)) {
+                str += string.Format(" ({0})", ShortName);
+            }
+            return str;
+        }
     }
 }

@@ -109,6 +109,7 @@ namespace WCFService.WCF {
 
                 return flights;
             } catch (Exception ex) {
+                ex.DebugGetLine();
                 if (ex is NullException) {
                     throw new FaultException<NullPointerFault>(new NullPointerFault((NullException)ex));
                 }
