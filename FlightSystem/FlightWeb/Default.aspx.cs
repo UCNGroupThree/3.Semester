@@ -199,6 +199,7 @@ namespace FlightWeb {
                 } else if (ex is FaultException<LockedFault>) {
                     DisplayError("Error", "Please Try again.. The system is busy!", false);
                 } else {
+                    ex.DebugGetLine();
                     DisplayError("Error", "We are sorry, but an error happen :(", false);
                 }
 
