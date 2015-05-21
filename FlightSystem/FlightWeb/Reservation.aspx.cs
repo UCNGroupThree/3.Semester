@@ -4,9 +4,11 @@ using System.Data.Common;
 using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Common;
 using FlightWeb.Helper;
 using FlightWeb.MainService;
 
@@ -16,7 +18,7 @@ namespace FlightWeb {
 
         protected void Page_Load(object sender, EventArgs e) {
             ses = ResSession.Current(Session);
-            //Demo();
+            Demo();
             if (!IsAllowed()) {
                 Session["Dialog"] = new DialogHelper("Error", "You need to find a flight first, or maybe your session has timeout! :(");
                 Response.Redirect("Default.aspx", true);
@@ -32,6 +34,14 @@ namespace FlightWeb {
         private void MakeSeatReservations() {
             try {
                 ses.Ticket = ses.ResClient.MakeSeatsOccupiedRandom();
+                var ticket = ses.Ticket;
+                lblName.Text = ticket.User.Name;
+                lblAddress.Text = ticket.User.Address;
+                lblPostalCode.Text = ticket.User.Postal.PostCode.ToString();
+                lblCity.Text = ticket.User.Postal.City;
+                lblTotalPrice.Text = ticket.TotalPrice.ToString("C");
+                lblTotalTravelTime.Text = ticket.TotalTravelTime.ToFineString();
+
             } catch (FaultException<NotEnouthFault> ex) {
                 Session["Dialog"] = new DialogHelper("Error", "There are not enouth free seats to make the booking. :(");
                 Response.Redirect("Default.aspx", true);
@@ -39,6 +49,7 @@ namespace FlightWeb {
                 Session["Dialog"] = new DialogHelper("Error", "An Database error has happen. Try again.");
                 Response.Redirect("Default.aspx", true);
             } catch (Exception ex) {
+                ex.DebugGetLine();
                 Session["Dialog"] = new DialogHelper("Error", "An error have happen, maybe because of a timeout. Try again");
                 Response.Redirect("Default.aspx", true);
             }
@@ -57,10 +68,17 @@ namespace FlightWeb {
         //TODO Remove this before deploy!
         private void Demo() {
             var today = DateTime.Now;
-            ses.Flights = ses.GetNewResClient()
-                .GetFlightsAsd(1, 3, 2, new DateTime(today.Year, today.Month, today.Day, 0, 1, 0), user: new User());
-            ses.Ticket = ses.ResClient.MakeSeatsOccupiedRandom();
-            
+            User user = null;
+            using (var userClient = new UserServiceClient()) {
+                user = userClient.GetUser(22);
+                if (user == null || string.IsNullOrEmpty(user.Name)) {
+                    throw new Exception("Log ind!");
+                }
+            }
+            var cl = ses.GetNewResClient();
+            ses.Flights = cl.GetFlightsAsd(1, 3, 2, new DateTime(today.Year, today.Month, today.Day, 0, 1, 0), user);
+            //ses.Ticket = cl.MakeSeatsOccupiedRandom();
+            //ses.CloseResClient();
             //ResSession.ResServiceClient.Complete();
 
         }
@@ -75,7 +93,6 @@ namespace FlightWeb {
                 Debug.Assert(gvSeatReservations != null, "gvSeatReservations != null");
                 gvSeatReservations.DataSource = ses.Ticket.SeatReservations.Where(s => s.Flight_ID == flightID);
                 gvSeatReservations.DataBind();
-
             }
         }
 

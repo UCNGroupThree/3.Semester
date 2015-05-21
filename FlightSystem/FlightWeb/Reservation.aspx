@@ -45,107 +45,71 @@
         </asp:GridView>
         <div class="container-fluid">
             <div class="row">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p>From:</p>
+                <div class="col-sm-4">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p>Name:</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p>
+                                    <asp:Label runat="server" ID="lblName" />
+                                </p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p>
-                                <asp:Label runat="server" Text="hej" ID="lblModalFrom" />
-                            </p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p>Address:</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p>
+                                    <asp:Label runat="server" ID="lblAddress" />
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p>To:</p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p>PostalCode:</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p>
+                                    <asp:Label runat="server" ID="lblPostalCode" />
+                                </p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p>
-                                <asp:Label runat="server" Text="hej" ID="lblModalTo" />
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p>Stops:</p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p>
-                                <asp:Label runat="server" Text="hej" ID="lblModalStops" />
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p>TravelTime:</p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p>
-                                <asp:Label runat="server" Text="hej" ID="lblModalTravelTime" />
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p>Price:</p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p>
-                                <asp:Label runat="server" Text="hej" ID="lblModalPrice" />
-                            </p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p>City:</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p>
+                                    <asp:Label runat="server" ID="lblCity" />
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p>From:</p>
+                <div class="col-sm-4 col-sm-offset-4">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p>Total TravelTime:</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p>
+                                    <asp:Label runat="server" ID="lblTotalTravelTime" />
+                                </p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p>
-                                <asp:Label runat="server" Text="hej" ID="Label1" />
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p>To:</p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p>
-                                <asp:Label runat="server" Text="hej" ID="Label2" />
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p>Stops:</p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p>
-                                <asp:Label runat="server" Text="hej" ID="Label3" />
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p>TravelTime:</p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p>
-                                <asp:Label runat="server" Text="hej" ID="Label4" />
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p>Price:</p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p>
-                                <asp:Label runat="server" Text="hej" ID="Label5" />
-                            </p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p>Total Price:</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p>
+                                    <asp:Label runat="server" ID="lblTotalPrice" />
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

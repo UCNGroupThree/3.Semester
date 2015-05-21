@@ -336,6 +336,7 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MainService\Ticket.cs" />
     <Compile Include="OldDefault.aspx.cs">
       <DependentUpon>OldDefault.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

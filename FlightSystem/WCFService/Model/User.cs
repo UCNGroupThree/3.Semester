@@ -30,7 +30,6 @@ namespace WCFService.Model {
         [StringLength(450)]
         public string Email { get; set; }
 
-        [DataMember]
         public string PasswordHash { get; set; }
 
         [NotMapped]
