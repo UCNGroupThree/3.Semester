@@ -9,13 +9,13 @@ namespace WCFService.WCF.Interface {
     [ServiceContract (SessionMode = SessionMode.Required)]
     public interface IReservationService {
         //TODO Sætte IsInitiating og IsTermination på de manglende Operationer
-        [OperationContract]
+        [OperationContract(IsInitiating = true, IsTerminating = false)]
         [FaultContract(typeof(LockedFault))]
         [FaultContract(typeof(NullPointerFault))]
         [FaultContract(typeof(DatabaseFault))]
         List<Flight> GetFlightsAsd(int fromId, int toId, int seats, DateTime dateTime, User user);
 
-        [OperationContract]
+        [OperationContract(IsInitiating = false, IsTerminating = false)]
         [FaultContract(typeof(NullPointerFault))]
         [FaultContract(typeof(ArgumentFault))]
         [FaultContract(typeof(NotEnouthFault))]
