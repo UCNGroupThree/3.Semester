@@ -14,6 +14,10 @@ namespace FlightAdmin {
     public partial class MainUI : Form {
         public MainUI() {
             InitializeComponent();
+
+#if DEBUG
+            Text += " (DEBUG)";
+#endif
         }
 
         #region menu events - program menu

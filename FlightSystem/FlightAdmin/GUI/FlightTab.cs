@@ -27,8 +27,8 @@ namespace FlightAdmin.GUI {
         #region TextBox Events
 
         private void SetEvents() {
-            txtFrom.TextChanged += TextChanged;
-            txtTo.TextChanged += TextChanged;
+            txtFrom.TextChanged += (sender, args) => Txt_TextChanged(sender, args);
+            txtTo.TextChanged += (sender, args) => Txt_TextChanged(sender, args);
 
             txtID.TextChanged += delegate(object sender, EventArgs args) {
                 if ((sender as TextBox).Text.Length > 0) {
@@ -41,7 +41,7 @@ namespace FlightAdmin.GUI {
             };
         }
 
-        private void TextChanged(object sender, EventArgs args) {
+        private void Txt_TextChanged(object sender, EventArgs args) {
             if ((sender as TextBox).Text.Length > 0) {
                 txtID.Enabled = false;
             } else {
@@ -86,15 +86,17 @@ namespace FlightAdmin.GUI {
         }
 
         private void Search() {
-            if (string.IsNullOrEmpty(txtFrom.Text) || string.IsNullOrWhiteSpace(txtFrom.Text)) {
+            if (txtID.Enabled) {
                 if (!string.IsNullOrEmpty(txtID.Text) || !string.IsNullOrWhiteSpace(txtID.Text)) {
                     SearchByID(txtID.IntValue);
                 }
-            } else {
-                if (string.IsNullOrEmpty(txtTo.Text) || string.IsNullOrWhiteSpace(txtTo.Text)) {
-                    MessageBox.Show(@"The 'To' field can't be empty!");
-                } else {
-                    SearchByFrom(txtFrom.Text, txtTo.Text);
+            } else if (txtTo.Enabled && txtFrom.Enabled) {
+                if (!string.IsNullOrEmpty(txtFrom.Text) || !string.IsNullOrWhiteSpace(txtFrom.Text)) {
+                    if (string.IsNullOrEmpty(txtTo.Text) || string.IsNullOrWhiteSpace(txtTo.Text)) {
+                        MessageBox.Show(@"The 'To' field can't be empty!");
+                    } else {
+                        SearchByFrom(txtFrom.Text, txtTo.Text);
+                    }
                 }
             }
         }
@@ -136,13 +138,15 @@ namespace FlightAdmin.GUI {
 
             if (fAirport == null) {
                 throw new Exception("The Airport: " + from + " does not exist");
-            }else if (tAirport == null) {
+            } else if (tAirport == null) {
                 throw new Exception("The Airport: " + to + " does not exist");
-            } else if (fAirport.ID == tAirport.ID) {
+            } else if (fAirport.ID == tAirport.ID && tAirport.ID != 0 && fAirport.ID != 0) {
                 throw new Exception("To and From, can't be the same airport");
+            } else {
+                e.Result = _fCtr.GetFlights(fAirport, tAirport);
             }
 
-            e.Result = _fCtr.GetFlights(fAirport, tAirport);
+            
         }
 
         private void bgWorker_SearchByID_DoWork(DoWorkEventArgs e, int id) {
@@ -163,6 +167,7 @@ namespace FlightAdmin.GUI {
             var flight = (Flight)dataFlight.Rows[_mouseLocation.RowIndex].DataBoundItem;
             if (flight != null) {
                 DeleteFlight(flight);
+                UpdateDataGrid(new List<Flight>());
             }
         }
 
@@ -171,7 +176,11 @@ namespace FlightAdmin.GUI {
                 _fCtr.DeleteFlight(flight);
 
                 MessageBox.Show(String.Format("Flight: {0} \n has been deleted!", flight.ID));
-            } catch (Exception e) {
+            } catch (DatabaseException e) {
+                e.DebugGetLine();
+                MessageBox.Show("The entity has been modified or deleted,\n search again.");
+            }catch (Exception e) {
+                e.DebugGetLine();
                 MessageBox.Show(e.Message);
             }
         }

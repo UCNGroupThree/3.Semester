@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.ServiceModel;
+using Common;
 using Common.Exceptions;
 using FlightAdmin.GUI;
 using FlightAdmin.MainService;
@@ -64,12 +65,27 @@ namespace FlightAdmin.Controller {
 
                         retRoute = client.AddOrUpdateFlights(route);
                     } catch (FaultException<OptimisticConcurrencyFault> concurrencyException) {
+#if DEBUG
+                        concurrencyException.DebugGetLine();
+#endif
                         throw new DBConcurrencyException(concurrencyException.Detail.Message);
                     } catch (FaultException<DatabaseUpdateFault> updateException) {
+#if DEBUG
+                        updateException.DebugGetLine();
+#endif
+
                         throw new DatabaseException(updateException.Detail.Message);
                     } catch (FaultException<DeleteFault> deleteFault) {
+#if DEBUG
+                        deleteFault.DebugGetLine();
+#endif
+
                         throw new DeleteException(deleteFault.Detail.Message);
                     } catch (Exception e) {
+
+#if DEBUG
+                        e.DebugGetLine();
+#endif
                         throw new ConnectionException("WCF Service Exception", e);
                     }
                 }

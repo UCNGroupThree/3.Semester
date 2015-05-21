@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Common;
+using Common.Exceptions;
 using FlightAdmin.Controller;
 using FlightAdmin.MainService;
 
@@ -230,10 +232,24 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
                 Plane = (Plane) flightHelper.Plane.SelectedItem,
                 ID = flightHelper.Flight.ID
             }).ToList();
-
-            Route = rCtr.AddOrUpdateFlights(Route, flights);
-
-            DialogResult = DialogResult.OK;
+            try {
+                Route = rCtr.AddOrUpdateFlights(Route, flights);
+                DialogResult = DialogResult.OK;
+            } catch (DatabaseException ex) {
+#if DEBUG
+                ex.DebugGetLine();
+#endif
+                DialogResult = DialogResult.Retry;
+                MessageBox.Show("One or more of the entities was changed \n Please search again.");
+            
+            } catch (DBConcurrencyException exception) {
+#if DEBUG
+                exception.DebugGetLine();
+#endif
+                DialogResult = DialogResult.Retry;
+                MessageBox.Show("One or more of the entities was changed \n Please search again.");
+            }
+            
             this.Dispose();
         }
         /*

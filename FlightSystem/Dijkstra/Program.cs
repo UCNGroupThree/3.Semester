@@ -19,9 +19,9 @@ namespace Dijkstra {
 
                     Console.WriteLine("---------------------------");
 
-                    DateTime dateTime = DateTime.Now.AddHours(-10);
+                    DateTime dateTime = DateTime.Now.AddHours(-5);
 
-                    PrintStuff(id1, id2, 1, dateTime);
+                    PrintStuff(1, 3, 1, dateTime);
 
                     Console.ReadKey();
                 //}catch(Exception){}

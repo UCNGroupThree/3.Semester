@@ -75,24 +75,26 @@ namespace WCFService.Dijkstra {
 
                 // ####### Timing #######
 
+                
+
                 Debug.WriteLine("----------- RemoveFlight -----------");
                 var watch = Stopwatch.StartNew();
 
                 // ####### Timing End #######
 
-                //try {
-                var airport = _airports.First(a => a.Routes.First(r => r.Flights.Any(f => f.ID == flight.ID)) != null);
-                var route = airport.Routes.First(r => r.Flights.Any(f => f.ID == flight.ID));
+            try {
+                var airport = _airports.Single(a => a.Routes.Single(r => r.Flights.Any(f => f.ID == flight.ID)) != null);
+                var route = airport.Routes.Single(r => r.Flights.Any(f => f.ID == flight.ID));
 
-                var edge = _edges.First(a => a.Data.Routes.First(r => r.Flights.Any(f => f.ID == flight.ID)) != null);
-                var edgeRoute = edge.Data.Routes.First(r => r.Flights.Any(f => f.ID == flight.ID));
+                var edge = _edges.Single(a => a.Data.Routes.Single(r => r.Flights.Any(f => f.ID == flight.ID)) != null);
+                var edgeRoute = edge.Data.Routes.Single(r => r.Flights.Any(f => f.ID == flight.ID));
+
                 edgeRoute.Flights.RemoveAll(f => f.ID == flight.ID);
-
-                
                 route.Flights.RemoveAll(f => f.ID == flight.ID);
-            
-                
-            //} catch(InvalidOperationException){}
+
+            } catch (InvalidOperationException) {
+                return;
+            }
             // ####### Timing #######
 
                 watch.Stop();

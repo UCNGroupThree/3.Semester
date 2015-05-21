@@ -222,10 +222,10 @@
     <Content Include="Service References\MainService\FlightWeb.MainService.Route.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\MainService\FlightWeb.MainService.User.datasource">
+    <Content Include="Service References\MainService\FlightWeb.MainService.Ticket.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\MainService\FlightWeb.MainService.Ticket.datasource">
+    <Content Include="Service References\MainService\FlightWeb.MainService.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Service References\MainService\Reference.svcmap">

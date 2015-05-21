@@ -185,8 +185,12 @@ namespace FlightAdmin.GUI {
                 f = new CreateFlights() { Route = route };
             }
 
-            if (f.ShowDialog() == DialogResult.OK) {
+            DialogResult rs = f.ShowDialog();
+
+            if (rs == DialogResult.OK) {
                 ChangeSelection(route, f.Route);
+            } else if (rs == DialogResult.Retry) {
+                UpdateDataGrid(null);
             }
         }
 
@@ -212,6 +216,8 @@ namespace FlightAdmin.GUI {
             if (route != null) {
                 routeBindingSource.Clear();
                 routeBindingSource.Add(route);
+            } else {
+                routeBindingSource.Clear();
             }
         }
 

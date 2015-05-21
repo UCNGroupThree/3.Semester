@@ -1877,7 +1877,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost:8733/MainService/Reservation</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>Lasse-Pc\Lasse</Upn>
+          <Upn>NICKDP\zoino_000</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

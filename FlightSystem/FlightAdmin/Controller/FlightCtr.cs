@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.ServiceModel;
 using System.Windows.Forms;
 using Common;
@@ -98,15 +99,24 @@ namespace FlightAdmin.Controller {
 
                         retFlight = client.UpdateFlight(flight);
                     } catch (FaultException<OptimisticConcurrencyFault> concurrencyException) {
-                        throw new Exception(concurrencyException.Detail.Message);
+#if DEBUG
+                        concurrencyException.DebugGetLine();
+#endif
+                        throw new DBConcurrencyException(concurrencyException.Detail.Message);
                     } catch (FaultException<DatabaseUpdateFault> updateException) {
-                        throw new Exception(updateException.Detail.Message);
+#if DEBUG
+                        updateException.DebugGetLine();
+#endif
+                        throw new DatabaseException(updateException.Detail.Message);
                     } catch (Exception e) {
+#if DEBUG
+                        e.DebugGetLine();
+#endif
                         throw new ConnectionException("WCF Service Exception", e);
                     }
                 }
             } else {
-                throw new Exception("FlightValidation Exception");
+                throw new ValidationException("FlightValidation Exception");
             }
 
             return retFlight;
@@ -121,10 +131,19 @@ namespace FlightAdmin.Controller {
                 try {
                     client.DeleteFlight(flight);
                 } catch (FaultException<NullPointerFault> nullException) {
-                    throw new Exception(nullException.Detail.Message);
+#if DEBUG
+                    nullException.DebugGetLine();
+#endif
+                    throw new NullException(nullException.Detail.Message);
                 } catch (FaultException<DatabaseDeleteFault> dbException) {
-                    throw new Exception(dbException.Detail.Message);
+                    #if DEBUG
+                    dbException.DebugGetLine();
+#endif
+                    throw new DatabaseException(dbException.Detail.Message);
                 } catch (Exception e) {
+#if DEBUG
+                    e.DebugGetLine();
+#endif
                     throw new ConnectionException("WCF Service Exception", e);
                 }
             }
