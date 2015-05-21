@@ -567,11 +567,11 @@ namespace WCFService.Dijkstra {
             var inc = i++;
             running.Add(inc);
 
-            while (timer < 15000) {
-                Thread.Sleep(1000);
-                timer += 1000;
-                Debug.WriteLine(timer);
-            }
+            //while (timer < 15000) {
+            //    Thread.Sleep(1000);
+            //    timer += 1000;
+            //    Debug.WriteLine(timer);
+            //}
 
             
 
