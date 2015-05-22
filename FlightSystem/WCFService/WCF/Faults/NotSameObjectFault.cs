@@ -1,25 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 using Common.Exceptions;
 
 namespace WCFService.WCF.Faults {
-    [DataContract]
-    public class NotFoundFault {
 
-        public NotFoundFault() {
+    [DataContract]
+    public class NotSameObjectFault {
+
+        public NotSameObjectFault() {
             Result = false;
-            Description = "The entry was not found";
+            Description = "Not Same Object Fault!";
             Message = Description;
         }
 
-        public NotFoundFault(NotFoundException ex) {
+        public NotSameObjectFault(NotSameObjectException ex) {
             Result = false;
-            Message = ex.Message;
-            Description = Message;
+            Description = ex.Message;
+            Message = Description;
         }
 
         [DataMember]

@@ -50,6 +50,7 @@
     <Compile Include="Exceptions\DatabaseException.cs" />
     <Compile Include="Exceptions\DeleteException.cs" />
     <Compile Include="Exceptions\LockedException.cs" />
+    <Compile Include="Exceptions\NotSameObjectException.cs" />
     <Compile Include="Exceptions\NotEnouthException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="Exceptions\NullException.cs" />

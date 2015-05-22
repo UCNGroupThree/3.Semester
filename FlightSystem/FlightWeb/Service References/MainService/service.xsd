@@ -656,13 +656,17 @@
   </xs:element>
   <xs:element name="MakeSeatsOccupiedRandom">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="flights" nillable="true" type="q62:ArrayOfFlight" />
+        <xs:element minOccurs="0" name="seats" type="xs:int" />
+        <xs:element xmlns:q63="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="user" nillable="true" type="q63:User" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="MakeSeatsOccupiedRandomResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="MakeSeatsOccupiedRandomResult" nillable="true" type="q62:Ticket" />
+        <xs:element xmlns:q64="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="MakeSeatsOccupiedRandomResult" nillable="true" type="q64:Ticket" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

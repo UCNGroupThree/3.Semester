@@ -33,10 +33,10 @@ namespace FlightWeb {
 
         private void MakeSeatReservations() {
             try {
-                ses.Ticket = ses.ResClient.MakeSeatsOccupiedRandom();
+                ses.Ticket = ses.ResClient.MakeSeatsOccupiedRandom(ses.Flights, 2, user: null); //TODO user!
                 var ticket = ses.Ticket;
                 //TODO Sætte bruger på Ticket, USER!
-                return;
+                //return;
                 lblName.Text = ticket.User.Name;
                 lblAddress.Text = ticket.User.Address;
                 lblPostalCode.Text = ticket.User.Postal.PostCode.ToString();
