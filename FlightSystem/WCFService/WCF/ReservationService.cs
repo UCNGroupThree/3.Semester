@@ -93,10 +93,10 @@ namespace WCFService.WCF {
                 }
             }
             if (flights == null || flights.Count == 0) {
-                throw new FaultException<NullPointerFault>(new NullPointerFault("flights is not valid", "flights"));
+                throw new FaultException<NullPointerFault>(new NullPointerFault("flights is not valid", "flights"), new FaultReason("flights is not valid parameter"));
             }
             if (noOfSeats < 1) {
-                throw new FaultException<NullPointerFault>(new NullPointerFault("noOfSeats is not valid", "noOfSeats"));
+                throw new FaultException<NullPointerFault>(new NullPointerFault("noOfSeats is not valid", "noOfSeats"),new FaultReason("noOfSeats is not valid"));
             }
 
             OperationContext.Current.InstanceContext.Closed -= InstanceContext_Closed;

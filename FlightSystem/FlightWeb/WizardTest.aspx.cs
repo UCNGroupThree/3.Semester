@@ -135,7 +135,8 @@ namespace FlightWeb {
 
                 ClearSession();
                 using (var client = new ReservationServiceClient()) {
-                    var list = client.GetFlightsAsd(fromId, toId, seats, date, user: new User());
+                    //var list = client.GetFlightsAsd(fromId, toId, seats, date, user: new User());
+                    List<Flight> list = null;
                     if (list != null && list.Count > 0) {
                         flights = list;
                         var first = flights[0];
