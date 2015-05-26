@@ -118,6 +118,7 @@
       <xs:element minOccurs="0" name="Flight" nillable="true" type="tns:Flight" />
       <xs:element minOccurs="0" name="Flight_ID" type="xs:int" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
       <xs:element minOccurs="0" name="Seat" nillable="true" type="tns:Seat" />
       <xs:element minOccurs="0" name="Seat_ID" type="xs:int" />
       <xs:element minOccurs="0" name="State" type="tns:SeatState" />

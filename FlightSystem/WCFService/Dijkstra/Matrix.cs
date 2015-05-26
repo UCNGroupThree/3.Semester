@@ -214,7 +214,7 @@ namespace WCFService.Dijkstra {
                 // ####### Add / Edit Matrix ######
 
                 route = db.Routes.Include(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats))
-                    .Include(r => r.To).Include(r => r.From)
+                    .Include(r => r.To)
                     .Include(r => r.Flights.Select(f => f.SeatReservations)).First(r => r.ID == route.ID);
 
                 var airport = route.From;
@@ -288,7 +288,6 @@ namespace WCFService.Dijkstra {
                     .Include(f => f.Plane.Seats)
                     .Include(f => f.SeatReservations)
                     .Include(f => f.Route)
-                    .Include(f => f.Route.From)
                     .Include(f => f.Route.To)
                     .First(f => f.ID == flight.ID);
 
@@ -349,7 +348,6 @@ namespace WCFService.Dijkstra {
                         .Include(f => f.Plane.Seats)
                         .Include(f => f.SeatReservations)
                         .Include(f => f.Route.To)
-                        .Include(f => f.Route.From)
                         .First(f => f.ID == flight.ID);
 
                 var airport = _airports.Single(a => a.Routes.Any(r => r.ID == newFlight.Route.ID));
@@ -393,7 +391,7 @@ namespace WCFService.Dijkstra {
                     edge.Neighbors[edge.Neighbors.FindIndex(e => e.Data.ID == route.To.ID)] = vertex;
 
                     route = db.Routes.Include(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats))
-                        .Include(r => r.To).Include(r => r.From)
+                        .Include(r => r.To)
                         .Include(r => r.Flights.Select(f => f.SeatReservations)).First(r => r.ID == route.ID);
 
                     var ap = _airports.First(a => a.ID == route.FromID);
@@ -432,7 +430,7 @@ namespace WCFService.Dijkstra {
 
                     var newAirport = db.Airports.Include(
                         a => a.Routes.Select(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats)))
-                        .Include(a => a.Routes.Select(r => r.To)).Include(a => a.Routes.Select(r => r.From))
+                        .Include(a => a.Routes.Select(r => r.To))
                         .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
                         .First(a => a.ID == airport.ID);
 
@@ -496,7 +494,7 @@ namespace WCFService.Dijkstra {
 
             IQueryable<Airport> fromAirports = _db.Airports
                 .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats)))
-                .Include(a => a.Routes.Select(r => r.To)).Include(a => a.Routes.Select(r => r.From))
+                .Include(a => a.Routes.Select(r => r.To))
                 .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
                 .Where(a => a.Routes.Any(r => r.Flights.Any(f => f.SeatReservations.Count < f.Plane.Seats.Count)));
 
@@ -719,8 +717,15 @@ namespace WCFService.Dijkstra {
                 f.Plane.Flights = null;
                 f.Plane.Seats = null;
                 f.Route.Flights = null;
-                f.Route.To.Routes = null;
-                f.Route.From.Routes = null;
+
+                if (f.Route.To != null) {
+                    f.Route.To.Routes = null;
+                }
+                
+                if (f.Route.From != null) {
+                    f.Route.From.Routes = null;
+                }
+
                 f.SeatReservations = null;
 
                 retFlights.Add(f);
