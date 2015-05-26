@@ -183,6 +183,7 @@
     <Compile Include="WCF\AirportService.cs" />
     <Compile Include="WCF\Faults\DeleteFault.cs" />
     <Compile Include="WCF\Faults\LockedFault.cs" />
+    <Compile Include="WCF\Log.cs" />
     <Compile Include="WCF\ReservationService.cs" />
     <Compile Include="WCF\Dijkstra.cs" />
     <Compile Include="WCF\Faults\NotEnouthFault.cs" />
@@ -297,6 +298,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FancyFeatures.txt" />
+    <Content Include="WadExample.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

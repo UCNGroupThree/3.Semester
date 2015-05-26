@@ -137,16 +137,16 @@ namespace WCFService.WCF {
 
                 foreach (var flight in route.Flights) {
                     System.Diagnostics.Debug.WriteLine(flight.ID + "flight"); //TODO Remove after test
-                    var planeId = flight.Plane.ID;
+                    if (flight.Plane != null) {
+                        flight.PlaneID = flight.Plane.ID;
+                    }
                     flight.Plane = null;
                     
                     if (flight.ID > 0) {
                         System.Diagnostics.Debug.WriteLine(flight.ID + "Set to modified"); //TODO Remove after test
-                        flight.PlaneID = planeId;
                         db.Entry(flight).State = EntityState.Modified;
                     } else {
                         System.Diagnostics.Debug.WriteLine(flight.ID + "Set to added"); //TODO Remove after test
-                        flight.PlaneID = planeId;
                         db.Flights.Add(flight);
                     }
                 }

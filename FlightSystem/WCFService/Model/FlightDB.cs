@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace WCFService.Model {
     public class FlightDB : DbContext {
 
-        private static readonly string ConnStr = ConfigurationManager.ConnectionStrings["dbConn"].ToString();
+        //private static readonly string ConnStr = ConfigurationManager.ConnectionStrings["dbConn"].ToString();
 
         public FlightDB()
             : base("Server=kraka.ucn.dk;Database=dmaa0214_3Sem_3;User Id=dmaa0214_3Sem_3;Password=IsAllowed;") {

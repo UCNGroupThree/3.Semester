@@ -4,7 +4,9 @@ using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Linq;
 using System.ServiceModel;
+using Common.Exceptions;
 using WCFService.Model;
+using WCFService.WCF.Faults;
 using WCFService.WCF.Interface;
 
 namespace WCFService.WCF
@@ -18,6 +20,8 @@ namespace WCFService.WCF
 
             if (plane == null) {
                 throw new FaultException("Nullpointer Exception"); //TODO vores egen Nullpointer Exception?
+            }else if (plane.Seats != null && !(plane.Seats.Count > 0)) {
+                throw new FaultException<NotEnouthFault>(new NotEnouthFault(new NotEnouthException("Invalid Seats")), new FaultReason(new FaultReasonText("Invalid Seats")));
             }
             
             try {

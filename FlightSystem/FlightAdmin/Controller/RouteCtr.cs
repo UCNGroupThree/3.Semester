@@ -114,7 +114,9 @@ namespace FlightAdmin.Controller {
 
                         foreach (var flight in flights) {
                             flight.RouteID = route.ID;
-                            flight.PlaneID = flight.Plane.ID;
+                            if (flight.Plane != null) {
+                                flight.PlaneID = flight.Plane.ID;
+                            }
                         }
 
                         route.Price = price;
@@ -127,6 +129,7 @@ namespace FlightAdmin.Controller {
                     } catch (FaultException<DeleteFault> deleteFault) {
                         throw new DeleteException(deleteFault.Detail.Message);
                     } catch (Exception e) {
+                        e.DebugGetLine();
                         throw new ConnectionException("WCF Service Exception", e);
                     }
                 }
