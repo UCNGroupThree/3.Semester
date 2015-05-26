@@ -178,7 +178,7 @@ namespace FlightAdmin.GUI {
                 MessageBox.Show(String.Format("Flight: {0} \n has been deleted!", flight.ID));
             } catch (DatabaseException e) {
                 e.DebugGetLine();
-                MessageBox.Show("The entity has been modified or deleted,\n search again.");
+                MessageBox.Show(e.Message);
             }catch (Exception e) {
                 e.DebugGetLine();
                 MessageBox.Show(e.Message);

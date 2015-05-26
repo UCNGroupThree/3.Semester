@@ -240,7 +240,7 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
                 ex.DebugGetLine();
 #endif
                 DialogResult = DialogResult.Retry;
-                MessageBox.Show("One or more of the entities was changed \n Please search again.");
+                MessageBox.Show(ex.Message);
             
             } catch (DBConcurrencyException exception) {
 #if DEBUG
