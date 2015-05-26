@@ -205,6 +205,34 @@
     <Content Include="Scripts\locales\bootstrap-datepicker.vi.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.min.js" />
     <Content Include="Default.aspx" />
+    <None Include="Service References\MainService\AzureService.disco" />
+    <None Include="Service References\MainService\configuration91.svcinfo" />
+    <None Include="Service References\MainService\configuration.svcinfo" />
+    <Content Include="Service References\MainService\FlightWeb.MainService.Administrator.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\MainService\FlightWeb.MainService.Airport.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\MainService\FlightWeb.MainService.Flight.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\MainService\FlightWeb.MainService.Plane.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\MainService\FlightWeb.MainService.Route.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\MainService\FlightWeb.MainService.Ticket.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\MainService\FlightWeb.MainService.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\MainService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="WizardTest.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -245,6 +273,25 @@
     <Content Include="Bundle.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Site.Mobile.Master" />
+    <None Include="Service References\MainService\AzureService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainService\AzureService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainService\AzureService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainService\AzureService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainService\AzureService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainService\AzureService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainService\MainService.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -328,6 +375,11 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Service References\MainService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -365,6 +417,9 @@
       <Project>{AAAD32A8-0483-4CD1-AC4B-94456BC4EEC2}</Project>
       <Name>Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\MainService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
