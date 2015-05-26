@@ -141,8 +141,9 @@ namespace FlightWeb {
             
             try {
                 ses.Flights = null;
-                ses.Ticket = null;
-                User user;
+                ses.NoOfSeats = 0;
+                //TODO sørge for at flytte dette til reservation.aspx
+                /*User user;
                 try {
                     using (var userClient = new UserServiceClient()) {
                         var email = HttpContext.Current.User.Identity.Name;
@@ -156,16 +157,15 @@ namespace FlightWeb {
                         throw;
                     }
                     throw new NullException("An Error happen in getting your user details.", ex);
-                }
-
-                var client = ses.GetNewResClient();
-                    
-                    var list = client.GetFlightsAsd(fromId, toId, seats, date, user);
+                }*/
+                using (var client = new DijkstraClient()) {
+                    var list = client.DijkstraStuff(fromId, toId, seats, date);
                     if (list != null && list.Count > 0) {
                         ses.Flights = list;
-                        var first = list[0];
+                        ses.NoOfSeats = seats;
+                        var first = list.First(f => f.ID == fromId);
+                        var last = list.First(f => f.ID == toId);
                         var stops = list.Count - 1;
-                        var last = list[stops];
 
                         var price = list.Sum(x => x.Route.Price);
                         var travelTime = last.DepartureTime - first.ArrivalTime;
@@ -187,15 +187,10 @@ namespace FlightWeb {
                     } else {
                         throw new SubmitException("We are sorry, but we coundn't find any available flights :(");
                     }
-                
+                }
             } catch (Exception ex) {
-                //TODO bedre håndtering af fejl
-                if (ex is NullException) {
-                    DisplayError("Error", ex.Message, false);
-                } else if (ex is SubmitException) {
+                if (ex is SubmitException) {
                     DisplayError("No Flight Found", ex.Message, false);
-                } else if (ex is FaultException<NullPointerFault>) {
-                    DisplayError("Error", "You have to be sign in, before you can search!", false);
                 } else if (ex is FaultException<LockedFault>) {
                     DisplayError("Error", "Please Try again.. The system is busy!", false);
                 } else {
@@ -211,12 +206,7 @@ namespace FlightWeb {
                 Debug.WriteLine(ex.Source);
             }
             
-            
             UpdatePanelAnswer.Update();
-        }
-        
-        protected void btnBook_OnClick(object sender, EventArgs e) {
-            
         }
     }
 }

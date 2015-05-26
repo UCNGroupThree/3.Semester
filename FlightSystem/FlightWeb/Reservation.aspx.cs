@@ -6,9 +6,11 @@ using System.Linq;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Common;
+using Common.Exceptions;
 using FlightWeb.Helper;
 using FlightWeb.MainService;
 
@@ -33,10 +35,27 @@ namespace FlightWeb {
 
         private void MakeSeatReservations() {
             try {
-                ses.Ticket = ses.ResClient.MakeSeatsOccupiedRandom();
+                User user;
+                try {
+                    using (var userClient = new UserServiceClient()) {
+                        var email = HttpContext.Current.User.Identity.Name;
+                        if (string.IsNullOrEmpty(email)) {
+                            throw new NullException("Please login before searching :)");
+                        }
+                        user = userClient.GetUsersByEmail(email, true).First();
+                        if (user == null) {
+                            throw new NullException("Your user details cound be found, try to sign in again");
+                        }
+                    }
+                } catch (Exception ex) {
+                    if (ex is NullException) {
+                        throw;
+                    }
+                    throw new NullException("An Error happen in getting your user details", ex);
+                }
+                var resClient = ses.GetNewResClient();
+                ses.Ticket = resClient.MakeSeatsOccupiedRandom(ses.Flights, ses.NoOfSeats, user);
                 var ticket = ses.Ticket;
-                //TODO Sætte bruger på Ticket, USER!
-                return;
                 lblName.Text = ticket.User.Name;
                 lblAddress.Text = ticket.User.Address;
                 lblPostalCode.Text = ticket.User.Postal.PostCode.ToString();
@@ -44,6 +63,9 @@ namespace FlightWeb {
                 lblTotalPrice.Text = ticket.TotalPrice.ToString("C");
                 lblTotalTravelTime.Text = ticket.TotalTravelTime.ToFineString();
 
+            } catch (NullException ex) {
+                Session["Dialog"] = new DialogHelper("Error", ex.Message);
+                Response.Redirect("Default.aspx", true);
             } catch (FaultException<NotEnouthFault> ex) {
                 Session["Dialog"] = new DialogHelper("Error", "There are not enouth free seats to make the booking. :(");
                 Response.Redirect("Default.aspx", true);
@@ -51,7 +73,6 @@ namespace FlightWeb {
                 Session["Dialog"] = new DialogHelper("Error", "An Database error has happen. Try again.");
                 Response.Redirect("Default.aspx", true);
             } catch (Exception ex) {
-                ex.DebugGetLine();
                 Session["Dialog"] = new DialogHelper("Error", "An error have happen, maybe because of a timeout. Try again");
                 Response.Redirect("Default.aspx", true);
             }
@@ -60,8 +81,9 @@ namespace FlightWeb {
         private bool IsAllowed() {
             bool allowed;
             try {
-                allowed = ses.ResClient != null && ses.Flights != null && ses.Flights.Count > 0;
+                allowed = ses.Flights.Count > 0 && ses.NoOfSeats > 0;
             } catch (Exception) {
+                //If Flight or ses is null
                 allowed = false;
             }
             return allowed;
@@ -69,25 +91,26 @@ namespace FlightWeb {
 
         //TODO Remove this before deploy!
         private void Demo() {
-            var today = DateTime.Now;
-            User user = null;
-            using (var userClient = new UserServiceClient()) {
-                user = userClient.GetUser(22);
-                if (user == null || string.IsNullOrEmpty(user.Name)) {
-                    throw new Exception("Log ind!");
+            if (!Page.IsPostBack) {
+                var today = DateTime.Now;
+                today = new DateTime(today.Year, today.Month, today.Day, 0, 1, 0);
+                User user = null;
+                using (var userClient = new UserServiceClient()) {
+                    user = userClient.GetUser(22);
+                    if (user == null || string.IsNullOrEmpty(user.Name)) {
+                        throw new Exception("DEMO: USER WITH ID 22 NOT FOUND!");
+                    }
+                }
+                using (var client = new DijkstraClient()) {
+                    ses.NoOfSeats = 1;
+                    ses.Flights = client.DijkstraStuff(1, 3, ses.NoOfSeats, today);
                 }
             }
-            var cl = ses.GetNewResClient();
-            ses.Flights = cl.GetFlightsAsd(1, 3, 2, new DateTime(today.Year, today.Month, today.Day, 0, 1, 0), user);
-            //ses.Ticket = cl.MakeSeatsOccupiedRandom();
-            //ses.CloseResClient();
-            //ResSession.ResServiceClient.Complete();
-
         }
-        
+
         protected void gvFlights_OnRowDataBound(object sender, GridViewRowEventArgs e) {
             if (e.Row.RowType == DataControlRowType.DataRow) {
-                int flightID = ((Flight) e.Row.DataItem).ID;
+                int flightID = ((Flight)e.Row.DataItem).ID;
                 GridView gvSeatReservations = e.Row.FindControl("gvSeatReservations") as GridView;
                 //string flightID = gvFlights.DataKeys[e.Row.RowIndex].Value.ToString();
                 Debug.WriteLine("Row: FlightID: " + flightID + ", #### " + gvFlights.DataKeys);
@@ -109,6 +132,7 @@ namespace FlightWeb {
                 ses.ResClient.Complete();
                 ses.CloseResClient();
                 ses.Ticket = null;
+                ses.NoOfSeats = 0;
                 ses.Flights = null;
                 header = "Ticket is Saved";
                 text = "Your Ticket has been saved! Have a nice travel :)";

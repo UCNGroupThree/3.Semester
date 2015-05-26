@@ -8,19 +8,14 @@ using WCFService.WCF.Faults;
 namespace WCFService.WCF.Interface {
     [ServiceContract (SessionMode = SessionMode.Required)]
     public interface IReservationService {
-        //TODO Sætte IsInitiating og IsTermination på de manglende Operationer
-        [OperationContract(IsInitiating = true, IsTerminating = false)]
-        [FaultContract(typeof(LockedFault))]
-        [FaultContract(typeof(NullPointerFault))]
-        [FaultContract(typeof(DatabaseFault))]
-        List<Flight> GetFlightsAsd(int fromId, int toId, int seats, DateTime dateTime, User user);
 
-        [OperationContract(IsInitiating = false, IsTerminating = false)]
+        [OperationContract(IsInitiating = true, IsTerminating = false)]
         [FaultContract(typeof(NullPointerFault))]
-        [FaultContract(typeof(ArgumentFault))]
+        [FaultContract(typeof(NotSameObjectFault))]
+        [FaultContract(typeof(NotFoundFault))]
         [FaultContract(typeof(NotEnouthFault))]
         [FaultContract(typeof(DatabaseFault))]
-        Ticket MakeSeatsOccupiedRandom();
+        Ticket MakeSeatsOccupiedRandom(List<Flight> flights, int noOfSeats, User user);
 
         [OperationContract (IsInitiating = false, IsTerminating = true)]
         //TODO Måske fejl, hvis det ikke lykkes.
@@ -31,6 +26,5 @@ namespace WCFService.WCF.Interface {
         [FaultContract(typeof(ArgumentFault))]
         [FaultContract(typeof(DatabaseFault))]
         void Complete();
-
     }
 }

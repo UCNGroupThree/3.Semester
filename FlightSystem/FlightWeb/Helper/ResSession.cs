@@ -12,14 +12,15 @@ namespace FlightWeb.Helper {
         public List<Flight> Flights { get; set; }
         public ReservationServiceClient ResClient { get; set; }
         public Ticket Ticket { get; set; }
+        public int NoOfSeats { get; set; }
 
         private ResSession() {
-
+            
         }
 
         // Gets the current session.
         public static ResSession Current(HttpSessionState ses) {
-            ResSession session = (ResSession)ses["ResSession"];
+            ResSession session = ses["ResSession"] as ResSession;
             if (session == null) {
                 session = new ResSession();
                 ses["ResSession"] = session;
@@ -48,7 +49,9 @@ namespace FlightWeb.Helper {
                     //Timeout
                 }
                 ResClient = null;
+                Ticket = null;
             }
         }
+
     }
 }

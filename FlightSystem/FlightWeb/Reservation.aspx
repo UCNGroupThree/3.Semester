@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" Trace="false" AutoEventWireup="true" CodeBehind="Reservation.aspx.cs" Inherits="FlightWeb.Reservation" %>
 
+<%@ PreviousPageType VirtualPath="~/Default.aspx" %>
+
 <asp:Content ContentPlaceHolderID="StyleSection" runat="server">
 </asp:Content>
 

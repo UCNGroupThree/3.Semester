@@ -347,7 +347,7 @@ namespace WCFService.Dijkstra {
                     db.Flights.Include(f => f.Plane)
                         .Include(f => f.Plane.Seats)
                         .Include(f => f.SeatReservations)
-                        .Include(f => f.Route)
+                        .Include(f => f.Route.To)
                         .Include(f => f.Route.From)
                         .First(f => f.ID == flight.ID);
 

@@ -184,6 +184,7 @@
     <Compile Include="WCF\Faults\DeleteFault.cs" />
     <Compile Include="WCF\Faults\LockedFault.cs" />
     <Compile Include="WCF\Log.cs" />
+    <Compile Include="WCF\Faults\NotSameObjectFault.cs" />
     <Compile Include="WCF\ReservationService.cs" />
     <Compile Include="WCF\Dijkstra.cs" />
     <Compile Include="WCF\Faults\NotEnouthFault.cs" />
