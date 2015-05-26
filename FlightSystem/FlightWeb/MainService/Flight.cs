@@ -2,38 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Common;
 
 namespace FlightWeb.MainService {
     public partial class Flight {
-        public Airport From {
-            get {
-                if (Route != null) {
-                    return Route.From;
-                }
-                return null;
-            }
-        }
-
-        public Airport To {
-            get {
-                if (Route != null) {
-                    return Route.To;
-                }
-                return null;
-            }
-        }
 
         public TimeSpan TimeSpent {
             get { return ArrivalTime - DepartureTime; }
         }
-
-        public decimal Price {
+        public decimal TotalReservationPrice {
             get {
-                if (Route != null) {
-                    return Route.Price;
+                if (SeatReservations != null) {
+                    return SeatReservations.Sum(sr => sr.Price);
                 }
                 return -1;
             }
         }
+        public string NiceTimeSpent {
+            get {
+                try {
+                    return TimeSpent.ToFineString();
+                } catch (Exception) {
+                    return null;
+                }
+            }
+        }
+
     }
 }

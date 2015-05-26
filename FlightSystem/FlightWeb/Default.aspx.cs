@@ -170,15 +170,15 @@ namespace FlightWeb {
                     if (list != null && list.Count > 0) {
                         ses.Flights = list;
                         ses.NoOfSeats = seats;
-                        var first = list.First(f => f.From.ID == fromId);
-                        var last = list.First(f => f.To.ID == toId);
+                        var first = list.First(f => f.Route.From.ID == fromId);
+                        var last = list.First(f => f.Route.To.ID == toId);
                         var stops = list.Count - 1;
 
                         var price = list.Sum(x => x.Route.Price);
                         var travelTime = last.ArrivalTime - first.DepartureTime;
 
-                        lblModalFrom.Text = first.From.ToString();
-                        lblModalTo.Text = last.To.ToString();
+                        lblModalFrom.Text = first.Route.From.ToString();
+                        lblModalTo.Text = last.Route.To.ToString();
                         if (stops > 0) {
                             lblModalStops.Text = stops.ToString();
                         } else {

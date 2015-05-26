@@ -31,6 +31,7 @@
                             <asp:GridView ID="gvSeatReservations" runat="server" AutoGenerateColumns="false" CssClass="ChildGrid">
                                 <Columns>
                                     <asp:BoundField ItemStyle-Width="150px" DataField="Seat_ID" HeaderText="Seat ID" />
+                                    <asp:BoundField ItemStyle-Width="150px" DataField="Price" HeaderText="Price" DataFormatString="{0:C}" />
                                 </Columns>
                             </asp:GridView>
                         </asp:Panel>
@@ -41,8 +42,8 @@
                 <asp:BoundField DataField="Plane" HeaderText="Plane" />
                 <asp:BoundField DataField="DepartureTime" HeaderText="DepartureTime" DataFormatString="{0:g}" />
                 <asp:BoundField DataField="ArrivalTime" HeaderText="ArrivalTime" DataFormatString="{0:g}" />
-                <asp:BoundField DataField="TimeSpent" HeaderText="Time" DataFormatString="{0:mm\:ss}" />
-                <asp:BoundField DataField="Price" HeaderText="Price" DataFormatString="{0:C}" />
+                <asp:BoundField DataField="NiceTimeSpent" HeaderText="Time" />
+                <asp:BoundField DataField="TotalReservationPrice" HeaderText="Price" DataFormatString="{0:C}" />
             </Columns>
         </asp:GridView>
         <div class="container-fluid">
