@@ -20,16 +20,20 @@ namespace FlightWeb {
 
         protected void Page_Load(object sender, EventArgs e) {
             ses = ResSession.Current(Session);
-            Demo();
+            //Demo();
             if (!IsAllowed()) {
                 Session["Dialog"] = new DialogHelper("Error", "You need to find a flight first, or maybe your session has timeout! :(");
                 Response.Redirect("Default.aspx", true);
             }
-
             if (!IsPostBack) {
+                if (PreviousPage == null) {
+                    Session["Dialog"] = new DialogHelper("Error", "You first need to find a flight on this page :(");
+                    Response.Redirect("Default.aspx", true);
+                }
                 MakeSeatReservations();
                 gvFlights.DataSource = ses.Flights;
                 gvFlights.DataBind();
+
             }
         }
 
@@ -40,7 +44,7 @@ namespace FlightWeb {
                     using (var userClient = new UserServiceClient()) {
                         var email = HttpContext.Current.User.Identity.Name;
                         if (string.IsNullOrEmpty(email)) {
-                            throw new NullException("Please login before searching :)");
+                            throw new NullException("Please login before booking :)");
                         }
                         user = userClient.GetUsersByEmail(email, true).First();
                         if (user == null) {
@@ -73,6 +77,7 @@ namespace FlightWeb {
                 Session["Dialog"] = new DialogHelper("Error", "An Database error has happen. Try again.");
                 Response.Redirect("Default.aspx", true);
             } catch (Exception ex) {
+                ex.DebugGetLine();
                 Session["Dialog"] = new DialogHelper("Error", "An error have happen, maybe because of a timeout. Try again");
                 Response.Redirect("Default.aspx", true);
             }
@@ -122,6 +127,19 @@ namespace FlightWeb {
         }
 
         protected void btnCancel_OnClick(object sender, EventArgs e) {
+            var pp = PreviousPage;
+            var vs = ViewState["SearchPage"];
+            Debug.WriteLine("PreviousPage: " + PreviousPage);
+
+            Debug.WriteLine("PreviousPage: " + IsCrossPagePostBack);
+            try {
+                ses.CloseResClient();
+                ses.Ticket = null;
+                ses.NoOfSeats = 0;
+                ses.Flights = null;
+            } catch (Exception) {
+
+            }
             Response.Redirect("Default.aspx", true);
         }
 

@@ -22,15 +22,6 @@ namespace FlightWeb {
         protected global::System.Web.UI.UpdatePanel UpdatePanelFrom;
         
         /// <summary>
-        /// lblCountryFrom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCountryFrom;
-        
-        /// <summary>
         /// ddlCountryFrom control.
         /// </summary>
         /// <remarks>
@@ -38,15 +29,6 @@ namespace FlightWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCountryFrom;
-        
-        /// <summary>
-        /// lblFrom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFrom;
         
         /// <summary>
         /// ddlFrom control.
@@ -76,15 +58,6 @@ namespace FlightWeb {
         protected global::System.Web.UI.UpdatePanel UpdatePanelTo;
         
         /// <summary>
-        /// lblCountryTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCountryTo;
-        
-        /// <summary>
         /// ddlCountryTo control.
         /// </summary>
         /// <remarks>
@@ -92,15 +65,6 @@ namespace FlightWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCountryTo;
-        
-        /// <summary>
-        /// lblTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTo;
         
         /// <summary>
         /// ddlTo control.
@@ -121,15 +85,6 @@ namespace FlightWeb {
         protected global::System.Web.UI.WebControls.CustomValidator ValidatorTo;
         
         /// <summary>
-        /// lblDepart control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDepart;
-        
-        /// <summary>
         /// txtDepart control.
         /// </summary>
         /// <remarks>
@@ -146,15 +101,6 @@ namespace FlightWeb {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CustomValidator ValidatorDepart;
-        
-        /// <summary>
-        /// lblPersons control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPersons;
         
         /// <summary>
         /// ddlPersons control.

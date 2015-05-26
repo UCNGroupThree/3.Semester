@@ -25,6 +25,10 @@ namespace WCFService.Model {
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Route>().Property(r => r.Price).HasPrecision(10, 2);
+            modelBuilder.Entity<SeatReservation>().Property(sr => sr.Price).HasPrecision(10, 2);
+
             //Fix ForeignKey Between Route And Airport;
             modelBuilder.Entity<Route>().HasRequired(r => r.From).WithMany(a => a.Routes);//.WillCascadeOnDelete(false);
 

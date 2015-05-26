@@ -29,14 +29,14 @@
         <asp:UpdatePanel ID="UpdatePanelFrom" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <div class="form-group">
-                    <asp:Label CssClass="control-label col-sm-2" ID="lblCountryFrom" runat="server">From Country:</asp:Label>
+                    <span class="control-label col-sm-2">From Country:</span>
                     <div class="col-sm-10 form">
                         <asp:DropDownList ID="ddlCountryFrom" CssClass="form-control" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlCountryFrom_SelectedIndexChanged"></asp:DropDownList>
                         <asp:RequiredFieldValidator runat="server" ValidationGroup="FindFligtValidator" Display="Dynamic" SetFocusOnError="True" InitialValue="-1" ControlToValidate="ddlCountryFrom" ErrorMessage="Please Select a country"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="form-group">
-                    <asp:Label CssClass="control-label col-sm-2" ID="lblFrom" runat="server">From:</asp:Label>
+                    <span class="control-label col-sm-2">From:</span>
                     <div class="col-sm-10 form">
                         <asp:DropDownList ID="ddlFrom" Enabled="False" CssClass="form-control" runat="server" DataTextField="City" DataValueField="ID">
                             <asp:ListItem Value="-1" Text="--- Select Country first ---"></asp:ListItem>
@@ -50,14 +50,14 @@
         <asp:UpdatePanel ID="UpdatePanelTo" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <div class="form-group">
-                    <asp:Label CssClass="control-label col-sm-2" ID="lblCountryTo" runat="server">To Country:</asp:Label>
+                    <span class="control-label col-sm-2">To Country:</span>
                     <div class="col-sm-10 form">
                         <asp:DropDownList ID="ddlCountryTo" CssClass="form-control" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlCountryTo_SelectedIndexChanged"></asp:DropDownList>
                         <asp:RequiredFieldValidator runat="server" ValidationGroup="FindFligtValidator" Display="Dynamic" SetFocusOnError="True" InitialValue="-1" ControlToValidate="ddlCountryTo" ErrorMessage="Please Select a country"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="form-group">
-                    <asp:Label CssClass="control-label col-sm-2" ID="lblTo" runat="server">To:</asp:Label>
+                    <span class="control-label col-sm-2">To:</span>
                     <div class="col-sm-10 form">
                         <asp:DropDownList ID="ddlTo" Enabled="False" CssClass="form-control" runat="server">
                             <asp:ListItem Value="-1" Text="--- Select Country first ---"></asp:ListItem>
@@ -68,14 +68,14 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <div class="form-group">
-            <asp:Label CssClass="control-label col-sm-2" ID="lblDepart" runat="server">Departure time:</asp:Label>
+            <span class="control-label col-sm-2">Departure time:</span>
             <div class="col-sm-10 form">
                 <asp:TextBox CssClass="form-control" ID="txtDepart" runat="server"></asp:TextBox>
                 <asp:CustomValidator ID="ValidatorDepart" runat="server" ValidationGroup="FindFligtValidator" Display="Dynamic" SetFocusOnError="True" OnServerValidate="ValidatorDepart_OnServerValidate" ControlToValidate="txtDepart" ErrorMessage="Please make a valid dateformat, like: dd-MM-yyyy HH:mm"></asp:CustomValidator>
             </div>
         </div>
         <div class="form-group">
-            <asp:Label CssClass="control-label col-sm-2" ID="lblPersons" runat="server">Persons:</asp:Label>
+            <span class="control-label col-sm-2">Persons:</span>
             <div class="col-sm-10 form">
                 <asp:DropDownList ID="ddlPersons" CssClass="form-control" runat="server">
                     <asp:ListItem Selected="True" Value="1" />
@@ -175,7 +175,7 @@
                         </div>
                         <asp:Panel ID="modalFooter" runat="server" CssClass="modal-footer">
                             <asp:Button ID="btnClose" runat="server" Text="Close" data-dismiss="modal" aria-hidden="true" CssClass="btn btn-default"/>
-                            <asp:Button ID="btnBook" runat="server" PostBackUrl="Reservation.aspx" Text="Book Seats" CssClass="btn btn-primary"/>
+                            <asp:Button ID="btnBook" runat="server" PostBackUrl="Reservation.aspx" OnClick="btnBook_OnClick" Text="Book Seats" CssClass="btn btn-primary"/>
                         </asp:Panel>
                     </div>
 

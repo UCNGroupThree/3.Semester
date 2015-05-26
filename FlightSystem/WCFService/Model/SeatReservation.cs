@@ -51,5 +51,8 @@ namespace WCFService.Model {
         [DataMember]
         [ForeignKey("Ticket_ID")]
         public Ticket Ticket { get; set; }
+
+        [DataMember]
+        public decimal Price { get; set; }
     }
 }

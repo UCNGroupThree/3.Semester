@@ -31,7 +31,6 @@ namespace FlightWeb {
                     DisplayError(diaHelper.Header, diaHelper.Text, true);
                     Session.Remove("Dialog");
                 }
-                Demo();
             }
         }
 
@@ -57,20 +56,28 @@ namespace FlightWeb {
         }
 
         private void FirstLoad() {
-            using (AirportServiceClient client = new AirportServiceClient()) {
-                var list = client.GetCountries();
-                var countries = list.Select(ListItem.FromString).ToList();
-                countries.Insert(0, new ListItem("--- Please select ---", "-1"));
+            try {
+                using (AirportServiceClient client = new AirportServiceClient()) {
+                    var list = client.GetCountries();
+                    var countries = list.Select(ListItem.FromString).ToList();
+                    countries.Insert(0, new ListItem("--- Please select ---", "-1"));
 
-                ddlCountryFrom.Items.AddRange(countries.ToArray());
-                ddlCountryTo.Items.AddRange(countries.ToArray());
+                    ddlCountryFrom.Items.AddRange(countries.ToArray());
+                    ddlCountryTo.Items.AddRange(countries.ToArray());
+                }
+                /*
+                for (int i = 1; i <= 10; i++) {
+                    ddlPersons.Items.Add(new ListItem(i.ToString()));
+                }*/
+                var today = DateTime.Now;
+                txtDepart.Text = new DateTime(today.Year, today.Month, today.Day, 0, 1, 0).ToString("g");
+
+
+                Demo(); //TODO remove before deploy
+            } catch (Exception) {
+                Session["Dialog"] = new DialogHelper("Error", "Service is Down!");
             }
-            /*
-            for (int i = 1; i <= 10; i++) {
-                ddlPersons.Items.Add(new ListItem(i.ToString()));
-            }*/
-            var today = DateTime.Now;
-            txtDepart.Text = new DateTime(today.Year, today.Month, today.Day, 0, 1, 0).ToString("g");
+
         }
 
 
@@ -163,15 +170,15 @@ namespace FlightWeb {
                     if (list != null && list.Count > 0) {
                         ses.Flights = list;
                         ses.NoOfSeats = seats;
-                        var first = list.First(f => f.ID == fromId);
-                        var last = list.First(f => f.ID == toId);
+                        var first = list.First(f => f.From.ID == fromId);
+                        var last = list.First(f => f.To.ID == toId);
                         var stops = list.Count - 1;
 
                         var price = list.Sum(x => x.Route.Price);
-                        var travelTime = last.DepartureTime - first.ArrivalTime;
+                        var travelTime = last.ArrivalTime - first.DepartureTime;
 
-                        lblModalFrom.Text = first.Route.From.ToString();
-                        lblModalTo.Text = last.Route.To.ToString();
+                        lblModalFrom.Text = first.From.ToString();
+                        lblModalTo.Text = last.To.ToString();
                         if (stops > 0) {
                             lblModalStops.Text = stops.ToString();
                         } else {
@@ -207,6 +214,10 @@ namespace FlightWeb {
             }
             
             UpdatePanelAnswer.Update();
+        }
+
+        protected void btnBook_OnClick(object sender, EventArgs e) {
+            
         }
     }
 }
