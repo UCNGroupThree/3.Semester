@@ -76,11 +76,11 @@ namespace WCFService.Model {
                 SaveChanges();
             } catch (DbEntityValidationException e) {
                 foreach (var eve in e.EntityValidationErrors) {
-                    Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    Trace.WriteLine(String.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State));
                     foreach (var ve in eve.ValidationErrors) {
-                        Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
+                        Trace.WriteLine(String.Format("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage));
                     }
                 }
                 throw;
@@ -90,17 +90,17 @@ namespace WCFService.Model {
         public void DebugDetectChanges() {
             ChangeTracker.DetectChanges();
             var list = ChangeTracker.Entries().ToList();
-            Debug.WriteLine("Start of DetectChanges");
+            Trace.WriteLine("Start of DetectChanges");
             foreach (var v in list) {
-                Debug.WriteLine("c: #" + list.IndexOf(v) + " - " + v.Entity + " state: " + v.State);
+                Trace.WriteLine("c: #" + list.IndexOf(v) + " - " + v.Entity + " state: " + v.State);
             }
-            Debug.WriteLine("End of DetectChanges");
+            Trace.WriteLine("End of DetectChanges");
 
         }
 
 
         public void DebugLog() {
-            Database.Log = m => Debug.WriteLine(m);
+            Database.Log = m => Trace.WriteLine(m);
         }
     }
 }

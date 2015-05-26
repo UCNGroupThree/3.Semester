@@ -8,6 +8,7 @@ using System.Linq;
 using System.Security.Permissions;
 using System.Security.Principal;
 using System.ServiceModel;
+using Common;
 using Common.Exceptions;
 using WCFService.Helper;
 using WCFService.Model;
@@ -23,7 +24,7 @@ namespace WCFService.WCF {
 
         //[PrincipalPermission(SecurityAction.Demand, Role = "None")]
         public Administrator AddAdministrator(Administrator administrator) {
-            //db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+            //db.Database.Log = s => System.Diagnostics.Trace.WriteLine(s);
             //.Where(f => f.ID == 228)
             //!db.SeatReservations.Any(sr => sr.Seat.ID == s.ID)
             //IQueryable<Flight> flights = db.Flights.Where(f => f.SeatReservations.Count < f.Plane.Seats.Count);//Include(f => f.Plane.Seats.Select(s => s.Plane.Seats));//.Where(f => !db.SeatReservations.Any(sr => sr.Seat.ID == f.ID));
@@ -47,16 +48,16 @@ namespace WCFService.WCF {
             //var j = db.Seats.Where(f => f.Plane.ID == 27 && !db.SeatReservations.Any(sr => sr.Seat.ID == f.ID));
             //var i = db.Airports.OrderBy(n => n.ID).Include(n => n.Routes.Select(a => a.Flights.Select(f => f.Plane).Select(s => s.Seats)));
             //var result = query.ToList();
-            //Debug.WriteLine("hej {0}", result.ToString());
+            //Trace.WriteLine("hej {0}", result.ToString());
             //return null;
             //var i = System.Threading.Thread.CurrentPrincipal.Identity;
-            //Debug.WriteLine("HAHAHA: {0}", i);
+            //Trace.WriteLine("HAHAHA: {0}", i);
             /*var pass = administrator.PasswordPlain;
             var passHahh = PasswordHelper.CreateHash(pass);
             var result = PasswordHelper.ValidatePassword(pass, passHahh);
-            Debug.WriteLine("{0} - {1} - {2}", pass, passHahh, result);
+            Trace.WriteLine("{0} - {1} - {2}", pass, passHahh, result);
             return null;*/
-            //Debug.WriteLine("hej: {0}", OperationContext.Current.ServiceSecurityContext.WindowsIdentity.Groups.Select(x => x.Translate(typeof(NTAccount)).Value).ToArray());
+            //Trace.WriteLine("hej: {0}", OperationContext.Current.ServiceSecurityContext.WindowsIdentity.Groups.Select(x => x.Translate(typeof(NTAccount)).Value).ToArray());
             if (administrator == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }            
@@ -67,19 +68,23 @@ namespace WCFService.WCF {
                 administrator.PasswordHash = PasswordHelper.CreateHash(administrator.PasswordPlain);
                 administrator.PasswordPlain = null;
             } catch (Exception ex) {
+#if DEBUG
+                ex.DebugGetLine();
+#endif
                 if (ex is NullReferenceException || ex is PasswordFormatException) {
                     throw new FaultException<PasswordFormatFault>(new PasswordFormatFault());
                 }
             }
             try {
                 db.Administrators.Add(administrator);
-                //Debug.WriteLine("Add Administrator Service! ID DON'T EMPTY: " + administrator.ID + "<--");
-                //Debug.WriteLine("Add Administrator Service! Concurrency: DON'T EMPTY:" + administrator.Concurrency + "<--");
+                //Trace.WriteLine("Add Administrator Service! ID DON'T EMPTY: " + administrator.ID + "<--");
+                //Trace.WriteLine("Add Administrator Service! Concurrency: DON'T EMPTY:" + administrator.Concurrency + "<--");
                 db.SaveChanges();
 
             } catch (Exception ex) {
-                //Debug.WriteLine(ex);
-                Debug.WriteLine(ex.Message);
+#if DEBUG
+                ex.DebugGetLine();
+#endif
                 throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault("administrator"));
             }
 
@@ -98,8 +103,8 @@ namespace WCFService.WCF {
                 throw new FaultException<NotFoundFault>(new NotFoundFault());
             }*/
             
-            //Debug.WriteLine("admin: {0}, {1}, {2}", administrator.ID, administrator.Username, administrator.PasswordHash);
-            //Debug.WriteLine("orginal: {0}, {1}, {2}", orginal.ID, orginal.Username, orginal.PasswordHash);
+            //Trace.WriteLine("admin: {0}, {1}, {2}", administrator.ID, administrator.Username, administrator.PasswordHash);
+            //Trace.WriteLine("orginal: {0}, {1}, {2}", orginal.ID, orginal.Username, orginal.PasswordHash);
             try {
                 bool changedPassword = false;
                 if (administrator.PasswordPlain != null) {
@@ -107,13 +112,19 @@ namespace WCFService.WCF {
                         changedPassword = true;
                         administrator.PasswordHash = PasswordHelper.CreateHash(administrator.PasswordPlain);
                         administrator.PasswordPlain = null; //Try generate new hash
-                    } catch (NullReferenceException) {
+                    } catch (NullReferenceException ex) {
+#if DEBUG
+                        ex.DebugGetLine();
+#endif
                         changedPassword = false;
                         if (administrator.PasswordHash == null) {
                             administrator.PasswordHash = "TempPa55w0rd"; //Set for Attaching to DBSet, for validation works.
                         }
                         //administrator.PasswordHash = orginal.PasswordHash; //Set same passwordHash as in database.
-                    } catch (PasswordFormatException) {
+                    } catch (PasswordFormatException ex) {
+#if DEBUG
+                        ex.DebugGetLine();
+#endif
                         throw new FaultException<PasswordFormatFault>(new PasswordFormatFault());
                     }
                 }
@@ -121,15 +132,13 @@ namespace WCFService.WCF {
                 db.Administrators.Attach(administrator);
                 db.Entry(administrator).State = EntityState.Modified;
                 //db.Entry(administrator).Property(a => a.Username).IsModified = true;
-                //Debug.WriteLine("ChangedPass: " + changedPassword);
+                //Trace.WriteLine("ChangedPass: " + changedPassword);
                 db.Entry(administrator).Property(a => a.PasswordHash).IsModified = changedPassword;
                 db.SaveChanges();
             } catch (Exception ex) {
-                Debug.WriteLine("#####");
-                Debug.WriteLine(ex); //TODO DEBUG MODE?
-                Debug.WriteLine("-----");
-                Debug.WriteLine(ex.Message);
-                Debug.WriteLine("#####");
+#if DEBUG
+                ex.DebugGetLine();
+#endif
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault("administrator"));
             }
             return administrator;
@@ -155,7 +164,7 @@ namespace WCFService.WCF {
                 db.Entry(administrator).State = EntityState.Modified;
                 db.SaveChanges();
             } catch (Exception ex) {
-                Debug.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Trace.WriteLine(ex.Message); //TODO DEBUG MODE?
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault("administrator"));
             }
             return administrator;
@@ -170,7 +179,9 @@ namespace WCFService.WCF {
                 db.Entry(administrator).State = EntityState.Deleted;
                 db.SaveChanges();
             } catch (Exception ex) {
-                Debug.WriteLine(ex.Message); //TODO DEBUG MODE?
+#if DEBUG
+                ex.DebugGetLine();
+#endif
                 throw new FaultException<DatabaseDeleteFault>(new DatabaseDeleteFault("administrator"));
             }
         }
@@ -183,7 +194,9 @@ namespace WCFService.WCF {
             try {
                 ret = db.Administrators.SingleOrDefault(a => a.ID == id);
             } catch (Exception ex) {
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+#if DEBUG
+                ex.DebugGetLine();
+#endif
                 ret = null;
             }
             return ret;

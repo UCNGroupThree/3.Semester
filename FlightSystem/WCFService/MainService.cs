@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using WCFService.Dijkstra;
+using WCFService.Logging;
 using WCFService.Model;
 using WCFService.WCF;
 using WCFService.WCF.Interface;
@@ -27,6 +26,17 @@ namespace WCFService {
 
         public MainService() {
             Matrix.GetInstance();
+            
+        }
+
+        static MainService() {
+            Trace.Listeners.Add(new TextWriterTraceListener(new Logger()));
+
+            //EventLogTraceListener listener = new EventLogTraceListener("Test Event Log");
+            //Trace.Listeners.Add(listener);
+#if DEBUG
+            Trace.WriteLine("Hi, I'm here!");
+#endif
         }
 
         #region Administrator Service

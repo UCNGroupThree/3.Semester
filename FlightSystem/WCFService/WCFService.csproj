@@ -75,6 +75,8 @@
     <Compile Include="Dijkstra\Vertex.cs" />
     <Compile Include="Helper\Helper.cs" />
     <Compile Include="Helper\PasswordHelper.cs" />
+    <Compile Include="Logging\LogDB.cs" />
+    <Compile Include="Logging\Logger.cs" />
     <Compile Include="MainService.cs" />
     <Compile Include="Migrations\201503240728569_init.cs" />
     <Compile Include="Migrations\201503240728569_init.Designer.cs">
@@ -168,6 +170,7 @@
     <Compile Include="Model\Administrator.cs" />
     <Compile Include="Model\FlightDB.cs" />
     <Compile Include="Model\Flight.cs" />
+    <Compile Include="Logging\Log.cs" />
     <Compile Include="Model\TicketState.cs" />
     <Compile Include="Model\Plane.cs" />
     <Compile Include="Model\Seat.cs" />
@@ -183,7 +186,6 @@
     <Compile Include="WCF\AirportService.cs" />
     <Compile Include="WCF\Faults\DeleteFault.cs" />
     <Compile Include="WCF\Faults\LockedFault.cs" />
-    <Compile Include="WCF\Log.cs" />
     <Compile Include="WCF\Faults\NotSameObjectFault.cs" />
     <Compile Include="WCF\ReservationService.cs" />
     <Compile Include="WCF\Dijkstra.cs" />

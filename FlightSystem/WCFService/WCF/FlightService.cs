@@ -65,6 +65,11 @@ namespace WCFService.WCF {
             if (flight == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
+            
+            if (db.SeatReservations.Any(s => s.Flight_ID == flight.ID)) {
+                throw new FaultException<DatabaseDeleteFault>(new DatabaseDeleteFault("The Flight contains SeatReservations, and can therefor not be deleted!"), new FaultReason("The Flight contains SeatReservations, and can therefor not be deleted!"));
+            }
+
             try {
                 db.Flights.Attach(flight);
                 db.Flights.Remove(flight);
@@ -75,7 +80,7 @@ namespace WCFService.WCF {
             }
             catch (Exception ex) {
 
-                Debug.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Trace.WriteLine(ex.Message); //TODO DEBUG MODE?
                 throw new FaultException<DatabaseDeleteFault>(new DatabaseDeleteFault(){Message = ex.Message});
             }
         }

@@ -36,30 +36,34 @@ namespace WCFService.WCF {
         private void InstanceContext_Closed(object sender, EventArgs e) {
             // Session closed here
             DeleteTicket(false);
-            Debug.WriteLine("End session: {0}, {1}", sender, e);
+            Trace.WriteLine(String.Format("End session: {0}, {1}", sender, e));
         }
 
         private void DeleteTicket(bool throwException) {
             try {
                 using (var db = new FlightDB()) {
-                    db.Database.Log = m => Debug.WriteLine(m);
+                    db.Database.Log = m => Trace.WriteLine(m);
 
                     if (ticket != null && ticket.ID != 0) {
+                        var clone = ticket.Clone();
+
                         db.Tickets.Attach(ticket);
                         db.Tickets.Remove(ticket);
                         //DetectChanges(db);
                         db.SaveChanges();
+
+                        ticket = clone;
                         UpdateDijkstra();
 
                         ticket = null;
                     }
                 }
-                Debug.WriteLine("Deleted");
+                Trace.WriteLine("Deleted");
             } catch (Exception ex) {
                 if (throwException) {
                     throw;
                 }
-                Debug.WriteLine("DeleteTicket: ignored exception of type: " + ex);
+                Trace.WriteLine("DeleteTicket: ignored exception of type: " + ex);
             }
         }
 
@@ -141,8 +145,8 @@ namespace WCFService.WCF {
                 throw new FaultException<NotEnouthFault>(new NotEnouthFault(ex), new FaultReason(ex.Message));
             } catch (Exception ex) {
                 ticket = oldTicket;
-                Debug.WriteLine(ex);
-                Debug.WriteLine(ex.Message);
+                Trace.WriteLine(ex);
+                Trace.WriteLine(ex.Message);
                 throw new FaultException<DatabaseFault>(new DatabaseFault("MakeSeatOccupiedRandom Error"), new FaultReason("MakeSeatOccupiedRandom Error"));
             }
             return ticket;
@@ -186,18 +190,18 @@ namespace WCFService.WCF {
 
                 List<Seat> seatsToRes = freeSeats.OrderBy(s => Guid.NewGuid()).Take(noOfSeats).ToList();
                 if (seatsToRes.Count() < noOfSeats) {
-                    //Debug.WriteLine("Not Enough seats free");
+                    //Trace.WriteLine("Not Enough seats free");
                     throw new NotEnouthException("Not Enough seats free");
                 }
 
                 foreach (var s in seatsToRes) {
-                    //Debug.WriteLine("inside seat loop"); //(ticket, SeatState.Occupied, s, f)
+                    //Trace.WriteLine("inside seat loop"); //(ticket, SeatState.Occupied, s, f)
                     //SeatReservation seatRes = new SeatReservation(ticket, SeatState.Occupied, s, f) {Seat_ID = s.ID, Flight_ID = f.ID };
                     //SeatReservation seatRes = new SeatReservation { Flight = f, Flight_ID = f.ID, Seat = s, Seat_ID = s.ID, State = SeatState.Occupied };
                     SeatReservation seatRes = new SeatReservation { Ticket = ticket, Flight = f, Seat = s, Flight_ID = f.ID, Seat_ID = s.ID, State = SeatState.Occupied };
                     //TODO Ticket..
-                    Debug.WriteLine("seatRes: flight: {0} Seat: {1} State: {2}", seatRes.Flight_ID, seatRes.Seat_ID,
-                        seatRes.State);
+                    Trace.WriteLine(String.Format("seatRes: flight: {0} Seat: {1} State: {2}", seatRes.Flight_ID, seatRes.Seat_ID,
+                        seatRes.State));
                     ret.Add(seatRes);
                 }
                 //}
@@ -206,7 +210,7 @@ namespace WCFService.WCF {
         }
 
         public void Complete() {
-            Debug.WriteLine("Completed started!");
+            Trace.WriteLine("Completed started!");
             try {
                 if (ticket.OrderState != TicketState.Pending) {
                     throw new FaultException<AlreadyExistFault>(new AlreadyExistFault("Ticket is already completed"));
@@ -241,7 +245,7 @@ namespace WCFService.WCF {
                 throw new FaultException<DatabaseFault>(new DatabaseFault("Complete Error: " + ex.Message));
             }
 
-            Debug.WriteLine("Completed ended!");
+            Trace.WriteLine("Completed ended!");
         }
 
 

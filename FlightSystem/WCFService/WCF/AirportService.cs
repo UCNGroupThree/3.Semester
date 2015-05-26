@@ -28,21 +28,21 @@ namespace WCFService.WCF {
             ValidateTimeZone(airport);
             try {
                 db.Airports.Add(airport);
-                Debug.WriteLine("Add Airport Service! ID DON'T EMPTY: " + airport.ID + "<--");
-                Debug.WriteLine("Add Airport Service! Concurrency DON'T EMPTY: " + airport.Concurrency + "<--");
+                Trace.WriteLine("Add Airport Service! ID DON'T EMPTY: " + airport.ID + "<--");
+                Trace.WriteLine("Add Airport Service! Concurrency DON'T EMPTY: " + airport.Concurrency + "<--");
                 db.SaveChanges();
             } catch (Exception ex) {
                 /*
                 if (ex is System.Data.Entity.Validation.DbEntityValidationException) {
                     foreach (var v in ((System.Data.Entity.Validation.DbEntityValidationException) ex).EntityValidationErrors) {
                         foreach (var va in v.ValidationErrors) {
-                            Debug.WriteLine(va.ErrorMessage);
+                            Trace.WriteLine(va.ErrorMessage);
                         }
                     }
-                    Debug.WriteLine("#####");
+                    Trace.WriteLine("#####");
                     ;
                 }*/
-                Debug.WriteLine(ex);
+                Trace.WriteLine(ex);
                 //TODO Håndtering af forskellige insert exception
                 throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault("airport"));
             }
@@ -51,14 +51,14 @@ namespace WCFService.WCF {
         }
 
         public Airport UpdateAirport(Airport airport) {
-            //db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+            //db.Database.Log = s => System.Diagnostics.Trace.WriteLine(s);
             if (airport == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
             if (db.Airports.Any(a => a.ID != airport.ID && !string.IsNullOrEmpty(a.ShortName) && a.ShortName.Equals(airport.ShortName))) {
                 throw new FaultException<AlreadyExistFault>(new AlreadyExistFault());
             }
-            //Debug.WriteLine("######");
+            //Trace.WriteLine("######");
             ValidateTimeZone(airport);
             try {
                 db.Airports.Attach(airport);
@@ -68,7 +68,7 @@ namespace WCFService.WCF {
 
                 // Running Async Update on Dijkstra Matrix
                 new Task(() => Dijkstra.Updated(airport)).Start();
-                //Debug.WriteLine("######");
+                //Trace.WriteLine("######");
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message); //TODO DEBUG MODE?
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault("airport"));
@@ -159,7 +159,7 @@ namespace WCFService.WCF {
         public List<Airport> GetAirportsByShortName(string shortName, bool equalsTo) {
             List<Airport> ret;
             try {
-                //db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s); //TODO DEBUG EF
+                //db.Database.Log = s => System.Diagnostics.Trace.WriteLine(s); //TODO DEBUG EF
                 if (equalsTo) {
                     ret =
                         db.Airports.Where(a => a.ShortName.Equals(shortName, StringComparison.OrdinalIgnoreCase))

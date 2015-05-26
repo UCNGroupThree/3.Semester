@@ -53,17 +53,17 @@ namespace WCFService.WCF {
 
             if (aps != null && aps.Count > 0) {
                 foreach (var flight in aps) {
-                    Debug.WriteLine(flight.Route.From.ID + ":" + flight.Route.From.Name + " -> " + flight.Route.To.Name + ":" + flight.Route.To.ID + " - Price: " + flight.Route.Price);
+                    Trace.WriteLine(flight.Route.From.ID + ":" + flight.Route.From.Name + " -> " + flight.Route.To.Name + ":" + flight.Route.To.ID + " - Price: " + flight.Route.Price);
                     dm += flight.Route.Price;
                 }
 
-                Debug.WriteLine("Total Price: " + dm);
+                Trace.WriteLine("Total Price: " + dm);
             } else {
-                Debug.WriteLine("Empty Result");
+                Trace.WriteLine("Empty Result");
             }
 
             watch.Stop();
-            Debug.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
+            Trace.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
         }
         //####### Test End #######
 

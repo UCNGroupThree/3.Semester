@@ -68,9 +68,9 @@ namespace WCFService.WCF {
             }
 
             try {
-                Debug.WriteLine("UpdateRoute");
+                Trace.WriteLine("UpdateRoute");
                 
-                Debug.WriteLine(route.From.Name + " " + route.To.Name);
+                Trace.WriteLine(route.From.Name + " " + route.To.Name);
 
                 if (route.ToID == 0 && route.To != null) {
                     route.ToID = route.To.ID;
@@ -131,22 +131,25 @@ namespace WCFService.WCF {
             }
 
             try {
-                Debug.WriteLine("AddOrUpdateFlights");
-                Debug.WriteLine(route.From.Name + " " + route.To.Name);
+                Trace.WriteLine("AddOrUpdateFlights");
+                Trace.WriteLine(route.From.Name + " " + route.To.Name);
 
 
                 foreach (var flight in route.Flights) {
-                    System.Diagnostics.Debug.WriteLine(flight.ID + "flight"); //TODO Remove after test
+                    System.Diagnostics.Trace.WriteLine(flight.ID + "flight"); //TODO Remove after test
                     if (flight.Plane != null) {
                         flight.PlaneID = flight.Plane.ID;
                     }
                     flight.Plane = null;
                     
                     if (flight.ID > 0) {
-                        System.Diagnostics.Debug.WriteLine(flight.ID + "Set to modified"); //TODO Remove after test
+                        if (db.SeatReservations.Any(s => s.Flight_ID == flight.ID)) {
+                            throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault("The Flight contains SeatReservations, and can therefor not be changed!"), new FaultReason("The Flight contains SeatReservations, and can therefor not be changed!"));
+                        }
+                        System.Diagnostics.Trace.WriteLine(flight.ID + "Set to modified"); //TODO Remove after test
                         db.Entry(flight).State = EntityState.Modified;
                     } else {
-                        System.Diagnostics.Debug.WriteLine(flight.ID + "Set to added"); //TODO Remove after test
+                        System.Diagnostics.Trace.WriteLine(flight.ID + "Set to added"); //TODO Remove after test
                         db.Flights.Add(flight);
                     }
                 }
@@ -201,7 +204,7 @@ namespace WCFService.WCF {
                 // Running Async Remove on Dijkstra Matrix
                 new Task(() => Dijkstra.Removed(route)).Start();
             } catch (Exception ex) {
-                Debug.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Trace.WriteLine(ex.Message); //TODO DEBUG MODE?
                 
                 throw new FaultException<DatabaseDeleteFault>(new DatabaseDeleteFault() { Message = ex.Message });
             }
@@ -218,6 +221,9 @@ namespace WCFService.WCF {
         }
 
         public Route GetRouteByAirports(Airport from, Airport to) {
+
+            Trace.WriteLine(String.Format("Getting Route From {0} -> {1}", from.ID, to.ID));
+
             Route route = db.Routes.Where(r => r.From.ID == from.ID && r.To.ID == to.ID).Include(r => r.To).Include(r => r.From).Include(r => r.Flights).SingleOrDefault();
 
             if (route == null) {

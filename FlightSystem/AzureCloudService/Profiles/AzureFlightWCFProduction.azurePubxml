@@ -14,9 +14,11 @@
     <AzureEnableIntelliTrace>False</AzureEnableIntelliTrace>
     <AzureEnableProfiling>False</AzureEnableProfiling>
     <AzureServiceConfiguration>Cloud</AzureServiceConfiguration>
-    <AzureSolutionConfiguration>Release</AzureSolutionConfiguration>
+    <AzureSolutionConfiguration>Debug</AzureSolutionConfiguration>
     <AzureStorageAccountLabel>AzureFlightWCF</AzureStorageAccountLabel>
     <AzureStorageAccountName>azureflightwcf</AzureStorageAccountName>
     <AzureAppendTimestampToDeploymentLabel>True</AzureAppendTimestampToDeploymentLabel>
+    <EnableRemoteDebugger>True</EnableRemoteDebugger>
+    <RemoteDebuggerConnectorCertificateThumbprint>7FE28B5645757DE896D6DAF4E520F9D9A987C151</RemoteDebuggerConnectorCertificateThumbprint>
   </PropertyGroup>
 </Project>

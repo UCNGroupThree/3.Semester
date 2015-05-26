@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="7JC/XpTE19+PhMcalTLl1hDsj3g=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="nCQRViTcibwDD1Uzin2V8Y3oeI4=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IAdministratorService">
       <properties>
@@ -72,14 +72,14 @@
         <property path="/security" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.BasicHttpSecurityElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.BasicHttpSecurityElement</serializedValue>
         </property>
-        <property path="/security/mode" isComplexType="false" isExplicitlyDefined="true" clrType="System.ServiceModel.BasicHttpSecurityMode, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>TransportCredentialOnly</serializedValue>
+        <property path="/security/mode" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.BasicHttpSecurityMode, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>None</serializedValue>
         </property>
         <property path="/security/transport" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.HttpTransportSecurityElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.HttpTransportSecurityElement</serializedValue>
         </property>
-        <property path="/security/transport/clientCredentialType" isComplexType="false" isExplicitlyDefined="true" clrType="System.ServiceModel.HttpClientCredentialType, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>Windows</serializedValue>
+        <property path="/security/transport/clientCredentialType" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.HttpClientCredentialType, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>None</serializedValue>
         </property>
         <property path="/security/transport/proxyCredentialType" isComplexType="false" isExplicitlyDefined="false" clrType="System.ServiceModel.HttpProxyCredentialType, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>None</serializedValue>
@@ -890,10 +890,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IAdministratorService" contract="MainService.IAdministratorService" bindingType="basicHttpBinding" address="http://localhost:8733/MainService/Administrator" bindingConfiguration="BasicHttpBinding_IAdministratorService">
+    <endpoint name="BasicHttpBinding_IAdministratorService" contract="MainService.IAdministratorService" bindingType="basicHttpBinding" address="http://azureflightwcf.cloudapp.net/AzureService.svc/Administrator" bindingConfiguration="BasicHttpBinding_IAdministratorService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8733/MainService/Administrator</serializedValue>
+          <serializedValue>http://azureflightwcf.cloudapp.net/AzureService.svc/Administrator</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -975,10 +975,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IAirportService" contract="MainService.IAirportService" bindingType="basicHttpBinding" address="http://localhost:8733/MainService/Airport" bindingConfiguration="BasicHttpBinding_IAirportService">
+    <endpoint name="BasicHttpBinding_IAirportService" contract="MainService.IAirportService" bindingType="basicHttpBinding" address="http://azureflightwcf.cloudapp.net/AzureService.svc/Airport" bindingConfiguration="BasicHttpBinding_IAirportService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8733/MainService/Airport</serializedValue>
+          <serializedValue>http://azureflightwcf.cloudapp.net/AzureService.svc/Airport</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1060,10 +1060,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IFlightService" contract="MainService.IFlightService" bindingType="basicHttpBinding" address="http://localhost:8733/MainService/Flight" bindingConfiguration="BasicHttpBinding_IFlightService">
+    <endpoint name="BasicHttpBinding_IFlightService" contract="MainService.IFlightService" bindingType="basicHttpBinding" address="http://azureflightwcf.cloudapp.net/AzureService.svc/Flight" bindingConfiguration="BasicHttpBinding_IFlightService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8733/MainService/Flight</serializedValue>
+          <serializedValue>http://azureflightwcf.cloudapp.net/AzureService.svc/Flight</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1145,10 +1145,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IPlaneService" contract="MainService.IPlaneService" bindingType="basicHttpBinding" address="http://localhost:8733/MainService/Plane" bindingConfiguration="BasicHttpBinding_IPlaneService">
+    <endpoint name="BasicHttpBinding_IPlaneService" contract="MainService.IPlaneService" bindingType="basicHttpBinding" address="http://azureflightwcf.cloudapp.net/AzureService.svc/Plane" bindingConfiguration="BasicHttpBinding_IPlaneService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8733/MainService/Plane</serializedValue>
+          <serializedValue>http://azureflightwcf.cloudapp.net/AzureService.svc/Plane</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1230,10 +1230,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IRouteService" contract="MainService.IRouteService" bindingType="basicHttpBinding" address="http://localhost:8733/MainService/Route" bindingConfiguration="BasicHttpBinding_IRouteService">
+    <endpoint name="BasicHttpBinding_IRouteService" contract="MainService.IRouteService" bindingType="basicHttpBinding" address="http://azureflightwcf.cloudapp.net/AzureService.svc/Route" bindingConfiguration="BasicHttpBinding_IRouteService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8733/MainService/Route</serializedValue>
+          <serializedValue>http://azureflightwcf.cloudapp.net/AzureService.svc/Route</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1315,10 +1315,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IUserService" contract="MainService.IUserService" bindingType="basicHttpBinding" address="http://localhost:8733/MainService/User" bindingConfiguration="BasicHttpBinding_IUserService">
+    <endpoint name="BasicHttpBinding_IUserService" contract="MainService.IUserService" bindingType="basicHttpBinding" address="http://azureflightwcf.cloudapp.net/AzureService.svc/User" bindingConfiguration="BasicHttpBinding_IUserService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8733/MainService/User</serializedValue>
+          <serializedValue>http://azureflightwcf.cloudapp.net/AzureService.svc/User</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1400,10 +1400,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IDijkstra" contract="MainService.IDijkstra" bindingType="basicHttpBinding" address="http://localhost:8733/MainService/Dijkstra" bindingConfiguration="BasicHttpBinding_IDijkstra">
+    <endpoint name="BasicHttpBinding_IDijkstra" contract="MainService.IDijkstra" bindingType="basicHttpBinding" address="http://azureflightwcf.cloudapp.net/AzureService.svc/Dijkstra" bindingConfiguration="BasicHttpBinding_IDijkstra">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8733/MainService/Dijkstra</serializedValue>
+          <serializedValue>http://azureflightwcf.cloudapp.net/AzureService.svc/Dijkstra</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1485,10 +1485,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="WSHttpBinding_IReservationService" contract="MainService.IReservationService" bindingType="wsHttpBinding" address="http://localhost:8733/MainService/Reservation" bindingConfiguration="WSHttpBinding_IReservationService">
+    <endpoint name="WSHttpBinding_IReservationService" contract="MainService.IReservationService" bindingType="wsHttpBinding" address="http://azureflightwcf.cloudapp.net/AzureService.svc/Reservation" bindingConfiguration="WSHttpBinding_IReservationService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8733/MainService/Reservation</serializedValue>
+          <serializedValue>http://azureflightwcf.cloudapp.net/AzureService.svc/Reservation</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1514,14 +1514,14 @@
         <property path="/identity/userPrincipalName" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.UserPrincipalNameElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.UserPrincipalNameElement</serializedValue>
         </property>
-        <property path="/identity/userPrincipalName/value" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>NICKDP\zoino_000</serializedValue>
+        <property path="/identity/userPrincipalName/value" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue />
         </property>
         <property path="/identity/servicePrincipalName" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.ServicePrincipalNameElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.ServicePrincipalNameElement</serializedValue>
         </property>
-        <property path="/identity/servicePrincipalName/value" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue />
+        <property path="/identity/servicePrincipalName/value" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <serializedValue>host/RD000D3A218824</serializedValue>
         </property>
         <property path="/identity/dns" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.DnsElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.DnsElement</serializedValue>

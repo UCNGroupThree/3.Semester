@@ -246,7 +246,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\MainService\Arrays.xsd">
+    <None Include="Service References\MainService\AzureService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainService\AzureService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainService\AzureService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainService\AzureService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainService\AzureService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainService\AzureService5.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\MainService\FlightAdmin.MainService.Administrator.datasource">
@@ -270,22 +285,7 @@
     <None Include="Service References\MainService\FlightAdmin.MainService.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\MainService\service.wsdl" />
-    <None Include="Service References\MainService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MainService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MainService\System.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MainService\WCFService.Model.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MainService\WCFService.WCF.Faults.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Service References\MainService\MainService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -318,6 +318,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\MainService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MainService\AzureService.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\MainService\configuration91.svcinfo" />
