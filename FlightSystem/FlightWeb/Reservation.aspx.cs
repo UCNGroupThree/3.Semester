@@ -31,7 +31,7 @@ namespace FlightWeb {
                     Response.Redirect("Default.aspx", true);
                 }
                 MakeSeatReservations();
-                gvFlights.DataSource = ses.Flights;
+                gvFlights.DataSource = ses.Ticket.SeatReservations.Select(x => x.Flight).ToHashSet();
                 gvFlights.DataBind();
 
             }

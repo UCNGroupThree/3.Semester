@@ -37,8 +37,8 @@
                         </asp:Panel>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="From" HeaderText="From" />
-                <asp:BoundField DataField="To" HeaderText="To" />
+                <asp:BoundField DataField="Route.From" HeaderText="From" />
+                <asp:BoundField DataField="Route.To" HeaderText="To" />
                 <asp:BoundField DataField="Plane" HeaderText="Plane" />
                 <asp:BoundField DataField="DepartureTime" HeaderText="DepartureTime" DataFormatString="{0:g}" />
                 <asp:BoundField DataField="ArrivalTime" HeaderText="ArrivalTime" DataFormatString="{0:g}" />
@@ -51,40 +51,40 @@
                 <div class="col-sm-5">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <p>Name:</p>
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 <p>
                                     <asp:Label runat="server" ID="lblName" />
                                 </p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <p>Address:</p>
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 <p>
                                     <asp:Label runat="server" ID="lblAddress" />
                                 </p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <p>PostalCode:</p>
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 <p>
                                     <asp:Label runat="server" ID="lblPostalCode" />
                                 </p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <p>City:</p>
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 <p>
                                     <asp:Label runat="server" ID="lblCity" />
                                 </p>
@@ -95,20 +95,20 @@
                 <div class="col-sm-5 col-sm-offset-2">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <p>Total TravelTime:</p>
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 <p>
                                     <asp:Label runat="server" ID="lblTotalTravelTime" />
                                 </p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <p>Total Price:</p>
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 <p>
                                     <asp:Label runat="server" ID="lblTotalPrice" />
                                 </p>

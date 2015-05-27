@@ -21,17 +21,16 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://azureflightwcf.cloudapp.net/AzureService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://azureflightwcf.cloudapp.net/AzureService.svc/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="AzureService.xsd" MetadataType="Schema" ID="75735e59-afd1-4516-81d2-d0dc040ea619" SourceId="1" SourceUrl="http://azureflightwcf.cloudapp.net/AzureService.svc?xsd=xsd5" />
-    <MetadataFile FileName="AzureService1.xsd" MetadataType="Schema" ID="6b6e00b9-2961-4829-a2e7-48a02b17c539" SourceId="1" SourceUrl="http://azureflightwcf.cloudapp.net/AzureService.svc?xsd=xsd1" />
-    <MetadataFile FileName="AzureService.disco" MetadataType="Disco" ID="86125619-b050-4e89-bf77-1487351c9235" SourceId="1" SourceUrl="http://azureflightwcf.cloudapp.net/AzureService.svc?disco" />
-    <MetadataFile FileName="MainService.wsdl" MetadataType="Wsdl" ID="3a4b77f9-8aa9-4ff5-aaf5-12a306fd05f1" SourceId="1" SourceUrl="http://azureflightwcf.cloudapp.net/AzureService.svc?wsdl" />
-    <MetadataFile FileName="AzureService2.xsd" MetadataType="Schema" ID="25ec26c1-68bf-480f-9f52-00d6584d7435" SourceId="1" SourceUrl="http://azureflightwcf.cloudapp.net/AzureService.svc?xsd=xsd2" />
-    <MetadataFile FileName="AzureService3.xsd" MetadataType="Schema" ID="3061de3e-a934-4e10-8db9-eeea9839a923" SourceId="1" SourceUrl="http://azureflightwcf.cloudapp.net/AzureService.svc?xsd=xsd4" />
-    <MetadataFile FileName="AzureService4.xsd" MetadataType="Schema" ID="56e882c4-7070-4e78-9eba-8d67f6583c2f" SourceId="1" SourceUrl="http://azureflightwcf.cloudapp.net/AzureService.svc?xsd=xsd3" />
-    <MetadataFile FileName="AzureService5.xsd" MetadataType="Schema" ID="c88a8b00-bbee-47d7-9371-2d2974ecbf56" SourceId="1" SourceUrl="http://azureflightwcf.cloudapp.net/AzureService.svc?xsd=xsd0" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="bfe86b01-43b4-4918-9010-6524c4efc4e1" SourceId="1" SourceUrl="http://azureflightwcf.cloudapp.net/AzureService.svc/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="094104a1-5c52-4469-bc3f-d563d54929ac" SourceId="1" SourceUrl="http://azureflightwcf.cloudapp.net/AzureService.svc/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="e7173dbd-2cca-4da7-b68a-28fe1242f705" SourceId="1" SourceUrl="http://azureflightwcf.cloudapp.net/AzureService.svc/mex" />
+    <MetadataFile FileName="WCFService.Model1.xsd" MetadataType="Schema" ID="72458c93-93bc-492a-ab3b-5db5e6a03f79" SourceId="1" SourceUrl="http://azureflightwcf.cloudapp.net/AzureService.svc/mex" />
+    <MetadataFile FileName="WCFService.WCF.Faults1.xsd" MetadataType="Schema" ID="2c05afd8-40e6-45d4-8ec7-a51513db573c" SourceId="1" SourceUrl="http://azureflightwcf.cloudapp.net/AzureService.svc/mex" />
+    <MetadataFile FileName="System1.xsd" MetadataType="Schema" ID="c3c66253-984e-42d3-b7a0-19f47d9a7b8d" SourceId="1" SourceUrl="http://azureflightwcf.cloudapp.net/AzureService.svc/mex" />
+    <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="c362cb66-c96a-433f-9cfa-46ee4087f371" SourceId="1" SourceUrl="http://azureflightwcf.cloudapp.net/AzureService.svc/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
