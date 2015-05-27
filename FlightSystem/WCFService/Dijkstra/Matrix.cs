@@ -713,24 +713,17 @@ namespace WCFService.Dijkstra {
 
         private List<Flight> CleanUp(List<Flight> flights) {
             List<Flight> retFlights = new List<Flight>();
-            foreach (var flight in flights) {
-                Flight f = flight.Clone();
-                f.Plane.Flights = null;
-                f.Plane.Seats = null;
-                f.Route.Flights = null;
 
-                if (f.Route.To != null) {
-                    f.Route.To.Routes = null;
-                }
-                
-                if (f.Route.From != null) {
-                    f.Route.From.Routes = null;
-                }
+            using (var db = new FlightDB()) {
+                var listOfIds = flights.Select(f => f.ID);
 
-                f.SeatReservations = null;
-
-                retFlights.Add(f);
+                retFlights = db.Flights
+                .Include(f => f.Plane)
+                .Include(f => f.Route.From)
+                .Include(f => f.Route.To)
+                .Where(f => listOfIds.Contains(f.ID)).ToList();
             }
+            
 
             return retFlights;
         }
