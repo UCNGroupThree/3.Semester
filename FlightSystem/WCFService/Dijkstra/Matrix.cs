@@ -714,8 +714,10 @@ namespace WCFService.Dijkstra {
         private List<Flight> CleanUp(List<Flight> flights) {
             List<Flight> retFlights = new List<Flight>();
 
+             var listOfIds = flights.Select(f => f.ID);
+
             using (var db = new FlightDB()) {
-                var listOfIds = flights.Select(f => f.ID);
+               
 
                 retFlights = db.Flights
                 .Include(f => f.Plane)
@@ -723,7 +725,19 @@ namespace WCFService.Dijkstra {
                 .Include(f => f.Route.To)
                 .Where(f => listOfIds.Contains(f.ID)).ToList();
             }
-            
+
+#if DEBUG
+            Trace.WriteLine("Flights List:");
+            flights.ForEach(f => Trace.WriteLine(f.ID));
+
+            Trace.WriteLine("ListOfIds:");
+            foreach (var listOfId in listOfIds) {
+                Trace.WriteLine(listOfId);
+            }
+
+            Trace.WriteLine("retFlights List:");
+            retFlights.ForEach(f => Trace.WriteLine(f.ID));
+#endif
 
             return retFlights;
         }
