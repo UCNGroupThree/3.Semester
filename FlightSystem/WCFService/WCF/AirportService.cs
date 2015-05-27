@@ -70,7 +70,7 @@ namespace WCFService.WCF {
                 new Task(() => Dijkstra.Updated(airport)).Start();
                 //Trace.WriteLine("######");
             } catch (Exception ex) {
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Console.WriteLine(ex.Message);
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault("airport"));
             }
 
@@ -89,7 +89,7 @@ namespace WCFService.WCF {
                 // Running Async Remove on Dijkstra Matrix
                 new Task(() => Dijkstra.Removed(airport)).Start();
             } catch (Exception ex) {
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Console.WriteLine(ex.Message);
                 throw new FaultException<DatabaseDeleteFault>(new DatabaseDeleteFault("airport"));
             }
         }
@@ -117,7 +117,7 @@ namespace WCFService.WCF {
             try {
                 ret = db.Airports.Where(a => a.ID == id).Include(a => a.Routes).SingleOrDefault();
             } catch (Exception ex) {
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Console.WriteLine(ex.Message);
                 ret = null;
             }
             return ret;
@@ -128,7 +128,7 @@ namespace WCFService.WCF {
             try {
                 ret = db.Airports.Where(a => a.Country.Contains(country)).ToList();
             } catch (Exception ex) {
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Console.WriteLine(ex.Message);
                 ret = new List<Airport>();
             }
             return ret;
@@ -139,7 +139,7 @@ namespace WCFService.WCF {
             try {
                 ret = db.Airports.Where(a => a.City.Contains(city)).ToList();
             } catch (Exception ex) {
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Console.WriteLine(ex.Message);
                 ret = new List<Airport>();
             }
             return ret;
@@ -150,7 +150,7 @@ namespace WCFService.WCF {
             try {
                 ret = db.Airports.Where(a => a.Name.Contains(name)).ToList();
             } catch (Exception ex) {
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Console.WriteLine(ex.Message);
                 ret = new List<Airport>();
             }
             return ret;
@@ -159,7 +159,6 @@ namespace WCFService.WCF {
         public List<Airport> GetAirportsByShortName(string shortName, bool equalsTo) {
             List<Airport> ret;
             try {
-                //db.Database.Log = s => System.Diagnostics.Trace.WriteLine(s); //TODO DEBUG EF
                 if (equalsTo) {
                     ret =
                         db.Airports.Where(a => a.ShortName.Equals(shortName, StringComparison.OrdinalIgnoreCase))
@@ -168,7 +167,7 @@ namespace WCFService.WCF {
                     ret = db.Airports.Where(a => a.ShortName.Contains(shortName)).ToList();
                 }
             } catch (Exception ex) {
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Console.WriteLine(ex.Message);
                 ret = new List<Airport>();
             }
             return ret;
@@ -181,7 +180,7 @@ namespace WCFService.WCF {
             try {
                 con = db.Airports.Select(c => c.Country).Distinct().ToList();
             } catch (Exception ex) {
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Console.WriteLine(ex.Message);
                 con = new List<string>();
             }
 

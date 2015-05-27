@@ -32,33 +32,6 @@ namespace WCFService.Model {
         [Timestamp] // Timestamp for ændringer i objektet, til håndtering af concurrency i entityframework
         public byte[] Concurrency { get; set; }
 
-
-        /*
-        /// <exception cref="NullReferenceException" />
-        /// <exception cref="PasswordFormatException"/>
-        public void GenerateHash() {
-            ValidatePasswordFormat();
-
-            PasswordHash = "Hash" + PasswordPlain; //TODO SALT AND HASH!
-            PasswordPlain = null;
-        }
-
-        /// <exception cref="NullReferenceException" />
-        /// <exception cref="PasswordFormatException"/>
-        private void ValidatePasswordFormat() {
-            if (PasswordPlain == null) {
-                throw new NullReferenceException("No new Password to generate hash!");
-            }
-            //TODO Validation af passwordformatet!
-            bool valid = false;
-            if (valid) {
-                throw new PasswordFormatException();
-            }
-        }
-
-        public bool ValidateLogin() { //TODO SALT AND HASH! CHECK
-            return true;
-        }*/
     }
 
 }

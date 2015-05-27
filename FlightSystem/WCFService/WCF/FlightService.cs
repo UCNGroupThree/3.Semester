@@ -30,7 +30,7 @@ namespace WCFService.WCF {
             }
             catch (Exception ex) {
 
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Console.WriteLine(ex.Message);
                 throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault(){Message = ex.Message});
             }
             return flight.ID;
@@ -53,7 +53,7 @@ namespace WCFService.WCF {
             } catch (OptimisticConcurrencyException e) {
                 throw new FaultException<OptimisticConcurrencyFault>(new OptimisticConcurrencyFault(){Message = e.Message});
             }catch (Exception ex) {
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Console.WriteLine(ex.Message);
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault(){Message = ex.Message});
             }
 
@@ -80,7 +80,7 @@ namespace WCFService.WCF {
             }
             catch (Exception ex) {
 
-                Trace.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Trace.WriteLine(ex.Message);
                 throw new FaultException<DatabaseDeleteFault>(new DatabaseDeleteFault(){Message = ex.Message});
             }
         }

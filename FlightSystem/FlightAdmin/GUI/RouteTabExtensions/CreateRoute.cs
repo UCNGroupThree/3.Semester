@@ -190,7 +190,6 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
 #if (DEBUG)
                     ex.DebugGetLine();
 #endif
-                    //TODO Something here
                 } catch (Exception ex) {
 #if (DEBUG)
                     ex.DebugGetLine();
@@ -222,7 +221,6 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
 #if (DEBUG)
                     ex.DebugGetLine();
 #endif
-                    //TODO Something here
                 } catch (DatabaseException ex) {
 #if (DEBUG)
                     ex.DebugGetLine();

@@ -5,7 +5,7 @@ using WCFService.WCF.Faults;
 
 namespace WCFService.WCF.Interface {
     [ServiceContract]
-    public interface IFlightService { //TODO Jakob
+    public interface IFlightService {
 
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]

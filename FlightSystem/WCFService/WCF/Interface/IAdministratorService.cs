@@ -5,7 +5,7 @@ using WCFService.WCF.Faults;
 
 namespace WCFService.WCF.Interface {
     [ServiceContract]
-    public interface IAdministratorService { //TODO Nick - Login administration?
+    public interface IAdministratorService {
 
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]

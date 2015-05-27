@@ -5,7 +5,7 @@ using WCFService.Model;
 namespace WCFService.WCF.Interface {
     [ServiceContract]
 
-    public interface IPlaneService { //TODO Kim
+    public interface IPlaneService {
          
         [OperationContract]
         int AddPlane(Plane plane);

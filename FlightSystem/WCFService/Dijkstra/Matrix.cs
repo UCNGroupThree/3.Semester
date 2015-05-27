@@ -797,7 +797,7 @@ namespace WCFService.Dijkstra {
             if (Initializing) {
                 return _matrix;
             } else {
-                throw new Exception("Locked"); //TODO Locked Exception?
+                throw new Exception("Locked");
             }
         }
 

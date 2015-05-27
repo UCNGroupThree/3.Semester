@@ -18,7 +18,6 @@ namespace WCFService.WCF.Interface {
         Ticket MakeSeatsOccupiedRandom(List<Flight> flights, int noOfSeats, User user);
 
         [OperationContract (IsInitiating = false, IsTerminating = true)]
-        //TODO Måske fejl, hvis det ikke lykkes.
         void Cancel();
 
         [OperationContract (IsInitiating = false,IsTerminating = true)]

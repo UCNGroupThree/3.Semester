@@ -7,7 +7,7 @@ namespace WCFService.Model {
     [DataContract(IsReference = true)]
     [KnownType(typeof(SeatReservation))]
     [KnownType(typeof(Plane))]
-    public class Seat {  //Todo Kim
+    public class Seat {
         [DataMember]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }

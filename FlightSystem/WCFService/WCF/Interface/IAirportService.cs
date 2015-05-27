@@ -5,7 +5,7 @@ using WCFService.WCF.Faults;
 
 namespace WCFService.WCF.Interface {
     [ServiceContract]
-    public interface IAirportService { //TODO Lasse
+    public interface IAirportService {
 
         [OperationContract]
         [FaultContract(typeof(NullPointerFault))]

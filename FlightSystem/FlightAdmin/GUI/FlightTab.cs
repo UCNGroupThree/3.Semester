@@ -18,7 +18,7 @@ namespace FlightAdmin.GUI {
 
         private FlightCtr _fCtr = new FlightCtr();
         private DataGridViewCellEventArgs _mouseLocation;
-        public FlightTab() { //Todo Nick D PEdersen
+        public FlightTab() {
             InitializeComponent();
             txtID.OnlyInt = true;
             SetEvents();

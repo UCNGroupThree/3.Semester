@@ -199,7 +199,6 @@ namespace WCFService.WCF {
                     //SeatReservation seatRes = new SeatReservation(ticket, SeatState.Occupied, s, f) {Seat_ID = s.ID, Flight_ID = f.ID };
                     //SeatReservation seatRes = new SeatReservation { Flight = f, Flight_ID = f.ID, Seat = s, Seat_ID = s.ID, State = SeatState.Occupied };
                     SeatReservation seatRes = new SeatReservation { Ticket = ticket, Flight = f, Seat = s, Flight_ID = f.ID, Seat_ID = s.ID, State = SeatState.Occupied, Price = f.Route.Price };
-                    //TODO Ticket..
                     Trace.WriteLine(String.Format("seatRes: flight: {0} Seat: {1} State: {2}", seatRes.Flight_ID, seatRes.Seat_ID,
                         seatRes.State));
                     ret.Add(seatRes);

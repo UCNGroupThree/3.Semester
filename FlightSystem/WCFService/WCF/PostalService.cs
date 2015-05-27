@@ -57,7 +57,7 @@ namespace WCFService.WCF
                 dbContext.Postals.Remove(postal);
                 dbContext.SaveChanges();
             } catch (Exception e) {
-                Console.WriteLine(e.Message); //TODO DEBUG MODE?
+                Console.WriteLine(e.Message);
                 throw new FaultException<DatabaseDeleteFault>(new DatabaseDeleteFault() { Message = e.Message });
             }
             return postal.PostCode;

@@ -111,7 +111,6 @@ namespace WCFService.Helper {
             if (password == null) {
                 throw new NullReferenceException("No new Password to generate hash!");
             }
-            //TODO Validation af passwordformatet!
             bool valid = password.Length >= 4 && password.Any(char.IsUpper) && password.Any(char.IsLower) && password.Any(char.IsDigit);
 
             if (!valid) {

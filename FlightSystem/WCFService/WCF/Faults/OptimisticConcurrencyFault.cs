@@ -8,7 +8,7 @@ namespace WCFService.WCF.Faults {
 
         public OptimisticConcurrencyFault() {
             Result = false;
-            Description = "Concurrency!"; //TODO Better text for concurrency?
+            Description = "Concurrency!";
             Message = Description;
         }
 

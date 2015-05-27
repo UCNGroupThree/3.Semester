@@ -164,7 +164,7 @@ namespace WCFService.WCF {
                 db.Entry(administrator).State = EntityState.Modified;
                 db.SaveChanges();
             } catch (Exception ex) {
-                Trace.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Trace.WriteLine(ex.Message);
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault("administrator"));
             }
             return administrator;
@@ -213,7 +213,7 @@ namespace WCFService.WCF {
                     ret = db.Administrators.Where(a => a.Username.Contains(username)).ToList();
                 }
             } catch (Exception ex) {
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Console.WriteLine(ex.Message);
                 ret = new List<Administrator>();
             }
             return ret;
@@ -224,7 +224,7 @@ namespace WCFService.WCF {
             try {
                 ret = db.Administrators.ToList();
             } catch (Exception ex) {
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Console.WriteLine(ex.Message);
                 ret = null;
             }
             return ret;

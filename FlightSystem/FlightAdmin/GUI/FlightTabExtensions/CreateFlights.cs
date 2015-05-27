@@ -182,7 +182,6 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
                 } else {
                     if (Route.Flights != null) {
                         foreach (var flight in Route.Flights) {
-                            System.Diagnostics.Debug.WriteLine(flight.ID + "added"); //TODO Remove after test
                             AddFlight(flight);
                         }
                     } else {
