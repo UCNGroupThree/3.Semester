@@ -26,8 +26,6 @@ namespace WCFService.WCF {
         public RouteService() {
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
-
-            
         }
 
         public Route AddRoute(Route route) {
@@ -35,20 +33,20 @@ namespace WCFService.WCF {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }
 
-            if (db.Routes.Count(f => f.From.ID == route.From.ID && f.To.ID == route.To.ID) == 0) {
+            if (db.Routes.Count(f => f.FromID == route.FromID && f.ToID == route.ToID) == 0) {
 
                 try {
-                    route.FromID = route.From.ID;
-                    route.ToID = route.To.ID;
+                    route.FromID = route.FromID;
+                    route.ToID = route.ToID;
                     db.Routes.Add(route);
-                    db.Airports.Attach(route.From);
-                    db.Airports.Attach(route.To);
                     db.SaveChanges();
 
                     // Running Async Added on Dijkstra Matrix
                     new Task(() => Dijkstra.Added(route)).Start();
                 } catch (Exception e) {
-                    Console.WriteLine(e.Message); //TODO DEBUG MODE?
+#if DEBUG
+                    e.DebugGetLine();
+#endif
                     throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault() {Message = e.Message});
                 }
 
@@ -94,27 +92,28 @@ namespace WCFService.WCF {
 
                 db.Entry(route).State = EntityState.Modified;
 
-                //DetectChanges(db);
-
                 db.SaveChanges();
 
                 retRoute.Concurrency = route.Concurrency;
 
-                //DebugSaveChanges();
-
                 // Running Async Update on Dijkstra Matrix
                 new Task(() => Dijkstra.Updated(retRoute)).Start();
             } catch (DbUpdateConcurrencyException e) {
+#if DEBUG
+                e.DebugGetLine();
+#endif
                 throw new FaultException<OptimisticConcurrencyFault>(new OptimisticConcurrencyFault() {
                     Message = e.Message
                 });
             } catch (DbUpdateException ex) {
-                Console.WriteLine(ex.InnerException);
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+#if DEBUG
+                ex.DebugGetLine();
+#endif
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault() { Message = ex.Message });
             } catch (Exception ex) {
-                Console.WriteLine(ex.InnerException);
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+#if DEBUG
+                ex.DebugGetLine();
+#endif
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault() { Message = ex.Message });
             }
 
@@ -132,7 +131,7 @@ namespace WCFService.WCF {
 
             try {
                 Trace.WriteLine("AddOrUpdateFlights");
-                Trace.WriteLine(route.From.Name + " " + route.To.Name);
+                Trace.WriteLine(route.FromID + " " + route.ToID);
 
 
                 foreach (var flight in route.Flights) {
@@ -154,27 +153,29 @@ namespace WCFService.WCF {
                     }
                 }
 
-                //db.DebugDetectChanges();
-
                 db.SaveChanges();
                 retRoute.Concurrency = route.Concurrency;
-                //db.DebugSaveChanges();
                 
                 // Running Async Update on Dijkstra Matrix
                 new Task(() => Dijkstra.Updated(retRoute)).Start();
 
 
             } catch (DbUpdateConcurrencyException e) {
+#if DEBUG
+                e.DebugGetLine();
+#endif
                 throw new FaultException<OptimisticConcurrencyFault>(new OptimisticConcurrencyFault() {
                     Message = e.Message
                 });
             } catch (DbUpdateException ex) {
-                Console.WriteLine(ex.InnerException);
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+#if DEBUG
+                ex.DebugGetLine();
+#endif
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault() { Message = ex.Message });
             } catch (Exception ex) {
-                Console.WriteLine(ex.InnerException);
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+#if DEBUG
+                ex.DebugGetLine();
+#endif
                 throw new FaultException<DatabaseUpdateFault>(new DatabaseUpdateFault() { Message = ex.Message });
             }
 
@@ -204,8 +205,9 @@ namespace WCFService.WCF {
                 // Running Async Remove on Dijkstra Matrix
                 new Task(() => Dijkstra.Removed(route)).Start();
             } catch (Exception ex) {
-                Trace.WriteLine(ex.Message); //TODO DEBUG MODE?
-                
+#if DEBUG
+                ex.DebugGetLine();
+#endif
                 throw new FaultException<DatabaseDeleteFault>(new DatabaseDeleteFault() { Message = ex.Message });
             }
         }
@@ -234,13 +236,15 @@ namespace WCFService.WCF {
         }
 
         public List<Route> GetRoutesByAirport(Airport from) {
-            List<Route> routes = db.Routes.Where(r => r.From.ID == from.ID).Include(r => r.To).Include(r => r.From).Include(r => r.Flights.Select(s => s.Plane)).ToList();
+            using (var _db = new FlightDB()) {
+                List<Route> routes = _db.Routes.Where(r => r.From.ID == from.ID).Include(r => r.To).Include(r => r.From).Include(r => r.Flights.Select(s => s.Plane)).ToList();
+                
+                if (routes.Count == 0) {
+                    throw new FaultException<NullPointerFault>(new NullPointerFault() { Message = "The Airport has no Routes" });
+                }
 
-            if (routes.Count == 0) {
-                throw new FaultException<NullPointerFault>(new NullPointerFault() {Message = "The Airport has no Routes"});
+                return routes;
             }
-
-            return routes;
         }
 
         

@@ -44,9 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GenerateTestData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReservationTest.cs" />
+    <Compile Include="Service References\MainService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ReservationService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -55,6 +61,46 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Service References\MainService\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainService\service.wsdl" />
+    <None Include="Service References\MainService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainService\System.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainService\Test.MainService.Administrator.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainService\Test.MainService.Airport.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainService\Test.MainService.Flight.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainService\Test.MainService.Plane.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainService\Test.MainService.Route.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainService\Test.MainService.Ticket.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainService\Test.MainService.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MainService\WCFService.Model.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MainService\WCFService.WCF.Faults.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ReservationService\service.wsdl" />
     <None Include="Service References\ReservationService\service.xsd">
       <SubType>Designer</SubType>
@@ -82,6 +128,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\MainService\" />
     <WCFMetadataStorage Include="Service References\ReservationService\" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +139,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ReservationService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MainService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MainService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MainService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

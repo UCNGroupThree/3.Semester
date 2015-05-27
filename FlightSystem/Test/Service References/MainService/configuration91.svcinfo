@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="SmKnPQU0O2B5i2gxhVaFYUxCrTg=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="XSo9UQRMq0NGXDdMCS/Sd7tuO18=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IAdministratorService">
       <properties>
@@ -764,10 +764,10 @@
         </property>
       </properties>
     </bindingConfiguration>
-    <bindingConfiguration bindingType="wsHttpBinding" name="WSHttpBinding_IReservationService">
+    <bindingConfiguration bindingType="wsHttpBinding" name="WSHttpBinding_IReservationService1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WSHttpBinding_IReservationService</serializedValue>
+          <serializedValue>WSHttpBinding_IReservationService1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -890,10 +890,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IAdministratorService" contract="MainService.IAdministratorService" bindingType="basicHttpBinding" address="http://7.119.223.130:8733/MainService/Administrator" bindingConfiguration="BasicHttpBinding_IAdministratorService">
+    <endpoint name="BasicHttpBinding_IAdministratorService" contract="MainService.IAdministratorService" bindingType="basicHttpBinding" address="http://localhost:8733/MainService/Administrator" bindingConfiguration="BasicHttpBinding_IAdministratorService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://7.119.223.130:8733/MainService/Administrator</serializedValue>
+          <serializedValue>http://localhost:8733/MainService/Administrator</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -975,10 +975,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IAirportService" contract="MainService.IAirportService" bindingType="basicHttpBinding" address="http://7.119.223.130:8733/MainService/Airport" bindingConfiguration="BasicHttpBinding_IAirportService">
+    <endpoint name="BasicHttpBinding_IAirportService" contract="MainService.IAirportService" bindingType="basicHttpBinding" address="http://localhost:8733/MainService/Airport" bindingConfiguration="BasicHttpBinding_IAirportService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://7.119.223.130:8733/MainService/Airport</serializedValue>
+          <serializedValue>http://localhost:8733/MainService/Airport</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1060,10 +1060,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IFlightService" contract="MainService.IFlightService" bindingType="basicHttpBinding" address="http://7.119.223.130:8733/MainService/Flight" bindingConfiguration="BasicHttpBinding_IFlightService">
+    <endpoint name="BasicHttpBinding_IFlightService" contract="MainService.IFlightService" bindingType="basicHttpBinding" address="http://localhost:8733/MainService/Flight" bindingConfiguration="BasicHttpBinding_IFlightService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://7.119.223.130:8733/MainService/Flight</serializedValue>
+          <serializedValue>http://localhost:8733/MainService/Flight</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1145,10 +1145,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IPlaneService" contract="MainService.IPlaneService" bindingType="basicHttpBinding" address="http://7.119.223.130:8733/MainService/Plane" bindingConfiguration="BasicHttpBinding_IPlaneService">
+    <endpoint name="BasicHttpBinding_IPlaneService" contract="MainService.IPlaneService" bindingType="basicHttpBinding" address="http://localhost:8733/MainService/Plane" bindingConfiguration="BasicHttpBinding_IPlaneService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://7.119.223.130:8733/MainService/Plane</serializedValue>
+          <serializedValue>http://localhost:8733/MainService/Plane</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1230,10 +1230,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IRouteService" contract="MainService.IRouteService" bindingType="basicHttpBinding" address="http://7.119.223.130:8733/MainService/Route" bindingConfiguration="BasicHttpBinding_IRouteService">
+    <endpoint name="BasicHttpBinding_IRouteService" contract="MainService.IRouteService" bindingType="basicHttpBinding" address="http://localhost:8733/MainService/Route" bindingConfiguration="BasicHttpBinding_IRouteService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://7.119.223.130:8733/MainService/Route</serializedValue>
+          <serializedValue>http://localhost:8733/MainService/Route</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1315,10 +1315,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IUserService" contract="MainService.IUserService" bindingType="basicHttpBinding" address="http://7.119.223.130:8733/MainService/User" bindingConfiguration="BasicHttpBinding_IUserService">
+    <endpoint name="BasicHttpBinding_IUserService" contract="MainService.IUserService" bindingType="basicHttpBinding" address="http://localhost:8733/MainService/User" bindingConfiguration="BasicHttpBinding_IUserService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://7.119.223.130:8733/MainService/User</serializedValue>
+          <serializedValue>http://localhost:8733/MainService/User</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1400,10 +1400,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="BasicHttpBinding_IDijkstra" contract="MainService.IDijkstra" bindingType="basicHttpBinding" address="http://7.119.223.130:8733/MainService/Dijkstra" bindingConfiguration="BasicHttpBinding_IDijkstra">
+    <endpoint name="BasicHttpBinding_IDijkstra" contract="MainService.IDijkstra" bindingType="basicHttpBinding" address="http://localhost:8733/MainService/Dijkstra" bindingConfiguration="BasicHttpBinding_IDijkstra">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://7.119.223.130:8733/MainService/Dijkstra</serializedValue>
+          <serializedValue>http://localhost:8733/MainService/Dijkstra</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1485,10 +1485,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="WSHttpBinding_IReservationService" contract="MainService.IReservationService" bindingType="wsHttpBinding" address="http://7.119.223.130:8733/MainService/Reservation" bindingConfiguration="WSHttpBinding_IReservationService">
+    <endpoint name="WSHttpBinding_IReservationService1" contract="MainService.IReservationService" bindingType="wsHttpBinding" address="http://localhost:8733/MainService/Reservation" bindingConfiguration="WSHttpBinding_IReservationService1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://7.119.223.130:8733/MainService/Reservation</serializedValue>
+          <serializedValue>http://localhost:8733/MainService/Reservation</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1497,7 +1497,7 @@
           <serializedValue>wsHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WSHttpBinding_IReservationService</serializedValue>
+          <serializedValue>WSHttpBinding_IReservationService1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>MainService.IReservationService</serializedValue>
@@ -1560,7 +1560,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WSHttpBinding_IReservationService</serializedValue>
+          <serializedValue>WSHttpBinding_IReservationService1</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

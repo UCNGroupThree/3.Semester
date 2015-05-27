@@ -12,8 +12,12 @@ using WCFService.WCF.Interface;
 namespace WCFService.WCF {
     public class Dijkstra : IDijkstra {
 
+        private const bool test = false;
+
         public static void Updated(object updatedObj) {
-            Matrix.GetInstance().Updated(updatedObj);
+            if(!test){
+                Matrix.GetInstance().Updated(updatedObj);
+            }
 
             
 
@@ -23,16 +27,18 @@ namespace WCFService.WCF {
         }
 
         public static void Added(object addedObj) {
-            Matrix.GetInstance().Added(addedObj);
-
+            if (!test) {
+                Matrix.GetInstance().Added(addedObj);
+            }
             //####### Test #######
             //Test();
             //####### Test End #######
         }
 
         public static void Removed(object removedObj) {
-            Matrix.GetInstance().Removed(removedObj);
-
+            if (!test) {
+                Matrix.GetInstance().Removed(removedObj);
+            }
             //####### Test #######
             //Test();
             //####### Test End #######
