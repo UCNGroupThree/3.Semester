@@ -33,7 +33,6 @@ namespace FlightAdmin.Controller {
                 throw new DatabaseException(dbException.Detail.Message);
             } catch (Exception ex) {
                 Console.WriteLine(@"CreateAdministrator Exception: " + ex);
-                //TODO Exception Handler
                 throw;
             }
 
@@ -51,7 +50,6 @@ namespace FlightAdmin.Controller {
                 throw new DatabaseException(ex.Detail.Message);
             } catch (Exception ex) {
                 Console.WriteLine(@"DeleteAdministrator Exception: " + ex);
-                //TODO Exception Handler
                 throw;
             }
         }
@@ -87,44 +85,12 @@ namespace FlightAdmin.Controller {
             } catch (Exception ex) {
                 administrator.SetToCopy(temp);
                 Console.WriteLine(@"UpdateAdministrator Exception: " + ex);
-                //TODO Exception Handler
                 throw;
             }
 
             return administrator;
         }
 
-      /*  public Administrator UpdatePassword(Administrator administrator, string password) {
-            Administrator temp = null;
-
-            try {
-                temp = administrator.GetCopy();
-
-                administrator.PasswordPlain = password;
-
-                using (AdministratorServiceClient client = new AdministratorServiceClient()) {
-                    var updated = client.UpdatePassword(administrator);
-                    administrator.SetToCopy(updated);
-                }
-            } catch (FaultException<NotFoundFault>) {
-                administrator.SetToCopy(temp);
-                throw new NotFoundException();
-            } catch (FaultException<PasswordFormatFault>) {
-                administrator.SetToCopy(temp);
-                throw new PasswordFormatException();
-            } catch (FaultException<DatabaseUpdateFault> ex) {
-                administrator.SetToCopy(temp);
-                throw new DatabaseException(ex.Detail.Message);
-            } catch (Exception ex) {
-                administrator.SetToCopy(temp);
-                Console.WriteLine(@"UpdateAdministrator Exception: " + ex);
-                //TODO Exception Handler
-                throw;
-            }
-
-            return administrator;
-        }   
-*/
         #endregion
 
         #region read

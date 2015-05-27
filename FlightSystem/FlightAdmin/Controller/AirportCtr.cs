@@ -27,7 +27,7 @@ namespace FlightAdmin.Controller {
                     Latitude = latitude,
                     Longitude = longitude,
                     Altitude = altitude,
-                    TimeZone = timeZone //TODO ASD ENTITY SEARCH
+                    TimeZone = timeZone
                 };
                 using (AirportServiceClient client = new AirportServiceClient()) {
                     airport = client.AddAirport(airport);
@@ -41,7 +41,6 @@ namespace FlightAdmin.Controller {
             } catch (Exception ex) {
                 airport = null;
                 Console.WriteLine(@"CreateAirport Exception: " + ex);
-                //TODO Exception Handler
                 throw;
             }
 
@@ -87,7 +86,6 @@ namespace FlightAdmin.Controller {
             } catch (Exception ex) {
                 airport.SetToCopy(temp);
                 Console.WriteLine(@"UpdateAirport Exception: " + ex);
-                //TODO Exception Handler
                 throw;
             }
             return airport;
@@ -107,7 +105,6 @@ namespace FlightAdmin.Controller {
                 throw new DatabaseException(ex.Detail.Message);
             } catch (Exception ex) {
                 Console.WriteLine(@"DeleteAirport Exception: " + ex);
-                //TODO Exception Handler
                 throw;
             }
         }

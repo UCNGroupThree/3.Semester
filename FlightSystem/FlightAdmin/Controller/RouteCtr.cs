@@ -19,7 +19,7 @@ namespace FlightAdmin.Controller {
         /// <exception cref="ConnectionException"/>
         /// <exception cref="ValidationException"/>
         /// <exception cref="AlreadyExistException"/>
-        public Route CreateRoute(Airport from, Airport to, List<Flight> flights, decimal price) { //TODO Better Exception
+        public Route CreateRoute(Airport from, Airport to, List<Flight> flights, decimal price) {
             Route route;
 
             if (RouteValidation(from, to, flights)) {
@@ -52,7 +52,7 @@ namespace FlightAdmin.Controller {
         /// <exception cref="DBConcurrencyException"/>
         /// <exception cref="DeleteException"/>
         /// <exception cref="ConnectionException"/>
-        public Route AddOrUpdateFlights(Route route, List<Flight> flights) { //TODO Better Exception
+        public Route AddOrUpdateFlights(Route route, List<Flight> flights) {
             Route retRoute;
                 using (var client = new RouteServiceClient()) {
                     try {
@@ -99,7 +99,7 @@ namespace FlightAdmin.Controller {
         /// <exception cref="DeleteException"/>
         /// <exception cref="ConnectionException"/>
         /// <exception cref="ValidationException"/>
-        public Route UpdateRoute(Route route, Airport from, Airport to, List<Flight> flights, decimal price) { //TODO Better Exception
+        public Route UpdateRoute(Route route, Airport from, Airport to, List<Flight> flights, decimal price) {
             Route retRoute;
             if (RouteValidation(from, to, flights)) {
                 using (var client = new RouteServiceClient()) {
@@ -147,7 +147,7 @@ namespace FlightAdmin.Controller {
         /// <exception cref="NullException"/>
         /// <exception cref="DatabaseException"/>
         /// <exception cref="ConnectionException"/>
-        public void DeleteRoute(Route route) { //TODO Better Exception
+        public void DeleteRoute(Route route) {
             using (var client = new RouteServiceClient()) {
                 try {
                     client.DeleteRoute(route);
@@ -167,7 +167,7 @@ namespace FlightAdmin.Controller {
 
         /// <exception cref="NullException"/>
         /// <exception cref="ConnectionException"/>
-        public Route GetRoute(int id) { //TODO Better Exception
+        public Route GetRoute(int id) {
             Route route;
 
             using (var client = new RouteServiceClient()) {

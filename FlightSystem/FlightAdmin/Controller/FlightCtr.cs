@@ -14,7 +14,7 @@ namespace FlightAdmin.Controller {
         #region Create
 
         /*
-        public Flight CreateFlight(DateTime arrival, DateTime departure, Plane plane) { //TODO Better Exception
+        public Flight CreateFlight(DateTime arrival, DateTime departure, Plane plane) {
             Flight flight = null;
 
             if (FlightValidation(arrival, departure, plane)) {
@@ -83,7 +83,7 @@ namespace FlightAdmin.Controller {
 
         #region Update
 
-        public Flight UpdateFlight(Flight flight, DateTime arrival, DateTime departure, Plane plane) { //TODO Better Exception
+        public Flight UpdateFlight(Flight flight, DateTime arrival, DateTime departure, Plane plane) {
             Flight retFlight = null;
 
             if (flight == null) {

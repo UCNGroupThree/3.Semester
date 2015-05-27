@@ -227,7 +227,7 @@ namespace FlightAdmin.GUI.AdministratorTabExtensions {
             }
         }
 
-        private void btnClose_Click(object sender, EventArgs e) { //TODO Kig her?
+        private void btnClose_Click(object sender, EventArgs e) {
             Dispose();
         }
 
