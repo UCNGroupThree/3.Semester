@@ -131,7 +131,6 @@ namespace FlightWeb {
             //Debug.WriteLine("date: {0}", date);
 
             try {
-                //TODO skal erstattes med et andet endpoint
 
                 ClearSession();
                 using (var client = new ReservationServiceClient()) {
@@ -161,7 +160,6 @@ namespace FlightWeb {
                     }
                 }
             } catch (Exception ex) {
-                //TODO bedre håndtering af fejl
                 ShowWarning("Validation Error!", "Body");
                 
                 e.Cancel = true;

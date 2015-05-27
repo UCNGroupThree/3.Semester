@@ -205,7 +205,9 @@
     <Content Include="Scripts\locales\bootstrap-datepicker.vi.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.min.js" />
     <Content Include="Default.aspx" />
-    <None Include="Service References\MainService\AzureService.disco" />
+    <None Include="Service References\MainService\Arrays1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\MainService\configuration91.svcinfo" />
     <None Include="Service References\MainService\configuration.svcinfo" />
     <Content Include="Service References\MainService\FlightWeb.MainService.Administrator.datasource">
@@ -273,25 +275,22 @@
     <Content Include="Bundle.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Site.Mobile.Master" />
-    <None Include="Service References\MainService\AzureService.xsd">
+    <None Include="Service References\MainService\service1.wsdl" />
+    <None Include="Service References\MainService\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MainService\AzureService1.xsd">
+    <None Include="Service References\MainService\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MainService\AzureService2.xsd">
+    <None Include="Service References\MainService\System1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MainService\AzureService3.xsd">
+    <None Include="Service References\MainService\WCFService.Model1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MainService\AzureService4.xsd">
+    <None Include="Service References\MainService\WCFService.WCF.Faults1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MainService\AzureService5.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MainService\MainService.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

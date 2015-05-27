@@ -149,22 +149,6 @@ namespace FlightWeb {
             try {
                 ses.Flights = null;
                 ses.NoOfSeats = 0;
-                //TODO sørge for at flytte dette til reservation.aspx
-                /*User user;
-                try {
-                    using (var userClient = new UserServiceClient()) {
-                        var email = HttpContext.Current.User.Identity.Name;
-                        if (string.IsNullOrEmpty(email)) {
-                            throw new NullException("Please login before searching :)");
-                        }
-                        user = userClient.GetUsersByEmail(email, true).First();
-                    }
-                } catch (Exception ex) {
-                    if (ex is NullException) {
-                        throw;
-                    }
-                    throw new NullException("An Error happen in getting your user details.", ex);
-                }*/
                 using (var client = new DijkstraClient()) {
                     var list = client.DijkstraStuff(fromId, toId, seats, date);
                     if (list != null && list.Count > 0) {

@@ -38,7 +38,6 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-        <%-- //TODO BEDRE MÅDE AT LINKE TIL FIL --%>
         <link rel="stylesheet" href="/Content/bootstrap-datepicker.css"/>
         <script src="/Scripts/bootstrap-datepicker.js"></script>
         <div class="navbar navbar-inverse navbar-fixed-top">
