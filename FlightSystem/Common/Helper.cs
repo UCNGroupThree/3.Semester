@@ -42,7 +42,7 @@ namespace Common {
         }
 
         public static void DebugGetLine(this Exception ex) {
-
+#if DEBUG
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
@@ -60,6 +60,7 @@ namespace Common {
                 }
             Trace.WriteLine("\n ########################### \n\n");
             //Debug.WriteLine(String.Format("File: {0} Line: {1} Exception Cought", frame.GetFileName(),frame.GetFileLineNumber()));
+#endif
         }
     }
 }
