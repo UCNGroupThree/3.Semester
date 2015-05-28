@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.ServiceModel;
 using System.Threading.Tasks;
 using WCFService.Dijkstra;
 using WCFService.Logging;
@@ -25,19 +26,8 @@ namespace WCFService {
 
         #endregion
 
-        public MainService() {
-                   
-        }
-
         static MainService() {
-            new Task(() => Matrix.GetInstance()).Start();
             Trace.Listeners.Add(new TextWriterTraceListener(new Logger()));
-
-            //EventLogTraceListener listener = new EventLogTraceListener("Test Event Log");
-            //Trace.Listeners.Add(listener);
-#if DEBUG
-            Trace.WriteLine("Hi, I'm here!");
-#endif
         }
 
         #region Administrator Service
@@ -271,6 +261,10 @@ namespace WCFService {
 
         public List<Flight> DijkstraStuff(int fromId, int toId, int seats, DateTime startTime) {
             return _dijkstraService.DijkstraStuff(fromId, toId, seats,startTime);
+        }
+
+        public void DijkstraTest(int from, int to, int seats, DateTime dt) {
+            _dijkstraService.DijkstraTest(from, to, seats, dt);
         }
 
         #endregion

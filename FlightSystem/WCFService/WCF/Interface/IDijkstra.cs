@@ -13,5 +13,8 @@ namespace WCFService.WCF.Interface {
         [FaultContract(typeof(LockedFault))]
         List<Flight> DijkstraStuff(int fromId, int toId, int seats, DateTime startTime);
 
+        [OperationContract]
+        void DijkstraTest(int from, int to, int seats, DateTime dt);
+
     }
 }

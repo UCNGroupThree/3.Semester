@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Diagnostics;
+using System.Linq;
 using System.Security.AccessControl;
 using System.ServiceModel;
+using Common;
 using Common.Exceptions;
 using WCFService.Dijkstra;
+using WCFService.Dijkstra.Test;
 using WCFService.Model;
 using WCFService.WCF.Faults;
 using WCFService.WCF.Interface;
+using Matrix = WCFService.Dijkstra.Matrix;
 
 namespace WCFService.WCF {
     public class Dijkstra : IDijkstra {
@@ -15,11 +20,11 @@ namespace WCFService.WCF {
         private const bool test = false;
 
         public static void Updated(object updatedObj) {
-            if(!test){
+            if (!test) {
                 Matrix.GetInstance().Updated(updatedObj);
             }
 
-            
+
 
             //####### Test #######
             //Test();
@@ -77,12 +82,45 @@ namespace WCFService.WCF {
         /// <exception cref="LockedFault">Thrown when Dijkstra has updated for more than 15 seconds</exception>
         public List<Flight> DijkstraStuff(int fromId, int toId, int seats, DateTime startTime) {
             try {
-                var matrix = Matrix.GetInstance();
+                var matrix = WCFService.Dijkstra.Matrix.GetInstance();
                 List<Flight> ret = matrix.GetShortestPath(fromId, toId, seats, startTime);
                 return ret;
             } catch (LockedException e) {
-                throw new FaultException<LockedFault>(new LockedFault(){Description = e.Message, Message = e.Message}, new FaultReason(e.Message));
+                throw new FaultException<LockedFault>(new LockedFault() { Description = e.Message, Message = e.Message }, new FaultReason(e.Message));
             }
+        }
+
+        /*
+         * IQueryable<Airport> fromAirports = _db.Airports
+                .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats)))
+                .Include(a => a.Routes.Select(r => r.To))
+                .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
+                .Where(a => a.Routes.Any(r => r.Flights.Any(f => f.SeatReservations.Count < f.Plane.Seats.Count)));
+         */
+
+        public void DijkstraTest(int from, int to, int seats, DateTime dt) {
+#if DEBUG
+            Trace.WriteLine("----------- Constructor -----------");
+            var watch = Stopwatch.StartNew();
+#endif
+
+            var list = WCFService.Dijkstra.Test.Matrix.GetInstance().CalculateShortestPathBetween(new Airport() { ID = from }, new Airport() { ID = to }, seats, dt).ToList();
+
+#if DEBUG
+            Trace.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
+            Trace.WriteLine("-------- Constructor Ended ---------");
+#endif
+
+            decimal total = 0;
+            foreach (var path in list) {
+                Debug.Write(path + " | ");
+                if (path.FinalFlight != null) {
+                    Debug.Write(path.FinalFlight.DepartureTime + " | " + path.FinalFlight.ArrivalTime);
+                }
+                Debug.WriteLine("");
+                total += path.Route.Price;
+            }
+            Debug.WriteLine("Total Cost: " + total);
         }
     }
 }

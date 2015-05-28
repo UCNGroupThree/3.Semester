@@ -72,6 +72,7 @@
     <Compile Include="Dijkstra\DijkstraHelper.cs" />
     <Compile Include="Dijkstra\Matrix.cs" />
     <Compile Include="Dijkstra\Program.cs" />
+    <Compile Include="Dijkstra\Test\Matrix.cs" />
     <Compile Include="Dijkstra\Vertex.cs" />
     <Compile Include="Helper\PasswordHelper.cs" />
     <Compile Include="Logging\LogDB.cs" />
