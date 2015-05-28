@@ -715,8 +715,6 @@ namespace WCFService.Dijkstra {
 
             path = CleanUp(path);
 
-            path.Reverse();
-
             InsertSeatReservation(path);
 
             running.Remove(inc);
@@ -736,7 +734,7 @@ namespace WCFService.Dijkstra {
                 .Include(f => f.Plane)
                 .Include(f => f.Route.From)
                 .Include(f => f.Route.To)
-                .Where(f => listOfIds.Contains(f.ID)).ToList();
+                .Where(f => listOfIds.Contains(f.ID)).OrderByDescending(f => f.DepartureTime).ToList();
             }
 
 #if DEBUG

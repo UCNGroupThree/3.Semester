@@ -21,7 +21,6 @@ namespace Common {
             return formatted;
         }
 
-
         public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source) {
             return new HashSet<T>(source);
         }
@@ -35,10 +34,6 @@ namespace Common {
             T ret = JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source));
 
             return ret;
-        }
-
-        public static bool HasProperty(this object obj, string propertyName) {
-            return obj.GetType().GetProperty(propertyName) != null;
         }
 
         public static void DebugGetLine(this Exception ex) {
