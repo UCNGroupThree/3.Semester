@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Remoting.Services;
 using System.ServiceModel;
 using System.Threading;
+using System.Threading.Tasks;
 using Common;
 using Common.Exceptions;
 using WCFService.Model;
@@ -16,10 +19,12 @@ namespace WCFService.Dijkstra {
 
     public class Matrix {
 
+        #region Properties
+
         private readonly FlightDB _db = new FlightDB();
         private readonly RouteService _rs = new RouteService();
-        private readonly List<Edge<Airport>> _edges = new List<Edge<Airport>>();
-        private readonly List<Airport> _airports;
+        private readonly HashSet<Edge<Airport>> _edges = new HashSet<Edge<Airport>>();
+        private readonly HashSet<Airport> _airports;
 
         private static Matrix _instance;
         private static List<int> running = new List<int>();
@@ -27,16 +32,29 @@ namespace WCFService.Dijkstra {
 
         private bool _locked = false;
 
+        #endregion
+
+        #region Instance
+
+        private static object syncRoot = new Object();
+
         public static Matrix GetInstance() {
-            return _instance ?? (_instance = new Matrix());
+            if (_instance == null) {
+                lock (syncRoot) {
+                    if (_instance == null)
+                        _instance = new Matrix();
+                }
+            }
+
+            return _instance;
         }
+
+        #endregion
+
+        #region Add / Remove / Update
 
         public void Removed(object removedObj) {
             _locked = true;
-
-#if DEBUG
-            Trace.WriteLine("Running List Count: " + running.Count);
-#endif
 
             while (running.Count > 0) {
                 Thread.Sleep(1000);
@@ -138,8 +156,9 @@ namespace WCFService.Dijkstra {
 
                 // ####### Timing End #######
 #endif
-                _airports.RemoveAll(a => a.ID == airport.ID);
-                _edges.RemoveAll(e => e.Data.ID == airport.ID);
+
+                _airports.RemoveWhere(a => a.ID == airport.ID);
+                _edges.RemoveWhere(e => e.Data.ID == airport.ID);
 
                 var edg = _edges.Where(e => e.Neighbors.Any(n => n.Data.ID == airport.ID)).ToList();
                 edg.ForEach(e => e.Neighbors.RemoveAll(n => n.Data.ID == airport.ID));
@@ -160,18 +179,18 @@ namespace WCFService.Dijkstra {
 
         private void RemoveRoute(Route route) {
             try {
-
+#if DEBUG
                 // ####### Timing #######
 
                 Trace.WriteLine("----------- RemoveRoute -----------");
                 var watch = Stopwatch.StartNew();
 
                 // ####### Timing End #######
-
+#endif
                 var airport = _airports.First(a => a.Routes.Any(r => r.ID == route.ID));
                 airport.Routes.RemoveAll(r => r.ID == route.ID);
 
-                _edges.RemoveAll(e => e.Data.ID == airport.ID);
+                _edges.RemoveWhere(e => e.Data.ID == airport.ID);
 
                 if (!airport.Routes.Any()) {
                     _airports.Remove(airport);
@@ -181,8 +200,10 @@ namespace WCFService.Dijkstra {
                     _edges.Add(newEdge);
                 }
 
-                _edges.ForEach(e => e.Neighbors.RemoveAll(n => n.Data.ID == route.ToID));
-
+                foreach (var edge in _edges) {
+                    edge.Neighbors.RemoveAll(n => n.Data.ID == route.ToID);
+                }
+#if DEBUG
                 // ####### Timing #######
 
                 watch.Stop();
@@ -190,7 +211,7 @@ namespace WCFService.Dijkstra {
                 Trace.WriteLine("-------- RemoveRoute Ended ---------");
 
                 // ####### Timing End #######
-
+#endif
             } catch (Exception) {
                 HardReset();
             }
@@ -204,13 +225,14 @@ namespace WCFService.Dijkstra {
         private void AddRoute(Route route) {
             using (var db = new FlightDB()) {
                 try {
+#if DEBUG
                     // ####### Timing #######
 
                     Trace.WriteLine("----------- AddRoute -----------");
                     var watch = Stopwatch.StartNew();
 
                     // ####### Timing End #######
-
+#endif
                     // ####### Add / Edit Matrix ######
 
                     route = db.Routes.Include(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats))
@@ -248,7 +270,10 @@ namespace WCFService.Dijkstra {
                             .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
                             .First(a => a.ID == airport.ID);
 
-                        _airports[_airports.FindIndex(a => a.ID == ap.ID)] = ap;
+
+
+                        _airports.ReplaceWithHash(ap);
+
                     } else if (ap.Routes.Any(r => r.ID == route.ID)) {
                         ap.Routes[ap.Routes.FindIndex(r => r.ID == route.ID)] = route;
                     } else {
@@ -257,7 +282,7 @@ namespace WCFService.Dijkstra {
 
                     // ##### Add / Edit Airport List End ####
 
-
+#if DEBUG
                     // ####### Timing #######
 
                     watch.Stop();
@@ -265,7 +290,7 @@ namespace WCFService.Dijkstra {
                     Trace.WriteLine("-------- AddRoute Ended ---------");
 
                     // ####### Timing End #######
-
+#endif
                 } catch (Exception) {
                     HardReset();
                 }
@@ -274,13 +299,14 @@ namespace WCFService.Dijkstra {
 
         private void AddFlight(Flight flight) {
             try {
+#if DEBUG
                 // ####### Timing #######
 
                 Trace.WriteLine("----------- AddFlight -----------");
                 var watch = Stopwatch.StartNew();
 
                 // ####### Timing End #######
-
+#endif
                 // ##### Add / Edit Airport List #####
 
                 var newFlight =
@@ -304,18 +330,19 @@ namespace WCFService.Dijkstra {
 
                 // ###### Add / Edit Matrix #####
 
-                var edgeIndex = _edges.FindIndex(e => e.Data.ID == airport.ID);
+                //var edgeIndex = _edges.FindIndex(e => e.Data.ID == airport.ID);
                 var edge = GenerateEdge(airport);
+                var oldEdge = _edges.SingleOrDefault(e => e.Data.ID == edge.Data.ID);
 
-                if (edgeIndex == -1) {
-                    _edges.Add(edge);
-                } else {
-                    _edges[edgeIndex] = edge;
+                if (oldEdge != null) {
+                    _edges.Remove(oldEdge);
                 }
+
+                _edges.Add(edge);
 
 
                 // ##### ADD / Edit Matrix End #####
-
+#if DEBUG
                 // ####### Timing #######
 
                 watch.Stop();
@@ -323,7 +350,7 @@ namespace WCFService.Dijkstra {
                 Trace.WriteLine("-------- AddFlight Ended ---------");
 
                 // ####### Timing End #######
-
+#endif
             } catch (Exception) {
                 HardReset();
             }
@@ -336,13 +363,14 @@ namespace WCFService.Dijkstra {
         private void UpdateFlight(Flight flight) {
             using (var db = new FlightDB()) {
                 try {
+#if DEBUG
                     // ####### Timing #######
 
                     Trace.WriteLine("----------- UpdateFlight -----------");
                     var watch = Stopwatch.StartNew();
 
                     // ####### Timing End #######
-
+#endif
                     var newFlight =
                         db.Flights.Include(f => f.Plane)
                             .Include(f => f.Plane.Seats)
@@ -355,14 +383,15 @@ namespace WCFService.Dijkstra {
                     var route = airport.Routes[airport.Routes.FindIndex(r => r.ID == newFlight.Route.ID)];
                     route.Flights[route.Flights.FindIndex(f => f.ID == newFlight.ID)] = newFlight;
 
-                    var edgeIndex = _edges.FindIndex(e => e.Data.ID == airport.ID);
+                    //var edgeIndex = _edges.FindIndex(e => e.Data.ID == airport.ID);
                     var edge = GenerateEdge(airport);
-                    if (edge != null) {
-                        _edges[edgeIndex] = edge;
-                    } else {
-                        _edges.RemoveAt(edgeIndex);
-                    }
 
+                    if (edge != null) {
+                        _edges.ReplaceWithHash(edge);
+                    } else {
+                        _edges.RemoveWhere(e => e.Data.ID == airport.ID);
+                    }
+#if DEBUG
                     // ####### Timing #######
 
                     watch.Stop();
@@ -370,7 +399,7 @@ namespace WCFService.Dijkstra {
                     Trace.WriteLine("-------- UpdateFlight Ended ---------");
 
                     // ####### Timing End #######
-
+#endif
                 } catch (Exception) {
                     HardReset();
                 }
@@ -380,13 +409,14 @@ namespace WCFService.Dijkstra {
         private void UpdateRoute(Route route) {
             using (var db = new FlightDB()) {
                 try {
+#if DEBUG
                     // ####### Timing #######
 
                     Trace.WriteLine("----------- UpdateRoute -----------");
                     var watch = Stopwatch.StartNew();
 
                     // ####### Timing End #######
-
+#endif
                     //var airport = route.From;
                     var edge = _edges.First(ed => ed.Data.ID == route.FromID);
 
@@ -403,6 +433,8 @@ namespace WCFService.Dijkstra {
                         ap.Routes[ap.Routes.FindIndex(r => r.ID == route.ID)] = route;
 
                     }
+
+#if DEBUG
                     // ####### Timing #######
 
                     watch.Stop();
@@ -410,7 +442,7 @@ namespace WCFService.Dijkstra {
                     Trace.WriteLine("-------- UpdateRoute Ended ---------");
 
                     // ####### Timing End #######
-
+#endif
 
                 } catch (Exception) {
                     HardReset();
@@ -421,17 +453,14 @@ namespace WCFService.Dijkstra {
         private void UpdateAirport(Airport airport) {
             using (var db = new FlightDB()) {
                 try {
-
+#if DEBUG
                     // ####### Timing #######
 
                     Trace.WriteLine("----------- UpdateAirport -----------");
                     var watch = Stopwatch.StartNew();
 
                     // ####### Timing End #######
-
-                    var index = _airports.FindIndex(a => a.ID == airport.ID);
-
-
+#endif
 
                     var newAirport = db.Airports.Include(
                         a => a.Routes.Select(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats)))
@@ -439,13 +468,13 @@ namespace WCFService.Dijkstra {
                         .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
                         .First(a => a.ID == airport.ID);
 
-                    if (index == -1) {
+                    if (!_airports.Contains(newAirport)) {
                         _airports.Add(newAirport);
                     } else {
-                        _airports[index] = newAirport;
+                        _airports.ReplaceWithHash(newAirport);
                     }
 
-                    Trace.WriteLine("----------- Testing Done -----------");
+
 
                     foreach (var ap in _airports) {
                         var toRoutes = ap.Routes.Where(r => r.To.ID == newAirport.ID).ToList();
@@ -466,7 +495,7 @@ namespace WCFService.Dijkstra {
                     var edge = GenerateEdge(newAirport);
 
                     if (edge != null) {
-                        _edges[_edges.FindIndex(e => e.Data.ID == newAirport.ID)] = edge;
+                        _edges.ReplaceWithHash(edge);
                     }
 
 #if DEBUG
@@ -491,6 +520,10 @@ namespace WCFService.Dijkstra {
             _instance = new Matrix();
         }
 
+        #endregion
+
+        #region Constructor
+
         private Matrix() {
 #if DEBUG
             Trace.WriteLine("----------- Constructor -----------");
@@ -507,7 +540,7 @@ namespace WCFService.Dijkstra {
             var toAirports = tmpAirports.SelectMany(r => r.Routes.Select(a => a.To)).ToHashSet();
             tmpAirports.UnionWith(toAirports);
 
-            _airports = tmpAirports.ToList();
+            _airports = tmpAirports;
 
 #if DEBUG
             Trace.WriteLine("airports: " + _airports.ToArray());
@@ -522,6 +555,10 @@ namespace WCFService.Dijkstra {
             Trace.WriteLine("-------- Constructor Ended ---------");
 #endif
         }
+
+        #endregion
+
+        #region EdgeGeneration
 
         private Edge<Airport> GenerateEdge(Airport airport) {
             var edge = new Edge<Airport>(airport);
@@ -564,6 +601,10 @@ namespace WCFService.Dijkstra {
             }
         }
 
+        #endregion
+
+        #region ShortestPath
+
         /// <summary>
         /// 
         /// </summary>
@@ -574,6 +615,8 @@ namespace WCFService.Dijkstra {
         /// <param name="startTime"></param>
         /// <returns></returns>
         public List<Flight> GetShortestPath(int fromId, int toId, int seats, DateTime startTime) {
+            long t = 0;
+
 
             int timer = 0;
             while (_locked) {
@@ -584,59 +627,41 @@ namespace WCFService.Dijkstra {
                     throw new LockedException("The Matrix is being updated");
                 }
             }
-
             var inc = i++;
             running.Add(inc);
-
-            //while (timer < 15000) {
-            //    Thread.Sleep(1000);
-            //    timer += 1000;
-            //    Trace.WriteLine(timer);
-            //}
-
-
 
             Airport from = _airports.FirstOrDefault(a => a.ID == fromId);
 
 #if DEBUG
-            Trace.WriteLine("from: " + from);
-            Trace.WriteLine("airports: " + _airports.ToArray().ToString());
-            Trace.WriteLine("airports count: " + _airports.Count);
+            Trace.WriteLine(String.Format("From Airport: {0} | To AirportID: {1} | AirportCount: {2}", from, toId, _airports.Count));
 #endif
 
             if (from == null || toId < 0) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault() { Message = "Airports cant be null" });
             }
 
-            var times = new Dictionary<Airport, DateTime>();
+            var times = new ConcurrentDictionary<Airport, DateTime>();
             times[from] = startTime;
 
             var path = new List<Flight>();
-            var distance = new Dictionary<Airport, decimal>();
-            var previous = new Dictionary<Airport, Airport>();
-            var routedFlights = new Dictionary<Route, Flight>();
+            var distance = new ConcurrentDictionary<Airport, decimal>();
+            var previous = new ConcurrentDictionary<Airport, Airport>();
+            var routedFlights = new ConcurrentDictionary<Route, Flight>();
             var nodes = new List<Airport>();
 
-            foreach (var edge in _edges) {
-                if (edge.Data.ID == from.ID) {
-                    distance[edge.Data] = 1;
-                } else {
-                    distance[edge.Data] = int.MaxValue;
-                }
+            SetDefaultEdgeValue(distance, nodes, from);
 
-                nodes.Add(edge.Data);
-            }
             while (nodes.Count != 0) {
                 nodes.Sort((x, y) => (int)Math.Round(distance[x]) - (int)Math.Round(distance[y]));
 
                 var smallest = nodes[0];
 
 #if DEBUG
-                Trace.WriteLine(String.Format("smallest: {0}, toID: {1}", smallest.ID, toId));
+                Trace.WriteLine(String.Format("smallestID: {0} | toID: {1}", smallest.ID, toId));
 #endif
 
                 nodes.Remove(smallest);
-                //LasseGO
+
                 if (smallest.ID == toId) {
                     if (previous.Count > 0) {
                         while (previous.ContainsKey(smallest)) {
@@ -659,29 +684,34 @@ namespace WCFService.Dijkstra {
                     break;
                 }
 
-                foreach (var neighbor in _edges.Single(e => e.Data.ID == smallest.ID).Neighbors) {
-                    var alt = distance[smallest] + neighbor.Price;
-                    Flight flight = null;
-
-
-                    try {
-
-                        var time = times[smallest];
 
 #if DEBUG
-                        Trace.WriteLine(smallest.ID + " -> " + neighbor.Data.ID);
+                // ####### Timing #######
+
+                Trace.WriteLine("----------- ShortestPath -----------");
+                var watch = Stopwatch.StartNew();
+
+                // ####### Timing End #######
 #endif
 
+                #region Parallel (Incomplete)
+                /*
+                Parallel.ForEach(_edges.Single(e => e.Data.ID == smallest.ID).Neighbors, (neighbor, loopState) => {
+                    var alt = distance[smallest] + neighbor.Price;
+
+                    try {
+                        var time = times[smallest];
+#if DEBUG
+                        Trace.WriteLine(String.Format("From {0} -> To {1}", smallest, neighbor.Data));
+#endif
                         Route route = smallest.GetRouteTo(neighbor.Data);
                         List<Flight> flights = route.Flights;
                         flights.Sort(new Comparison<Flight>((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
-                        flight = flights.FirstOrDefault(dep => dep.DepartureTime.TimeOfDay > time.TimeOfDay);
-
+                        var flight = flights.FirstOrDefault(dep => dep.DepartureTime.TimeOfDay > time.TimeOfDay);
 #if DEBUG
-                        Trace.WriteLine("Flight: not null? = " + flight);
-                        Trace.WriteLine("Current Time: " + time.TimeOfDay);
-                        Trace.WriteLine("Departure Time: " + flight.DepartureTime.TimeOfDay);
-                        Trace.WriteLine("Arrival Time: " + flight.ArrivalTime.TimeOfDay);
+                        if (flight != null) {
+                            Trace.WriteLine(String.Format("Flight: {0} | Current Time: {1} | Departure Time: {2} | Arrival Time: {3}", flight.ID, time.TimeOfDay, flight.DepartureTime.TimeOfDay, flight.ArrivalTime.TimeOfDay));
+                        }
 #endif
 
                         if ((flight.SeatReservations.Count + seats) < flight.Plane.Seats.Count) {
@@ -691,83 +721,119 @@ namespace WCFService.Dijkstra {
                                 distance[neighbor.Data] = alt;
                                 previous[neighbor.Data] = smallest;
                                 routedFlights[route] = flight;
+                                loopState.Stop();
                             }
                         }
 #if DEBUG
-                        else {
-                            Trace.WriteLine("SeatRes: " + (flight.SeatReservations.Count + seats));
-                            Trace.WriteLine("Flight Seats: " + flight.Plane.Seats.Count);
-                            Trace.WriteLine("Not enough Seats on " + flight.ID);
+ else {
+                            Trace.WriteLine(String.Format("SeatReservations: {0} | Flight Seats: {1} | Not enough Seats on {2}", (flight.SeatReservations.Count + seats), flight.Plane.Seats.Count, flight.ID));
                         }
 #endif
-                        
+
 
                     } catch
                         (KeyNotFoundException) { } catch
                         (NullReferenceException) { }
 
+                });
+                */
+                #endregion
+
+                foreach (var neighbor in _edges.Single(e => e.Data.ID == smallest.ID).Neighbors) {
+                    var alt = distance[smallest] + neighbor.Price;
+
+
+                    try {
+                        if (alt < distance[neighbor.Data]) {
+                            var time = times[smallest];
+#if DEBUG
+                            Trace.WriteLine(String.Format("From {0} -> To {1}", smallest, neighbor.Data));
+#endif
+                            Route route = smallest.GetRouteTo(neighbor.Data);
+                            List<Flight> flights = route.Flights;
+                            flights.Sort(new Comparison<Flight>((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
+                            var flight = flights.FirstOrDefault(dep => dep.DepartureTime.TimeOfDay > time.TimeOfDay);
+#if DEBUG
+                            if (flight != null) {
+                                Trace.WriteLine(String.Format("Flight: {0} | Current Time: {1} | Departure Time: {2} | Arrival Time: {3}", flight.ID, time.TimeOfDay, flight.DepartureTime.TimeOfDay, flight.ArrivalTime.TimeOfDay));
+                            }
+#endif
+
+                            if ((flight.SeatReservations.Count + seats) < flight.Plane.Seats.Count) {
+
+
+                                times[neighbor.Data] = flight.ArrivalTime;
+                                distance[neighbor.Data] = alt;
+                                previous[neighbor.Data] = smallest;
+                                routedFlights[route] = flight;
+
+
+                            }
+
+#if DEBUG
+ else {
+                                Trace.WriteLine(String.Format("SeatReservations: {0} | Flight Seats: {1} | Not enough Seats on {2}", (flight.SeatReservations.Count + seats), flight.Plane.Seats.Count, flight.ID));
+                            }
+#endif
+
+                        }
+                    } catch
+                        (KeyNotFoundException) { } catch
+                        (NullReferenceException) { }
+
+
                 }
+
+#if DEBUG
+                // ####### Timing #######
+
+                watch.Stop();
+                Trace.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
+                Trace.WriteLine("-------- ShortestPath Ended ---------");
+                t += watch.ElapsedMilliseconds;
+                // ####### Timing End #######
+#endif
             }
 #if DEBUG
             Trace.WriteLine("path: " + path.ToArray().ToString());
             Trace.WriteLine("path count: " + path.Count);
 #endif
-
             path = CleanUp(path);
-
-            InsertSeatReservation(path);
-
             running.Remove(inc);
+
+            Trace.WriteLine("\nTime: " + t + "ms\n");
+            Trace.WriteLine("-------- ShortestPath Ended ---------");
+
             return path;
         }
 
+        private void SetDefaultEdgeValue(ConcurrentDictionary<Airport, decimal> distance, List<Airport> nodes, Airport from) {
+            foreach (var edge in _edges) {
+                if (edge.Data.ID == from.ID) {
+                    distance[edge.Data] = 1;
+                } else {
+                    distance[edge.Data] = int.MaxValue;
+                }
+
+                nodes.Add(edge.Data);
+            }
+        }
 
         private List<Flight> CleanUp(List<Flight> flights) {
-            List<Flight> retFlights = new List<Flight>();
-
-            var listOfIds = flights.Select(f => f.ID);
-
             using (var db = new FlightDB()) {
+                var listOfIds = flights.Select(f => f.ID);
 
-
-                retFlights = db.Flights
+                var retFlights = db.Flights
                 .Include(f => f.Plane)
                 .Include(f => f.Route.From)
                 .Include(f => f.Route.To)
-                .Where(f => listOfIds.Contains(f.ID)).OrderByDescending(f => f.DepartureTime).ToList();
+                .Where(f => listOfIds.Contains(f.ID)).OrderBy(f => f.DepartureTime).ToList();
+
+                return retFlights;
             }
-
-#if DEBUG
-            Trace.WriteLine("Flights List:");
-            flights.ForEach(f => Trace.WriteLine(f.ID));
-
-            Trace.WriteLine("ListOfIds:");
-            foreach (var listOfId in listOfIds) {
-                Trace.WriteLine(listOfId);
-            }
-
-            Trace.WriteLine("retFlights List:");
-            retFlights.ForEach(f => Trace.WriteLine(f.ID));
-#endif
-
-            return retFlights;
         }
 
-        private void InsertSeatReservation(List<Flight> path) {
-
-            path.ForEach(t => Trace.WriteLine(String.Format("#{0} PlaneID: {1}", t.ID, t.Plane.ID)));
-            //    try {
-            //        Seat seat = path.First().Plane.Seats.First();
-            //        Trace.WriteLine("Seat: #" + seat.ID);
-            //        SeatReservation sr = new SeatReservation(SeatState.Taken, "Hans", seat, path.First());
-            //        path.First().SeatReservations.Add(sr);
-            //        //_db.SeatReservations.Attach(sr);
-            //        _db.SaveChanges();
-            //    } catch (Exception e) {
-            //        Trace.WriteLine(e);
-            //    }
-            //    Trace.WriteLine("### DONE ####");
-        }
+        #endregion
     }
 
     /*

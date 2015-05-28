@@ -81,7 +81,7 @@ namespace WCFService.WCF {
                 List<Flight> ret = matrix.GetShortestPath(fromId, toId, seats, startTime);
                 return ret;
             } catch (LockedException e) {
-                throw new FaultException<LockedFault>(new LockedFault(){Description = e.Message, Message = e.Message});
+                throw new FaultException<LockedFault>(new LockedFault(){Description = e.Message, Message = e.Message}, new FaultReason(e.Message));
             }
         }
     }

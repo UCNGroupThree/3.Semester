@@ -73,7 +73,7 @@ namespace WCFService.WCF {
                 DeleteTicket(false);
             }
             using (var db = new FlightDB()) {
-                db.DebugLog();
+                //db.DebugLog();
                 try {
                     user = db.Users.Include(x => x.Postal).Single(u => u.ID == user.ID);
                 } catch (Exception) {
@@ -156,13 +156,13 @@ namespace WCFService.WCF {
         private List<Flight> GetFlights(List<Flight> flights, FlightDB db) {
             var count = flights.Count;
             //using (var db = new FlightDB()) {
-            db.DebugLog();
+            //db.DebugLog();
             var listOfIds = flights.Select(f => f.ID);
             var query = db.Flights
                 .Include(f => f.Plane)
                 .Include(f => f.Route.From)
                 .Include(f => f.Route.To)
-                .Where(f => listOfIds.Contains(f.ID));
+                .Where(f => listOfIds.Contains(f.ID)).OrderBy(f => f.DepartureTime);
             var ret = query.ToList();
             var foundCount = ret.Count;
             if (count != foundCount) {

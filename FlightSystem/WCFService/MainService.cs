@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using WCFService.Dijkstra;
 using WCFService.Logging;
 using WCFService.Model;
@@ -25,11 +26,11 @@ namespace WCFService {
         #endregion
 
         public MainService() {
-            Matrix.GetInstance();
-            
+                   
         }
 
         static MainService() {
+            new Task(() => Matrix.GetInstance()).Start();
             Trace.Listeners.Add(new TextWriterTraceListener(new Logger()));
 
             //EventLogTraceListener listener = new EventLogTraceListener("Test Event Log");

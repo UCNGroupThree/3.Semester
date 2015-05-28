@@ -25,6 +25,16 @@ namespace Common {
             return new HashSet<T>(source);
         }
 
+        public static void ReplaceWithHash<T>(this HashSet<T> source, T newObj) {
+            source.Remove(newObj);
+            source.Add(newObj);
+        }
+
+        public static void Replace<T>(this HashSet<T> source, T newObj, T oldObj) {
+            source.Remove(oldObj);
+            source.Add(newObj);
+        }
+
         public static T Clone<T>(this T source) {
             // Don't serialize a null object, simply return the default for that object
             if (Object.ReferenceEquals(source, null)) {

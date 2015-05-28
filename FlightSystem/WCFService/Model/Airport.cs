@@ -67,7 +67,13 @@ namespace WCFService.Model {
             return ID;
         }
         public override bool Equals(object obj) {
-            return Equals(obj as Airport);
+            var oo = obj as Airport;
+
+            if (oo != null) {
+                return oo.ID == this.ID;
+            }
+
+            return false;
         }
         public bool Equals(Airport obj) {
             return obj != null && obj.ID == this.ID;
