@@ -32,20 +32,17 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
 
         public bool Working { get; private set; }
 
-        private bool _isEdit;
         private Route edRoute;
 
         #endregion
 
         public CreateRoute() {
             InitializeComponent();
-            _isEdit = false;
             Debug.WriteLine("CreateRoute: Create");
         }
 
         public CreateRoute(Route route) {
             InitializeComponent();
-            _isEdit = true;
             edRoute = route;
             txtPrice.Text = edRoute.Price.ToString();
             btnCreate.Text = "Save";

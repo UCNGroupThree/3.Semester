@@ -15,7 +15,7 @@ namespace WCFService.Logging {
                 try {
                     log.SaveChanges();
                     this.Flush();
-                } catch (DbUpdateException dbUpdateException) {} catch (DbEntityValidationException dbEntityValidationException) {}
+                } catch (DbUpdateException) {} catch (DbEntityValidationException) {}
             }
         }
     }

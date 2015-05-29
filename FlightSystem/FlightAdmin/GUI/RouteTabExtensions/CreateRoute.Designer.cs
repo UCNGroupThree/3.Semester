@@ -280,7 +280,6 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox loadFromCountry;
         private System.Windows.Forms.PictureBox loadFromAirport;
         private System.Windows.Forms.PictureBox loadToCountry;

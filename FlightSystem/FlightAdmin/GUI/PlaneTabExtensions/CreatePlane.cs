@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlightAdmin.Controller;
 using FlightAdmin.MainService;
@@ -14,7 +7,7 @@ namespace FlightAdmin.GUI.PlaneTabExtensions
 {
     public partial class CreatePlane : Form
     {
-        public Plane plane { get; private set; }
+        public Plane Plane { get; private set; }
 
 
         // Empty constructor
@@ -25,7 +18,7 @@ namespace FlightAdmin.GUI.PlaneTabExtensions
 
         public CreatePlane(Plane plane) {
             InitializeComponent();
-            plane = plane;
+            Plane = plane;
             txtName.Text = plane.Name;
             spinnerSeats.Text = plane.Seats.Count.ToString();
 

@@ -5,6 +5,7 @@ using System.Data.Entity.Core;
 using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
 using System.ServiceModel;
+using Common;
 using Common.Exceptions;
 using WCFService.Helper;
 using WCFService.Model;
@@ -35,6 +36,9 @@ namespace WCFService.WCF
                 }
                 catch (Exception ex)
                 {
+#if DEBUG
+                    ex.DebugGetLine();
+#endif
                     return -2;
                 }
             }
@@ -55,7 +59,9 @@ namespace WCFService.WCF
             }
             catch (Exception ex)
             {
-
+#if DEBUG
+                ex.DebugGetLine();
+#endif
                 throw new FaultException<DatabaseInsertFault>(new DatabaseInsertFault("user"));
             }
 
@@ -129,6 +135,9 @@ namespace WCFService.WCF
             }
             catch (Exception ex)
             {
+#if DEBUG
+                ex.DebugGetLine();
+#endif
                 ret = new List<User>();
             }
             return ret;

@@ -3,33 +3,30 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common;
 using Common.Exceptions;
 using FlightAdmin.Controller;
 using FlightAdmin.MainService;
+using FlightAdmin.Properties;
 
 namespace FlightAdmin.GUI.FlightTabExtensions {
     public partial class CreateFlights : Form {
 
         public Route Route { get; set; }
-        private bool isEdit;
+        private readonly bool _isEdit;
 
-        private int y = 15;
-        private int i = 25;
+        private int _y = 15;
+        private const int I = 25;
         private List<Plane> _planes;
-        private List<FlightHelper> _flights;
-        private bool loading = true;
+        private readonly List<FlightHelper> _flights;
 
         public CreateFlights() {
             InitializeComponent();
             //y = dateTimePicker1.Location.Y;
             _flights = new List<FlightHelper>();
-            isEdit = false;
+            _isEdit = false;
         }
 
         public CreateFlights(Route route) {
@@ -38,7 +35,7 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
 
             InitializeComponent();
             _flights = new List<FlightHelper>();
-            isEdit = true;
+            _isEdit = true;
         }
 
         #region AddFlights
@@ -48,34 +45,34 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
             DateTime arr = flight.ArrivalTime;
             Plane plane = flight.Plane;
             try {
-                var dt1 = new System.Windows.Forms.DateTimePicker {
-                    Location = new Point(1, y),
+                var dt1 = new DateTimePicker {
+                    Location = new Point(1, _y),
                     Name = "dateTimePicker1",
                     Size = new Size(126, 20),
                     Format = DateTimePickerFormat.Custom,
-                    CustomFormat = "yyyy.MM.dd HH:mm",
+                    CustomFormat = Resources.CreateFlight_DateTimeFormat,
                     //Value = arr
                     Value = dep
                 };
-                dt1.Enter += new EventHandler(dateTimePicker_Enter);
+                dt1.Enter += (dateTimePicker_Enter);
                 selectionPanel.Controls.Add(dt1);
 
-                var dt2 = new System.Windows.Forms.DateTimePicker {
-                    Location = new Point(148, y),
+                var dt2 = new DateTimePicker {
+                    Location = new Point(148, _y),
                     Name = "dateTimePicker2",
                     Size = new Size(126, 20),
                     Format = DateTimePickerFormat.Custom,
-                    CustomFormat = "yyyy.MM.dd HH:mm",
+                    CustomFormat = Resources.CreateFlight_DateTimeFormat,
                     //Value = dep
                     Value = arr
                 };
-                dt2.Enter += new EventHandler(dateTimePicker_Enter);
+                dt2.Enter += (dateTimePicker_Enter);
                 selectionPanel.Controls.Add(dt2);
 
-                var cmb = new System.Windows.Forms.ComboBox {
+                var cmb = new ComboBox {
                     DropDownStyle = ComboBoxStyle.DropDownList,
                     FormattingEnabled = true,
-                    Location = new Point(294, y),
+                    Location = new Point(294, _y),
                     Name = "comboBox1",
                     Size = new Size(106, 21)
                 };
@@ -87,12 +84,12 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
 
                 cmb.SelectedItem = plane;
 
-                y += i;
+                _y += I;
                 _flights.Add(new FlightHelper(dt2, dt1, cmb){Flight = flight});
             } catch (Exception e) {
                 Console.WriteLine(e.InnerException);
                 Console.WriteLine(e.Message);
-                MessageBox.Show("Invalid Interval");
+                MessageBox.Show(@"Invalid Interval");
             }
         }
 
@@ -102,29 +99,29 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
                 int interval = int.Parse(txtInterval.Text);
 
                 var dt1 = new DateTimePicker {
-                    Location = new Point(1, y),
+                    Location = new Point(1, _y),
                     Name = "dateTimePicker1",
                     Size = new Size(126, 20),
                     Format = DateTimePickerFormat.Custom,
-                    CustomFormat = "yyyy.MM.dd HH:mm"
+                    CustomFormat = Resources.CreateFlight_DateTimeFormat
                 };
-                dt1.Enter += new EventHandler(dateTimePicker_Enter);
+                dt1.Enter += (dateTimePicker_Enter);
                 selectionPanel.Controls.Add(dt1);
 
                 var dt2 = new DateTimePicker {
-                    Location = new Point(148, y),
+                    Location = new Point(148, _y),
                     Name = "dateTimePicker2",
                     Size = new Size(126, 20),
                     Format = DateTimePickerFormat.Custom,
-                    CustomFormat = "yyyy.MM.dd HH:mm"
+                    CustomFormat = Resources.CreateFlight_DateTimeFormat
                 };
-                dt2.Enter += new EventHandler(dateTimePicker_Enter);
+                dt2.Enter += (dateTimePicker_Enter);
                 selectionPanel.Controls.Add(dt2);
 
                 var cmb = new ComboBox {
                     DropDownStyle = ComboBoxStyle.DropDownList,
                     FormattingEnabled = true,
-                    Location = new Point(294, y),
+                    Location = new Point(294, _y),
                     Name = "comboBox1",
                     Size = new Size(106, 21)
                 };
@@ -134,7 +131,7 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
                 cmb.DisplayMember = "Name";
                 cmb.ValueMember = "ID";
 
-                y += i;
+                _y += I;
 
 
                 if (interval != 0) {
@@ -144,7 +141,7 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
 
                 _flights.Add(new FlightHelper(dt2, dt1, cmb) {Flight = new Flight()});
             } catch (Exception) {
-                MessageBox.Show("Invalid Interval");
+                MessageBox.Show(@"Invalid Interval");
             }
         }
 
@@ -154,7 +151,7 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
 
         private void dateTimePicker_Enter(object sender, EventArgs e) {
             if (sender != null) {
-                epFlights.SetError(sender as DateTimePicker, "");
+                epFlights.SetError((DateTimePicker) sender, "");
             }
         }
 
@@ -173,11 +170,11 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
         private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             if (e.Error != null) {
                 //MessageBox.Show(this, e.Error.Message, @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Dispose();
+                Dispose();
             } else {
                 List<Plane> planes = e.Result as List<Plane>;
                 _planes = planes;
-                if (!isEdit) {
+                if (!_isEdit) {
                     AddFlight();
                 } else {
                     if (Route.Flights != null) {
@@ -246,33 +243,15 @@ namespace FlightAdmin.GUI.FlightTabExtensions {
                 exception.DebugGetLine();
 #endif
                 DialogResult = DialogResult.Retry;
-                MessageBox.Show("One or more of the entities was changed \n Please search again.");
+                MessageBox.Show(@"One or more of the entities was changed 
+ Please search again.");
             }
             
-            this.Dispose();
+            Dispose();
         }
-        /*
-        private void btnSaveForEdit_Click(object sender, EventArgs e) {
-            RouteCtr rCtr = new RouteCtr();
-            FlightCtr fCtr = new FlightCtr();
-            
-
-            List<Flight> flights = _flights.Select(flightHelper => new Flight {
-                ArrivalTime = flightHelper.ArrivalTime.Value,
-                DepartureTime = flightHelper.DepartureTime.Value,
-                Plane = (Plane)flightHelper.Plane.SelectedItem,
-                ID = flightHelper.Flight.ID
-            }).ToList();
-
-            Route = rCtr.UpdateRoute(Route, Route.From, Route.To, flights, Route.Price);
-
-            DialogResult = DialogResult.OK;
-            this.Dispose();
-        }
-         * */
 
         private void btnCancel_Click(object sender, EventArgs e) {
-            this.Dispose();
+            Dispose();
         }
 
         #endregion

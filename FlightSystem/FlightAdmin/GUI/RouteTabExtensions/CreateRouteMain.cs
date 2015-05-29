@@ -24,19 +24,19 @@ namespace FlightAdmin.GUI.RouteTabExtensions {
         public CreateRouteMain() {
             createRoute1 = new CreateRoute();
             InitializeComponent();
-            createRoute1.CloseEvent += Close;
+            createRoute1.CloseEvent += Closer;
         }
 
         public CreateRouteMain(Route route) {
             createRoute1 = new CreateRoute(route);
             InitializeComponent();
-            createRoute1.CloseEvent += Close;
+            createRoute1.CloseEvent += Closer;
         }
 
         #region Closer
 
-        private void Close() {
-            this.Dispose();
+        private void Closer() {
+            Dispose();
         }
 
         #endregion

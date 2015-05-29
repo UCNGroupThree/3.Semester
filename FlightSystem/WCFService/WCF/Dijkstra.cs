@@ -3,17 +3,10 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
-using System.Security.AccessControl;
-using System.ServiceModel;
 using System.Threading.Tasks;
-using Common;
-using Common.Exceptions;
 using WCFService.Dijkstra;
-using WCFService.Dijkstra.Test;
 using WCFService.Model;
-using WCFService.WCF.Faults;
 using WCFService.WCF.Interface;
-using WCFService.Dijkstra;
 
 namespace WCFService.WCF {
     public class Dijkstra : IDijkstra {
@@ -59,7 +52,7 @@ namespace WCFService.WCF {
             var watch = Stopwatch.StartNew();
 
 
-            var list = WCFService.Dijkstra.Test.Matrix.GetInstance().CalculateShortestPathBetween(new Airport() { ID = from }, new Airport() { ID = to }, seats, dt);
+            var list = Matrix.GetInstance().CalculateShortestPathBetween(new Airport() { ID = from }, new Airport() { ID = to }, seats, dt);
             
             var retFlights = new List<Flight>();
 

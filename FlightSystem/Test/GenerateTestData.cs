@@ -34,7 +34,8 @@ namespace Test {
                             route.Flights = GenerateFlights(route);
 
                             client.AddOrUpdateFlights(route);
-                        } catch (Exception ex) {}
+                        } catch (Exception) {
+                        }
                     }
                 }
             }

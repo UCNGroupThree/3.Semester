@@ -81,6 +81,15 @@ namespace FlightAdmin.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to yyyy.MM.dd HH:mm.
+        /// </summary>
+        internal static string CreateFlight_DateTimeFormat {
+            get {
+                return ResourceManager.GetString("CreateFlight_DateTimeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap image_836585 {

@@ -619,20 +619,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="DijkstraStuff">
+  <xs:element name="GetShortestPath">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="fromId" type="xs:int" />
-        <xs:element minOccurs="0" name="toId" type="xs:int" />
+        <xs:element minOccurs="0" name="from" type="xs:int" />
+        <xs:element minOccurs="0" name="to" type="xs:int" />
         <xs:element minOccurs="0" name="seats" type="xs:int" />
-        <xs:element minOccurs="0" name="startTime" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="dt" type="xs:dateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="DijkstraStuffResponse">
+  <xs:element name="GetShortestPathResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q59="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="DijkstraStuffResult" nillable="true" type="q59:ArrayOfFlight" />
+        <xs:element xmlns:q59="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="GetShortestPathResult" nillable="true" type="q59:ArrayOfFlight" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

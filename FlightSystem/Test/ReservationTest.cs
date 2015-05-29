@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Test.ReservationService;
 
 namespace Test {
     class ReservationTest {
         // ReSharper disable once InconsistentNaming
         private List<Flight> flight;
-        private Ticket ticket;
+        //private Ticket ticket;
 
         public ReservationServiceClient ResClient { get; set; }
 
