@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Security.AccessControl;
 using System.ServiceModel;
+using System.Threading.Tasks;
 using Common;
 using Common.Exceptions;
 using WCFService.Dijkstra;
@@ -98,29 +99,45 @@ namespace WCFService.WCF {
                 .Where(a => a.Routes.Any(r => r.Flights.Any(f => f.SeatReservations.Count < f.Plane.Seats.Count)));
          */
 
-        public void DijkstraTest(int from, int to, int seats, DateTime dt) {
+        public List<Flight> DijkstraTest(int from, int to, int seats, DateTime dt) {
 #if DEBUG
             Trace.WriteLine("----------- Constructor -----------");
             var watch = Stopwatch.StartNew();
 #endif
 
-            var list = WCFService.Dijkstra.Test.Matrix.GetInstance().CalculateShortestPathBetween(new Airport() { ID = from }, new Airport() { ID = to }, seats, dt).ToList();
+            var list = WCFService.Dijkstra.Test.Matrix.GetInstance().CalculateShortestPathBetween(new Airport() { ID = from }, new Airport() { ID = to }, seats, dt);
+            
+            var retFlights = new List<Flight>();
 
+            using (var db = new FlightDB()) {
+
+                retFlights = db.Flights
+                .Include(f => f.Plane)
+                .Include(f => f.Route.From)
+                .Include(f => f.Route.To)
+                .Where(f => list.Contains(f.ID)).OrderBy(f => f.DepartureTime).ToList();
+
+            }
+            
+            new Task(() => {
 #if DEBUG
-            Trace.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
-            Trace.WriteLine("-------- Constructor Ended ---------");
+                Trace.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
+                Trace.WriteLine("-------- Constructor Ended ---------");
 #endif
 
-            decimal total = 0;
-            foreach (var path in list) {
-                Debug.Write(path + " | ");
-                if (path.FinalFlight != null) {
-                    Debug.Write(path.FinalFlight.DepartureTime + " | " + path.FinalFlight.ArrivalTime);
+                decimal total = 0;
+                foreach (var path in retFlights) {
+                    Debug.Write(path + " | ");
+                    if (path != null) {
+                        Debug.Write(path.DepartureTime + " | " + path.ArrivalTime);
+                    }
+                    Debug.WriteLine("");
+                    total += path.Route.Price;
                 }
-                Debug.WriteLine("");
-                total += path.Route.Price;
-            }
-            Debug.WriteLine("Total Cost: " + total);
+                Debug.WriteLine("Total Cost: " + total);
+            }).Start();
+
+            return retFlights;
         }
     }
 }

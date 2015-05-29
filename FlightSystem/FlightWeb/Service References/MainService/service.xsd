@@ -636,19 +636,36 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="DijkstraTest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="from" type="xs:int" />
+        <xs:element minOccurs="0" name="to" type="xs:int" />
+        <xs:element minOccurs="0" name="seats" type="xs:int" />
+        <xs:element minOccurs="0" name="dt" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DijkstraTestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="DijkstraTestResult" nillable="true" type="q60:ArrayOfFlight" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="MakeSeatsOccupiedRandom">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="flights" nillable="true" type="q60:ArrayOfFlight" />
+        <xs:element xmlns:q61="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="flights" nillable="true" type="q61:ArrayOfFlight" />
         <xs:element minOccurs="0" name="noOfSeats" type="xs:int" />
-        <xs:element xmlns:q61="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="user" nillable="true" type="q61:User" />
+        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="user" nillable="true" type="q62:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="MakeSeatsOccupiedRandomResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="MakeSeatsOccupiedRandomResult" nillable="true" type="q62:Ticket" />
+        <xs:element xmlns:q63="http://schemas.datacontract.org/2004/07/WCFService.Model" minOccurs="0" name="MakeSeatsOccupiedRandomResult" nillable="true" type="q63:Ticket" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -81,6 +81,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="LockedFault" nillable="true" type="tns:LockedFault" />
+  <xs:complexType name="NotEnouthFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NotEnouthFault" nillable="true" type="tns:NotEnouthFault" />
   <xs:complexType name="NotSameObjectFault">
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
@@ -105,14 +113,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DatabaseFault" nillable="true" type="tns:DatabaseFault" />
-  <xs:complexType name="NotEnouthFault">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="NotEnouthFault" nillable="true" type="tns:NotEnouthFault" />
   <xs:complexType name="ArgumentFault">
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />

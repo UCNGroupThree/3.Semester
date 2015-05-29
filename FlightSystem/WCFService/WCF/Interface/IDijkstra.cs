@@ -14,7 +14,7 @@ namespace WCFService.WCF.Interface {
         List<Flight> DijkstraStuff(int fromId, int toId, int seats, DateTime startTime);
 
         [OperationContract]
-        void DijkstraTest(int from, int to, int seats, DateTime dt);
+        List<Flight> DijkstraTest(int from, int to, int seats, DateTime dt);
 
     }
 }

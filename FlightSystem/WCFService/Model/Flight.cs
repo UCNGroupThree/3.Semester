@@ -44,5 +44,14 @@ namespace WCFService.Model {
 
         [DataMember]
         public List<SeatReservation> SeatReservations { get; set; }
+
+        public override string ToString() {
+            if (Route != null && Route.From != null && Route.To != null) {
+                return String.Format("({0} ({1})) -> ({2} ({3}))", Route.From.Name, Route.From.ShortName, Route.To.Name,
+                    Route.To.ShortName);
+            } else {
+                return base.ToString();
+            }
+        }
     }
 }

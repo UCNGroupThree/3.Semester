@@ -36,7 +36,6 @@ namespace WCFService.Dijkstra.Test {
     /// </summary>
     /// <remarks>
     /// Copied the algorithm's implementation from <see cref="http://www.codeproject.com/Articles/22647/Dijkstra-Shortest-Route-Calculation-Object-Oriente"/>.
-    /// Implementation was adjusted to support Generics, and make heavier use of LINQ
     /// </remarks>
     public class Matrix {
 
@@ -83,8 +82,11 @@ namespace WCFService.Dijkstra.Test {
 
         //private static Dictionary<Tuple<Airport, DateTime>, Dictionary<Airport, LinkedList<Path>>> pathDictionary = new Dictionary<Tuple<Airport, DateTime>, Dictionary<Airport, LinkedList<Path>>>();
 
-        public LinkedList<Path> CalculateShortestPathBetween(Airport from, Airport to, int seats, DateTime dt) {
-            return CalculateFrom(from, seats, dt)[to];
+        public LinkedList<int> CalculateShortestPathBetween(Airport from, Airport to, int seats, DateTime dt) {
+            LinkedList<Path> paths = CalculateFrom(from, seats, dt)[to];
+            LinkedList<int> intPaths = new LinkedList<int>(paths.Select(p => p.FinalFlight.ID));
+
+            return intPaths;
         }
 
         private Dictionary<Airport, LinkedList<Path>> CalculateFrom(Airport from, int seats, DateTime dt) {
@@ -97,7 +99,7 @@ namespace WCFService.Dijkstra.Test {
             // keep track of the shortest paths identified
             Dictionary<Airport, KeyValuePair<decimal, LinkedList<Path>>> ShortestPaths = new Dictionary<Airport, KeyValuePair<decimal, LinkedList<Path>>>();
 
-            // Processes that is complete
+            // Airports that has been processed
             List<Airport> locationsProcessed = new List<Airport>();
 
             // include all possible steps, with Int.MaxValue cost
@@ -106,8 +108,10 @@ namespace WCFService.Dijkstra.Test {
                     .ToList()                                                          
                     .ForEach(s => ShortestPaths.Set(s, Int32.MaxValue, null));         // Set MaxValue cost
 
+            //Sets "From" to 0 (Doesent search for it)
             ShortestPaths.Set(from, 0, null);
 
+            //caching the key count
             var locationCount = ShortestPaths.Keys.Count;
 
             while (locationsProcessed.Count < locationCount) {
@@ -130,15 +134,17 @@ namespace WCFService.Dijkstra.Test {
                         
                         break;
                     }
-                } // foreach
+                } // end foreach
 
 
-
+                //Gets the paths to process, from the earlier selected "locationToProcess"
                 var selectedPaths = _paths.Where(p => p.From.Equals(locationToProcess));
+
+                //Processes the selectedPaths.
                 foreach (Path path in selectedPaths) {
                     if (ShortestPaths[path.To].Key > path.Route.Price + ShortestPaths[path.From].Key) {
 
-                        //Getting last arrivaltime (From previous destination)
+                        //Getting last arrivaltime (From previous processed location relative to this path)
                         try {
                             var pa = ShortestPaths[path.From].Value.Last();
                             if (pa != null && pa.FinalFlight != null) {
@@ -146,7 +152,10 @@ namespace WCFService.Dijkstra.Test {
                             }
                         } catch (InvalidOperationException) { }
 
+                        //Gets a flight from current path, that depart later than the given DateTime, and has enough seats
                         var currFlight = path.Route.Flights.FirstOrDefault(f => f.DepartureTime.TimeOfDay > dt.TimeOfDay && (f.SeatReservations.Count + seats) < f.Plane.Seats.Count);
+                        
+                        //If its not null(Success) then we add it to the dictionary
                         if (currFlight != null) {
                             path.FinalFlight = currFlight;
                             ShortestPaths.Set(
@@ -155,12 +164,12 @@ namespace WCFService.Dijkstra.Test {
                                 ShortestPaths[path.From].Value.Union(new Path[] { path }).ToArray());
                         }
                     }
-                } // foreach
+                } // end foreach
 
                 //Add to processed list
                 locationsProcessed.Add(locationToProcess);
 
-            } // while
+            } // end while
 
             //Tuple<Airport, DateTime> tup = new Tuple<Airport, DateTime>(source, dt);
             //Dictionary<Airport, LinkedList<Path>> pp2 = ShortestPaths.ToDictionary(k => k.Key, v => v.Value.Value);
@@ -174,6 +183,44 @@ namespace WCFService.Dijkstra.Test {
 
 
     public static class ExtensionMethods {
+        /*
+        public static LinkedList<Path> CleanLinkedList(this LinkedList<Path> paths) {
+            try {
+                LinkedList<Path> newPath = new LinkedList<Path>();
+                foreach (var oldPath in paths) {
+                    var path = new Path( {
+                        FinalFlight = new Flight() {
+                             ID = oldPath.FinalFlight.ID,
+                             ArrivalTime = oldPath.FinalFlight.ArrivalTime,
+                             DepartureTime = oldPath.FinalFlight.DepartureTime,
+                             Plane = new Plane() {
+                                 ID = oldPath.FinalFlight.PlaneID,
+                                 Name = oldPath.FinalFlight.Plane.Name
+                             },
+                             Route = new Route() {
+                                 From = new Airport() {
+                                     
+                                 }
+                             }
+                        }
+                    });
+                    path.From.Routes = null;
+                    path.To.Routes = null;
+                    path.FinalFlight.SeatReservations = null;
+                    path.FinalFlight.Plane.Seats = null;
+                    path.Route.Flights = null;
+                    path.FinalFlight.Route = null;
+                    path.FinalFlight.Plane.Flights = null;
+
+                    newPath.AddLast(path);
+                }
+
+                return newPath;
+            } catch (Exception) {
+                throw new Exception("Invalid LinkedList");
+            }
+        }
+         * */
         /// <summary>
         /// Adds or Updates the dictionary to include the destination and its associated cost and complete path (and param arrays make paths easier to work with)
         /// </summary>
