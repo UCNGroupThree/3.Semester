@@ -8,6 +8,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -106,5 +107,13 @@ namespace WCFService.Model {
         public void DebugLog() {
             Database.Log = m => Trace.WriteLine(m);
         }
+
+        public void DeleteWhere<T>(Expression<Func<T, bool>> filter) where T : class {
+            string selectSql = this.Set<T>().Where(filter).ToString();
+            string fromWhere = selectSql.Substring(selectSql.IndexOf("FROM"));
+            string deleteSql = "DELETE [Extent1] " + fromWhere;
+            this.Database.ExecuteSqlCommand(deleteSql);
+        }
     }
+
 }

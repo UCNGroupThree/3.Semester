@@ -32,6 +32,26 @@ namespace WCFService.WCF {
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
         }
+        
+        public static void DeleteDeadTickets() {
+#if DEBUG
+            Trace.WriteLine("Deleting Dead tickets");
+#endif
+            try {
+
+                using (var db = new FlightDB()) {
+                    db.DeleteWhere<Ticket>(t => t.OrderState == TicketState.Pending);
+                }
+#if DEBUG
+                Trace.WriteLine("Deleting Dead tickets complete");
+#endif
+            } catch (Exception ex) {
+#if DEBUG
+                Trace.WriteLine("Deleting Dead tickets FAIL: ");
+                ex.DebugGetLine();
+#endif
+            }
+        }
 
         private void InstanceContext_Closed(object sender, EventArgs e) {
             // Session closed here
@@ -43,7 +63,6 @@ namespace WCFService.WCF {
             try {
                 using (var db = new FlightDB()) {
                     db.Database.Log = m => Trace.WriteLine(m);
-
                     if (ticket != null && ticket.ID != 0) {
                         var clone = ticket.Clone();
 

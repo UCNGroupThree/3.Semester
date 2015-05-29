@@ -22,13 +22,15 @@ namespace WCFService {
         private readonly IUserService _userService = new UserService();
         private readonly IPostalService _postalService = new PostalService();
         private readonly IDijkstra _dijkstraService = new WCF.Dijkstra();
-        private readonly IReservationService _resService = new WCF.ReservationService();
+        private readonly IReservationService _resService = new ReservationService();
+
+        public static void Configure(ServiceConfiguration config) {
+            config.LoadFromConfiguration();
+            Trace.Listeners.Add(new TextWriterTraceListener(new Logger()));
+            ReservationService.DeleteDeadTickets();
+        }
 
         #endregion
-
-        static MainService() {
-            Trace.Listeners.Add(new TextWriterTraceListener(new Logger()));
-        }
 
         #region Administrator Service
 
