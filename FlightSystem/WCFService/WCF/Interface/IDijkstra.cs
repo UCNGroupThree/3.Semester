@@ -10,11 +10,7 @@ namespace WCFService.WCF.Interface {
     public interface IDijkstra {
 
         [OperationContract]
-        [FaultContract(typeof(LockedFault))]
-        List<Flight> DijkstraStuff(int fromId, int toId, int seats, DateTime startTime);
-
-        [OperationContract]
-        List<Flight> DijkstraTest(int from, int to, int seats, DateTime dt);
+        List<Flight> GetShortestPath(int from, int to, int seats, DateTime dt);
 
     }
 }

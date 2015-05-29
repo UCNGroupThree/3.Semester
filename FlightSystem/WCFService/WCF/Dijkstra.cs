@@ -13,7 +13,7 @@ using WCFService.Dijkstra.Test;
 using WCFService.Model;
 using WCFService.WCF.Faults;
 using WCFService.WCF.Interface;
-using Matrix = WCFService.Dijkstra.Test.Matrix;
+using WCFService.Dijkstra;
 
 namespace WCFService.WCF {
     public class Dijkstra : IDijkstra {
@@ -53,56 +53,7 @@ namespace WCFService.WCF {
             //####### Test End #######
         }
 
-        //####### Test #######
-        private static void Test() {
-            decimal dm = 0;
-            var watch = Stopwatch.StartNew();
-            //Airport a1;
-            //Airport a2;
-            //using (AirportServiceClient client = new AirportServiceClient()) {
-            //    a1 = client.GetAirport(id1);
-            //    a2 = client.GetAirport(id2);
-            //}
-            DateTime dateTime = DateTime.Now.AddHours(-10);
-            List<Flight> aps = new Dijkstra().DijkstraStuff(1, 3, 1, dateTime);
-
-            if (aps != null && aps.Count > 0) {
-                foreach (var flight in aps) {
-                    Trace.WriteLine(flight.Route.From.ID + ":" + flight.Route.From.Name + " -> " + flight.Route.To.Name + ":" + flight.Route.To.ID + " - Price: " + flight.Route.Price);
-                    dm += flight.Route.Price;
-                }
-
-                Trace.WriteLine("Total Price: " + dm);
-            } else {
-                Trace.WriteLine("Empty Result");
-            }
-
-            watch.Stop();
-            Trace.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
-        }
-        //####### Test End #######
-
-
-        /// <exception cref="LockedFault">Thrown when Dijkstra has updated for more than 15 seconds</exception>
-        public List<Flight> DijkstraStuff(int fromId, int toId, int seats, DateTime startTime) {
-            try {
-                var matrix = WCFService.Dijkstra.Matrix.GetInstance();
-                List<Flight> ret = matrix.GetShortestPath(fromId, toId, seats, startTime);
-                return ret;
-            } catch (LockedException e) {
-                throw new FaultException<LockedFault>(new LockedFault() { Description = e.Message, Message = e.Message }, new FaultReason(e.Message));
-            }
-        }
-
-        /*
-         * IQueryable<Airport> fromAirports = _db.Airports
-                .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats)))
-                .Include(a => a.Routes.Select(r => r.To))
-                .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
-                .Where(a => a.Routes.Any(r => r.Flights.Any(f => f.SeatReservations.Count < f.Plane.Seats.Count)));
-         */
-
-        public List<Flight> DijkstraTest(int from, int to, int seats, DateTime dt) {
+        public List<Flight> GetShortestPath(int from, int to, int seats, DateTime dt) {
 
             Trace.WriteLine("----------- DijkstraTest -----------");
             var watch = Stopwatch.StartNew();

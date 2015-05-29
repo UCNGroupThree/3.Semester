@@ -69,11 +69,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dijkstra\DijkstraHelper.cs" />
+    <Compile Include="Dijkstra\Path.cs" />
+    <Compile Include="Dijkstra\Test\DotGenerator.cs" />
     <Compile Include="Dijkstra\Matrix.cs" />
-    <Compile Include="Dijkstra\Program.cs" />
-    <Compile Include="Dijkstra\Test\Matrix.cs" />
-    <Compile Include="Dijkstra\Vertex.cs" />
     <Compile Include="Helper\PasswordHelper.cs" />
     <Compile Include="Logging\LogDB.cs" />
     <Compile Include="Logging\Logger.cs" />

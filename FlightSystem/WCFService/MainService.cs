@@ -261,12 +261,8 @@ namespace WCFService {
 
         #region Dijktra
 
-        public List<Flight> DijkstraStuff(int fromId, int toId, int seats, DateTime startTime) {
-            return _dijkstraService.DijkstraTest(fromId, toId, seats, startTime);
-        }
-
-        public List<Flight> DijkstraTest(int from, int to, int seats, DateTime dt) {
-            return _dijkstraService.DijkstraTest(from, to, seats, dt);
+        public List<Flight> GetShortestPath(int from, int to, int seats, DateTime dt) {
+            return _dijkstraService.GetShortestPath(from, to, seats, dt);
         }
 
         #endregion
