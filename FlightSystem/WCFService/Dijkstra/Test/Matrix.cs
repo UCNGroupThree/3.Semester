@@ -39,6 +39,269 @@ namespace WCFService.Dijkstra.Test {
     /// </remarks>
     public class Matrix {
 
+        #region Removed / Added / Updated
+
+        public void Removed(object removedObj) {
+            if (removedObj is Airport) {
+                RemoveAirport((Airport)removedObj);
+            } else if (removedObj is Route) {
+                RemoveRoute((Route)removedObj);
+            } else if (removedObj is Flight) {
+                RemoveFlight((Flight)removedObj);
+            }
+        }
+
+        public void Added(object addedObj) {
+            if (addedObj is Route) {
+                AddRoute((Route)addedObj);
+            } else if (addedObj is Flight) {
+                AddFlight((Flight)addedObj);
+            }
+        }
+
+        public void Updated(object updatedObj) {
+            if (updatedObj is Airport) {
+                UpdateAirport((Airport)updatedObj);
+            } else if (updatedObj is Route) {
+                UpdateRoute((Route)updatedObj);
+            } else if (updatedObj is Flight) {
+                UpdateFlight((Flight)updatedObj);
+            }
+        }
+        
+        #endregion
+
+        #region Remove (Events)
+
+        private void RemoveFlight(Flight flight) {
+            try {
+#if DEBUG
+                // ####### Timing #######
+                var watch = Stopwatch.StartNew();
+                // ####### Timing End #######
+#endif
+                var route = _paths.Select(p => p.Route).FirstOrDefault(r => r.Flights.Contains(flight));
+
+                if (route != null)
+                    route.Flights.Remove(flight);
+#if DEBUG
+                // ####### Timing #######
+                watch.Stop();
+                Trace.WriteLine("RemoveFlight Time: " + watch.ElapsedMilliseconds + "ms");
+                // ####### Timing End #######
+#endif
+            } catch (Exception) {
+                HardReset();
+            }
+        }
+
+        private void RemoveAirport(Airport airport) {
+            try {
+#if DEBUG
+                // ####### Timing #######
+                var watch = Stopwatch.StartNew();
+                // ####### Timing End #######
+#endif
+                _paths.RemoveAll(p => p.From.Equals(airport) || p.To.Equals(airport));
+#if DEBUG
+                // ####### Timing #######
+                watch.Stop();
+                Trace.WriteLine("RemoveAirport Time: " + watch.ElapsedMilliseconds + "ms");
+                // ####### Timing End #######
+#endif
+            } catch (Exception) {
+                HardReset();
+            }
+        }
+
+        private void RemoveRoute(Route route) {
+            try {
+#if DEBUG
+                // ####### Timing #######
+                var watch = Stopwatch.StartNew();
+                // ####### Timing End #######
+#endif
+                _paths.RemoveAll(p => p.Route.ID == route.ID);
+#if DEBUG
+                // ####### Timing #######
+                watch.Stop();
+                Trace.WriteLine("RemoveRoute Time: " + watch.ElapsedMilliseconds + "ms");
+                // ####### Timing End #######
+#endif
+            } catch (Exception) {
+                HardReset();
+            }
+
+        }
+
+        #endregion
+
+        #region Update
+
+        private void UpdateFlight(Flight flight) {
+            using (var db = new FlightDB()) {
+              //  try {
+#if DEBUG
+                    // ####### Timing #######
+                    var watch = Stopwatch.StartNew();
+                    // ####### Timing End #######
+#endif
+                    var newFlight =
+                        db.Flights.Include(f => f.Plane)
+                            .Include(f => f.Plane.Seats)
+                            .Include(f => f.SeatReservations)
+                            .Include(f => f.Route.From)
+                            .Include(f => f.Route.To)
+                            .First(f => f.ID == flight.ID);
+
+                    var path = _paths.SingleOrDefault(p => p.Route.Flights.Any(f => f.ID == newFlight.ID));
+
+                    if (path != null) {
+                        path.Route.Flights.Replace(newFlight);
+                        path.Route.Flights.Sort(((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
+                    }
+#if DEBUG
+                    // ####### Timing #######
+                    watch.Stop();
+                    Trace.WriteLine("UpdateFlight Time: " + watch.ElapsedMilliseconds + "ms");
+                    // ####### Timing End #######
+#endif
+                //} catch (Exception) {
+                //    HardReset();
+                //}
+            }
+        }
+
+        private void UpdateRoute(Route route) {
+            using (var db = new FlightDB()) {
+                //try {
+#if DEBUG
+                    // ####### Timing #######
+                    var watch = Stopwatch.StartNew();
+                    // ####### Timing End #######
+#endif
+                    var newRoute = db.Routes.Include(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats))
+                        .Include(r => r.To)
+                        .Include(r => r.Flights.Select(f => f.SeatReservations)).First(r => r.ID == route.ID);
+
+                    var path = _paths.SingleOrDefault(p => p.Route.Equals(newRoute));
+                    if (path != null) {
+                        path.Route = newRoute;
+                        path.Route.Flights.Sort(((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
+                    }
+#if DEBUG
+                    // ####### Timing #######
+                    watch.Stop();
+                    Trace.WriteLine("UpdateRoute Time: " + watch.ElapsedMilliseconds + "ms");
+                    // ####### Timing End #######
+#endif
+                //} catch (Exception) {
+                //    HardReset();
+                //}
+            }
+        }
+
+        private void UpdateAirport(Airport airport) {
+            using (var db = new FlightDB()) {
+                try {
+#if DEBUG
+                    // ####### Timing #######
+                    var watch = Stopwatch.StartNew();
+                    // ####### Timing End #######
+#endif
+                    var newAirport = db.Airports.First(a => a.ID == airport.ID);
+
+                    _paths.Where(p => p.From.Equals(newAirport)).ToList().ForEach(p => p.From = newAirport);
+                    _paths.Where(p => p.To.Equals(newAirport)).ToList().ForEach(p => p.To = newAirport);
+#if DEBUG
+                    // ####### Timing #######
+                    watch.Stop();
+                    Trace.WriteLine("UpdateAirport Time: " + watch.ElapsedMilliseconds + "ms");
+                    // ####### Timing End #######
+#endif
+                } catch (Exception) {
+                    HardReset();
+                }
+            }
+        }
+
+        #endregion
+
+        #region Add (Events)
+
+        private void AddRoute(Route route) {
+            using (var db = new FlightDB()) {
+                try {
+#if DEBUG
+                    // ####### Timing #######
+                    var watch = Stopwatch.StartNew();
+                    // ####### Timing End #######
+#endif
+                    var newRoute = db.Routes.Include(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats))
+                        .Include(r => r.To)
+                        .Include(r => r.Flights.Select(f => f.SeatReservations)).First(r => r.ID == route.ID);
+
+                    route.Flights.Sort(((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
+                    Path path = new Path() {
+                        From = route.From,
+                        To = route.To,
+                        Route = route
+                    };
+
+                    _paths.Add(path);
+#if DEBUG
+                    // ####### Timing #######
+                    watch.Stop();
+                    Trace.WriteLine("AddRoute Time: " + watch.ElapsedMilliseconds + "ms");
+                    // ####### Timing End #######
+#endif
+                } catch (Exception) {
+                    HardReset();
+                }
+            }
+        }
+
+        private void AddFlight(Flight flight) {
+            using (var db = new FlightDB()) {
+                try {
+#if DEBUG
+                    // ####### Timing #######
+                    var watch = Stopwatch.StartNew();
+                    // ####### Timing End #######
+#endif
+                    var newFlight =
+                        db.Flights.Include(f => f.Plane)
+                            .Include(f => f.Plane.Seats)
+                            .Include(f => f.SeatReservations)
+                            .Include(f => f.Route)
+                            .Include(f => f.Route.To)
+                            .First(f => f.ID == flight.ID);
+
+                    var path = _paths.FirstOrDefault(p => p.Route.ID == newFlight.ID);
+
+                    if (path != null) {
+                        path.Route.Flights.Add(newFlight);
+                        path.Route.Flights.Sort(((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
+                    }
+#if DEBUG
+                    // ####### Timing #######
+                    watch.Stop();
+                    Trace.WriteLine("AddFlight Time: " + watch.ElapsedMilliseconds + "ms");
+                    // ####### Timing End #######
+#endif
+                } catch (Exception) {
+                    HardReset();
+                }
+            }
+        }
+
+        #endregion
+
+        private void HardReset() {
+            _instance = new Matrix();
+        }
+
+
         private static object syncRoot = new Object();
         private static Matrix _instance;
         private List<Path> _paths = new List<Path>();
@@ -103,9 +366,9 @@ namespace WCFService.Dijkstra.Test {
             List<Airport> locationsProcessed = new List<Airport>();
 
             // include all possible steps, with Int.MaxValue cost
-            _paths.SelectMany(p => new Airport[] { p.From, p.To })              
+            _paths.SelectMany(p => new Airport[] { p.From, p.To })
                     .Distinct()                                                        // instead of toHashset :)
-                    .ToList()                                                          
+                    .ToList()
                     .ForEach(s => ShortestPaths.Set(s, Int32.MaxValue, null));         // Set MaxValue cost
 
             //Sets "From" to 0 (Doesent search for it)
@@ -117,7 +380,7 @@ namespace WCFService.Dijkstra.Test {
             while (locationsProcessed.Count < locationCount) {
 
                 Airport locationToProcess = default(Airport);
-                
+
 
                 //Search for the nearest location that havent been worked
                 foreach (Airport location in ShortestPaths.OrderBy(p => p.Value.Key).Select(p => p.Key).ToList()) {
@@ -131,7 +394,7 @@ namespace WCFService.Dijkstra.Test {
                         }
 
                         locationToProcess = location;
-                        
+
                         break;
                     }
                 } // end foreach
@@ -154,7 +417,7 @@ namespace WCFService.Dijkstra.Test {
 
                         //Gets a flight from current path, that depart later than the given DateTime, and has enough seats
                         var currFlight = path.Route.Flights.FirstOrDefault(f => f.DepartureTime.TimeOfDay > dt.TimeOfDay && (f.SeatReservations.Count + seats) < f.Plane.Seats.Count);
-                        
+
                         //If its not null(Success) then we add it to the dictionary
                         if (currFlight != null) {
                             path.FinalFlight = currFlight;
@@ -179,7 +442,7 @@ namespace WCFService.Dijkstra.Test {
             return ShortestPaths.ToDictionary(k => k.Key, v => v.Value.Value);
 
         }
-    } 
+    }
 
 
     public static class ExtensionMethods {
@@ -228,6 +491,10 @@ namespace WCFService.Dijkstra.Test {
             var completePath = paths == null ? new LinkedList<Path>() : new LinkedList<Path>(paths);
             dictionary[destination] = new KeyValuePair<decimal, LinkedList<Path>>(Cost, completePath);
         }
-    } 
+
+        public static void Replace<T>(this List<T> list, T obj) {
+            list[list.IndexOf(obj)] = obj;
+        }
+    }
 
 }

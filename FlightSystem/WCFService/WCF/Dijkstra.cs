@@ -13,7 +13,7 @@ using WCFService.Dijkstra.Test;
 using WCFService.Model;
 using WCFService.WCF.Faults;
 using WCFService.WCF.Interface;
-using Matrix = WCFService.Dijkstra.Matrix;
+using Matrix = WCFService.Dijkstra.Test.Matrix;
 
 namespace WCFService.WCF {
     public class Dijkstra : IDijkstra {
@@ -21,6 +21,7 @@ namespace WCFService.WCF {
         private const bool test = false;
 
         public static void Updated(object updatedObj) {
+            //Trace.WriteLine("###### Dijkstra Update ######");
             if (!test) {
                 Matrix.GetInstance().Updated(updatedObj);
             }
@@ -33,6 +34,7 @@ namespace WCFService.WCF {
         }
 
         public static void Added(object addedObj) {
+            //Trace.WriteLine("###### Dijkstra Added ######");
             if (!test) {
                 Matrix.GetInstance().Added(addedObj);
             }
@@ -42,6 +44,7 @@ namespace WCFService.WCF {
         }
 
         public static void Removed(object removedObj) {
+            //Trace.WriteLine("###### Dijkstra Removed ######");
             if (!test) {
                 Matrix.GetInstance().Removed(removedObj);
             }
@@ -100,10 +103,10 @@ namespace WCFService.WCF {
          */
 
         public List<Flight> DijkstraTest(int from, int to, int seats, DateTime dt) {
-#if DEBUG
-            Trace.WriteLine("----------- Constructor -----------");
+
+            Trace.WriteLine("----------- DijkstraTest -----------");
             var watch = Stopwatch.StartNew();
-#endif
+
 
             var list = WCFService.Dijkstra.Test.Matrix.GetInstance().CalculateShortestPathBetween(new Airport() { ID = from }, new Airport() { ID = to }, seats, dt);
             
@@ -120,10 +123,10 @@ namespace WCFService.WCF {
             }
             
             new Task(() => {
-#if DEBUG
+
                 Trace.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
-                Trace.WriteLine("-------- Constructor Ended ---------");
-#endif
+                Trace.WriteLine("-------- DijkstraTest Ended ---------");
+
 
                 decimal total = 0;
                 foreach (var path in retFlights) {
