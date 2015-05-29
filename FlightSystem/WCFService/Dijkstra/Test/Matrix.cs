@@ -319,16 +319,24 @@ namespace WCFService.Dijkstra.Test {
 
         private Matrix() {
             using (var db = new FlightDB()) {
-                List<Airport> fromAirports = db.Airports.OrderBy(n => n.ID)
-                    .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.Plane).Select(p => p.Seats)))
-                    .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
-                    .Include(a => a.Routes.Select(r => r.To)).ToList();
-
+                db.Routes.Load();
+                db.Airports.Load();
+                db.Flights.Load();
+                db.SeatReservations.Load();
+                db.Planes.Load();
+                db.Seats.Load();
+                var query = db.Airports;
+                var fromAirports = query.ToList();
+                //List<Airport> fromAirports = db.Airports.OrderBy(n => n.ID)
+                //    .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.Plane).Select(p => p.Seats)))
+                //    .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
+                //    .Include(a => a.Routes.Select(r => r.To)).ToList();
+                /*
                 HashSet<Airport> tmpAirports = fromAirports.ToHashSet();
                 var toAirports = tmpAirports.SelectMany(r => r.Routes.Select(a => a.To)).ToHashSet();
                 tmpAirports.UnionWith(toAirports);
-
-                foreach (var fromAirport in tmpAirports) {
+                */
+                foreach (var fromAirport in fromAirports) {
                     foreach (var route in fromAirport.Routes) {
                         route.Flights.Sort(((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
                         Path path = new Path() {
