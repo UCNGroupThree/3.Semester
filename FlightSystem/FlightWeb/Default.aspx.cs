@@ -6,12 +6,14 @@ using System.ServiceModel;
 using System.Threading;
 using System.Web;
 using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Common;
 using Common.Exceptions;
 using FlightWeb.Helper;
 using FlightWeb.MainService;
+using Microsoft.Ajax.Utilities;
 
 namespace FlightWeb {
     public partial class Search : System.Web.UI.Page {
@@ -180,8 +182,6 @@ namespace FlightWeb {
             } catch (Exception ex) {
                 if (ex is SubmitException) {
                     DisplayError("No Flight Found", ex.Message, false);
-                //} else if (ex is FaultException<LockedFault>) {
-                //    DisplayError("Error", "Please Try again.. The system is busy!", false);
                 } else {
                     ex.DebugGetLine();
                     DisplayError("Error", "We are sorry, but an error happen :(", false);

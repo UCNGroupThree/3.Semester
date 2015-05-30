@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
@@ -67,27 +68,16 @@ namespace FlightWeb {
                 lblTotalTravelTime.Text = ticket.TotalTravelTime.ToFineString();
 
             } catch (NullException ex) {
-#if DEBUG
-                ex.DebugGetLine();
-#endif
                 Session["Dialog"] = new DialogHelper("Error", ex.Message);
                 Response.Redirect("Default.aspx", true);
             } catch (FaultException<NotEnouthFault> ex) {
-#if DEBUG
-                ex.DebugGetLine();
-#endif
                 Session["Dialog"] = new DialogHelper("Error", "There are not enouth free seats to make the booking. :(");
                 Response.Redirect("Default.aspx", true);
             } catch (FaultException<DatabaseFault> ex) {
-#if DEBUG
-                ex.DebugGetLine();
-#endif
                 Session["Dialog"] = new DialogHelper("Error", "An Database error has happen. Try again.");
                 Response.Redirect("Default.aspx", true);
             } catch (Exception ex) {
-#if DEBUG
                 ex.DebugGetLine();
-#endif
                 Session["Dialog"] = new DialogHelper("Error", "An error have happen, maybe because of a timeout. Try again");
                 Response.Redirect("Default.aspx", true);
             }

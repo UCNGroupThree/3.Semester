@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web.Caching;
+using System.Web.Services;
 using System.Web.UI.WebControls;
 using FlightWeb.MainService;
 

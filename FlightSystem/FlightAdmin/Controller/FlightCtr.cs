@@ -48,7 +48,7 @@ namespace FlightAdmin.Controller {
             using (var client = new FlightServiceClient()) {
                 try {
                     flight = client.GetFlight(id);
-                } catch (FaultException<NullPointerFault>) {
+                } catch (FaultException<NullPointerFault> nullException) {
                     throw new NullException("No Flights were found!");
                 } catch (Exception e) {
                     Console.WriteLine(e.Message);
