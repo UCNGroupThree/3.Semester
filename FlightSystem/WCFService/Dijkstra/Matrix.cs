@@ -294,7 +294,7 @@ namespace WCFService.Dijkstra {
         private static Matrix _instance;
         private List<Path> _paths = new List<Path>();
 
-        private DotGenerator _dot = new DotGenerator();
+        //private DotGenerator _dot = new DotGenerator();
 
         public static Matrix GetInstance() {
             if (_instance == null) {
@@ -338,8 +338,8 @@ namespace WCFService.Dijkstra {
                         _paths.Add(path);
                     }
                 }
-                _dot.Airports = fromAirports;
-                _dot.Paths = _paths;
+                //_dot.Airports = fromAirports;
+                //_dot.Paths = _paths;
             }
         }
 
@@ -348,8 +348,8 @@ namespace WCFService.Dijkstra {
         public LinkedList<int> CalculateShortestPathBetween(Airport from, Airport to, int seats, DateTime dt) {
             LinkedList<Path> paths = CalculateFrom(from, seats, dt)[to];
 
-            _dot.CalcPath = paths;
-            _dot.GenerateDots();
+            //_dot.CalcPath = paths;
+            //_dot.GenerateDots();
 
             LinkedList<int> intPaths = new LinkedList<int>(paths.Select(p => p.FinalFlight.ID));
 
