@@ -27,36 +27,44 @@ namespace WCFService.Dijkstra {
     /// </remarks>
     public class Matrix {
 
+        private static object eventLock = new Object();
+
         #region Removed / Added / Updated
 
         public void Removed(object removedObj) {
-            if (removedObj is Airport) {
-                RemoveAirport((Airport)removedObj);
-            } else if (removedObj is Route) {
-                RemoveRoute((Route)removedObj);
-            } else if (removedObj is Flight) {
-                RemoveFlight((Flight)removedObj);
+            lock (eventLock) {
+                if (removedObj is Airport) {
+                    RemoveAirport((Airport)removedObj);
+                } else if (removedObj is Route) {
+                    RemoveRoute((Route)removedObj);
+                } else if (removedObj is Flight) {
+                    RemoveFlight((Flight)removedObj);
+                }
             }
         }
 
         public void Added(object addedObj) {
-            if (addedObj is Route) {
-                AddRoute((Route)addedObj);
-            } else if (addedObj is Flight) {
-                AddFlight((Flight)addedObj);
+            lock (eventLock) {
+                if (addedObj is Route) {
+                    AddRoute((Route) addedObj);
+                } else if (addedObj is Flight) {
+                    AddFlight((Flight) addedObj);
+                }
             }
         }
 
         public void Updated(object updatedObj) {
-            if (updatedObj is Airport) {
-                UpdateAirport((Airport)updatedObj);
-            } else if (updatedObj is Route) {
-                UpdateRoute((Route)updatedObj);
-            } else if (updatedObj is Flight) {
-                UpdateFlight((Flight)updatedObj);
+            lock (eventLock) {
+                if (updatedObj is Airport) {
+                    UpdateAirport((Airport) updatedObj);
+                } else if (updatedObj is Route) {
+                    UpdateRoute((Route) updatedObj);
+                } else if (updatedObj is Flight) {
+                    UpdateFlight((Flight) updatedObj);
+                }
             }
         }
-        
+
         #endregion
 
         #region Remove (Events)
@@ -128,31 +136,31 @@ namespace WCFService.Dijkstra {
 
         private void UpdateFlight(Flight flight) {
             using (var db = new FlightDB()) {
-              //  try {
+                //  try {
 #if DEBUG
-                    // ####### Timing #######
-                    var watch = Stopwatch.StartNew();
-                    // ####### Timing End #######
+                // ####### Timing #######
+                var watch = Stopwatch.StartNew();
+                // ####### Timing End #######
 #endif
-                    var newFlight =
-                        db.Flights.Include(f => f.Plane)
-                            .Include(f => f.Plane.Seats)
-                            .Include(f => f.SeatReservations)
-                            .Include(f => f.Route.From)
-                            .Include(f => f.Route.To)
-                            .First(f => f.ID == flight.ID);
+                var newFlight =
+                    db.Flights.Include(f => f.Plane)
+                        .Include(f => f.Plane.Seats)
+                        .Include(f => f.SeatReservations)
+                        .Include(f => f.Route.From)
+                        .Include(f => f.Route.To)
+                        .First(f => f.ID == flight.ID);
 
-                    var path = _paths.SingleOrDefault(p => p.Route.Flights.Any(f => f.ID == newFlight.ID));
+                var path = _paths.SingleOrDefault(p => p.Route.Flights.Any(f => f.ID == newFlight.ID));
 
-                    if (path != null) {
-                        path.Route.Flights.Replace(newFlight);
-                        path.Route.Flights.Sort(((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
-                    }
+                if (path != null) {
+                    path.Route.Flights.Replace(newFlight);
+                    path.Route.Flights.Sort(((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
+                }
 #if DEBUG
-                    // ####### Timing #######
-                    watch.Stop();
-                    Trace.WriteLine("UpdateFlight Time: " + watch.ElapsedMilliseconds + "ms");
-                    // ####### Timing End #######
+                // ####### Timing #######
+                watch.Stop();
+                Trace.WriteLine("UpdateFlight Time: " + watch.ElapsedMilliseconds + "ms");
+                // ####### Timing End #######
 #endif
                 //} catch (Exception) {
                 //    HardReset();
@@ -164,24 +172,24 @@ namespace WCFService.Dijkstra {
             using (var db = new FlightDB()) {
                 //try {
 #if DEBUG
-                    // ####### Timing #######
-                    var watch = Stopwatch.StartNew();
-                    // ####### Timing End #######
+                // ####### Timing #######
+                var watch = Stopwatch.StartNew();
+                // ####### Timing End #######
 #endif
-                    var newRoute = db.Routes.Include(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats))
-                        .Include(r => r.To)
-                        .Include(r => r.Flights.Select(f => f.SeatReservations)).First(r => r.ID == route.ID);
+                var newRoute = db.Routes.Include(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats))
+                    .Include(r => r.To)
+                    .Include(r => r.Flights.Select(f => f.SeatReservations)).First(r => r.ID == route.ID);
 
-                    var path = _paths.SingleOrDefault(p => p.Route.Equals(newRoute));
-                    if (path != null) {
-                        path.Route = newRoute;
-                        path.Route.Flights.Sort(((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
-                    }
+                var path = _paths.SingleOrDefault(p => p.Route.Equals(newRoute));
+                if (path != null) {
+                    path.Route = newRoute;
+                    path.Route.Flights.Sort(((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
+                }
 #if DEBUG
-                    // ####### Timing #######
-                    watch.Stop();
-                    Trace.WriteLine("UpdateRoute Time: " + watch.ElapsedMilliseconds + "ms");
-                    // ####### Timing End #######
+                // ####### Timing #######
+                watch.Stop();
+                Trace.WriteLine("UpdateRoute Time: " + watch.ElapsedMilliseconds + "ms");
+                // ####### Timing End #######
 #endif
                 //} catch (Exception) {
                 //    HardReset();
