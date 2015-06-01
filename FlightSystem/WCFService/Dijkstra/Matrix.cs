@@ -325,16 +325,6 @@ namespace WCFService.Dijkstra {
                 db.Seats.Load();
                 var query = db.Airports;
                 var fromAirports = query.ToList();
-                
-                //List<Airport> fromAirports = db.Airports.OrderBy(n => n.ID)
-                //    .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.Plane).Select(p => p.Seats)))
-                //    .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
-                //    .Include(a => a.Routes.Select(r => r.To)).ToList();
-                /*
-                HashSet<Airport> tmpAirports = fromAirports.ToHashSet();
-                var toAirports = tmpAirports.SelectMany(r => r.Routes.Select(a => a.To)).ToHashSet();
-                tmpAirports.UnionWith(toAirports);
-                */
 
                 foreach (var fromAirport in fromAirports) {
                     foreach (var route in fromAirport.Routes) {
@@ -354,8 +344,6 @@ namespace WCFService.Dijkstra {
             }
         }
 
-        //private static Dictionary<Tuple<Airport, DateTime>, Dictionary<Airport, LinkedList<Path>>> pathDictionary = new Dictionary<Tuple<Airport, DateTime>, Dictionary<Airport, LinkedList<Path>>>();
-
         public LinkedList<int> CalculateShortestPathBetween(Airport from, Airport to, int seats, DateTime dt) {
             LinkedList<Path> paths = CalculateFrom(from, to, seats, dt)[to];
 
@@ -368,12 +356,6 @@ namespace WCFService.Dijkstra {
         }
 
         private Dictionary<Airport, LinkedList<Path>> CalculateFrom(Airport from, Airport to, int seats, DateTime dt) {
-
-            //if (pathDictionary.ContainsKey(new Tuple<Airport, DateTime>(source, dt))) {
-            //    Debug.WriteLine("Using old dictionary for: " + source);
-            //    return pathDictionary[new Tuple<Airport, DateTime>(source, dt)];
-            //}
-
             // keep track of the shortest paths identified
             Dictionary<Airport, KeyValuePair<decimal, LinkedList<Path>>> ShortestPaths = new Dictionary<Airport, KeyValuePair<decimal, LinkedList<Path>>>();
 
@@ -401,10 +383,6 @@ namespace WCFService.Dijkstra {
                 foreach (Airport location in ShortestPaths.OrderBy(p => p.Value.Key).Select(p => p.Key).ToList()) {
                     if (!locationsProcessed.Contains(location)) {
                         if (ShortestPaths[location].Key == Int32.MaxValue) {
-                            //Dictionary<Airport, LinkedList<Path>> pp = ShortestPaths.ToDictionary(k => k.Key, v => v.Value.Value);
-
-                            //pathDictionary.Add(new Tuple<Airport, DateTime>(source, dt), pp);
-
                             return ShortestPaths.ToDictionary(k => k.Key, v => v.Value.Value);
                         }
 
@@ -456,11 +434,6 @@ namespace WCFService.Dijkstra {
                 locationsProcessed.Add(locationToProcess);
 
             } // end while
-
-            //Tuple<Airport, DateTime> tup = new Tuple<Airport, DateTime>(source, dt);
-            //Dictionary<Airport, LinkedList<Path>> pp2 = ShortestPaths.ToDictionary(k => k.Key, v => v.Value.Value);
-
-            //pathDictionary.Add(tup, pp2);
 
             return ShortestPaths.ToDictionary(k => k.Key, v => v.Value.Value);
 
