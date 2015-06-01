@@ -268,7 +268,7 @@ namespace WCFService.WCF {
 
 
         private void UpdateDijkstra() {
-            HashSet<int> ids = ticket.SeatReservations.Select(s => s.Flight_ID).ToHashSet();
+            List<int> ids = ticket.SeatReservations.Select(s => s.Flight_ID).ToList();
 
             Task updateTask = Task.Run(() => {
                 if (ids.Count > 1) {
