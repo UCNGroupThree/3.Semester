@@ -16,6 +16,11 @@ namespace FlightWeb.Test {
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
             var t = DateTime.Today;
             var dt = new DateTime(t.Year, t.Month, t.Day, 0, 1, 0);
+            var all = Request.QueryString["all"];
+            if (all != null) {
+                showAll();
+                return;
+            }
             var fromStr = Request.QueryString["from"];
             var toStr = Request.QueryString["to"];
             if (fromStr == null && toStr == null) {
@@ -49,6 +54,33 @@ namespace FlightWeb.Test {
 
 
 
+        }
+
+        private void showAll() {
+            List<Airport> airports = new List<Airport>();
+            using (var client = new AirportServiceClient()) {
+                airports = client.GetAirportsByCountry("Denmark");
+            }
+            using (var client = new RouteServiceClient()) {
+                var routes = new HashSet<Route>();
+                foreach (var airport in airports) {
+                    try {
+                        var rList = client.GetRoutesByAirport(airport);
+                        foreach (var r in rList) {
+                            routes.Add(r);
+                        }
+                    } catch (Exception) {}
+                    
+                }
+
+                foreach (var r in routes) {
+                    HiddenData.Value += r.From.Latitude + "," + r.From.Longitude +";";
+                    HiddenData.Value += r.To.Latitude + "," + r.To.Longitude + ":";
+                }
+                HiddenData.Value += HiddenData.Value.Substring(0, HiddenData.Value.Length - 1);
+                //
+
+            } 
         }
     }
 }

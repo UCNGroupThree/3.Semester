@@ -11,30 +11,21 @@
     </script>
     <script>
         $(document).ready(function () {
-            var data = document.getElementById("HiddenData").value;
-            var split = data.split(";");
-            var locations = [];
-            for (var i = 0; i < split.length; i++) {
-                var lat = split[i].split(",")[0];
-                //console.log("lat: " + lat);
-                var lon = split[i].split(",")[1];
-                //console.log("lon: " + lon);
-                var l = new google.maps.LatLng(lat, lon);
-                //console.log("l: " + l);
-                locations.push(l);
-                
-            }
-            //console.log(locations);
-            var x = new google.maps.LatLng(56.0662608, 10.4440763);
 
-            function initialize() {
-                var mapProp = {
-                    center: x,
-                    zoom: 6,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
+            function makePath(map, data) {
+                var split = data.split(";");
+                var locations = [];
+                for (var i = 0; i < split.length; i++) {
+                    var lat = split[i].split(",")[0];
+                    //console.log("lat: " + lat);
+                    var lon = split[i].split(",")[1];
+                    //console.log("lon: " + lon);
+                    var l = new google.maps.LatLng(lat, lon);
+                    //console.log("l: " + l);
+                    locations.push(l);
 
-                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                }
+                //console.log(locations);
 
                 var flightPath = new google.maps.Polyline({
                     path: locations,
@@ -44,6 +35,31 @@
                 });
 
                 flightPath.setMap(map);
+            }
+
+            function initialize() {
+                
+                var data = document.getElementById("HiddenData").value;
+
+
+                var x = new google.maps.LatLng(56.0662608, 10.4440763);
+                
+                var mapProp = {
+                    center: x,
+                    zoom: 6,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+                if (data.indexOf(":") > -1) {
+                    var fSplit = data.split(":");
+                    for (var i = 0; i < fSplit.length; i++) {
+                        makePath(map, fSplit[i]);
+                    }
+                } else {
+                    makePath(map, data);
+                }
             }
 
             google.maps.event.addDomListener(window, 'load', initialize);
