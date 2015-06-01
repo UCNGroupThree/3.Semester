@@ -24,40 +24,6 @@ namespace WCFService.WCF {
 
         //[PrincipalPermission(SecurityAction.Demand, Role = "None")]
         public Administrator AddAdministrator(Administrator administrator) {
-            //db.Database.Log = s => System.Diagnostics.Trace.WriteLine(s);
-            //.Where(f => f.ID == 228)
-            //!db.SeatReservations.Any(sr => sr.Seat.ID == s.ID)
-            //IQueryable<Flight> flights = db.Flights.Where(f => f.SeatReservations.Count < f.Plane.Seats.Count);//Include(f => f.Plane.Seats.Select(s => s.Plane.Seats));//.Where(f => !db.SeatReservations.Any(sr => sr.Seat.ID == f.ID));
-            
-            //IQueryable<Airport> query = flights.Select(f=> f.Route).Select(r=> r.From);
-
-            //IQueryable<Airport> query = db.Airports
-            //.Include(a => a.Routes.Select(r => r.Flights.Select(f => f.Plane).Select(s => s.Seats)))
-            //.Include(a => a.Routes.Select(r => r.To))
-            //.Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
-            //.Where(a => a.Routes.Any(r => r.Flights.Any(f => f.SeatReservations.Count < f.Plane.Seats.Count)));
-            
-            //IQueryable<Route> query = db.Routes..Where(route => route.Flights);
-            
-
-            //IQueryable<Airport> airports = db.Airports;
-            //IQueryable<Airport> ariports1 = airports.Join(flights, a => a.Routes.Exists(r => r.Flights.Contains(flights))) 
-            //IQueryable<Airport> query = airports;
-            //List<Flight> i = db.Flights.Include(f => f.Plane).Include(f=>f).Where(x=> x)
-            //.Seats.Where(s => !db.SeatReservations.Any(sr => sr.Seat.ID == s.ID))
-            //var j = db.Seats.Where(f => f.Plane.ID == 27 && !db.SeatReservations.Any(sr => sr.Seat.ID == f.ID));
-            //var i = db.Airports.OrderBy(n => n.ID).Include(n => n.Routes.Select(a => a.Flights.Select(f => f.Plane).Select(s => s.Seats)));
-            //var result = query.ToList();
-            //Trace.WriteLine("hej {0}", result.ToString());
-            //return null;
-            //var i = System.Threading.Thread.CurrentPrincipal.Identity;
-            //Trace.WriteLine("HAHAHA: {0}", i);
-            /*var pass = administrator.PasswordPlain;
-            var passHahh = PasswordHelper.CreateHash(pass);
-            var result = PasswordHelper.ValidatePassword(pass, passHahh);
-            Trace.WriteLine("{0} - {1} - {2}", pass, passHahh, result);
-            return null;*/
-            //Trace.WriteLine("hej: {0}", OperationContext.Current.ServiceSecurityContext.WindowsIdentity.Groups.Select(x => x.Translate(typeof(NTAccount)).Value).ToArray());
             if (administrator == null) {
                 throw new FaultException<NullPointerFault>(new NullPointerFault());
             }            
