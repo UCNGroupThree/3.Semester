@@ -325,6 +325,7 @@ namespace WCFService.Dijkstra {
                 db.Seats.Load();
                 var query = db.Airports;
                 var fromAirports = query.ToList();
+                
                 //List<Airport> fromAirports = db.Airports.OrderBy(n => n.ID)
                 //    .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.Plane).Select(p => p.Seats)))
                 //    .Include(a => a.Routes.Select(r => r.Flights.Select(f => f.SeatReservations)))
@@ -334,6 +335,7 @@ namespace WCFService.Dijkstra {
                 var toAirports = tmpAirports.SelectMany(r => r.Routes.Select(a => a.To)).ToHashSet();
                 tmpAirports.UnionWith(toAirports);
                 */
+
                 foreach (var fromAirport in fromAirports) {
                     foreach (var route in fromAirport.Routes) {
                         route.Flights.Sort(((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
@@ -346,6 +348,7 @@ namespace WCFService.Dijkstra {
                         _paths.Add(path);
                     }
                 }
+
                 //_dot.Airports = fromAirports;
                 //_dot.Paths = _paths;
             }
@@ -354,7 +357,7 @@ namespace WCFService.Dijkstra {
         //private static Dictionary<Tuple<Airport, DateTime>, Dictionary<Airport, LinkedList<Path>>> pathDictionary = new Dictionary<Tuple<Airport, DateTime>, Dictionary<Airport, LinkedList<Path>>>();
 
         public LinkedList<int> CalculateShortestPathBetween(Airport from, Airport to, int seats, DateTime dt) {
-            LinkedList<Path> paths = CalculateFrom(from, seats, dt)[to];
+            LinkedList<Path> paths = CalculateFrom(from, to, seats, dt)[to];
 
             //_dot.CalcPath = paths;
             //_dot.GenerateDots();
@@ -364,7 +367,7 @@ namespace WCFService.Dijkstra {
             return intPaths;
         }
 
-        private Dictionary<Airport, LinkedList<Path>> CalculateFrom(Airport from, int seats, DateTime dt) {
+        private Dictionary<Airport, LinkedList<Path>> CalculateFrom(Airport from, Airport to, int seats, DateTime dt) {
 
             //if (pathDictionary.ContainsKey(new Tuple<Airport, DateTime>(source, dt))) {
             //    Debug.WriteLine("Using old dictionary for: " + source);
@@ -391,9 +394,9 @@ namespace WCFService.Dijkstra {
 
             while (locationsProcessed.Count < locationCount) {
 
-                Airport locationToProcess = default(Airport);
+                Airport locationToProcess = to;
 
-
+                
                 //Search for the nearest location that havent been worked
                 foreach (Airport location in ShortestPaths.OrderBy(p => p.Value.Key).Select(p => p.Key).ToList()) {
                     if (!locationsProcessed.Contains(location)) {
@@ -410,7 +413,7 @@ namespace WCFService.Dijkstra {
                         break;
                     }
                 } // end foreach
-
+                
 
                 //Gets the paths to process, from the earlier selected "locationToProcess"
                 var selectedPaths = _paths.Where(p => p.From.Equals(locationToProcess));
@@ -438,8 +441,16 @@ namespace WCFService.Dijkstra {
                                 path.Route.Price + ShortestPaths[path.From].Key,
                                 ShortestPaths[path.From].Value.Union(new Path[] { path }).ToArray());
                         }
+
+                        
                     }
                 } // end foreach
+
+                //Breaks if the "TO" airport has been processed
+                if (locationToProcess.Equals(to)) {
+                    //Trace.WriteLine("Stopped algorithm early");
+                    return ShortestPaths.ToDictionary(k => k.Key, v => v.Value.Value);
+                }
 
                 //Add to processed list
                 locationsProcessed.Add(locationToProcess);
