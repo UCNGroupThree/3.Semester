@@ -301,6 +301,7 @@ namespace WCFService.Dijkstra {
         private static object syncRoot = new Object();
         private static Matrix _instance;
         private List<Path> _paths = new List<Path>();
+        private List<Airport> _airports = new List<Airport>(); 
 
         //private DotGenerator _dot = new DotGenerator();
 
@@ -324,9 +325,9 @@ namespace WCFService.Dijkstra {
                 db.Planes.Load();
                 db.Seats.Load();
                 var query = db.Airports;
-                var fromAirports = query.ToList();
+                _airports = query.ToList();
 
-                foreach (var fromAirport in fromAirports) {
+                foreach (var fromAirport in _airports) {
                     foreach (var route in fromAirport.Routes) {
                         route.Flights.Sort(((x, y) => DateTime.Compare(x.DepartureTime, y.DepartureTime)));
                         Path path = new Path() {
@@ -345,14 +346,19 @@ namespace WCFService.Dijkstra {
         }
 
         public LinkedList<int> CalculateShortestPathBetween(Airport from, Airport to, int seats, DateTime dt) {
-            LinkedList<Path> paths = CalculateFrom(from, to, seats, dt)[to];
-
-            //_dot.CalcPath = paths;
-            //_dot.GenerateDots();
-
-            LinkedList<int> intPaths = new LinkedList<int>(paths.Select(p => p.FinalFlight.ID));
-
-            return intPaths;
+            if (!_airports.Contains(from) || !_airports.Contains(to)) {
+                throw new AirportNotFoundException("Either From or To airport is invalid");
+            }
+            
+            try {
+                LinkedList<Path> paths = CalculateFrom(from, to, seats, dt)[to];
+                LinkedList<int> intPaths = new LinkedList<int>(paths.Select(p => p.FinalFlight.ID));
+                //_dot.CalcPath = paths;
+                //_dot.GenerateDots();
+                return intPaths;
+            } catch (KeyNotFoundException) {
+                throw new NoValidPathException("No valid paths found");
+            }
         }
 
         private Dictionary<Airport, LinkedList<Path>> CalculateFrom(Airport from, Airport to, int seats, DateTime dt) {

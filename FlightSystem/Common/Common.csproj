@@ -40,6 +40,8 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\NoValidPathException.cs" />
+    <Compile Include="Exceptions\AirportNotFoundException.cs" />
     <Compile Include="Exceptions\AlreadyExistException.cs" />
     <Compile Include="Exceptions\ConnectionException.cs" />
     <Compile Include="Exceptions\DatabaseException.cs" />
