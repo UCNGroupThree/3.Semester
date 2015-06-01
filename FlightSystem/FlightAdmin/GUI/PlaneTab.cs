@@ -29,7 +29,7 @@ namespace FlightAdmin.GUI {
             txtID.Text = "";
             txtName.Text = "";
 
-            comboPassengerCountChoice.SelectedIndex = -1;
+            //comboPassengerCountChoice.SelectedIndex = -1;
             spinnerPassengerCount.Text = "0";
 
             chkShowAllPlanes.Checked = false;
@@ -38,8 +38,8 @@ namespace FlightAdmin.GUI {
             // enable compontents
             txtID.Enabled = true;
             txtName.Enabled = true;
-            comboPassengerCountChoice.Enabled = true;
-            spinnerPassengerCount.Enabled = false;
+            //comboPassengerCountChoice.Enabled = true;
+            spinnerPassengerCount.Enabled = true;
 
             // disable buttons
             btnClearPlaneSearch.Enabled = false;
@@ -95,8 +95,8 @@ namespace FlightAdmin.GUI {
             // DisableSearch(false);
             planeBackgroundworker.RunWorkerAsync();
 
-            // disable buttons
-            btnClearPlaneSearch.Enabled = false;
+            
+            btnClearPlaneSearch.Enabled = true;
             btnPlaneSearch.Enabled = false;
         }
         #endregion
@@ -208,51 +208,77 @@ namespace FlightAdmin.GUI {
             }
         }
 
-        private void planeTable_MouseDown(object sender, MouseEventArgs e)
-        {
+        private void planeTable_MouseDown(object sender, MouseEventArgs e) {
             if (planeTable.SelectedRows.Count != 1) {
                 //e.cancel = true;
             }
-                
+
         }
 
+    
+
         #region backgroundworker Events
-        private void planeBackgroundworker_DoWork(object sender, DoWorkEventArgs e)
-        {
+        private void planeBackgroundworker_DoWork(object sender, DoWorkEventArgs e) {
+            //int selected = -1;
+            //try {
+                //selected = comboPassengerCountChoice.SelectedIndex;
+            //} catch (InvalidOperationException ioe) { Console.WriteLine(ioe.Message);}
+
             if (!String.IsNullOrEmpty(txtID.Text)) {
-                int id = -1;
+                int id;
 
                 try {
-
                     id = txtID.IntValue;
-                } catch (Exception) {}
+                } catch (Exception) {
+                    id = -1;
+                }
+                
+               
 
                 if (id != -1) {
 
                     Plane p = ctr.GetPlaneByID(id);
 
                     if (p != null) {
-
-                        e.Result = new List<Plane> {p};
+                        e.Result = new List<Plane> { p };
+                        
                     }
                 }
             } else if (!String.IsNullOrWhiteSpace(txtName.Text)) {
 
                 e.Result = ctr.GetPlaneByName(txtName.Text.Trim());
             }
+
+            else if (Convert.ToInt32(spinnerPassengerCount.Text.Trim()) > 0)
+            {
+                int passangerCount = Convert.ToInt32(spinnerPassengerCount.Text.Trim());
+
+                e.Result = ctr.GetPlanesWithLessOrEqualSeatNumber(passangerCount);
+
+            }
             // passenger count 
+
+            //if (comboPassengerCountChoice.Text.)
             /*
-            else if (!comboPassengerCountChoice.SelectedItem.Equals(-1)) {
+            if (Convert.ToInt32(spinnerPassengerCount.Text.Trim()) >0)
+            {
                 int seats = Convert.ToInt32(spinnerPassengerCount.Text.Trim());
 
+
+                e.Result = ctr.GetPlanesWithSeatNumber(seats);
+            }
+            */
+
+            /*
+            //else if (comboPassengerCountChoice.Text.Equals("Same")) {
+             //   int seats = Convert.ToInt32(spinnerPassengerCount.Text.Trim());
+            //    e.Result = ctr.GetPlanesWithSeatNumber(seats);
+                
                 // Same 
                 if (comboPassengerCountChoice.SelectedIndex.Equals(0)) {
                     e.Result = ctr.GetPlanesWithSeatNumber(seats);
                 }
                 // less and same
-                else if (comboPassengerCountChoice.SelectedIndex.Equals(1)) {
-                    e.Result = ctr.GetPlanesWithLessOrEqualSeatNumber(seats);
-                }
                 // more and same
                 else if (comboPassengerCountChoice.SelectedIndex.Equals(2)) {
                     e.Result = ctr.GetPlanesWithMoreOrEqualSeatNumber(seats);
@@ -260,10 +286,13 @@ namespace FlightAdmin.GUI {
                     MessageBox.Show("An error occured when searching with combobox", @"Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
-            } */
+             * } 
+
+                */
             else if (chkShowAllPlanes.Checked) {
                 e.Result = ctr.GetAllPlanes();
             }
+    
         }
        
 
@@ -295,15 +324,15 @@ namespace FlightAdmin.GUI {
         {
             if (String.IsNullOrWhiteSpace(txtID.Text.Trim())) {
                 txtName.Enabled = true;
-                comboPassengerCountChoice.SelectedIndex = -1;
-                comboPassengerCountChoice.Enabled = true;
+                //comboPassengerCountChoice.SelectedIndex = -1;
+                //comboPassengerCountChoice.Enabled = true;
 
                 btnClearPlaneSearch.Enabled = false;
                 btnPlaneSearch.Enabled = false;
 
             } else {
                 txtName.Enabled = false;
-                comboPassengerCountChoice.Enabled = false;
+                //comboPassengerCountChoice.Enabled = false;
 
                 btnClearPlaneSearch.Enabled = true;
                 btnPlaneSearch.Enabled = true;
@@ -315,8 +344,8 @@ namespace FlightAdmin.GUI {
             if (String.IsNullOrWhiteSpace(txtName.Text.Trim()))
             {
                 txtID.Enabled = true;
-                comboPassengerCountChoice.SelectedIndex = -1;
-                comboPassengerCountChoice.Enabled = true;
+                //comboPassengerCountChoice.SelectedIndex = -1;
+                //comboPassengerCountChoice.Enabled = true;
 
                 btnClearPlaneSearch.Enabled = false;
                 btnPlaneSearch.Enabled = false;
@@ -326,7 +355,7 @@ namespace FlightAdmin.GUI {
             else
             {
                 txtID.Enabled = false;
-                comboPassengerCountChoice.Enabled = false;
+                //comboPassengerCountChoice.Enabled = false;
 
                 btnClearPlaneSearch.Enabled = true;
                 btnPlaneSearch.Enabled = true;
@@ -352,8 +381,8 @@ namespace FlightAdmin.GUI {
                 txtName.Enabled = false;
                 txtName.Text = "";
 
-                comboPassengerCountChoice.Enabled = false;
-                comboPassengerCountChoice.SelectedIndex = -1;
+                //comboPassengerCountChoice.Enabled = false;
+                //comboPassengerCountChoice.SelectedIndex = -1;
 
                 spinnerPassengerCount.Enabled = false;
                 spinnerPassengerCount.Text = "0";
@@ -367,7 +396,7 @@ namespace FlightAdmin.GUI {
                 txtID.Enabled = true;
                 txtName.Enabled = true;
 
-                comboPassengerCountChoice.Enabled = true;
+                //comboPassengerCountChoice.Enabled = true;
                 spinnerPassengerCount.Enabled = true;
 
                 // disable buttons
@@ -377,6 +406,14 @@ namespace FlightAdmin.GUI {
 
         }
         #endregion
+
+        private void spinnerPassengerCount_ValueChanged(object sender, EventArgs e) {
+            txtName.Enabled = false;
+            txtID.Enabled = false;
+            
+            btnClearPlaneSearch.Enabled = true;
+            btnPlaneSearch.Enabled = true;
+        }
 
     }
 

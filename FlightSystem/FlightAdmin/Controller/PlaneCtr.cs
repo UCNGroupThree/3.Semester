@@ -143,7 +143,7 @@ namespace FlightAdmin.Controller {
 
             try {
                 using (PlaneServiceClient client = new PlaneServiceClient()) {
-                    //foundPlane = client.GetPlane(id);
+                   foundPlane = client.GetPlaneByID(id);
                 }
             } catch (Exception e) {
                 Console.WriteLine("Error in finding plane: " + e.Message);

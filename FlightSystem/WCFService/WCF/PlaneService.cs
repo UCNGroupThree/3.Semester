@@ -20,10 +20,11 @@ namespace WCFService.WCF
 
             if (plane == null) {
                 throw new FaultException("Nullpointer Exception"); //TODO vores egen Nullpointer Exception?
-            }else if (plane.Seats != null && !(plane.Seats.Count > 0)) {
+            }
+            if (plane.Seats != null && !(plane.Seats.Count > 0)) {
                 throw new FaultException<NotEnouthFault>(new NotEnouthFault(new NotEnouthException("Invalid Seats")), new FaultReason(new FaultReasonText("Invalid Seats")));
             }
-            
+
             try {
                 db.Planes.Add(plane);
                 db.SaveChanges();
@@ -83,7 +84,7 @@ namespace WCFService.WCF
                 foundPlanes = db.Planes.Where(p => p.Name.Contains(name)).ToList();
             }
             catch (Exception ex) {
-                Console.WriteLine(ex.Message); //TODO DEBUG MODE?
+                Console.WriteLine(ex.Message);
                 foundPlanes = null;
             }
 
@@ -93,13 +94,13 @@ namespace WCFService.WCF
         // id
         public Plane GetPlaneByID(int id) {
 
-            return db.Planes.SingleOrDefault(plane => plane.ID == id);
+            return db.Planes.SingleOrDefault(plane => plane.ID.Equals(id));
         }
 
         // find planes with a seat number equal to input parameter
         public List<Plane> GetPlanesWithSeatNumber(int seats) {
-
-            return db.Planes.Where(plane => plane.Seats.Count.Equals(seats)).ToList();
+            //return db.Planes.Where(plane => plane.Seats.Count.Equals(seats)).ToList();
+            return db.Planes.Where(plane => plane.Seats.Count == seats).ToList();
         }
 
         // find planes with a seat number with less or equal to input parameter

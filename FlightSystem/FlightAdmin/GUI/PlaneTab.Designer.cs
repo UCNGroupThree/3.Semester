@@ -24,9 +24,9 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.grpPlaneSearch = new System.Windows.Forms.GroupBox();
@@ -38,23 +38,24 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.spinnerPassengerCount = new System.Windows.Forms.NumericUpDown();
-            this.comboPassengerCountChoice = new System.Windows.Forms.ComboBox();
             this.txtID = new FlightAdmin.GUI.Helper.NumericTextBox();
             this.chkShowAllPlanes = new System.Windows.Forms.CheckBox();
             this.loadingImage = new System.Windows.Forms.PictureBox();
             this.btnPlaneSearch = new System.Windows.Forms.Button();
             this.btnClearPlaneSearch = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.grpCreatePlane = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCreatePlane = new System.Windows.Forms.Button();
             this.planeTable = new System.Windows.Forms.DataGridView();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Seats = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.planeTableMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Seats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.planeBackgroundworker = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -124,12 +125,12 @@
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 3);
             this.tableLayoutPanel3.Controls.Add(this.label2, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.spinnerPassengerCount, 1, 4);
-            this.tableLayoutPanel3.Controls.Add(this.comboPassengerCountChoice, 1, 3);
             this.tableLayoutPanel3.Controls.Add(this.txtID, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.chkShowAllPlanes, 0, 6);
             this.tableLayoutPanel3.Controls.Add(this.loadingImage, 1, 6);
             this.tableLayoutPanel3.Controls.Add(this.btnPlaneSearch, 1, 7);
             this.tableLayoutPanel3.Controls.Add(this.btnClearPlaneSearch, 0, 7);
+            this.tableLayoutPanel3.Controls.Add(this.label3, 1, 3);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -184,7 +185,7 @@
             this.lblPlanePassengers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPlanePassengers.Location = new System.Drawing.Point(3, 52);
             this.lblPlanePassengers.Name = "lblPlanePassengers";
-            this.lblPlanePassengers.Size = new System.Drawing.Size(201, 15);
+            this.lblPlanePassengers.Size = new System.Drawing.Size(201, 13);
             this.lblPlanePassengers.TabIndex = 4;
             this.lblPlanePassengers.Text = "Passengers";
             this.lblPlanePassengers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -193,9 +194,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 67);
+            this.label1.Location = new System.Drawing.Point(3, 65);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 27);
+            this.label1.Size = new System.Drawing.Size(117, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "Equal to";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -203,7 +204,7 @@
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 94);
+            this.label2.Location = new System.Drawing.Point(3, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 31);
             this.label2.TabIndex = 6;
@@ -214,15 +215,9 @@
             // 
             this.spinnerPassengerCount.AutoSize = true;
             this.spinnerPassengerCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spinnerPassengerCount.Enabled = false;
-            this.spinnerPassengerCount.Location = new System.Drawing.Point(126, 97);
+            this.spinnerPassengerCount.Location = new System.Drawing.Point(126, 81);
             this.spinnerPassengerCount.Maximum = new decimal(new int[] {
             1000,
-            0,
-            0,
-            0});
-            this.spinnerPassengerCount.Minimum = new decimal(new int[] {
-            1,
             0,
             0,
             0});
@@ -230,26 +225,7 @@
             this.spinnerPassengerCount.Size = new System.Drawing.Size(78, 20);
             this.spinnerPassengerCount.TabIndex = 7;
             this.spinnerPassengerCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.spinnerPassengerCount.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // comboPassengerCountChoice
-            // 
-            this.comboPassengerCountChoice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboPassengerCountChoice.Enabled = false;
-            this.comboPassengerCountChoice.FormattingEnabled = true;
-            this.comboPassengerCountChoice.Items.AddRange(new object[] {
-            "same ",
-            "less and same",
-            "more and same"});
-            this.comboPassengerCountChoice.Location = new System.Drawing.Point(126, 70);
-            this.comboPassengerCountChoice.Name = "comboPassengerCountChoice";
-            this.comboPassengerCountChoice.Size = new System.Drawing.Size(78, 21);
-            this.comboPassengerCountChoice.TabIndex = 1;
-            this.comboPassengerCountChoice.SelectedIndexChanged += new System.EventHandler(this.comboPassengerCountChoice_SelectedIndexChanged);
+            this.spinnerPassengerCount.ValueChanged += new System.EventHandler(this.spinnerPassengerCount_ValueChanged);
             // 
             // txtID
             // 
@@ -265,10 +241,10 @@
             // chkShowAllPlanes
             // 
             this.chkShowAllPlanes.AutoSize = true;
-            this.chkShowAllPlanes.Location = new System.Drawing.Point(3, 128);
+            this.chkShowAllPlanes.Location = new System.Drawing.Point(3, 112);
             this.chkShowAllPlanes.Name = "chkShowAllPlanes";
             this.chkShowAllPlanes.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkShowAllPlanes.Size = new System.Drawing.Size(117, 19);
+            this.chkShowAllPlanes.Size = new System.Drawing.Size(102, 17);
             this.chkShowAllPlanes.TabIndex = 18;
             this.chkShowAllPlanes.Text = "Show All Planes";
             this.chkShowAllPlanes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -278,7 +254,7 @@
             // loadingImage
             // 
             this.loadingImage.Image = global::FlightAdmin.Properties.Resources.loading;
-            this.loadingImage.Location = new System.Drawing.Point(126, 128);
+            this.loadingImage.Location = new System.Drawing.Point(126, 112);
             this.loadingImage.Name = "loadingImage";
             this.loadingImage.Size = new System.Drawing.Size(78, 25);
             this.loadingImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -289,8 +265,7 @@
             // btnPlaneSearch
             // 
             this.btnPlaneSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPlaneSearch.Enabled = false;
-            this.btnPlaneSearch.Location = new System.Drawing.Point(126, 159);
+            this.btnPlaneSearch.Location = new System.Drawing.Point(126, 143);
             this.btnPlaneSearch.Name = "btnPlaneSearch";
             this.btnPlaneSearch.Size = new System.Drawing.Size(78, 25);
             this.btnPlaneSearch.TabIndex = 9;
@@ -302,13 +277,22 @@
             // 
             this.btnClearPlaneSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClearPlaneSearch.Enabled = false;
-            this.btnClearPlaneSearch.Location = new System.Drawing.Point(45, 159);
+            this.btnClearPlaneSearch.Location = new System.Drawing.Point(45, 143);
             this.btnClearPlaneSearch.Name = "btnClearPlaneSearch";
             this.btnClearPlaneSearch.Size = new System.Drawing.Size(75, 25);
             this.btnClearPlaneSearch.TabIndex = 10;
             this.btnClearPlaneSearch.Text = "Clear";
             this.btnClearPlaneSearch.UseVisualStyleBackColor = true;
             this.btnClearPlaneSearch.Click += new System.EventHandler(this.btnClearPlaneSearch_Click_1);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(126, 65);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Same or less";
             // 
             // grpCreatePlane
             // 
@@ -355,63 +339,56 @@
             this.planeTable.AutoGenerateColumns = false;
             this.planeTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.planeTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.planeTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.planeTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.planeTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.planeTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDDataGridViewTextBoxColumn,
-            this.Name,
-            this.Seats});
+            this.iDDataGridViewTextBoxColumn1,
+            this.nameDataGridViewTextBoxColumn});
             this.planeTable.ContextMenuStrip = this.planeTableMenu;
             this.planeTable.DataSource = this.planeBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.planeTable.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.planeTable.DefaultCellStyle = dataGridViewCellStyle5;
             this.planeTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.planeTable.Location = new System.Drawing.Point(228, 3);
             this.planeTable.Name = "planeTable";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.planeTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.planeTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.planeTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.planeTable.Size = new System.Drawing.Size(608, 347);
             this.planeTable.TabIndex = 1;
             this.planeTable.KeyDown += new System.Windows.Forms.KeyEventHandler(this.planeTable_KeyDown);
             this.planeTable.MouseDown += new System.Windows.Forms.MouseEventHandler(this.planeTable_MouseDown);
             // 
-            // iDDataGridViewTextBoxColumn
+            // iDDataGridViewTextBoxColumn1
             // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn1.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn1.Name = "iDDataGridViewTextBoxColumn1";
             // 
-            // Name
+            // nameDataGridViewTextBoxColumn
             // 
-            this.Name.DataPropertyName = "Name";
-            this.Name.HeaderText = "Name";
-            this.Name.Name = "Name";
-            // 
-            // Seats
-            // 
-            this.Seats.HeaderText = "Seats";
-            this.Seats.Name = "Seats";
-            this.Seats.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             // 
             // planeTableMenu
             // 
@@ -419,25 +396,37 @@
             this.editToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.planeTableMenu.Name = "planeTableMenu";
-            this.planeTableMenu.Size = new System.Drawing.Size(123, 52);
+            this.planeTableMenu.Size = new System.Drawing.Size(108, 48);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // planeBindingSource
             // 
             this.planeBindingSource.DataSource = typeof(FlightAdmin.MainService.Plane);
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            // 
+            // Seats
+            // 
+            this.Seats.HeaderText = "Seats";
+            this.Seats.Name = "Seats";
+            this.Seats.ReadOnly = true;
             // 
             // planeBackgroundworker
             // 
@@ -449,7 +438,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-           // this.Name = "PlaneTab";
+            this.Name = "PlaneTab";
             this.Size = new System.Drawing.Size(839, 353);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -490,13 +479,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown spinnerPassengerCount;
-        private System.Windows.Forms.ComboBox comboPassengerCountChoice;
         private Helper.NumericTextBox txtID;
         private System.Windows.Forms.Button btnPlaneSearch;
         private System.Windows.Forms.CheckBox chkShowAllPlanes;
         private System.Windows.Forms.PictureBox loadingImage;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+        private string Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Seats;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label3;
     }
 }
