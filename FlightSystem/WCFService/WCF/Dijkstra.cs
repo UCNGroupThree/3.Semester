@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
+using System.ServiceModel;
 using System.Threading.Tasks;
+using Common.Exceptions;
 using WCFService.Dijkstra;
 using WCFService.Model;
+using WCFService.WCF.Faults;
 using WCFService.WCF.Interface;
 
 namespace WCFService.WCF {
@@ -48,24 +51,41 @@ namespace WCFService.WCF {
 
         public List<Flight> GetShortestPath(int from, int to, int seats, DateTime dt) {
 
-            Trace.WriteLine("----------- DijkstraTest -----------");
+            if (from == to) {
+                throw new FaultException<DijkstraFault>(new DijkstraFault("From and To Airport can't be the same"), new FaultReason("From and To Airport can't be the same"));
+            }
+
+            //Trace.WriteLine("----------- DijkstraTest -----------");
             var watch = Stopwatch.StartNew();
-
-
-            var list = Matrix.GetInstance().CalculateShortestPathBetween(new Airport() { ID = from }, new Airport() { ID = to }, seats, dt);
             
+
             var retFlights = new List<Flight>();
 
-            using (var db = new FlightDB()) {
+            try {
+                var list = Matrix.GetInstance()
+                    .CalculateShortestPathBetween(new Airport() {ID = @from}, new Airport() {ID = to}, seats, dt);
 
-                retFlights = db.Flights
-                .Include(f => f.Plane)
-                .Include(f => f.Route.From)
-                .Include(f => f.Route.To)
-                .Where(f => list.Contains(f.ID)).OrderBy(f => f.DepartureTime).ToList();
+                using (var db = new FlightDB()) {
 
+                    retFlights = db.Flights
+                    .Include(f => f.Plane)
+                    .Include(f => f.Route.From)
+                    .Include(f => f.Route.To)
+                    .Where(f => list.Contains(f.ID)).OrderBy(f => f.DepartureTime).ToList();
+
+                }
+
+            } catch (AirportNotFoundException airportNotFoundException) {
+                throw new FaultException<DijkstraFault>(new DijkstraFault(airportNotFoundException.Message), new FaultReason(airportNotFoundException.Message));
+            } catch (NoValidPathException noValidPathException) {
+                throw new FaultException<DijkstraFault>(new DijkstraFault(noValidPathException.Message), new FaultReason(noValidPathException.Message));
             }
-            
+
+            Trace.WriteLine(String.Format("{0} -> {1} | Time: {2} ms",from, to, watch.ElapsedMilliseconds));
+            //Trace.WriteLine("-------- DijkstraTest Ended ---------");
+
+            /*
+
             new Task(() => {
 
                 Trace.WriteLine("\nTime: " + watch.ElapsedMilliseconds + "ms\n");
@@ -83,6 +103,7 @@ namespace WCFService.WCF {
                 }
                 Debug.WriteLine("Total Cost: " + total);
             }).Start();
+            */
 
             return retFlights;
         }

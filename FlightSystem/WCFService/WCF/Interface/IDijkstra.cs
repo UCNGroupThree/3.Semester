@@ -10,6 +10,7 @@ namespace WCFService.WCF.Interface {
     public interface IDijkstra {
 
         [OperationContract]
+        [FaultContract(typeof(DijkstraFault))]
         List<Flight> GetShortestPath(int from, int to, int seats, DateTime dt);
 
     }

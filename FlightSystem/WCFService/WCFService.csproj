@@ -181,6 +181,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WCF\AdministratorService.cs" />
     <Compile Include="WCF\AirportService.cs" />
+    <Compile Include="WCF\Faults\DijkstraFault.cs" />
     <Compile Include="WCF\Faults\DeleteFault.cs" />
     <Compile Include="WCF\Faults\LockedFault.cs" />
     <Compile Include="WCF\Faults\NotSameObjectFault.cs" />

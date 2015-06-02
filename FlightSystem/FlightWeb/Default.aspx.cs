@@ -145,7 +145,7 @@ namespace FlightWeb {
             int toId = int.Parse(ddlTo.SelectedValue);
             int seats = int.Parse(ddlPersons.SelectedValue);
             DateTime date = DateTime.Parse(txtDepart.Text);
-            
+
             try {
                 ses.Flights = null;
                 ses.NoOfSeats = 0;
@@ -179,6 +179,8 @@ namespace FlightWeb {
                         throw new SubmitException("We are sorry, but we coundn't find any available flights :(");
                     }
                 }
+            } catch (FaultException<DijkstraFault> dijkstraFault) {
+                DisplayError("Dijkstra Fault", dijkstraFault.Message, false);
             } catch (Exception ex) {
                 if (ex is SubmitException) {
                     DisplayError("No Flight Found", ex.Message, false);

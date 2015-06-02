@@ -345,6 +345,8 @@ namespace WCFService.Dijkstra {
             }
         }
 
+        /// <exception cref="AirportNotFoundException">Either From or To airport is invalid</exception>
+        /// <exception cref="NoValidPathException">No valid paths found</exception>
         public LinkedList<int> CalculateShortestPathBetween(Airport from, Airport to, int seats, DateTime dt) {
             if (!_airports.Contains(from) || !_airports.Contains(to)) {
                 throw new AirportNotFoundException("Either From or To airport is invalid");
@@ -356,8 +358,8 @@ namespace WCFService.Dijkstra {
                 //_dot.CalcPath = paths;
                 //_dot.GenerateDots();
                 return intPaths;
-            } catch (KeyNotFoundException) {
-                throw new NoValidPathException("No valid paths found");
+            } catch (KeyNotFoundException ex) {
+                throw new NoValidPathException("No valid paths found", ex);
             }
         }
 
