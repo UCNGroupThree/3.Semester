@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.ServiceModel;
 using System.Threading;
-using Test.ReservationService;
+using Test.MainService;
 
 namespace Test {
     class ReservationTest {
+
+        /*
         // ReSharper disable once InconsistentNaming
         private List<Flight> flight;
         //private Ticket ticket;
@@ -90,6 +92,8 @@ namespace Test {
         
         private void PrintFlight(Flight flight) {
             Console.WriteLine(flight.Route.From.ID + ":" + flight.Route.From.Name + " -> " + flight.Route.To.Name + ":" + flight.Route.To.ID + " - Price: " + flight.Route.Price);
-        }
+        }* */
+
     }
+         
 }

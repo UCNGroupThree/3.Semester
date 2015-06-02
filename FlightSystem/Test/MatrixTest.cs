@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
-using Dijkstra.MainService;
+using Test.MainService;
 
-namespace Dijkstra {
-    class Program {
-        static void Main(string[] args) {
+namespace Test {
+    public class MatrixTest {
+        public void Run() {
 
             while (true) {
-                //try {
-                    Console.Write("ID1: ");
-                    int id1 = int.Parse(Console.ReadLine());
-                    Console.Write("ID2: ");
-                    int id2 = int.Parse(Console.ReadLine());
+               
+                Console.Write("ID1: ");
+                int id1 = int.Parse(Console.ReadLine());
+                Console.Write("ID2: ");
+                int id2 = int.Parse(Console.ReadLine());
 
-                    Console.WriteLine("---------------------------");
+                Console.WriteLine("---------------------------");
 
-                    DateTime dateTime = DateTime.Now.AddHours(-5);
+                DateTime dateTime = DateTime.Now.AddHours(-5);
 
-                    PrintStuff(1, 3, 1, dateTime);
+                PrintStuff(1, 3, 1, dateTime);
 
-                    Console.ReadKey();
-                //}catch(Exception){}
+                Console.ReadKey();
+                
 
             }
         }
@@ -32,17 +32,11 @@ namespace Dijkstra {
         static void PrintStuff(int id1, int id2, int seats, DateTime startTime) {
             decimal dm = 0;
             var watch = Stopwatch.StartNew();
-            //Airport a1;
-            //Airport a2;
-            //using (AirportServiceClient client = new AirportServiceClient()) {
-            //    a1 = client.GetAirport(id1);
-            //    a2 = client.GetAirport(id2);
-            //}
 
             List<Flight> aps;
 
             using (DijkstraClient client = new DijkstraClient()) {
-                aps = client.DijkstraStuff(id1, id2, seats, startTime);
+                aps = client.GetShortestPath(id1, id2, seats, startTime);
             }
 
             if (aps != null && aps.Count > 0) {

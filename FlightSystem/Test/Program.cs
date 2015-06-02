@@ -9,6 +9,7 @@ namespace Test {
         static void Main(string[] args) {
             //var test = new GenerateTestData();
             //var resTest = new ReservationTest();
+            new MatrixTest().Run();
         }
     }
 }
