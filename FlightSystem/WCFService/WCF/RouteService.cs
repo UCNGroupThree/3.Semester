@@ -36,8 +36,16 @@ namespace WCFService.WCF {
             if (db.Routes.Count(f => f.FromID == route.FromID && f.ToID == route.ToID) == 0) {
 
                 try {
-                    route.FromID = route.FromID;
-                    route.ToID = route.ToID;
+                    if (route.From != null) {
+                        route.FromID = route.From.ID;
+                        db.Entry(route.From).State = EntityState.Unchanged;
+                    }
+
+                    if (route.To != null) {
+                        route.ToID = route.To.ID;
+                        db.Entry(route.To).State = EntityState.Unchanged;
+                    }
+
                     db.Routes.Add(route);
                     db.SaveChanges();
 
