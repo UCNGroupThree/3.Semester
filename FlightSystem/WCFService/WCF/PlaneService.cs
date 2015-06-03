@@ -81,7 +81,7 @@ namespace WCFService.WCF
             List<Plane> foundPlanes;
 
             try {
-                foundPlanes = db.Planes.Where(p => p.Name.Contains(name)).ToList();
+                foundPlanes = db.Planes.Include(p => p.Seats).Where(p => p.Name.Contains(name)).ToList();
             }
             catch (Exception ex) {
                 Console.WriteLine(ex.Message);
@@ -94,30 +94,30 @@ namespace WCFService.WCF
         // id
         public Plane GetPlaneByID(int id) {
 
-            return db.Planes.SingleOrDefault(plane => plane.ID.Equals(id));
+            return db.Planes.Include(p => p.Seats).SingleOrDefault(plane => plane.ID.Equals(id));
         }
 
         // find planes with a seat number equal to input parameter
         public List<Plane> GetPlanesWithSeatNumber(int seats) {
             //return db.Planes.Where(plane => plane.Seats.Count.Equals(seats)).ToList();
-            return db.Planes.Where(plane => plane.Seats.Count == seats).ToList();
+            return db.Planes.Include(p => p.Seats).Where(plane => plane.Seats.Count == seats).ToList();
         }
 
         // find planes with a seat number with less or equal to input parameter
         public List<Plane> GetPlanesWithLessOrEqualSeatNumber(int seats) {
 
-            return db.Planes.Where(plane => plane.Seats.Count <= seats).ToList();
+            return db.Planes.Include(p => p.Seats).Where(plane => plane.Seats.Count <= seats).ToList();
         }
 
         // find planes with a seat number with more or equal to input parameter
         public List<Plane> GetPlanesWithMoreOrEqualSeatNumber(int seats) {
 
-            return db.Planes.Where(plane => plane.Seats.Count >= seats).ToList();
+            return db.Planes.Include(p => p.Seats).Where(plane => plane.Seats.Count >= seats).ToList();
         }
      
         // get all planes
         public List<Plane> GetAllPlanes() {
-            return db.Planes.ToList();
+            return db.Planes.Include(p => p.Seats).ToList();
         }
 
         #endregion
