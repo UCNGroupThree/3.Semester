@@ -43,9 +43,6 @@ namespace WCFService.WCF
                 throw new FaultException("Nullpointer Exception"); //TODO vores egen Nullpointer Exception?
             }
 
-            // tjek senere
-            //if (db.Seats.Any(plane) )
-
             try {
                 db.Planes.Attach(plane);
                 db.Entry(plane).State = EntityState.Modified;

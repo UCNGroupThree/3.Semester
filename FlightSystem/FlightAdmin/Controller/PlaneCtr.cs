@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ServiceModel;
 using Common.Exceptions;
-//using System.Runtime.InteropServices;
 using FlightAdmin.MainService;
 
 namespace FlightAdmin.Controller {
@@ -10,12 +9,9 @@ namespace FlightAdmin.Controller {
 
         #region create plane
 
-        // TODO: take account for rows and columns for seat count
         public Plane CreatePlane(string PlaneName, int SeatCount) {
             Plane plane = null;
 
-            // TODO: check for if plane information is correct
-            
             // generate plane seats
             List<Seat> PlaneSeats = GeneratePlaneSeats(SeatCount);
             plane = new Plane() { Name = PlaneName, Seats = PlaneSeats };
@@ -42,13 +38,11 @@ namespace FlightAdmin.Controller {
         /*
          * Generate a list of planesets from input parameter of seat count
          * Each column will always have 10 seats (should probably changes)
-         * 
          */
         private List<Seat> GeneratePlaneSeats(int Seats) {
                  List<Seat> PlaneSeats = new List<Seat>();
 
             // premade column count of 10
-            // TODO: better seat generator
             int rows = Seats/10;
             int columns = 10;
 
@@ -67,8 +61,6 @@ namespace FlightAdmin.Controller {
 
                     PlaneSeats.Add(NewPlaneSeat);
                     
-                   // DEBUG TEXT
-                   //Console.WriteLine("seat: x: {0} and y: {1}", NewPlaneSeat.PosX, NewPlaneSeat.PosY);
                 }
             }
 

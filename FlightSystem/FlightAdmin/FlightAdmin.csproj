@@ -99,6 +99,7 @@
     </Compile>
     <Compile Include="GUI\Helper\EmailValidation.cs" />
     <Compile Include="MainService\Administrator.cs" />
+    <Compile Include="MainService\Plane.cs" />
     <Compile Include="MainService\Postal.cs" />
     <Compile Include="MainUI.cs">
       <SubType>Form</SubType>
