@@ -484,7 +484,6 @@
         private System.Windows.Forms.CheckBox chkShowAllPlanes;
         private System.Windows.Forms.PictureBox loadingImage;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private string Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Seats;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;

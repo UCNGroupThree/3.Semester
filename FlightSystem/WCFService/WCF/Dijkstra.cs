@@ -19,7 +19,7 @@ namespace WCFService.WCF {
         public static void Updated(object updatedObj) {
             //Trace.WriteLine("###### Dijkstra Update ######");
             if (!test) {
-                Matrix.GetInstance().Updated(updatedObj);
+                DijkstraPath.GetInstance().Updated(updatedObj);
             }
 
 
@@ -32,7 +32,7 @@ namespace WCFService.WCF {
         public static void Added(object addedObj) {
             //Trace.WriteLine("###### Dijkstra Added ######");
             if (!test) {
-                Matrix.GetInstance().Added(addedObj);
+                DijkstraPath.GetInstance().Added(addedObj);
             }
             //####### Test #######
             //Test();
@@ -42,7 +42,7 @@ namespace WCFService.WCF {
         public static void Removed(object removedObj) {
             //Trace.WriteLine("###### Dijkstra Removed ######");
             if (!test) {
-                Matrix.GetInstance().Removed(removedObj);
+                DijkstraPath.GetInstance().Removed(removedObj);
             }
             //####### Test #######
             //Test();
@@ -62,7 +62,7 @@ namespace WCFService.WCF {
             var retFlights = new List<Flight>();
 
             try {
-                var list = Matrix.GetInstance()
+                var list = DijkstraPath.GetInstance()
                     .CalculateShortestPathBetween(new Airport() {ID = @from}, new Airport() {ID = to}, seats, dt);
 
                 using (var db = new FlightDB()) {

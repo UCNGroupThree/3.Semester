@@ -25,7 +25,7 @@ namespace WCFService.Dijkstra {
     /// <remarks>
     /// Based on inspiration from <see cref="http://www.codeproject.com/Articles/22647/Dijkstra-Shortest-Route-Calculation-Object-Oriente"/>.
     /// </remarks>
-    public class Matrix {
+    public class DijkstraPath {
 
         private static object eventLock = new Object();
 
@@ -294,29 +294,29 @@ namespace WCFService.Dijkstra {
         #endregion
 
         private void HardReset() {
-            _instance = new Matrix();
+            _instance = new DijkstraPath();
         }
 
 
         private static object syncRoot = new Object();
-        private static Matrix _instance;
+        private static DijkstraPath _instance;
         private List<Path> _paths = new List<Path>();
         private List<Airport> _airports = new List<Airport>(); 
 
         //private DotGenerator _dot = new DotGenerator();
 
-        public static Matrix GetInstance() {
+        public static DijkstraPath GetInstance() {
             if (_instance == null) {
                 lock (syncRoot) {
                     if (_instance == null)
-                        _instance = new Matrix();
+                        _instance = new DijkstraPath();
                 }
             }
 
             return _instance;
         }
 
-        private Matrix() {
+        private DijkstraPath() {
             using (var db = new FlightDB()) {
                 db.Routes.Load();
                 db.Airports.Load();

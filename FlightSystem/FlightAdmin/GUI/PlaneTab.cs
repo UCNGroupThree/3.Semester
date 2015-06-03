@@ -53,7 +53,7 @@ namespace FlightAdmin.GUI {
 
             CreatePlane createPlaneWindow = new CreatePlane();
             createPlaneWindow.ShowDialog();
-            Plane plane = createPlaneWindow.plane;
+            Plane plane = createPlaneWindow.Plane;
             if (plane != null) {
                 planeBindingSource.Add(plane);
             }
