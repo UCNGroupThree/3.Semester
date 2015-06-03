@@ -83,6 +83,7 @@
       <xs:element minOccurs="0" name="Flights" nillable="true" type="tns:ArrayOfFlight" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SeatCount" type="xs:int" />
       <xs:element minOccurs="0" name="Seats" nillable="true" type="tns:ArrayOfSeat" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />

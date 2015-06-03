@@ -1122,6 +1122,9 @@ namespace FlightWeb.MainService {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SeatCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.List<FlightWeb.MainService.Seat> SeatsField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -1169,6 +1172,19 @@ namespace FlightWeb.MainService {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SeatCount {
+            get {
+                return this.SeatCountField;
+            }
+            set {
+                if ((this.SeatCountField.Equals(value) != true)) {
+                    this.SeatCountField = value;
+                    this.RaisePropertyChanged("SeatCount");
                 }
             }
         }
